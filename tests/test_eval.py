@@ -33,14 +33,21 @@ BENCHMARK_QUERIES = [
      "level": "L1", "note": "Direct name lookup"},
     {"q": "Are there any course videos?", "keywords": ["video", "youtube"],
      "level": "L1", "note": "Content type lookup"},
+    {"q": "What is the course about?",
+     "keywords": ["ai", "venture", "prototyping", "hands-on"],
+     "level": "L1", "note": "Course description from overview"},
 
     # L2: Medium — requires semantic understanding
     {"q": "How do I register for the course?", "keywords": ["register", "questionnaire", "apply", "form"],
      "level": "L2", "note": "Actionable info"},
+    {"q": "What is the course format for Fall 2025?",
+     "keywords": ["venture studio", "agentic", "demo day"],
+     "level": "L2", "note": "Semester-specific overview"},
 
     # L3: Hard — needs cross-page reasoning
-    {"q": "What venture capital firms have speakers?", "keywords": ["khosla", "lux", "pillar", "link", "e14"],
-     "level": "L3", "note": "Aggregate across bios"},
+    {"q": "What venture capital firms have speakers?",
+     "keywords": ["khosla", "lux", "pillar", "link", "e14", "venture", "capital"],
+     "level": "L3", "note": "Aggregate across bios — many VC partners"},
     {"q": "How has the course name changed across semesters?", "keywords": ["web3", "venture", "agentic", "foundations"],
      "level": "L3", "note": "Cross-page temporal"},
 
@@ -323,15 +330,29 @@ def _hybrid_search(conn, emb_model, query, top_k=5, kw=0.3, sw=0.7):
 
     cur = conn.cursor()
     ph = ",".join("?" * len(all_ids))
-    cur.execute(f"SELECT id, content FROM documents WHERE id IN ({ph})", list(all_ids))
-    docs = {r[0]: r[1] for r in cur.fetchall()}
+    cur.execute(f"SELECT id, content, content_type FROM documents WHERE id IN ({ph})", list(all_ids))
+    docs = {r[0]: {"content": r[1], "content_type": r[2]} for r in cur.fetchall()}
 
     results = []
     for did in all_ids:
         score = kw * bm25_n.get(did, 0) + sw * sem_n.get(did, 0)
-        results.append({"id": did, "content": docs.get(did, ""), "score": score})
+        doc = docs.get(did, {"content": "", "content_type": "text"})
+        results.append({"id": did, "content": doc["content"], "content_type": doc["content_type"], "score": score})
     results.sort(key=lambda x: x["score"], reverse=True)
-    return results[:top_k]
+
+    # Content-type diversity: cap any single type at (top_k - 1)
+    max_per_type = max(top_k - 1, 1)
+    diverse = []
+    type_counts = {}
+    for r in results:
+        ct = r.get("content_type", "text")
+        type_counts[ct] = type_counts.get(ct, 0) + 1
+        if type_counts[ct] <= max_per_type:
+            diverse.append(r)
+        if len(diverse) >= top_k:
+            break
+
+    return diverse[:top_k]
 
 
 def _score_retrieval(results, keywords):
