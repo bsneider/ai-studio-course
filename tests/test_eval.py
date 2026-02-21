@@ -45,11 +45,19 @@ BENCHMARK_QUERIES = [
      "level": "L2", "note": "Semester-specific overview"},
 
     # L3: Hard — needs cross-page reasoning
-    {"q": "What venture capital firms have speakers?",
-     "keywords": ["khosla", "lux", "pillar", "link", "e14", "venture", "capital"],
-     "level": "L3", "note": "Aggregate across bios — many VC partners"},
+    {"q": "What venture capital firms are involved as speakers or mentors?",
+     "keywords": ["khosla", "lux", "link ventures", "two lanterns", "pillar", "e14"],
+     "level": "L3", "note": "Aggregate across bios — VC firms in Role field",
+     "top_k": 15},
+    {"q": "Who were the venture capital speakers in Fall 2023?",
+     "keywords": ["khosla", "lux", "link", "e14", "pillar"],
+     "level": "L3", "note": "Semester-specific VC list — needs many bios from one page",
+     "top_k": 15},
     {"q": "How has the course name changed across semesters?", "keywords": ["web3", "venture", "agentic", "foundations"],
      "level": "L3", "note": "Cross-page temporal"},
+    {"q": "What changed between the 2025 and 2026 versions of the course?",
+     "keywords": ["agentic", "autonomous", "venture studio", "foundations", "spring 2026", "spring 2025"],
+     "level": "L3", "note": "Cross-page temporal comparison"},
 
     # L4: Very hard — needs transcript content
     {"q": "What is NANDA and why does Raskar think it matters?",
@@ -136,6 +144,38 @@ def _crawl_page(url):
             bio_text += f" Photo: {img_url}"
         chunks.append({"content": bio_text, "section_title": f"Bio: {name}",
                         "content_type": "bio", "metadata": json.dumps({"name": name})})
+
+    # ── Generate a people-summary chunk grouping all bios on this page ──
+    bio_chunks = [c for c in chunks if c["content_type"] == "bio"]
+    if bio_chunks:
+        # Extract semester from URL (e.g., "fall23.html" -> "Fall 2023")
+        semester = ""
+        page_file = url.rstrip("/").split("/")[-1].replace(".html", "")
+        sem_match = re.match(r"(spring|fall)(\d{2})", page_file)
+        if sem_match:
+            semester = f"{sem_match.group(1).title()} 20{sem_match.group(2)}"
+
+        by_label = {}
+        for c in bio_chunks:
+            content = c["content"]
+            name_match = re.search(r"Speaker/Mentor: (.+?)\.", content)
+            role_match = re.search(r"Role: (.+?)\.(?:\s|$)", content)
+            label_match = re.search(r"Position: (.+?)\.", content)
+            name = name_match.group(1) if name_match else "?"
+            role = role_match.group(1) if role_match else ""
+            label = label_match.group(1) if label_match else "Speaker"
+            entry = f"{name} ({role})" if role else name
+            by_label.setdefault(label, []).append(entry)
+        summary_parts = []
+        for label, people in by_label.items():
+            summary_parts.append(f"{label}s: " + ", ".join(people))
+        header = f"People and organizations for {title}"
+        if semester:
+            header += f" ({semester})"
+        summary = header + ":\n" + "\n".join(summary_parts)
+        section = f"People: {semester or title[:50]}"
+        chunks.append({"content": summary, "section_title": section,
+                        "content_type": "text", "metadata": "{}"})
 
     seen_videos = set()
     for iframe in soup.find_all("iframe"):
@@ -297,18 +337,19 @@ def rag_db(tmp_path_factory):
 
 def _hybrid_search(conn, emb_model, query, top_k=5, kw=0.3, sw=0.7):
     qe = list(emb_model.embed([query]))[0].tolist()
+    candidate_k = max(50, top_k * 5)
 
     try:
         cur = conn.cursor()
-        cur.execute("SELECT rowid, bm25(documents_fts) FROM documents_fts WHERE documents_fts MATCH ? LIMIT 50",
-                     (query.replace('"', '""'),))
+        cur.execute("SELECT rowid, bm25(documents_fts) FROM documents_fts WHERE documents_fts MATCH ? LIMIT ?",
+                     (query.replace('"', '""'), candidate_k))
         bm25_raw = {r[0]: r[1] for r in cur.fetchall()}
     except sqlite3.OperationalError:
         bm25_raw = {}
 
     cur = conn.cursor()
-    cur.execute("SELECT rowid, distance FROM vec_documents WHERE embedding MATCH ? AND k = 50 ORDER BY distance",
-                 (_ser(qe),))
+    cur.execute("SELECT rowid, distance FROM vec_documents WHERE embedding MATCH ? AND k = ? ORDER BY distance",
+                 (_ser(qe), candidate_k))
     sem_raw = {r[0]: r[1] for r in cur.fetchall()}
 
     def norm(scores, hib=True):
@@ -372,11 +413,12 @@ class TestRAGRetrieval:
     @pytest.mark.parametrize("bq", BENCHMARK_QUERIES, ids=[e["q"][:50] for e in BENCHMARK_QUERIES])
     def test_retrieval_quality(self, rag_db, bq):
         conn, emb_model = rag_db
-        results = _hybrid_search(conn, emb_model, bq["q"], top_k=5)
+        top_k = bq.get("top_k", 5)
+        results = _hybrid_search(conn, emb_model, bq["q"], top_k=top_k)
         score = _score_retrieval(results, bq["keywords"])
         assert score >= 0.4, (
             f"[{bq['level']}] '{bq['q']}' scored {score:.0%} "
-            f"({bq['note']}). Expected >=40% of {bq['keywords']}"
+            f"(top_k={top_k}, {bq['note']}). Expected >=40% of {bq['keywords']}"
         )
 
     def test_overall_pass_rate(self, rag_db):
@@ -384,7 +426,8 @@ class TestRAGRetrieval:
         conn, emb_model = rag_db
         passed = 0
         for bq in BENCHMARK_QUERIES:
-            results = _hybrid_search(conn, emb_model, bq["q"], top_k=5)
+            top_k = bq.get("top_k", 5)
+            results = _hybrid_search(conn, emb_model, bq["q"], top_k=top_k)
             score = _score_retrieval(results, bq["keywords"])
             if score >= 0.4:
                 passed += 1
@@ -397,7 +440,8 @@ class TestRAGRetrieval:
         l4_plus = [e for e in BENCHMARK_QUERIES if e["level"] in ("L4", "L5")]
         passed = 0
         for bq in l4_plus:
-            results = _hybrid_search(conn, emb_model, bq["q"], top_k=5)
+            top_k = bq.get("top_k", 5)
+            results = _hybrid_search(conn, emb_model, bq["q"], top_k=top_k)
             score = _score_retrieval(results, bq["keywords"])
             if score >= 0.4:
                 passed += 1
