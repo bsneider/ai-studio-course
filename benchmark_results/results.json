@@ -1,0 +1,1464 @@
+{
+  "generated_at": "2026-02-21T03:24:17.180764+00:00",
+  "n_queries": 26,
+  "approaches": [
+    "Hybrid",
+    "BM25",
+    "Semantic",
+    "LLM-Rerank"
+  ],
+  "per_query": [
+    {
+      "query": "Who is Ramesh Raskar?",
+      "level": "L1",
+      "scoring": "normal",
+      "keywords": [
+        "ramesh",
+        "raskar",
+        "professor",
+        "mit"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.75,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "Are there any course videos?",
+      "level": "L1",
+      "scoring": "normal",
+      "keywords": [
+        "video",
+        "youtube"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 1.0,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.5,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "What is the course about?",
+      "level": "L1",
+      "scoring": "normal",
+      "keywords": [
+        "ai",
+        "venture",
+        "prototyping",
+        "hands-on"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.5,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.75,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.75,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8919478197221425,
+          "effective_recall": 1.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "How do I register for the course?",
+      "level": "L2",
+      "scoring": "normal",
+      "keywords": [
+        "register",
+        "questionnaire",
+        "apply",
+        "form"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.75,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.5976315487360696,
+          "effective_recall": 0.75,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.8986776544421414,
+          "effective_recall": 0.75,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.75,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.4573369727327457,
+          "effective_recall": 0.75,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.9121656860366328,
+          "effective_recall": 0.75,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "What is the course format for Fall 2025?",
+      "level": "L2",
+      "scoring": "normal",
+      "keywords": [
+        "venture studio",
+        "agentic",
+        "demo day"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.9920466006454152,
+          "effective_recall": 0.6666666666666666,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.971408902537385,
+          "effective_recall": 0.6666666666666666,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.6666666666666666,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.866107201235062,
+          "effective_recall": 0.6666666666666666,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "What venture capital firms are involved as speakers or mentors?",
+      "level": "L3",
+      "scoring": "normal",
+      "keywords": [
+        "khosla",
+        "lux",
+        "link ventures",
+        "two lanterns",
+        "pillar",
+        "e14"
+      ],
+      "top_k": 15,
+      "approaches": {
+        "Hybrid": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.7671980430548917,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.9827994861811935,
+          "effective_recall": 0.8333333333333334,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.5531239834838553,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.7033736910334266,
+          "effective_recall": 1.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "Who were the venture capital speakers in Fall 2023?",
+      "level": "L3",
+      "scoring": "normal",
+      "keywords": [
+        "khosla",
+        "lux",
+        "link",
+        "e14",
+        "pillar"
+      ],
+      "top_k": 15,
+      "approaches": {
+        "Hybrid": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.6022440725213158,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.9595981238976526,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.2,
+          "mrr": 1.0,
+          "ndcg": 0.8221120471878671,
+          "effective_recall": 0.2,
+          "passed": false
+        },
+        "LLM-Rerank": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.7614851882563043,
+          "effective_recall": 1.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "How has the course name changed across semesters?",
+      "level": "L3",
+      "scoring": "normal",
+      "keywords": [
+        "web3",
+        "venture",
+        "agentic",
+        "foundations"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.8442355845243696,
+          "effective_recall": 0.75,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.6776636931349654,
+          "effective_recall": 0.75,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.75,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "What changed between the 2025 and 2026 versions of the course?",
+      "level": "L3",
+      "scoring": "normal",
+      "keywords": [
+        "agentic",
+        "autonomous",
+        "venture studio",
+        "foundations",
+        "spring 2026",
+        "spring 2025"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.8401498110374593,
+          "effective_recall": 0.5,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.5,
+          "mrr": 0.5,
+          "ndcg": 0.567207416956871,
+          "effective_recall": 0.5,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.8447122853992027,
+          "effective_recall": 0.5,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.3333333333333333,
+          "mrr": 1.0,
+          "ndcg": 0.8599797111848092,
+          "effective_recall": 0.3333333333333333,
+          "passed": false
+        }
+      }
+    },
+    {
+      "query": "What is NANDA and why does Raskar think it matters?",
+      "level": "L4",
+      "scoring": "normal",
+      "keywords": [
+        "nanda",
+        "network",
+        "agent",
+        "decentralized",
+        "internet"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.6673385207601783,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.4,
+          "mrr": 1.0,
+          "ndcg": 0.8223779611386884,
+          "effective_recall": 0.4,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.9735792424866951,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.9359980548891793,
+          "effective_recall": 1.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "What did Raskar say about privacy and decentralized AI?",
+      "level": "L4",
+      "scoring": "normal",
+      "keywords": [
+        "privacy",
+        "decentralized",
+        "data",
+        "machine learning"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.9629027936988324,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.9488136009556424,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.9629027936988324,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "What companies like Mitsubishi were judges or partners at Demo Day?",
+      "level": "L5",
+      "scoring": "normal",
+      "keywords": [
+        "mitsubishi",
+        "judge",
+        "partner",
+        "corporate"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.7770227215242603,
+          "effective_recall": 0.75,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.75,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.7979168917078058,
+          "effective_recall": 0.75,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.9065280314885752,
+          "effective_recall": 0.5,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "How does Raskar compare the internet evolution to the agentic web?",
+      "level": "L5",
+      "scoring": "normal",
+      "keywords": [
+        "internet",
+        "worldwide web",
+        "mainframe",
+        "intranet",
+        "agentic"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.6,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.6,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.8,
+          "mrr": 1.0,
+          "ndcg": 0.7521728881423634,
+          "effective_recall": 0.8,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.8,
+          "mrr": 1.0,
+          "ndcg": 0.9338511340819263,
+          "effective_recall": 0.8,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "What healthcare or medical examples did speakers discuss?",
+      "level": "L5",
+      "scoring": "normal",
+      "keywords": [
+        "health",
+        "medical",
+        "patient",
+        "hospital",
+        "diabetic",
+        "chest"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.7521866188906461,
+          "effective_recall": 0.5,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.6666666666666666,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.7521866188906461,
+          "effective_recall": 0.5,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.9413225986683531,
+          "effective_recall": 0.6666666666666666,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "Who funds early-stage startups at the course?",
+      "level": "L6",
+      "scoring": "normal",
+      "keywords": [
+        "khosla",
+        "lux",
+        "link ventures",
+        "e14",
+        "pillar",
+        "venture"
+      ],
+      "top_k": 15,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.8174152298079348,
+          "effective_recall": 0.8333333333333334,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.8307469081123,
+          "effective_recall": 0.8333333333333334,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.6838554026395006,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.5988175737097489,
+          "effective_recall": 1.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "What cutting-edge tech topics are covered in lectures?",
+      "level": "L6",
+      "scoring": "normal",
+      "keywords": [
+        "agentic",
+        "autonomous",
+        "nanda",
+        "decentralized",
+        "web3",
+        "blockchain"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.0,
+          "passed": false
+        },
+        "BM25": {
+          "recall": 0.16666666666666666,
+          "mrr": 0.2,
+          "ndcg": 0.38685280723454163,
+          "effective_recall": 0.16666666666666666,
+          "passed": false
+        },
+        "Semantic": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.0,
+          "passed": false
+        },
+        "LLM-Rerank": {
+          "recall": 0.5,
+          "mrr": 0.5,
+          "ndcg": 0.6959964588011701,
+          "effective_recall": 0.5,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "Who helps students refine their business ideas?",
+      "level": "L6",
+      "scoring": "normal",
+      "keywords": [
+        "mentor",
+        "speaker",
+        "instructor",
+        "co-instructor",
+        "judge",
+        "catalyst"
+      ],
+      "top_k": 10,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.6666666666666666,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.6126858339449328,
+          "effective_recall": 0.6666666666666666,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.7527035338965439,
+          "effective_recall": 0.8333333333333334,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.6666666666666666,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.5106716842493384,
+          "effective_recall": 0.6666666666666666,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.7567348568360622,
+          "effective_recall": 0.5,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "How do teams show off their work at the end of the semester?",
+      "level": "L6",
+      "scoring": "normal",
+      "keywords": [
+        "demo day",
+        "pitch",
+        "presentation",
+        "showcase",
+        "judge"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8241377469002206,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8056979221630077,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8241377469002206,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "What privacy-preserving machine learning method was invented at MIT?",
+      "level": "L6",
+      "scoring": "normal",
+      "keywords": [
+        "split learning",
+        "federated",
+        "privacy",
+        "no peak",
+        "decentralized"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.4,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.4,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.9720982957292578,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.4,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.4,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.4,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.4,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "Which speakers or mentors appeared in both Fall 2023 and Spring 2024?",
+      "level": "L7",
+      "scoring": "normal",
+      "keywords": [
+        "raskar",
+        "ramesh",
+        "john",
+        "werner",
+        "habib",
+        "hadad",
+        "link"
+      ],
+      "top_k": 15,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.42857142857142855,
+          "mrr": 0.125,
+          "ndcg": 0.3458369414795075,
+          "effective_recall": 0.42857142857142855,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.8571428571428571,
+          "mrr": 1.0,
+          "ndcg": 0.919399865400546,
+          "effective_recall": 0.8571428571428571,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.2857142857142857,
+          "mrr": 0.07692307692307693,
+          "ndcg": 0.360691176496464,
+          "effective_recall": 0.2857142857142857,
+          "passed": false
+        },
+        "LLM-Rerank": {
+          "recall": 0.2857142857142857,
+          "mrr": 1.0,
+          "ndcg": 0.7681402000657983,
+          "effective_recall": 0.2857142857142857,
+          "passed": false
+        }
+      }
+    },
+    {
+      "query": "How has the number of student teams changed across semesters?",
+      "level": "L7",
+      "scoring": "normal",
+      "keywords": [
+        "15",
+        "24",
+        "38",
+        "teams",
+        "presenting"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.4,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.4,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.8,
+          "mrr": 1.0,
+          "ndcg": 0.9069783029220914,
+          "effective_recall": 0.8,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.4,
+          "mrr": 1.0,
+          "ndcg": 0.9605753368118397,
+          "effective_recall": 0.4,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.4,
+          "mrr": 1.0,
+          "ndcg": 0.8558112355261802,
+          "effective_recall": 0.4,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "What real-world companies were both judges and corporate partners at demo days?",
+      "level": "L7",
+      "scoring": "normal",
+      "keywords": [
+        "mitsubishi",
+        "state street",
+        "ey",
+        "mass challenge"
+      ],
+      "top_k": 15,
+      "approaches": {
+        "Hybrid": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8011166442354041,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.25,
+          "mrr": 0.5,
+          "ndcg": 0.8663422763540115,
+          "effective_recall": 0.25,
+          "passed": false
+        },
+        "Semantic": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.9170245493900888,
+          "effective_recall": 0.5,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8007393408971533,
+          "effective_recall": 1.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "Did the course evaluation criteria change between Spring 2023 and Fall 2025?",
+      "level": "L7",
+      "scoring": "normal",
+      "keywords": [
+        "impact",
+        "unique",
+        "complete",
+        "demo",
+        "judge",
+        "gigas scale"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.8080267481237329,
+          "effective_recall": 0.8333333333333334,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.3333333333333333,
+          "mrr": 1.0,
+          "ndcg": 0.7960767356132932,
+          "effective_recall": 0.3333333333333333,
+          "passed": false
+        },
+        "Semantic": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.8333333333333334,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.3333333333333333,
+          "mrr": 1.0,
+          "ndcg": 0.9467009784197935,
+          "effective_recall": 0.3333333333333333,
+          "passed": false
+        }
+      }
+    },
+    {
+      "query": "What is the tuition cost for the AI Studio course?",
+      "level": "L8",
+      "scoring": "inverse",
+      "keywords": [
+        "tuition",
+        "cost",
+        "fee",
+        "price",
+        "dollar",
+        "pay"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.5,
+          "mrr": 0.5,
+          "ndcg": 0.6728853390803203,
+          "effective_recall": 0.5,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.9238850086262383,
+          "effective_recall": 0.5,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.5,
+          "mrr": 0.5,
+          "ndcg": 0.6728853390803203,
+          "effective_recall": 0.5,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "What programming languages are required as prerequisites?",
+      "level": "L8",
+      "scoring": "inverse",
+      "keywords": [
+        "python",
+        "java",
+        "javascript",
+        "prerequisite",
+        "requirement",
+        "coding"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.16666666666666666,
+          "mrr": 0.5,
+          "ndcg": 0.6934264036172707,
+          "effective_recall": 0.8333333333333334,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.16666666666666666,
+          "mrr": 0.5,
+          "ndcg": 0.6934264036172707,
+          "effective_recall": 0.8333333333333334,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.16666666666666666,
+          "mrr": 0.5,
+          "ndcg": 0.6934264036172707,
+          "effective_recall": 0.8333333333333334,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "What is the final exam format for the course?",
+      "level": "L8",
+      "scoring": "inverse",
+      "keywords": [
+        "exam",
+        "test",
+        "midterm",
+        "final",
+        "quiz",
+        "grading"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.16666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.8333333333333334,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.16666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.8333333333333334,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.16666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.8333333333333334,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.16666666666666666,
+          "mrr": 0.25,
+          "ndcg": 0.5012658353418871,
+          "effective_recall": 0.8333333333333334,
+          "passed": true
+        }
+      }
+    }
+  ],
+  "aggregates": {
+    "Hybrid": {
+      "Recall@K": 0.7209706959706961,
+      "MRR": 0.8125,
+      "NDCG@K": 0.8030187385608755,
+      "pass@1": 0.9615384615384616,
+      "pass@3": 1.0,
+      "pass^3": 0.888996358670915,
+      "pass_rate": 0.9615384615384616,
+      "n_passed": 25,
+      "n_total": 26
+    },
+    "BM25": {
+      "Recall@K": 0.748992673992674,
+      "MRR": 0.8923076923076922,
+      "NDCG@K": 0.8966024923908233,
+      "pass@1": 0.8846153846153846,
+      "pass@3": 0.9996153846153846,
+      "pass^3": 0.6922507965407373,
+      "pass_rate": 0.8846153846153846,
+      "n_passed": 23,
+      "n_total": 26
+    },
+    "Semantic": {
+      "Recall@K": 0.6891941391941392,
+      "MRR": 0.8362919132149902,
+      "NDCG@K": 0.8160375021557701,
+      "pass@1": 0.8846153846153846,
+      "pass@3": 0.9996153846153846,
+      "pass^3": 0.6922507965407373,
+      "pass_rate": 0.8846153846153846,
+      "n_passed": 23,
+      "n_total": 26
+    },
+    "LLM-Rerank": {
+      "Recall@K": 0.7520146520146521,
+      "MRR": 0.8942307692307693,
+      "NDCG@K": 0.8588612307619798,
+      "pass@1": 0.8846153846153846,
+      "pass@3": 0.9996153846153846,
+      "pass^3": 0.6922507965407373,
+      "pass_rate": 0.8846153846153846,
+      "n_passed": 23,
+      "n_total": 26
+    }
+  },
+  "per_level": {
+    "L1": {
+      "n": 3,
+      "approaches": {
+        "Hybrid": {
+          "mean_recall": 0.8333333333333334,
+          "mean_mrr": 0.7777777777777778,
+          "mean_ndcg": 0.8333333333333334
+        },
+        "BM25": {
+          "mean_recall": 0.8333333333333334,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 1.0
+        },
+        "Semantic": {
+          "mean_recall": 0.9166666666666666,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 1.0
+        },
+        "LLM-Rerank": {
+          "mean_recall": 1.0,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9639826065740476
+        }
+      }
+    },
+    "L2": {
+      "n": 2,
+      "approaches": {
+        "Hybrid": {
+          "mean_recall": 0.7083333333333333,
+          "mean_mrr": 0.6666666666666666,
+          "mean_ndcg": 0.7948390746907423
+        },
+        "BM25": {
+          "mean_recall": 0.7083333333333333,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9350432784897632
+        },
+        "Semantic": {
+          "mean_recall": 0.7083333333333333,
+          "mean_mrr": 0.6666666666666666,
+          "mean_ndcg": 0.7286684863663728
+        },
+        "LLM-Rerank": {
+          "mean_recall": 0.7083333333333333,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8891364436358474
+        }
+      }
+    },
+    "L3": {
+      "n": 4,
+      "approaches": {
+        "Hybrid": {
+          "mean_recall": 0.8125,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.7634568777845091
+        },
+        "BM25": {
+          "mean_recall": 0.8333333333333334,
+          "mean_mrr": 0.875,
+          "mean_ndcg": 0.8774012567589293
+        },
+        "Semantic": {
+          "mean_recall": 0.6125,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.7244030023014727
+        },
+        "LLM-Rerank": {
+          "mean_recall": 0.7708333333333334,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.831209647618635
+        }
+      }
+    },
+    "L4": {
+      "n": 2,
+      "approaches": {
+        "Hybrid": {
+          "mean_recall": 1.0,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8151206572295053
+        },
+        "BM25": {
+          "mean_recall": 0.7,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8855957810471654
+        },
+        "Semantic": {
+          "mean_recall": 1.0,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9682410180927637
+        },
+        "LLM-Rerank": {
+          "mean_recall": 1.0,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9679990274445897
+        }
+      }
+    },
+    "L5": {
+      "n": 3,
+      "approaches": {
+        "Hybrid": {
+          "mean_recall": 0.6166666666666667,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8430697801383021
+        },
+        "BM25": {
+          "mean_recall": 0.8055555555555555,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 1.0
+        },
+        "Semantic": {
+          "mean_recall": 0.6833333333333332,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.7674254662469385
+        },
+        "LLM-Rerank": {
+          "mean_recall": 0.6555555555555556,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9272339214129515
+        }
+      }
+    },
+    "L6": {
+      "n": 5,
+      "approaches": {
+        "Hybrid": {
+          "mean_recall": 0.58,
+          "mean_mrr": 0.6666666666666667,
+          "mean_ndcg": 0.8508477621306177
+        },
+        "BM25": {
+          "mean_recall": 0.7666666666666667,
+          "mean_mrr": 0.8400000000000001,
+          "mean_ndcg": 0.7496198934271302
+        },
+        "Semantic": {
+          "mean_recall": 0.6133333333333333,
+          "mean_mrr": 0.6666666666666667,
+          "mean_ndcg": 0.8037329667578119
+        },
+        "LLM-Rerank": {
+          "mean_recall": 0.6799999999999999,
+          "mean_mrr": 0.9,
+          "mean_ndcg": 0.8103097778693963
+        }
+      }
+    },
+    "L7": {
+      "n": 4,
+      "approaches": {
+        "Hybrid": {
+          "mean_recall": 0.6654761904761904,
+          "mean_mrr": 0.78125,
+          "mean_ndcg": 0.7387450834596612
+        },
+        "BM25": {
+          "mean_recall": 0.5601190476190476,
+          "mean_mrr": 0.875,
+          "mean_ndcg": 0.8721992950724855
+        },
+        "Semantic": {
+          "mean_recall": 0.5047619047619047,
+          "mean_mrr": 0.7692307692307693,
+          "mean_ndcg": 0.8095727656745981
+        },
+        "LLM-Rerank": {
+          "mean_recall": 0.5047619047619047,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8428479387272313
+        }
+      }
+    },
+    "L8": {
+      "n": 3,
+      "approaches": {
+        "Hybrid": {
+          "mean_recall": 0.7222222222222223,
+          "mean_mrr": 0.6666666666666666,
+          "mean_ndcg": 0.788770580899197
+        },
+        "BM25": {
+          "mean_recall": 0.7777777777777778,
+          "mean_mrr": 0.6666666666666666,
+          "mean_ndcg": 0.9746283362087461
+        },
+        "Semantic": {
+          "mean_recall": 0.7222222222222223,
+          "mean_mrr": 0.6666666666666666,
+          "mean_ndcg": 0.788770580899197
+        },
+        "LLM-Rerank": {
+          "mean_recall": 0.888888888888889,
+          "mean_mrr": 0.25,
+          "mean_ndcg": 0.7315640796530526
+        }
+      }
+    }
+  },
+  "weight_sweep": [
+    {
+      "kw": 1.0,
+      "sw": 0.0,
+      "label": "BM25=100% Sem=0%",
+      "mean_recall": 0.6198717948717949,
+      "pass_rate": 0.7692307692307693
+    },
+    {
+      "kw": 0.9,
+      "sw": 0.1,
+      "label": "BM25=90% Sem=10%",
+      "mean_recall": 0.7132783882783882,
+      "pass_rate": 0.8846153846153846
+    },
+    {
+      "kw": 0.8,
+      "sw": 0.2,
+      "label": "BM25=80% Sem=20%",
+      "mean_recall": 0.694047619047619,
+      "pass_rate": 0.8846153846153846
+    },
+    {
+      "kw": 0.7,
+      "sw": 0.3,
+      "label": "BM25=70% Sem=30%",
+      "mean_recall": 0.7075091575091575,
+      "pass_rate": 0.8846153846153846
+    },
+    {
+      "kw": 0.6,
+      "sw": 0.4,
+      "label": "BM25=60% Sem=40%",
+      "mean_recall": 0.7228937728937729,
+      "pass_rate": 0.9230769230769231
+    },
+    {
+      "kw": 0.5,
+      "sw": 0.5,
+      "label": "BM25=50% Sem=50%",
+      "mean_recall": 0.703021978021978,
+      "pass_rate": 0.8846153846153846
+    },
+    {
+      "kw": 0.4,
+      "sw": 0.6,
+      "label": "BM25=40% Sem=60%",
+      "mean_recall": 0.7145604395604396,
+      "pass_rate": 0.9230769230769231
+    },
+    {
+      "kw": 0.3,
+      "sw": 0.7,
+      "label": "BM25=30% Sem=70%",
+      "mean_recall": 0.7209706959706961,
+      "pass_rate": 0.9615384615384616
+    },
+    {
+      "kw": 0.2,
+      "sw": 0.8,
+      "label": "BM25=20% Sem=80%",
+      "mean_recall": 0.735989010989011,
+      "pass_rate": 0.9230769230769231
+    },
+    {
+      "kw": 0.1,
+      "sw": 0.9,
+      "label": "BM25=10% Sem=90%",
+      "mean_recall": 0.6975274725274725,
+      "pass_rate": 0.8846153846153846
+    },
+    {
+      "kw": 0.0,
+      "sw": 1.0,
+      "label": "BM25=0% Sem=100%",
+      "mean_recall": 0.6727106227106228,
+      "pass_rate": 0.8461538461538461
+    },
+    {
+      "kw": null,
+      "sw": null,
+      "label": "LLM-Rerank",
+      "mean_recall": 0.7520146520146521,
+      "pass_rate": 0.8846153846153846
+    }
+  ]
+}

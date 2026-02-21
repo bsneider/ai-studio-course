@@ -326,6 +326,227 @@ def chart_summary_table(data, output_dir):
     return path
 
 
+# ── Chart 5: Weight Sweep — BM25/Semantic Mix ────────────────────────────────
+
+
+def chart_weight_sweep(data, output_dir):
+    """Line chart showing how recall changes as BM25/Semantic ratio varies."""
+    _setup_font()
+
+    sweep = data.get("weight_sweep", [])
+    if not sweep:
+        print("  Chart 5 skipped: no weight_sweep data in results.json")
+        return None
+
+    # Separate hybrid sweep points from LLM-Rerank
+    hybrid_pts = [p for p in sweep if p["kw"] is not None]
+    llm_pt = next((p for p in sweep if p["label"] == "LLM-Rerank"), None)
+
+    fig, ax1 = plt.subplots(figsize=(12, 6))
+
+    # X-axis: semantic weight (0.0 to 1.0)
+    x = [p["sw"] for p in hybrid_pts]
+    recalls = [p["mean_recall"] for p in hybrid_pts]
+    pass_rates = [p["pass_rate"] for p in hybrid_pts]
+
+    # Primary axis: Mean Recall
+    line1 = ax1.plot(x, recalls, "o-", color=MIT_CRIMSON, linewidth=2.5,
+                     markersize=8, label="Mean Recall@K", zorder=4)
+    ax1.set_xlabel("Semantic Weight (BM25 weight = 1 - semantic)", fontsize=11)
+    ax1.set_ylabel("Mean Effective Recall@K", fontsize=11, color=MIT_CRIMSON)
+    ax1.tick_params(axis="y", labelcolor=MIT_CRIMSON)
+
+    # Secondary axis: Pass Rate
+    ax2 = ax1.twinx()
+    line2 = ax2.plot(x, pass_rates, "s--", color=DARK_NAVY, linewidth=2,
+                     markersize=7, label="Pass Rate (>=40%)", zorder=3)
+    ax2.set_ylabel("Pass Rate", fontsize=11, color=DARK_NAVY)
+    ax2.tick_params(axis="y", labelcolor=DARK_NAVY)
+    ax2.set_ylim(0, 1.05)
+
+    # Mark the best hybrid point
+    best_idx = max(range(len(recalls)), key=lambda i: recalls[i])
+    ax1.annotate(
+        f"Best: sw={x[best_idx]:.1f}\n({recalls[best_idx]:.0%})",
+        xy=(x[best_idx], recalls[best_idx]),
+        xytext=(x[best_idx] - 0.15, recalls[best_idx] + 0.06),
+        fontsize=9, fontweight="bold", color=MIT_CRIMSON,
+        arrowprops=dict(arrowstyle="->", color=MIT_CRIMSON, lw=1.5),
+    )
+
+    # LLM-Rerank as a horizontal reference line
+    if llm_pt:
+        ax1.axhline(y=llm_pt["mean_recall"], color=WARM_GOLD, linestyle=":",
+                     linewidth=2, alpha=0.8, zorder=2)
+        ax1.text(0.02, llm_pt["mean_recall"] + 0.01,
+                 f"LLM-Rerank ({llm_pt['mean_recall']:.0%})",
+                 fontsize=9, color=WARM_GOLD, fontweight="bold")
+
+    # Labels for endpoints
+    ax1.text(0.0, recalls[0] - 0.03, "Pure\nBM25", fontsize=8, ha="center",
+             color=MIT_GRAY, fontstyle="italic")
+    ax1.text(1.0, recalls[-1] - 0.03, "Pure\nSemantic", fontsize=8, ha="center",
+             color=MIT_GRAY, fontstyle="italic")
+
+    # Pass threshold
+    ax1.axhline(y=0.4, color=MIT_GRAY, linestyle="--", linewidth=0.8, alpha=0.5)
+
+    # Combined legend
+    lines = line1 + line2
+    labels = [l.get_label() for l in lines]
+    ax1.legend(lines, labels, loc="lower center", framealpha=0.9)
+
+    ax1.set_title("Effect of BM25/Semantic Weight Mix on Retrieval Quality",
+                   fontsize=14, fontweight="bold", pad=20)
+    ax1.set_xlim(-0.05, 1.05)
+    ax1.grid(axis="both", alpha=0.2, zorder=0)
+
+    fig.tight_layout(rect=[0, 0.03, 1, 0.97])
+    add_branding(fig)
+
+    path = output_dir / "chart5_weight_sweep.png"
+    fig.savefig(path, dpi=DPI, bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    print(f"  Chart 5 saved: {path}")
+    return path
+
+
+# ── Chart 6: Approach Progression — Waterfall ────────────────────────────────
+
+
+def chart_approach_progression(data, output_dir):
+    """Waterfall chart showing incremental improvement from BM25 -> Hybrid -> LLM-Rerank."""
+    _setup_font()
+
+    aggregates = data.get("aggregates", {})
+    sweep = data.get("weight_sweep", [])
+
+    # Build progression stages — ordered to tell an "improvement" story:
+    # worst baseline -> better baseline -> hybrid combines both -> LLM tops it
+    stages = []
+
+    # Determine which single-method baseline is weaker to put it first
+    bm25_recall = aggregates.get("BM25", {}).get("Recall@K", 0)
+    sem_recall = aggregates.get("Semantic", {}).get("Recall@K", 0)
+
+    if sem_recall <= bm25_recall:
+        # Semantic is the weaker baseline
+        if "Semantic" in aggregates:
+            stages.append({
+                "label": "Semantic\n(embeddings only)",
+                "recall": sem_recall,
+                "color": WARM_GOLD,
+            })
+        if "BM25" in aggregates:
+            stages.append({
+                "label": "BM25\n(keywords only)",
+                "recall": bm25_recall,
+                "color": MIT_GRAY,
+            })
+    else:
+        # BM25 is the weaker baseline
+        if "BM25" in aggregates:
+            stages.append({
+                "label": "BM25\n(keywords only)",
+                "recall": bm25_recall,
+                "color": MIT_GRAY,
+            })
+        if "Semantic" in aggregates:
+            stages.append({
+                "label": "Semantic\n(embeddings only)",
+                "recall": sem_recall,
+                "color": WARM_GOLD,
+            })
+
+    # Hybrid combines both — use best mix from sweep if available
+    hybrid_pts = [p for p in sweep if p["kw"] is not None]
+    if hybrid_pts:
+        best = max(hybrid_pts, key=lambda p: p["mean_recall"])
+        stages.append({
+            "label": f"Hybrid\n(BM25={best['kw']:.0%}+Sem={best['sw']:.0%})",
+            "recall": best["mean_recall"],
+            "color": MIT_CRIMSON,
+        })
+    elif "Hybrid" in aggregates:
+        stages.append({
+            "label": "Hybrid\n(BM25=30%+Sem=70%)",
+            "recall": aggregates["Hybrid"]["Recall@K"],
+            "color": MIT_CRIMSON,
+        })
+
+    # LLM-Rerank adds reasoning on top
+    if "LLM-Rerank" in aggregates:
+        stages.append({
+            "label": "LLM-Rerank\n(hybrid + LLM judge)",
+            "recall": aggregates["LLM-Rerank"]["Recall@K"],
+            "color": DARK_NAVY,
+        })
+
+    if len(stages) < 2:
+        print("  Chart 6 skipped: not enough approaches for progression")
+        return None
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    x = np.arange(len(stages))
+    bar_vals = [s["recall"] for s in stages]
+    colors = [s["color"] for s in stages]
+    labels = [s["label"] for s in stages]
+
+    bars = ax.bar(x, bar_vals, width=0.6, color=colors, edgecolor="white",
+                  linewidth=1.5, zorder=3)
+
+    # Value labels on bars
+    for bar, val in zip(bars, bar_vals):
+        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.015,
+                f"{val:.1%}", ha="center", va="bottom", fontsize=12,
+                fontweight="bold", color="#333333")
+
+    # Delta arrows between stages
+    for i in range(1, len(stages)):
+        prev = bar_vals[i - 1]
+        curr = bar_vals[i]
+        delta = curr - prev
+        sign = "+" if delta >= 0 else ""
+        mid_y = (prev + curr) / 2
+        color = "#2e7d32" if delta >= 0 else "#c62828"
+
+        ax.annotate(
+            "", xy=(i, curr), xytext=(i - 1, prev),
+            arrowprops=dict(
+                arrowstyle="-|>", color=color, lw=2,
+                connectionstyle="arc3,rad=-0.2",
+            ),
+        )
+        # Delta text along the arrow
+        mid_x = (i - 1 + i) / 2
+        ax.text(mid_x, max(prev, curr) + 0.04, f"{sign}{delta:.1%}",
+                ha="center", fontsize=10, fontweight="bold", color=color)
+
+    # Pass threshold
+    ax.axhline(y=0.4, color=MIT_CRIMSON, linestyle="--", linewidth=1, alpha=0.5, zorder=2)
+    ax.text(len(stages) - 0.7, 0.415, "40% pass threshold", fontsize=8,
+            color=MIT_CRIMSON, alpha=0.7)
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, fontsize=9)
+    ax.set_ylabel("Mean Effective Recall@K", fontsize=11)
+    ax.set_title("Retrieval Quality: From Single Methods to Combined Approaches",
+                  fontsize=14, fontweight="bold", pad=20)
+    ax.set_ylim(0, max(bar_vals) + 0.15)
+    ax.grid(axis="y", alpha=0.2, zorder=0)
+    ax.set_axisbelow(True)
+
+    fig.tight_layout(rect=[0, 0.03, 1, 0.97])
+    add_branding(fig)
+
+    path = output_dir / "chart6_approach_progression.png"
+    fig.savefig(path, dpi=DPI, bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    print(f"  Chart 6 saved: {path}")
+    return path
+
+
 # ── CLI ──────────────────────────────────────────────────────────────────────
 
 
@@ -361,6 +582,8 @@ def main():
     chart_radar_metrics(data, args.output_dir)
     chart_heatmap(data, args.output_dir)
     chart_summary_table(data, args.output_dir)
+    chart_weight_sweep(data, args.output_dir)
+    chart_approach_progression(data, args.output_dir)
     print("\nDone! All charts saved to:", args.output_dir)
 
 

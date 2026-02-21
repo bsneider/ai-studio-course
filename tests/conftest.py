@@ -139,6 +139,45 @@ def benchmark_capture(rag_db, request):
                 "mean_ndcg": sum(level_ndcgs) / nl,
             }
 
+    # ── Weight sweep: vary BM25/Semantic ratio in hybrid search ──────────
+    # Sweep from pure BM25 (kw=1.0) to pure semantic (sw=1.0) in 11 steps,
+    # plus the LLM-rerank approach as a separate data point.
+    weight_sweep = []
+    for step in range(11):  # 0.0, 0.1, ..., 1.0 semantic weight
+        sw = round(step * 0.1, 1)
+        kw = round(1.0 - sw, 1)
+        label = f"BM25={kw:.0%} Sem={sw:.0%}"
+
+        sweep_recalls = []
+        for bq in ALL_QUERIES:
+            top_k = bq.get("top_k", 5)
+            inverse = bq.get("scoring") == "inverse"
+            results = hybrid_search(conn, emb_model, bq["q"], top_k=top_k, kw=kw, sw=sw)
+            rec = recall_at_k(results, bq["keywords"])
+            eff = (1.0 - rec) if inverse else rec
+            sweep_recalls.append(eff)
+
+        mean_recall = sum(sweep_recalls) / len(sweep_recalls)
+        pass_count = sum(1 for r in sweep_recalls if r >= 0.4)
+        weight_sweep.append({
+            "kw": kw,
+            "sw": sw,
+            "label": label,
+            "mean_recall": mean_recall,
+            "pass_rate": pass_count / len(sweep_recalls),
+        })
+
+    # Also record LLM-Rerank as a separate point for the progression chart
+    if "LLM-Rerank" in aggregates:
+        llm_agg = aggregates["LLM-Rerank"]
+        weight_sweep.append({
+            "kw": None,
+            "sw": None,
+            "label": "LLM-Rerank",
+            "mean_recall": llm_agg["Recall@K"],
+            "pass_rate": llm_agg["pass_rate"],
+        })
+
     data = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "n_queries": n,
@@ -146,6 +185,7 @@ def benchmark_capture(rag_db, request):
         "per_query": per_query,
         "aggregates": aggregates,
         "per_level": per_level,
+        "weight_sweep": weight_sweep,
     }
 
     # Stash on the module-level dict for sessionfinish
