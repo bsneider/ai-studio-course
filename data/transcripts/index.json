@@ -19,7 +19,14 @@
       "tags": []
     },
     "has_manual": false,
-    "has_auto": true
+    "has_auto": true,
+    "transcript": {
+      "title": "MIT AI Studio Demo Day | Fall 2025",
+      "word_count": 23030,
+      "duration_str": "2:20:17",
+      "segments": 3494,
+      "txt_file": "data/transcripts/tYw5TW1T5zo.txt"
+    }
   },
   "SSSffQsbFo4": {
     "meta": {
@@ -34,7 +41,14 @@
       "tags": []
     },
     "has_manual": false,
-    "has_auto": true
+    "has_auto": true,
+    "transcript": {
+      "title": "Horizon 2023 | Ramesh Raskar | MIT Decentralized AI",
+      "word_count": 811,
+      "duration_str": "4:33",
+      "segments": 126,
+      "txt_file": "data/transcripts/SSSffQsbFo4.txt"
+    }
   },
   "jlcO19XyQ1I": {
     "meta": {
@@ -60,7 +74,14 @@
       ]
     },
     "has_manual": false,
-    "has_auto": true
+    "has_auto": true,
+    "transcript": {
+      "title": "Worldwide Web of AI Agents: Introducing NANDA | Ramesh Raskar",
+      "word_count": 2321,
+      "duration_str": "12:02",
+      "segments": 321,
+      "txt_file": "data/transcripts/jlcO19XyQ1I.txt"
+    }
   },
   "-S51FOnqF0o": {
     "meta": {
@@ -75,7 +96,14 @@
       "tags": []
     },
     "has_manual": false,
-    "has_auto": true
+    "has_auto": true,
+    "transcript": {
+      "title": "Ramesh Raskar - Intro to NANDA - Summit July 14",
+      "word_count": 7389,
+      "duration_str": "40:34",
+      "segments": 1022,
+      "txt_file": "data/transcripts/-S51FOnqF0o.txt"
+    }
   },
   "qtCBLC5zRNU": {
     "meta": {
@@ -90,7 +118,14 @@
       "tags": []
     },
     "has_manual": false,
-    "has_auto": true
+    "has_auto": true,
+    "transcript": {
+      "title": "MIT AI Venture Studio Demo Day | Spring 2025",
+      "word_count": 24716,
+      "duration_str": "2:51:35",
+      "segments": 3723,
+      "txt_file": "data/transcripts/qtCBLC5zRNU.txt"
+    }
   },
   "wLb9pWQHIbA": {
     "meta": {
@@ -105,7 +140,14 @@
       "tags": []
     },
     "has_manual": false,
-    "has_auto": true
+    "has_auto": true,
+    "transcript": {
+      "title": "MIT AI Venture Studio Demo Day | Fall 2024",
+      "word_count": 20518,
+      "duration_str": "2:06:54",
+      "segments": 3063,
+      "txt_file": "data/transcripts/wLb9pWQHIbA.txt"
+    }
   },
   "BEav6MIjmyk": {
     "meta": {
@@ -132,7 +174,14 @@
       ]
     },
     "has_manual": false,
-    "has_auto": true
+    "has_auto": true,
+    "transcript": {
+      "title": "Web3++ Unspoken Opportunities | Ramesh Raskar",
+      "word_count": 2864,
+      "duration_str": "16:45",
+      "segments": 467,
+      "txt_file": "data/transcripts/BEav6MIjmyk.txt"
+    }
   },
   "71A8PN-z1rI": {
     "meta": {
@@ -147,6 +196,13 @@
       "tags": []
     },
     "has_manual": false,
-    "has_auto": true
+    "has_auto": true,
+    "transcript": {
+      "title": "AI for Impact: Venture Studio Demo Day | Spring 2023",
+      "word_count": 15042,
+      "duration_str": "1:37:48",
+      "segments": 2396,
+      "txt_file": "data/transcripts/71A8PN-z1rI.txt"
+    }
   }
 }
