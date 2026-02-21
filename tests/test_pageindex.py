@@ -62,7 +62,12 @@ if _env_path.exists():
             os.environ.setdefault(key.strip(), val.strip())
 
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
-LLM_RERANK_MODEL = "google/gemini-2.0-flash-001"
+LLM_RERANK_MODELS = [
+    "google/gemini-2.0-flash-001",
+    "nvidia/llama-3.1-nemotron-70b-instruct",
+    "meta-llama/llama-3.3-70b-instruct",
+]
+LLM_RERANK_MODEL = LLM_RERANK_MODELS[0]  # default for single-model tests
 
 
 # ── Fixtures ─────────────────────────────────────────────────────────────────
@@ -90,7 +95,7 @@ def openrouter_client():
 # ── LLM-Reranking Implementation ────────────────────────────────────────────
 
 
-def llm_rerank_search(conn, emb_model, openrouter_client, query, top_k=5, candidate_k=50):
+def llm_rerank_search(conn, emb_model, openrouter_client, query, top_k=5, candidate_k=50, model=None):
     """Hybrid retrieval + LLM-based reranking.
 
     1. Retrieve candidate_k chunks via hybrid search (broad recall from both
@@ -98,6 +103,8 @@ def llm_rerank_search(conn, emb_model, openrouter_client, query, top_k=5, candid
     2. Ask an LLM to score each candidate for relevance to the query
     3. Return the top_k highest-scored candidates
     """
+    if model is None:
+        model = LLM_RERANK_MODEL
     candidates = hybrid_search(conn, emb_model, query, top_k=candidate_k)
     if not candidates:
         return []
@@ -129,7 +136,7 @@ def llm_rerank_search(conn, emb_model, openrouter_client, query, top_k=5, candid
 
     try:
         response = openrouter_client.chat.completions.create(
-            model=LLM_RERANK_MODEL,
+            model=model,
             messages=[{"role": "user", "content": rerank_prompt}],
             temperature=0.0,
             max_tokens=2000,

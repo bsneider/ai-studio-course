@@ -512,12 +512,35 @@ _STOP_WORDS = frozenset(
 )
 
 
-def _fts5_query(query):
+def _fts5_query(query, expand=False):
     """Convert a natural-language query to an OR-joined FTS5 query."""
     tokens = re.findall(r"[a-zA-Z0-9]+", query.lower())
     terms = [t for t in tokens if t not in _STOP_WORDS and len(t) > 1]
     if not terms:
         terms = re.findall(r"[a-zA-Z0-9]+", query.lower())
+
+    if expand:
+        # Domain-specific synonyms for the MIT AI Studio course
+        _SYNONYMS = {
+            "vc": ["venture", "capital", "investor", "fund"],
+            "venture": ["vc", "investor"],
+            "demo": ["pitch", "presentation", "showcase"],
+            "mentor": ["advisor", "judge", "speaker"],
+            "speaker": ["mentor", "lecturer", "guest"],
+            "healthcare": ["health", "medical", "clinical", "patient"],
+            "medical": ["healthcare", "clinical", "hospital"],
+            "privacy": ["private", "confidential", "decentralized"],
+            "ai": ["artificial", "intelligence", "machine", "learning"],
+            "startup": ["company", "founder", "entrepreneur"],
+            "team": ["group", "project", "student"],
+            "bio": ["biography", "profile", "background"],
+        }
+        expanded = set(terms)
+        for t in terms:
+            if t in _SYNONYMS:
+                expanded.update(_SYNONYMS[t])
+        terms = list(expanded)
+
     return " OR ".join(f'"{t}"' for t in terms)
 
 
@@ -580,6 +603,121 @@ def hybrid_search(conn, emb_model, query, top_k=5, kw=0.3, sw=0.7):
         if len(diverse) >= top_k:
             break
 
+    return diverse[:top_k]
+
+
+def hybrid_search_expanded(conn, emb_model, query, top_k=5, kw=0.3, sw=0.7):
+    """Hybrid search with query expansion for BM25 signal."""
+    qe = list(emb_model.embed([query]))[0].tolist()
+    candidate_k = max(50, top_k * 5)
+
+    try:
+        cur = conn.cursor()
+        cur.execute("SELECT rowid, bm25(documents_fts) FROM documents_fts WHERE documents_fts MATCH ? LIMIT ?",
+                     (_fts5_query(query, expand=True), candidate_k))
+        bm25_raw = {r[0]: r[1] for r in cur.fetchall()}
+    except sqlite3.OperationalError:
+        bm25_raw = {}
+
+    cur = conn.cursor()
+    cur.execute("SELECT rowid, distance FROM vec_documents WHERE embedding MATCH ? AND k = ? ORDER BY distance",
+                 (serialize_embedding(qe), candidate_k))
+    sem_raw = {r[0]: r[1] for r in cur.fetchall()}
+
+    def norm(scores, hib=True):
+        if not scores:
+            return {}
+        vals = list(scores.values())
+        mn, mx = min(vals), max(vals)
+        if mn == mx:
+            return {k: 1.0 for k in scores}
+        if hib:
+            return {k: (v - mn) / (mx - mn) for k, v in scores.items()}
+        return {k: (mx - v) / (mx - mn) for k, v in scores.items()}
+
+    bm25_n = norm(bm25_raw, hib=False)
+    sem_n = norm(sem_raw, hib=False)
+    all_ids = set(bm25_n) | set(sem_n)
+    if not all_ids:
+        return []
+
+    cur = conn.cursor()
+    ph = ",".join("?" * len(all_ids))
+    cur.execute(f"SELECT id, content, content_type FROM documents WHERE id IN ({ph})", list(all_ids))
+    docs = {r[0]: {"content": r[1], "content_type": r[2]} for r in cur.fetchall()}
+
+    results = []
+    for did in all_ids:
+        score = kw * bm25_n.get(did, 0) + sw * sem_n.get(did, 0)
+        doc = docs.get(did, {"content": "", "content_type": "text"})
+        results.append({"id": did, "content": doc["content"], "content_type": doc["content_type"], "score": score})
+    results.sort(key=lambda x: x["score"], reverse=True)
+
+    max_per_type = max(top_k - 1, 1)
+    diverse = []
+    type_counts = {}
+    for r in results:
+        ct = r.get("content_type", "text")
+        type_counts[ct] = type_counts.get(ct, 0) + 1
+        if type_counts[ct] <= max_per_type:
+            diverse.append(r)
+        if len(diverse) >= top_k:
+            break
+    return diverse[:top_k]
+
+
+def hybrid_search_rrf(conn, emb_model, query, top_k=5, rrf_k=60):
+    """Hybrid search using Reciprocal Rank Fusion (RRF) instead of linear combination."""
+    qe = list(emb_model.embed([query]))[0].tolist()
+    candidate_k = max(50, top_k * 5)
+
+    # Get BM25 ranked list
+    try:
+        cur = conn.cursor()
+        cur.execute("SELECT rowid, bm25(documents_fts) FROM documents_fts WHERE documents_fts MATCH ? ORDER BY bm25(documents_fts) LIMIT ?",
+                     (_fts5_query(query), candidate_k))
+        bm25_ranked = [r[0] for r in cur.fetchall()]
+    except sqlite3.OperationalError:
+        bm25_ranked = []
+
+    # Get semantic ranked list
+    cur = conn.cursor()
+    cur.execute("SELECT rowid, distance FROM vec_documents WHERE embedding MATCH ? AND k = ? ORDER BY distance",
+                 (serialize_embedding(qe), candidate_k))
+    sem_ranked = [r[0] for r in cur.fetchall()]
+
+    # RRF: score = sum(1 / (k + rank)) across signals
+    rrf_scores = {}
+    for rank, doc_id in enumerate(bm25_ranked):
+        rrf_scores[doc_id] = rrf_scores.get(doc_id, 0) + 1.0 / (rrf_k + rank + 1)
+    for rank, doc_id in enumerate(sem_ranked):
+        rrf_scores[doc_id] = rrf_scores.get(doc_id, 0) + 1.0 / (rrf_k + rank + 1)
+
+    all_ids = set(rrf_scores.keys())
+    if not all_ids:
+        return []
+
+    cur = conn.cursor()
+    ph = ",".join("?" * len(all_ids))
+    cur.execute(f"SELECT id, content, content_type FROM documents WHERE id IN ({ph})", list(all_ids))
+    docs = {r[0]: {"content": r[1], "content_type": r[2]} for r in cur.fetchall()}
+
+    results = []
+    for did in all_ids:
+        doc = docs.get(did, {"content": "", "content_type": "text"})
+        results.append({"id": did, "content": doc["content"], "content_type": doc["content_type"], "score": rrf_scores[did]})
+    results.sort(key=lambda x: x["score"], reverse=True)
+
+    max_per_type = max(top_k - 1, 1)
+    diverse = []
+    type_counts = {}
+    for r in results:
+        ct = r.get("content_type", "text")
+        type_counts[ct] = type_counts.get(ct, 0) + 1
+        if type_counts[ct] <= max_per_type:
+            diverse.append(r)
+        if len(diverse) >= top_k:
+            break
     return diverse[:top_k]
 
 

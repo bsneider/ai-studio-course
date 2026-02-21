@@ -48,6 +48,8 @@ def benchmark_capture(rag_db, request):
         ALL_QUERIES,
         bm25_only_search,
         hybrid_search,
+        hybrid_search_expanded,
+        hybrid_search_rrf,
         mrr_score,
         ndcg_score,
         pass_at_k,
@@ -55,21 +57,27 @@ def benchmark_capture(rag_db, request):
         recall_at_k,
         semantic_only_search,
     )
-    # Late import of llm_rerank_search from the test module
-    from tests.test_pageindex import llm_rerank_search
+    # Late import of llm_rerank_search and model list from the test module
+    from tests.test_pageindex import LLM_RERANK_MODELS, llm_rerank_search
 
     conn, emb_model, _chunks = rag_db
     openrouter = _ensure_openrouter_client()
 
     approaches = {
         "Hybrid": lambda bq, k: hybrid_search(conn, emb_model, bq["q"], top_k=k),
+        "Hybrid+Expand": lambda bq, k: hybrid_search_expanded(conn, emb_model, bq["q"], top_k=k),
+        "Hybrid+RRF": lambda bq, k: hybrid_search_rrf(conn, emb_model, bq["q"], top_k=k),
         "BM25": lambda bq, k: bm25_only_search(conn, bq["q"], top_k=k),
         "Semantic": lambda bq, k: semantic_only_search(conn, emb_model, bq["q"], top_k=k),
     }
     if openrouter:
-        approaches["LLM-Rerank"] = lambda bq, k: llm_rerank_search(
-            conn, emb_model, openrouter, bq["q"], top_k=k
-        )
+        for model_id in LLM_RERANK_MODELS:
+            short_name = model_id.split("/")[-1].split("-instruct")[0]
+            label = f"LLM:{short_name}"
+            # Capture model_id in closure
+            approaches[label] = (lambda mid: lambda bq, k: llm_rerank_search(
+                conn, emb_model, openrouter, bq["q"], top_k=k, model=mid
+            ))(model_id)
 
     per_query = []
     for bq in ALL_QUERIES:
@@ -177,16 +185,17 @@ def benchmark_capture(rag_db, request):
             "pass_rate": pass_count / len(sweep_recalls),
         })
 
-    # Also record LLM-Rerank as a separate point for the progression chart
-    if "LLM-Rerank" in aggregates:
-        llm_agg = aggregates["LLM-Rerank"]
-        weight_sweep.append({
-            "kw": None,
-            "sw": None,
-            "label": "LLM-Rerank",
-            "mean_recall": llm_agg["Recall@K"],
-            "pass_rate": llm_agg["pass_rate"],
-        })
+    # Also record LLM approaches as separate points for the progression chart
+    for aname in approach_names:
+        if aname.startswith("LLM:"):
+            llm_agg = aggregates[aname]
+            weight_sweep.append({
+                "kw": None,
+                "sw": None,
+                "label": aname,
+                "mean_recall": llm_agg["Recall@K"],
+                "pass_rate": llm_agg["pass_rate"],
+            })
 
     data = {
         "generated_at": datetime.now(timezone.utc).isoformat(),

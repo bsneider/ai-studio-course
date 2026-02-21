@@ -31,12 +31,32 @@ CLR_LLM = "#2CA02C"        # green
 MIT_CRIMSON = "#A31F34"
 MIT_GRAY = "#8A8B8C"
 
+# Base colors for known approaches; LLM variants get auto-assigned
 APPROACH_COLORS = {
     "Hybrid": CLR_HYBRID,
+    "Hybrid+Expand": "#E45756",   # lighter red
+    "Hybrid+RRF": "#B22222",      # darker red (firebrick)
     "BM25": CLR_BM25,
     "Semantic": CLR_SEMANTIC,
     "LLM-Rerank": CLR_LLM,
 }
+
+# Extended palette for multiple LLM models
+_LLM_COLORS = ["#2CA02C", "#17BECF", "#9467BD", "#8C564B", "#E377C2"]
+
+
+def _get_color(approach_name):
+    """Return color for an approach, auto-assigning for LLM variants."""
+    if approach_name in APPROACH_COLORS:
+        return APPROACH_COLORS[approach_name]
+    # Auto-assign colors for LLM:* variants
+    llm_approaches = [a for a in APPROACH_COLORS if a.startswith("LLM:")]
+    if approach_name.startswith("LLM:"):
+        idx = len(llm_approaches)
+        color = _LLM_COLORS[idx % len(_LLM_COLORS)]
+        APPROACH_COLORS[approach_name] = color
+        return color
+    return "#333333"
 
 FONT_FAMILY = "Helvetica Neue"
 FALLBACK_FONT = "DejaVu Sans"
@@ -78,74 +98,73 @@ def add_branding(fig):
 # ── Chart 1: Recall by Level — focused grouped bar ──────────────────────────
 
 
-def chart_recall_by_level(data, output_dir):
-    """Grouped bar chart of mean Recall@K by difficulty level."""
+def chart_recall_by_category(data, output_dir):
+    """Grouped bar chart of mean Recall@K by difficulty category."""
     _setup_font()
 
     per_level = data["per_level"]
     approaches = data["approaches"]
-    levels = sorted(per_level.keys(), key=lambda x: int(x[1:]))
     n_approaches = len(approaches)
-    n_levels = len(levels)
 
-    # Group levels into categories for readability
-    level_categories = {}
-    for lv in levels:
-        num = int(lv[1:])
-        if num <= 2:
-            level_categories[lv] = "Easy"
-        elif num <= 5:
-            level_categories[lv] = "Hard"
-        elif num <= 8:
-            level_categories[lv] = "Differentiating"
-        else:
-            level_categories[lv] = "Complex"
+    # Aggregate levels into 4 categories with weighted averages
+    categories = [
+        ("Easy", ["L1", "L2"]),
+        ("Hard", ["L3", "L4", "L5"]),
+        ("Differentiating", ["L6", "L7", "L8"]),
+        ("Complex", ["L9", "L10", "L11", "L12"]),
+    ]
 
-    fig, ax = plt.subplots(figsize=(max(12, n_levels * 1.3), 6))
+    cat_data = {}
+    cat_n = {}
+    for cat_label, level_list in categories:
+        present = [lv for lv in level_list if lv in per_level]
+        total_n = sum(per_level[lv]["n"] for lv in present)
+        cat_n[cat_label] = total_n
+        cat_data[cat_label] = {}
+        for aname in approaches:
+            weighted_sum = sum(
+                per_level[lv]["approaches"].get(aname, {}).get("mean_recall", 0)
+                * per_level[lv]["n"]
+                for lv in present
+            )
+            cat_data[cat_label][aname] = weighted_sum / total_n if total_n else 0
+
+    n_cats = len(categories)
+    fig, ax = plt.subplots(figsize=(10, 6))
 
     bar_width = 0.8 / n_approaches
-    x = np.arange(n_levels)
+    x = np.arange(n_cats)
 
     for i, aname in enumerate(approaches):
-        color = APPROACH_COLORS.get(aname, "#333333")
-        vals = [per_level[lv]["approaches"].get(aname, {}).get("mean_recall", 0) for lv in levels]
+        color = _get_color(aname)
+        vals = [cat_data[cat_label][aname] for cat_label, _ in categories]
         offset = (i - n_approaches / 2 + 0.5) * bar_width
         bars = ax.bar(x + offset, vals, bar_width * 0.88, label=aname, color=color,
                       alpha=0.9, zorder=3)
-        # Only show value labels for extreme values (best/worst per level)
-        for bar_idx, (bar, val) in enumerate(zip(bars, vals)):
-            all_vals = [per_level[levels[bar_idx]]["approaches"].get(a, {}).get("mean_recall", 0)
-                        for a in approaches]
-            if val == max(all_vals) or val == min(all_vals):
-                ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.01,
-                        f"{val:.0%}", ha="center", va="bottom", fontsize=6, fontweight="bold")
+        for bar, val in zip(bars, vals):
+            ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.01,
+                    f"{val:.0%}", ha="center", va="bottom", fontsize=8, fontweight="bold")
 
     # Pass threshold
     ax.axhline(y=0.4, color="#999999", linestyle="--", linewidth=1, alpha=0.6, zorder=2)
-    ax.text(n_levels - 0.5, 0.415, "40% pass", fontsize=7, color="#999999", ha="right")
+    ax.text(n_cats - 0.5, 0.415, "40% pass", fontsize=8, color="#999999", ha="right")
 
-    # Category spans at bottom
-    prev_cat = None
-    cat_start = 0
-    for i, lv in enumerate(levels + [None]):
-        cat = level_categories.get(lv, None) if lv else None
-        if cat != prev_cat:
-            if prev_cat is not None:
-                mid = (cat_start + i - 1) / 2
-                ax.text(mid, -0.14, prev_cat, fontsize=8, ha="center", color="#666666",
-                        fontstyle="italic", transform=ax.get_xaxis_transform(), clip_on=False)
-                if cat_start > 0:
-                    ax.axvline(x=cat_start - 0.5, color="#cccccc", linewidth=0.8,
-                               linestyle=":", zorder=1)
-            cat_start = i
-            prev_cat = cat
-
-    ax.set_xlabel("Difficulty Level", fontsize=11)
-    ax.set_ylabel("Mean Effective Recall@K", fontsize=11)
-    ax.set_title("Retrieval Recall by Difficulty Level", fontsize=14, fontweight="bold", pad=20)
+    # X-axis: category names with query counts and level ranges
+    cat_labels = [f"{cat_label}\n(n={cat_n[cat_label]})"
+                  for cat_label, _ in categories]
     ax.set_xticks(x)
-    ax.set_xticklabels(levels, fontsize=9)
-    ax.set_ylim(0, 1.12)
+    ax.set_xticklabels(cat_labels, fontsize=10)
+    for i, (_, lvs) in enumerate(categories):
+        lmin = min(int(lv[1:]) for lv in lvs)
+        lmax = max(int(lv[1:]) for lv in lvs)
+        ax.text(i, -0.12, f"L{lmin}\u2013L{lmax}", fontsize=8, ha="center", color="#888888",
+                fontstyle="italic", transform=ax.get_xaxis_transform(), clip_on=False)
+
+    ax.set_xlabel("Difficulty Category", fontsize=11)
+    ax.set_ylabel("Mean Effective Recall@K", fontsize=11)
+    ax.set_title("Retrieval Recall by Difficulty Category",
+                 fontsize=14, fontweight="bold", pad=20)
+    ax.set_ylim(0, 1.15)
     ax.legend(loc="upper right", framealpha=0.9, fontsize=9)
     ax.grid(axis="y", alpha=0.2, zorder=0)
     ax.set_axisbelow(True)
@@ -153,7 +172,7 @@ def chart_recall_by_level(data, output_dir):
     fig.tight_layout(rect=[0, 0.05, 1, 0.97])
     add_branding(fig)
 
-    path = output_dir / "chart1_recall_by_level.png"
+    path = output_dir / "chart1_recall_by_category.png"
     fig.savefig(path, dpi=DPI, bbox_inches="tight", facecolor="white")
     plt.close(fig)
     print(f"  Chart 1 saved: {path}")
@@ -338,7 +357,7 @@ def chart_weight_sweep(data, output_dir):
         return None
 
     hybrid_pts = [p for p in sweep if p["kw"] is not None]
-    llm_pt = next((p for p in sweep if p["label"] == "LLM-Rerank"), None)
+    llm_pts = [p for p in sweep if p["kw"] is None]
 
     fig, ax = plt.subplots(figsize=(10, 5))
 
@@ -360,10 +379,14 @@ def chart_weight_sweep(data, output_dir):
         arrowprops=dict(arrowstyle="->", color=CLR_HYBRID, lw=1.5),
     )
 
-    # LLM-Rerank reference
-    if llm_pt:
-        ax.axhline(y=llm_pt["mean_recall"], color=CLR_LLM, linestyle=":",
-                    linewidth=2, alpha=0.8, zorder=2, label=f"LLM-Rerank ({llm_pt['mean_recall']:.1%})")
+    # LLM reference lines
+    linestyles = [":", "--", "-."]
+    for i, llm_pt in enumerate(llm_pts):
+        color = _get_color(llm_pt["label"])
+        ls = linestyles[i % len(linestyles)]
+        ax.axhline(y=llm_pt["mean_recall"], color=color, linestyle=ls,
+                    linewidth=2, alpha=0.8, zorder=2,
+                    label=f"{llm_pt['label']} ({llm_pt['mean_recall']:.1%})")
 
     ax.text(-0.02, recalls[0] - 0.015, "Pure BM25", fontsize=8, ha="right",
             color=CLR_BM25, fontweight="bold")
@@ -410,7 +433,7 @@ def chart_approach_comparison(data, output_dir):
     fig, axes = plt.subplots(1, len(key_metrics), figsize=(14, 5), sharey=True)
 
     y = np.arange(len(approaches))
-    colors = [APPROACH_COLORS.get(a, "#333") for a in approaches]
+    colors = [_get_color(a) for a in approaches]
 
     for ax, (mkey, mlabel) in zip(axes, key_metrics):
         vals = [aggregates.get(a, {}).get(mkey, 0) for a in approaches]
@@ -444,6 +467,68 @@ def chart_approach_comparison(data, output_dir):
     return path
 
 
+# ── Chart 6: Cost Comparison ──────────────────────────────────────────────────
+
+
+def chart_cost_comparison(data, output_dir):
+    """Bar chart comparing cost per 1,000 queries for each approach."""
+    _setup_font()
+
+    approaches = data["approaches"]
+    aggregates = data.get("aggregates", {})
+
+    # Cost estimates per 1,000 queries
+    # BM25/Semantic/Hybrid: all local computation, $0
+    # LLM models: estimated from OpenRouter pricing
+    # ~8,500 input tokens + ~750 output tokens per query (50 candidates x 600 chars)
+    cost_per_1k = {}
+    for aname in approaches:
+        if aname in ("Hybrid", "BM25", "Semantic"):
+            cost_per_1k[aname] = 0.0
+        elif "gemini" in aname.lower():
+            cost_per_1k[aname] = 1.10  # ~$0.0011/query
+        elif "nemotron" in aname.lower():
+            cost_per_1k[aname] = 3.50  # ~$0.0035/query (70B model)
+        elif "llama-3.3" in aname.lower() or "llama-3.1" in aname.lower():
+            cost_per_1k[aname] = 3.50  # ~$0.0035/query (70B model)
+        else:
+            cost_per_1k[aname] = 2.00  # default estimate for unknown LLM
+
+    fig, ax = plt.subplots(figsize=(10, 5))
+
+    y = np.arange(len(approaches))
+    colors = [_get_color(a) for a in approaches]
+    costs = [cost_per_1k.get(a, 0) for a in approaches]
+    recalls = [aggregates.get(a, {}).get("Recall@K", 0) for a in approaches]
+
+    bars = ax.barh(y, costs, color=colors, alpha=0.85, height=0.6, zorder=3)
+
+    for bar, cost, recall in zip(bars, costs, recalls):
+        label = f"${cost:.2f}" if cost > 0 else "Free"
+        recall_str = f" ({recall:.0%} recall)" if recall > 0 else ""
+        ax.text(max(cost, 0.05) + 0.08, bar.get_y() + bar.get_height() / 2,
+                f"{label}{recall_str}", va="center", fontsize=10, fontweight="bold")
+
+    ax.set_yticks(y)
+    ax.set_yticklabels(approaches, fontsize=10, fontweight="bold")
+    ax.set_xlabel("Cost per 1,000 Queries ($)", fontsize=11)
+    ax.set_title("Retrieval Cost vs. Quality",
+                 fontsize=14, fontweight="bold", pad=15)
+    max_cost = max(costs) if max(costs) > 0 else 1.0
+    ax.set_xlim(0, max_cost * 1.5)
+    ax.grid(axis="x", alpha=0.2, zorder=0)
+    ax.set_axisbelow(True)
+
+    fig.tight_layout(rect=[0, 0.03, 1, 0.97])
+    add_branding(fig)
+
+    path = output_dir / "chart6_cost_comparison.png"
+    fig.savefig(path, dpi=DPI, bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    print(f"  Chart 6 saved: {path}")
+    return path
+
+
 # ── CLI ──────────────────────────────────────────────────────────────────────
 
 
@@ -473,11 +558,12 @@ def main():
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
     print("\nGenerating charts...")
-    chart_recall_by_level(data, args.output_dir)
+    chart_recall_by_category(data, args.output_dir)
     chart_heatmap(data, args.output_dir)
     chart_summary_table(data, args.output_dir)
     chart_weight_sweep(data, args.output_dir)
     chart_approach_comparison(data, args.output_dir)
+    chart_cost_comparison(data, args.output_dir)
     print("\nDone! All charts saved to:", args.output_dir)
 
 
