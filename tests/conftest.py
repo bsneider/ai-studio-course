@@ -89,14 +89,24 @@ def benchmark_capture(rag_db, request):
             mrr = mrr_score(results, bq["keywords"])
             ndcg = ndcg_score(results, bq["keywords"])
 
-            # For inverse-scored queries, effective score = 1 - raw
-            eff_recall = (1.0 - rec) if inverse else rec
+            # For inverse-scored queries (L8), finding keywords is bad.
+            # Invert ALL metrics so that lower raw = higher effective.
+            if inverse:
+                eff_recall = 1.0 - rec
+                eff_mrr = 1.0 - mrr
+                eff_ndcg = 1.0 - ndcg
+            else:
+                eff_recall = rec
+                eff_mrr = mrr
+                eff_ndcg = ndcg
 
             query_row["approaches"][aname] = {
                 "recall": rec,
                 "mrr": mrr,
                 "ndcg": ndcg,
                 "effective_recall": eff_recall,
+                "effective_mrr": eff_mrr,
+                "effective_ndcg": eff_ndcg,
                 "passed": eff_recall >= 0.4,
             }
         per_query.append(query_row)
@@ -107,8 +117,8 @@ def benchmark_capture(rag_db, request):
     aggregates = {}
     for aname in approach_names:
         recalls = [q["approaches"][aname]["effective_recall"] for q in per_query]
-        mrrs = [q["approaches"][aname]["mrr"] for q in per_query]
-        ndcgs = [q["approaches"][aname]["ndcg"] for q in per_query]
+        mrrs = [q["approaches"][aname]["effective_mrr"] for q in per_query]
+        ndcgs = [q["approaches"][aname]["effective_ndcg"] for q in per_query]
         c = sum(1 for q in per_query if q["approaches"][aname]["passed"])
         aggregates[aname] = {
             "Recall@K": sum(recalls) / n,
@@ -123,7 +133,7 @@ def benchmark_capture(rag_db, request):
         }
 
     # Per-level aggregates
-    levels = sorted(set(q["level"] for q in per_query))
+    levels = sorted(set(q["level"] for q in per_query), key=lambda x: int(x[1:]))
     per_level = {}
     for level in levels:
         level_queries = [q for q in per_query if q["level"] == level]
@@ -131,8 +141,8 @@ def benchmark_capture(rag_db, request):
         per_level[level] = {"n": nl, "approaches": {}}
         for aname in approach_names:
             level_recalls = [q["approaches"][aname]["effective_recall"] for q in level_queries]
-            level_mrrs = [q["approaches"][aname]["mrr"] for q in level_queries]
-            level_ndcgs = [q["approaches"][aname]["ndcg"] for q in level_queries]
+            level_mrrs = [q["approaches"][aname]["effective_mrr"] for q in level_queries]
+            level_ndcgs = [q["approaches"][aname]["effective_ndcg"] for q in level_queries]
             per_level[level]["approaches"][aname] = {
                 "mean_recall": sum(level_recalls) / nl,
                 "mean_mrr": sum(level_mrrs) / nl,

@@ -81,14 +81,16 @@ def chart_recall_by_level(data, output_dir):
 
     per_level = data["per_level"]
     approaches = data["approaches"]
-    levels = sorted(per_level.keys())
+    levels = sorted(per_level.keys(), key=lambda x: int(x[1:]))
     n_approaches = len(approaches)
     n_levels = len(levels)
 
-    fig, ax = plt.subplots(figsize=(12, 6))
+    fig_width = max(12, n_levels * 1.5)
+    fig, ax = plt.subplots(figsize=(fig_width, 6))
 
     bar_width = 0.8 / n_approaches
     x = np.arange(n_levels)
+    label_fontsize = 6 if n_levels > 8 else 7
 
     for i, aname in enumerate(approaches):
         color = APPROACH_COLORS.get(aname, "#333333")
@@ -101,7 +103,7 @@ def chart_recall_by_level(data, output_dir):
         for bar, val in zip(bars, vals):
             ax.text(
                 bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.015,
-                f"{val:.0%}", ha="center", va="bottom", fontsize=7, fontweight="bold",
+                f"{val:.0%}", ha="center", va="bottom", fontsize=label_fontsize, fontweight="bold",
             )
 
     # Pass threshold line
@@ -118,7 +120,7 @@ def chart_recall_by_level(data, output_dir):
         )
 
     ax.set_xlabel("Difficulty Level", fontsize=11)
-    ax.set_ylabel("Mean Recall@K", fontsize=11)
+    ax.set_ylabel("Mean Effective Recall@K", fontsize=11)
     ax.set_title("Retrieval Recall by Difficulty Level", fontsize=14, fontweight="bold", pad=20)
     ax.set_xticks(x)
     ax.set_xticklabels(levels)

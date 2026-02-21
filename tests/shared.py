@@ -165,8 +165,81 @@ DIFFERENTIATING_QUERIES = [
      "scoring": "inverse"},
 ]
 
+# ── Complex queries: temporal, reasoning, aggregation ─────────────────────────
+#
+# These queries go beyond keyword matching and require cross-semester temporal
+# reasoning, inference from context, or aggregation across many pages/transcripts.
+
+COMPLEX_QUERIES = [
+    # ── L9: Temporal comparison ────────────────────────────────────────────────
+    # Answering requires comparing information across multiple semesters.
+
+    {"q": "Which VCs are no longer participating in the course this year?",
+     "keywords": ["khosla", "lux", "link", "e14", "pillar", "two lanterns"],
+     "level": "L9",
+     "note": "Temporal: must compare people-summary pages across 5 semesters to find who left",
+     "top_k": 15},
+
+    {"q": "How have the demo day judging criteria evolved from Spring 2023 to Fall 2025?",
+     "keywords": ["impact", "unique", "complete", "demo", "judge", "gigas scale", "criteria"],
+     "level": "L9",
+     "note": "Temporal: judging criteria described in multiple semester transcripts",
+     "top_k": 10},
+
+    {"q": "How has the number of student teams grown from Spring 2023 to Fall 2025?",
+     "keywords": ["15", "24", "38", "teams", "presenting", "demo"],
+     "level": "L9",
+     "note": "Temporal: team counts scattered across different semester transcripts"},
+
+    # ── L10: Reasoning required ────────────────────────────────────────────────
+    # The answer isn't stated directly -- requires inference from context.
+
+    {"q": "Why does Raskar say NANDA needs to involve universities and not just companies?",
+     "keywords": ["university", "nanda", "trust", "decentralized", "neutral", "open"],
+     "level": "L10",
+     "note": "Reasoning: answer must be inferred from transcript discussion about decentralized networks"},
+
+    {"q": "What does gigascale impact mean in the context of this course?",
+     "keywords": ["gigas scale", "billion", "impact", "people", "scale"],
+     "level": "L10",
+     "note": "Reasoning: concept explained across multiple transcripts with examples"},
+
+    {"q": "What is the quilt approach to building AI products that Raskar describes?",
+     "keywords": ["quilt", "quilting", "model", "combine", "agent"],
+     "level": "L10",
+     "note": "Reasoning: metaphorical concept from transcript, not a standard term"},
+
+    # ── L11: Aggregation ──────────────────────────────────────────────────────
+    # Answering requires collecting and combining info from many pages.
+
+    {"q": "Name all the companies that have ever been judges or sponsors at demo days.",
+     "keywords": ["mitsubishi", "state street", "ey", "mass challenge", "sponsor", "judge"],
+     "level": "L11",
+     "note": "Aggregation: company names scattered across many transcript chunks",
+     "top_k": 15},
+
+    {"q": "What are all the healthcare or medical AI applications discussed across all semesters?",
+     "keywords": ["health", "medical", "patient", "diabetic", "chest", "hospital", "clinical"],
+     "level": "L11",
+     "note": "Aggregation: medical examples appear in multiple transcripts across semesters",
+     "top_k": 10},
+
+    # ── L12: Bio evolution (temporal + aggregation + reasoning) ────────────────
+    # Requires retrieving the same person's bio from multiple semester pages,
+    # comparing roles/affiliations, and reasoning about which change is "most."
+
+    {"q": "Whose bio or role has changed the most across semesters of the course?",
+     "keywords": ["werner", "john", "visiting lecturer", "link ventures", "santanu",
+                   "bhattacharya", "airtel", "media lab", "nanda", "chris pease"],
+     "level": "L12",
+     "note": "Bio evolution: Werner went Speaker→Visiting Lecturer→Link Ventures; "
+             "Bhattacharya went Airtel→MIT Media Lab→Airtel; Pease went MIT→Project NANDA. "
+             "Requires bios from multiple semesters + reasoning about significance",
+     "top_k": 15},
+]
+
 # Combined list for convenience
-ALL_QUERIES = BENCHMARK_QUERIES + DIFFERENTIATING_QUERIES
+ALL_QUERIES = BENCHMARK_QUERIES + DIFFERENTIATING_QUERIES + COMPLEX_QUERIES
 
 SITE_PAGES = [
     "https://aiforimpact.github.io/",
