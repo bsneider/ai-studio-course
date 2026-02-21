@@ -256,35 +256,50 @@ def chart_heatmap(data, output_dir):
 
 
 def chart_summary_table(data, output_dir):
-    """Styled matplotlib table figure showing aggregate metrics."""
+    """Styled matplotlib table figure showing aggregate metrics with plain-English explanations."""
     _setup_font()
 
     approaches = data["approaches"]
     aggregates = data["aggregates"]
-    metric_names = ["Recall@K", "MRR", "NDCG@K", "pass@1", "pass@3", "pass^3", "pass_rate"]
-    metric_display = ["Recall@K", "MRR", "NDCG@K", "pass@1", "pass@3", "pass^3", "Pass Rate"]
 
-    # Build table data
-    col_labels = ["Metric"] + approaches
+    # Metric definitions: (json_key, display_name, plain_english)
+    metrics = [
+        ("Recall@K", "Recall@K",
+         "Of all the right answers, what fraction did we find?"),
+        ("MRR", "MRR",
+         "How high up is the first useful result? (1st=1.0, 2nd=0.5, ...)"),
+        ("NDCG@K", "NDCG@K",
+         "Are the best results ranked near the top? (order quality)"),
+        ("pass@1", "pass@1",
+         "If you pick 1 random query, how likely is it to pass?"),
+        ("pass@3", "pass@3",
+         "If you pick 3 random queries, will at least 1 pass?"),
+        ("pass^3", "pass^3",
+         "If you pick 3 random queries, will ALL 3 pass? (reliability)"),
+        ("pass_rate", "Pass Rate",
+         "What % of queries scored above the 40% threshold?"),
+    ]
+
+    # Build table data: columns are Metric | What It Measures | approach1 | approach2 | ...
+    col_labels = ["Metric", "What It Measures"] + approaches
     cell_text = []
     cell_colors = []
 
-    for idx, (mname, mdisp) in enumerate(zip(metric_names, metric_display)):
+    for idx, (mname, mdisp, explanation) in enumerate(metrics):
         row_vals = []
         for aname in approaches:
             row_vals.append(aggregates.get(aname, {}).get(mname, 0))
-        best_val = max(row_vals)
-        row = [mdisp]
+        row = [mdisp, explanation]
         for val in row_vals:
             row.append(f"{val:.4f}")
         cell_text.append(row)
 
-        # Alternating row shading
         base_color = "#f5f5f5" if idx % 2 == 0 else "white"
-        row_colors = [base_color] * (len(approaches) + 1)
+        row_colors = [base_color] * len(col_labels)
         cell_colors.append(row_colors)
 
-    fig, ax = plt.subplots(figsize=(8, 4))
+    fig_width = 8 + len(approaches) * 1.5
+    fig, ax = plt.subplots(figsize=(fig_width, 5))
     ax.axis("off")
     ax.set_title("Aggregate Benchmark Metrics Summary", fontsize=14, fontweight="bold", pad=20)
 
@@ -296,24 +311,42 @@ def chart_summary_table(data, output_dir):
         cellLoc="center",
     )
     table.auto_set_font_size(False)
-    table.set_fontsize(10)
+    table.set_fontsize(9)
     table.scale(1.0, 1.8)
 
+    # Size the columns: Metric narrow, explanation wide, values medium
+    n_cols = len(col_labels)
+    for row_idx in range(len(metrics) + 1):  # +1 for header
+        # Metric column
+        table[row_idx, 0].set_width(0.08)
+        # Explanation column
+        table[row_idx, 1].set_width(0.30)
+        # Value columns
+        for j in range(2, n_cols):
+            table[row_idx, j].set_width(0.10)
+
+    # Left-align the explanation column
+    for i in range(1, len(metrics) + 1):
+        table[i, 1].get_text().set_ha("left")
+        table[i, 1].get_text().set_fontsize(8)
+        table[i, 1].get_text().set_fontstyle("italic")
+        table[i, 1].get_text().set_color("#555555")
+
     # Style header row
-    for j, label in enumerate(col_labels):
+    for j in range(n_cols):
         cell = table[0, j]
         cell.set_facecolor(MIT_CRIMSON)
         cell.set_text_props(color="white", fontweight="bold")
 
     # Bold best values in crimson
-    for i, (mname, _) in enumerate(zip(metric_names, metric_display)):
+    for i, (mname, _, _) in enumerate(metrics):
         row_vals = []
         for aname in approaches:
             row_vals.append(aggregates.get(aname, {}).get(mname, 0))
         best_val = max(row_vals)
         for j, val in enumerate(row_vals):
             if val == best_val and best_val > 0:
-                cell = table[i + 1, j + 1]  # +1 for header row, +1 for metric column
+                cell = table[i + 1, j + 2]  # +1 header, +2 for metric+explanation cols
                 cell.set_text_props(color=MIT_CRIMSON, fontweight="bold")
 
     fig.tight_layout(rect=[0, 0.03, 1, 0.95])
