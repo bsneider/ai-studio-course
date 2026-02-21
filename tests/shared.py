@@ -5,6 +5,7 @@ BM25-only, LLM-reranking) can reuse the same benchmark queries and infrastructur
 """
 
 import json
+import math
 import re
 import sqlite3
 import struct
@@ -72,6 +73,100 @@ BENCHMARK_QUERIES = [
 
 # Subset: "hard" queries (L3+) that hybrid search struggles with
 HARD_QUERIES = [bq for bq in BENCHMARK_QUERIES if bq["level"] in ("L3", "L4", "L5")]
+
+# ── Differentiating queries: designed to separate retrieval approaches ────────
+#
+# Unlike BENCHMARK_QUERIES where BM25 keywords often appear verbatim in the
+# content, these queries are crafted so that different retrieval strategies
+# produce meaningfully different scores.
+
+DIFFERENTIATING_QUERIES = [
+    # ── L6: Paraphrased queries ──────────────────────────────────────────────
+    # User uses synonyms / different framing than the actual content.
+    # Semantic search should outperform BM25 because the query terms
+    # do NOT appear verbatim in the indexed chunks.
+
+    {"q": "Who funds early-stage startups at the course?",
+     "keywords": ["khosla", "lux", "link ventures", "e14", "pillar", "venture"],
+     "level": "L6",
+     "note": "Paraphrased: 'funds early-stage startups' vs 'venture capital' / 'Speaker/Mentor' bios",
+     "top_k": 15},
+
+    {"q": "What cutting-edge tech topics are covered in lectures?",
+     "keywords": ["agentic", "autonomous", "nanda", "decentralized", "web3", "blockchain"],
+     "level": "L6",
+     "note": "Paraphrased: 'cutting-edge tech topics' vs actual topic names in content"},
+
+    {"q": "Who helps students refine their business ideas?",
+     "keywords": ["mentor", "speaker", "instructor", "co-instructor", "judge", "catalyst"],
+     "level": "L6",
+     "note": "Paraphrased: 'helps students refine business ideas' vs 'mentor' / 'judge' roles",
+     "top_k": 10},
+
+    {"q": "How do teams show off their work at the end of the semester?",
+     "keywords": ["demo day", "pitch", "presentation", "showcase", "judge"],
+     "level": "L6",
+     "note": "Paraphrased: 'show off their work' vs 'demo day' / 'final pitches'"},
+
+    {"q": "What privacy-preserving machine learning method was invented at MIT?",
+     "keywords": ["split learning", "federated", "privacy", "no peak", "decentralized"],
+     "level": "L6",
+     "note": "Paraphrased: 'privacy-preserving ML method' vs 'split learning' in transcripts"},
+
+    # ── L7: Multi-hop queries ────────────────────────────────────────────────
+    # Answering requires combining info from 2+ separate chunks or pages.
+    # LLM-reranking should excel; single-chunk retrieval will be incomplete.
+
+    {"q": "Which speakers or mentors appeared in both Fall 2023 and Spring 2024?",
+     "keywords": ["raskar", "ramesh", "john", "werner", "habib", "hadad", "link"],
+     "level": "L7",
+     "note": "Multi-hop: must cross-reference people lists from fall23 and spring24 pages",
+     "top_k": 15},
+
+    {"q": "How has the number of student teams changed across semesters?",
+     "keywords": ["15", "24", "38", "teams", "presenting"],
+     "level": "L7",
+     "note": "Multi-hop: team counts mentioned in different semester transcripts (15, 24, 38)"},
+
+    {"q": "What real-world companies were both judges and corporate partners at demo days?",
+     "keywords": ["mitsubishi", "state street", "ey", "mass challenge"],
+     "level": "L7",
+     "note": "Multi-hop: company names scattered across multiple demo day transcripts",
+     "top_k": 15},
+
+    {"q": "Did the course evaluation criteria change between Spring 2023 and Fall 2025?",
+     "keywords": ["impact", "unique", "complete", "demo", "judge", "gigas scale"],
+     "level": "L7",
+     "note": "Multi-hop: judging criteria described in multiple semester transcripts"},
+
+    # ── L8: Negative / absent queries ────────────────────────────────────────
+    # The answer is NOT in the data. A good retrieval system should return
+    # low-relevance results. High keyword hits = hallucination risk.
+    # NOTE: For L8, keywords list things that SHOULD NOT appear in results.
+    # Scoring is inverted: finding these keywords means the system is
+    # hallucinating or retrieving irrelevant content.
+
+    {"q": "What is the tuition cost for the AI Studio course?",
+     "keywords": ["tuition", "cost", "fee", "price", "dollar", "pay"],
+     "level": "L8",
+     "note": "Negative: tuition/pricing info is NOT on the course website",
+     "scoring": "inverse"},
+
+    {"q": "What programming languages are required as prerequisites?",
+     "keywords": ["python", "java", "javascript", "prerequisite", "requirement", "coding"],
+     "level": "L8",
+     "note": "Negative: no programming prerequisites listed anywhere",
+     "scoring": "inverse"},
+
+    {"q": "What is the final exam format for the course?",
+     "keywords": ["exam", "test", "midterm", "final", "quiz", "grading"],
+     "level": "L8",
+     "note": "Negative: no exam/grading info exists in the content",
+     "scoring": "inverse"},
+]
+
+# Combined list for convenience
+ALL_QUERIES = BENCHMARK_QUERIES + DIFFERENTIATING_QUERIES
 
 SITE_PAGES = [
     "https://aiforimpact.github.io/",
@@ -462,9 +557,112 @@ def semantic_only_search(conn, emb_model, query, top_k=5):
 # ── Scoring ──────────────────────────────────────────────────────────────────
 
 def score_retrieval(results, keywords):
-    """Score retrieval results by keyword coverage (0.0 to 1.0)."""
+    """Score retrieval results by keyword coverage (0.0 to 1.0).
+
+    This is equivalent to Recall@K where K = len(results).
+    """
     if not results:
         return 0.0
     content = " ".join(r["content"] for r in results).lower()
     hits = sum(1 for kw in keywords if kw.lower() in content)
     return hits / len(keywords)
+
+
+# Alias for clarity in metric-oriented code
+recall_at_k = score_retrieval
+
+
+def mrr_score(results, keywords):
+    """Mean Reciprocal Rank for a single query.
+
+    Finds the rank of the FIRST result containing ANY expected keyword.
+    Returns 1/rank of that first hit, or 0.0 if no result contains any keyword.
+    """
+    if not results or not keywords:
+        return 0.0
+    kw_lower = [kw.lower() for kw in keywords]
+    for rank, r in enumerate(results, start=1):
+        content = r["content"].lower()
+        if any(kw in content for kw in kw_lower):
+            return 1.0 / rank
+    return 0.0
+
+
+def ndcg_score(results, keywords):
+    """Normalized Discounted Cumulative Gain for a single query.
+
+    Relevance of each result at position i = (number of keywords found) / len(keywords).
+    DCG  = sum(rel_i / log2(i + 2)) for i in range(K)  (i+2 because 1-indexed positions)
+    IDCG = DCG of the ideal ranking (relevances sorted descending)
+    NDCG = DCG / IDCG, or 1.0 if IDCG == 0.
+    """
+    if not results or not keywords:
+        return 0.0
+    kw_lower = [kw.lower() for kw in keywords]
+    n_kw = len(keywords)
+
+    # Compute per-result relevance
+    relevances = []
+    for r in results:
+        content = r["content"].lower()
+        hits = sum(1 for kw in kw_lower if kw in content)
+        relevances.append(hits / n_kw)
+
+    # DCG
+    dcg = sum(rel / math.log2(i + 2) for i, rel in enumerate(relevances))
+
+    # IDCG (ideal: sort relevances descending)
+    ideal = sorted(relevances, reverse=True)
+    idcg = sum(rel / math.log2(i + 2) for i, rel in enumerate(ideal))
+
+    if idcg == 0.0:
+        return 1.0
+    return dcg / idcg
+
+
+def pass_at_k(n, c, k):
+    """pass@k -- probability that at least 1 of k random samples is correct.
+
+    Given n total attempts with c correct (score >= threshold), computes:
+        1 - C(n-c, k) / C(n, k)
+    where C is the binomial coefficient.
+
+    Args:
+        n: total number of queries (attempts)
+        c: number of queries passing the threshold
+        k: number of samples drawn
+    Returns:
+        Probability (float) that at least one of k samples passes.
+    """
+    if n <= 0 or k <= 0:
+        return 0.0
+    if c >= n:
+        return 1.0
+    if k > n:
+        k = n
+    # Use log-space to avoid overflow with large binomial coefficients:
+    # C(n-c, k) / C(n, k) = product((n-c-i) / (n-i)) for i in 0..k-1
+    # But only if n-c >= k, otherwise the ratio is 0 (guaranteed success).
+    if n - c < k:
+        return 1.0
+    product = 1.0
+    for i in range(k):
+        product *= (n - c - i) / (n - i)
+    return 1.0 - product
+
+
+def pass_power_k(n, c, k):
+    """pass^k -- reliability metric: (success_rate)^k.
+
+    Measures the probability that ALL k independent samples pass.
+
+    Args:
+        n: total number of queries
+        c: number passing
+        k: exponent (number of independent trials)
+    Returns:
+        (c/n)^k
+    """
+    if n <= 0:
+        return 0.0
+    return (c / n) ** k

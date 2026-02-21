@@ -37,10 +37,16 @@ from openai import OpenAI
 
 from tests.shared import (
     BENCHMARK_QUERIES,
+    DIFFERENTIATING_QUERIES,
     HARD_QUERIES,
     bm25_only_search,
     build_rag_db,
     hybrid_search,
+    mrr_score,
+    ndcg_score,
+    pass_at_k,
+    pass_power_k,
+    recall_at_k,
     score_retrieval,
     semantic_only_search,
 )
@@ -318,3 +324,124 @@ class TestSideBySideComparison:
         print(f"{'AVERAGE':<55} {'':5} {totals['hybrid']/n:<10.0%} {totals['bm25']/n:<10.0%} {totals['semantic']/n:<10.0%} {totals['llm']/n:<12.0%}")
         print(f"{'PASS RATE (>=40%)':<55} {'':5} {passes['hybrid']/n:<10.0%} {passes['bm25']/n:<10.0%} {passes['semantic']/n:<10.0%} {passes['llm']/n:<12.0%}")
         print("=" * 120)
+
+
+# ── Tests: IR Evaluation Metrics ─────────────────────────────────────────────
+
+
+class TestRetrievalMetrics:
+    """Compute standard IR evaluation metrics across all 4 approaches on HARD_QUERIES."""
+
+    def test_metrics_summary(self, rag_db, openrouter_client):
+        """Compute MRR, NDCG@5, Recall@5, pass@1, pass@3, pass^3 for each approach."""
+        conn, emb_model, _chunks = rag_db
+
+        approaches = {
+            "Hybrid": lambda bq, k: hybrid_search(conn, emb_model, bq["q"], top_k=k),
+            "BM25": lambda bq, k: bm25_only_search(conn, bq["q"], top_k=k),
+            "Semantic": lambda bq, k: semantic_only_search(conn, emb_model, bq["q"], top_k=k),
+            "LLM-Rerank": lambda bq, k: llm_rerank_search(conn, emb_model, openrouter_client, bq["q"], top_k=k),
+        }
+
+        # Collect per-query results for each approach
+        approach_results = {}
+        for name, search_fn in approaches.items():
+            query_data = []
+            for bq in HARD_QUERIES:
+                top_k = bq.get("top_k", 5)
+                results = search_fn(bq, top_k)
+                recall = recall_at_k(results, bq["keywords"])
+                mrr = mrr_score(results, bq["keywords"])
+                ndcg = ndcg_score(results, bq["keywords"])
+                query_data.append({
+                    "query": bq["q"],
+                    "level": bq["level"],
+                    "recall": recall,
+                    "mrr": mrr,
+                    "ndcg": ndcg,
+                    "passed": recall >= 0.4,
+                })
+            approach_results[name] = query_data
+
+        # Compute aggregate metrics per approach
+        n = len(HARD_QUERIES)
+        metrics = {}
+        for name, qdata in approach_results.items():
+            c = sum(1 for qd in qdata if qd["passed"])
+            metrics[name] = {
+                "Recall@K": sum(qd["recall"] for qd in qdata) / n,
+                "MRR": sum(qd["mrr"] for qd in qdata) / n,
+                "NDCG@K": sum(qd["ndcg"] for qd in qdata) / n,
+                "pass@1": pass_at_k(n, c, 1),
+                "pass@3": pass_at_k(n, c, 3),
+                "pass^3": pass_power_k(n, c, 3),
+            }
+
+        # Print per-query detail table
+        metric_names = ["Recall@K", "MRR", "NDCG@K", "pass@1", "pass@3", "pass^3"]
+        approach_names = list(approaches.keys())
+
+        print("\n" + "=" * 130)
+        print("IR EVALUATION METRICS: Hard Queries (L3-L5)")
+        print("=" * 130)
+
+        # Per-query breakdown (Recall, MRR, NDCG per approach)
+        header = f"{'Query':<50} {'Lvl':<4}"
+        for aname in approach_names:
+            header += f" {'Rec':>5} {'MRR':>5} {'NDCG':>5} |"
+        print(header)
+        print(f"{'':50} {'':4}", end="")
+        for aname in approach_names:
+            label = f"--- {aname} ---"
+            print(f" {label:>19}|", end="")
+        print()
+        print("-" * 130)
+
+        for i, bq in enumerate(HARD_QUERIES):
+            q_short = bq["q"][:48]
+            line = f"{q_short:<50} {bq['level']:<4}"
+            for aname in approach_names:
+                qd = approach_results[aname][i]
+                line += f" {qd['recall']:5.2f} {qd['mrr']:5.2f} {qd['ndcg']:5.2f} |"
+            print(line)
+
+        # Aggregate summary table
+        print("\n" + "=" * 90)
+        print("AGGREGATE METRICS SUMMARY")
+        print("=" * 90)
+        header = f"{'Metric':<12}"
+        for aname in approach_names:
+            header += f" {aname:>12}"
+        print(header)
+        print("-" * 90)
+
+        for mname in metric_names:
+            line = f"{mname:<12}"
+            for aname in approach_names:
+                line += f" {metrics[aname][mname]:12.4f}"
+            print(line)
+        print("=" * 90)
+
+        # Identify best approach per metric
+        print("\nBest approach per metric:")
+        for mname in metric_names:
+            best_val = max(metrics[aname][mname] for aname in approach_names)
+            best_approaches = [aname for aname in approach_names if metrics[aname][mname] == best_val]
+            print(f"  {mname:<12} -> {' + '.join(best_approaches)} ({best_val:.4f})")
+
+
+# ── Benchmark data capture for visualization ─────────────────────────────────
+
+
+class TestBenchmarkCapture:
+    """Trigger benchmark_capture fixture to save results.json for chart generation."""
+
+    def test_capture_benchmark_results(self, benchmark_capture):
+        """Run all 4 approaches on ALL_QUERIES and save to benchmark_results/results.json."""
+        n = benchmark_capture["n_queries"]
+        approaches = benchmark_capture["approaches"]
+        print(f"\n  Captured benchmark data: {n} queries x {len(approaches)} approaches")
+        for aname in approaches:
+            agg = benchmark_capture["aggregates"][aname]
+            print(f"    {aname}: Recall={agg['Recall@K']:.2%}  MRR={agg['MRR']:.2%}  pass_rate={agg['pass_rate']:.0%}")
+        assert n > 0
