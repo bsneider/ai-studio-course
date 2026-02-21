@@ -14,6 +14,8 @@ dependencies = [
     "lxml>=5.0.0",
     "ipywidgets>=8.0.0",
     "ipykernel>=6.0.0",
+    "youtube-transcript-api>=1.2.4",
+    "yt-dlp>=2026.2.4",
 ]
 
 [project.optional-dependencies]
