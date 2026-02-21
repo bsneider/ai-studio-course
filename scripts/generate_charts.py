@@ -111,20 +111,21 @@ def chart_quality_vs_cost(data, output_dir):
     for bar, recall, cost in zip(bars, recalls, costs):
         mid = bar.get_y() + bar.get_height() / 2
         w = "bold" if recall == best else "normal"
-        # Recall value
-        ax.text(recall + 0.002, mid, f"{recall:.1%}", va="center",
-                fontsize=9, fontweight=w, color="#333")
-        # Cost badge right-aligned inside plot area
+        # "72.6% Free" or "67.2% $1.15/1K" — all inline right after bar
         cstr = "Free" if cost == 0 else f"${cost:.2f}/1K"
         cc = "#27AE60" if cost == 0 else "#C0392B"
-        ax.text(best + 0.035, mid, cstr, va="center", ha="right",
-                fontsize=8, fontweight="bold", color=cc)
+        ax.text(recall + 0.003, mid, f"{recall:.1%}", va="center",
+                fontsize=9, fontweight=w, color="#333")
+        ax.text(recall + 0.032, mid, cstr, va="center",
+                fontsize=7.5, fontweight="bold", color=cc)
 
     ax.set_yticks(y)
     ax.set_yticklabels(ranked, fontsize=9.5, fontweight="bold")
     ax.set_xlabel("Recall@K", fontsize=10, color="#666")
     ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
-    ax.set_xlim(0.62, best + 0.04)
+    # Tight right margin: just enough for the longest cost label
+    max_cost_len = max(len(f"${c:.2f}/1K") if c > 0 else len("Free") for c in costs)
+    ax.set_xlim(0.62, best + 0.045 + max_cost_len * 0.003)
     ax.set_title("Retrieval Quality vs. Cost", fontsize=13, fontweight="bold",
                  pad=14, color="#222")
 
@@ -170,24 +171,26 @@ def chart_hybrid_mix(data, output_dir):
         lo, hi = min(lr), max(lr)
         ax.axhspan(lo - 0.001, hi + 0.001, alpha=0.07, color=C_LLM, zorder=1)
         ax.axhline(np.mean(lr), color=C_LLM, ls="--", lw=1.2, alpha=0.5, zorder=2)
-        ax.text(0.5, hi + 0.005,
-                f"LLM Rerankers ({lo:.1%}–{hi:.1%}, $1–$11/1K)",
+        # LLM label above the band, left-aligned to avoid right-side clutter
+        ax.text(0.02, hi + 0.006,
+                f"LLM Rerankers ({lo:.1%}\u2013{hi:.1%}, $1\u2013$11/1K)",
                 fontsize=7.5, color=C_LLM, va="bottom", fontweight="bold")
 
-    # Endpoint labels inside the axes
-    ax.text(0.01, y[0] + 0.008, "Pure BM25", fontsize=7.5,
-            color=C_BM25, fontweight="bold", va="bottom")
-    ax.text(0.99, y[-1] + 0.008, "Pure Semantic", fontsize=7.5,
+    # Endpoint labels — "Pure BM25" below first point, "Pure Semantic" above last
+    # Offset them vertically to avoid colliding with the LLM band
+    ax.text(0.01, y[0] - 0.012, "Pure BM25", fontsize=7.5,
+            color=C_BM25, fontweight="bold", va="top")
+    # Last point (pure semantic) is near the LLM band — put label above
+    ax.text(0.99, y[-1] + 0.012, "Pure Semantic", fontsize=7.5,
             color=C_SEM, fontweight="bold", va="bottom", ha="right")
 
-    ax.set_xlabel("Semantic Weight  (BM25 = 1 − semantic)", fontsize=10, color="#666")
+    ax.set_xlabel("Semantic Weight  (BM25 = 1 \u2212 semantic)", fontsize=10, color="#666")
     ax.set_ylabel("Recall@K", fontsize=10, color="#666")
     ax.set_title("Hybrid Search: Finding the Optimal Mix",
                  fontsize=13, fontweight="bold", pad=14, color="#222")
     ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
     ax.set_xlim(-0.03, 1.03)
-    # Tighter y range — cut the dead space below
-    ax.set_ylim(min(y) - 0.02, max(y) + 0.045)
+    ax.set_ylim(min(y) - 0.025, max(y) + 0.045)
 
     fig.tight_layout(rect=[0, 0.02, 1, 0.975])
     _brand(fig)
@@ -238,10 +241,10 @@ def chart_summary_table(data, output_dir):
     rcolors.append(cc)
 
     fw = max(10, 3 + na * 1.5)
-    fig, ax = plt.subplots(figsize=(fw, 3.2))
+    fig, ax = plt.subplots(figsize=(fw, 2.8))
     ax.axis("off")
-    ax.set_title(f"Benchmark Summary — {data['n_queries']} queries, {na} approaches",
-                 fontsize=12, fontweight="bold", pad=12, color="#222")
+    ax.set_title(f"Benchmark Summary \u2014 {data['n_queries']} queries, {na} approaches",
+                 fontsize=12, fontweight="bold", pad=8, color="#222")
 
     tbl = ax.table(cellText=rows, colLabels=cols, cellColours=rcolors,
                    loc="center", cellLoc="center")
@@ -277,7 +280,7 @@ def chart_summary_table(data, output_dir):
         if c == 0:
             tbl[len(metrics) + 1, j + 1].set_text_props(fontweight="bold", color="#1b5e20")
 
-    fig.tight_layout(rect=[0, 0.02, 1, 0.955])
+    fig.tight_layout(rect=[0, 0.025, 1, 0.96])
     _brand(fig)
     p = output_dir / "chart3_summary_table.png"
     fig.savefig(p, dpi=DPI, bbox_inches="tight", facecolor=BG)
@@ -293,7 +296,7 @@ def chart_approach_strengths(data, output_dir):
     per_level = data["per_level"]
     approaches = data["approaches"]
 
-    # Query types with descriptions explaining what each tests
+    # Query types with descriptions
     query_types = [
         ("Keyword Lookup",          "Exact terms and specific phrases",          ["L1", "L3"]),
         ("Semantic Understanding",  "Meaning-based queries, no exact match",     ["L2", "L4"]),
@@ -309,6 +312,7 @@ def chart_approach_strengths(data, output_dir):
         "Semantic":   (["Semantic"], C_SEM, "D"),
         "LLM Rerank": ([a for a in approaches if a.startswith("LLM:")], C_LLM, "^"),
     }
+    family_names = list(families.keys())
 
     scores = {}
     for label, _desc, levels in query_types:
@@ -331,36 +335,72 @@ def chart_approach_strengths(data, output_dir):
     descs = {t[0]: t[1] for t in query_types}
     n = len(labels)
 
-    fig, ax = plt.subplots(figsize=(8, 5.8))
-    yp = np.arange(n)
+    # Spacing: 1.5 units between rows for description text
+    fig, ax = plt.subplots(figsize=(9, 6.5))
+    yp = np.arange(n) * 1.5
 
-    # Range lines
+    # Range lines (behind dots)
     for i, lb in enumerate(labels):
         sv = list(scores[lb].values())
-        ax.plot([min(sv), max(sv)], [i, i],
+        ax.plot([min(sv), max(sv)], [yp[i], yp[i]],
                 color="#e0e0e0", lw=3, zorder=1, solid_capstyle="round")
 
-    # Dots
-    for fn, (_, color, marker) in families.items():
-        xv = [scores[lb][fn] for lb in labels]
-        ax.scatter(xv, yp, s=130, c=color, marker=marker, label=fn,
-                   zorder=5, edgecolors="white", linewidth=1.5, alpha=0.9)
-        # Label the winner in each row
-        for i, (x, lb) in enumerate(zip(xv, labels)):
-            if x == max(scores[lb].values()):
-                ax.annotate(f"{x:.0%}", (x, i), fontsize=7.5,
+    # For each row, compute jitter offsets to prevent marker overlap
+    jitter_threshold = 0.025
+    offsets = [0.18, -0.18, 0.35, -0.35]  # alternating up/down nudges
+
+    for row_i, lb in enumerate(labels):
+        row_vals = sorted(
+            [(fn, scores[lb][fn]) for fn in family_names],
+            key=lambda t: t[1]
+        )
+
+        # Assign y-offsets: cluster dots that are within threshold
+        placed = {}  # fn -> (x, y_offset)
+        for fn, xval in row_vals:
+            # Find how many previously placed dots are close
+            close_offsets = [
+                placed[pfn][1] for pfn, px in row_vals
+                if pfn in placed and abs(px - xval) < jitter_threshold
+            ]
+            if not close_offsets:
+                yo = 0.0
+            else:
+                # Pick the first unused offset
+                for candidate in offsets:
+                    if candidate not in close_offsets:
+                        yo = candidate
+                        break
+                else:
+                    yo = offsets[len(close_offsets) % len(offsets)]
+            placed[fn] = (xval, yo)
+
+        # Plot dots — draw in consistent order, largest markers first (lowest zorder)
+        best_val = max(scores[lb].values())
+        for fn in family_names:
+            _, color, marker = families[fn]
+            xval, yo = placed[fn]
+            yval = yp[row_i] + yo
+            ax.scatter([xval], [yval], s=100, c=color, marker=marker,
+                       zorder=6, edgecolors="white", linewidth=1.2, alpha=0.92,
+                       label=fn if row_i == 0 else None)
+
+            # Only label the winner in each row
+            if xval == best_val:
+                ax.annotate(f"{xval:.0%}", (xval, yval), fontsize=7.5,
                             fontweight="bold", color=color,
                             xytext=(0, 10), textcoords="offset points",
                             ha="center", va="bottom")
 
-    # Two-line y-labels: bold name + light description
+    # Y-axis labels
     ax.set_yticks(yp)
-    ax.set_yticklabels(labels, fontsize=9, fontweight="bold")
-    # Add description text below each label
+    ax.set_yticklabels(labels, fontsize=9.5, fontweight="bold")
+    # Description subtitle below each label
     for i, lb in enumerate(labels):
-        ax.annotate(descs[lb], xy=(0, i), xycoords=("axes fraction", "data"),
-                    xytext=(-10, -12), textcoords="offset points",
-                    fontsize=7, color="#999", ha="right", va="top")
+        ax.annotate(descs[lb], xy=(0, yp[i]),
+                    xycoords=("axes fraction", "data"),
+                    xytext=(-10, -14), textcoords="offset points",
+                    fontsize=7, color="#aaa", ha="right", va="top")
 
     ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
     ax.set_xlabel("Recall@K", fontsize=10, color="#666")
@@ -369,12 +409,13 @@ def chart_approach_strengths(data, output_dir):
     ax.set_xlim(0.28, 1.02)
     ax.invert_yaxis()
 
-    # Legend at top-right, out of the way of data
-    ax.legend(loc="upper right", framealpha=0.95, fontsize=8,
-              ncol=2, columnspacing=1, edgecolor="#ddd",
+    # Legend below the chart, fully outside plot area
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.07),
+              framealpha=0.95, fontsize=8.5,
+              ncol=4, columnspacing=1.5, edgecolor="#ddd",
               handletextpad=0.4)
 
-    fig.tight_layout(rect=[0, 0.02, 1, 0.975])
+    fig.tight_layout(rect=[0, 0.06, 1, 0.975])
     _brand(fig)
     p = output_dir / "chart4_approach_strengths.png"
     fig.savefig(p, dpi=DPI, bbox_inches="tight", facecolor=BG)
