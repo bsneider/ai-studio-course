@@ -345,6 +345,124 @@ def chart_summary_table(data, output_dir):
     return path
 
 
+# ── Chart 4: Where Each Approach Wins ─────────────────────────────────────────
+
+
+def chart_approach_strengths(data, output_dir):
+    """Dot plot: recall by query type for each approach family.
+
+    Story: no single approach is best everywhere.
+    BM25 wins on keyword queries, Semantic on paraphrased,
+    Hybrid combines both strengths. LLMs add cost without benefit.
+    """
+    _setup()
+
+    per_level = data["per_level"]
+    approaches = data["approaches"]
+
+    # Group levels into meaningful query types with readable labels
+    query_types = [
+        ("Keyword\nLookup",       ["L1", "L3"],  "Where exact terms appear in content"),
+        ("Semantic\nUnderstanding", ["L2", "L4"],  "Meaning-based, not keyword-dependent"),
+        ("Cross-Source\nReasoning", ["L5", "L7"],  "Combining info from multiple pages"),
+        ("Paraphrased\nQueries",    ["L6"],        "User wording differs from content"),
+        ("Temporal\nComparison",    ["L9", "L12"], "Changes across semesters"),
+        ("Complex\nReasoning",     ["L10", "L11"], "Requires inference and aggregation"),
+    ]
+
+    # Collapse to 4 families: best Hybrid variant, BM25, Semantic, best LLM
+    families = {
+        "Hybrid":   {"key": ["Hybrid", "Hybrid+Expand", "Hybrid+RRF"],
+                     "color": CLR_HYBRID, "marker": "o"},
+        "BM25":     {"key": ["BM25"],
+                     "color": CLR_BM25, "marker": "s"},
+        "Semantic": {"key": ["Semantic"],
+                     "color": CLR_SEMANTIC, "marker": "D"},
+        "LLM Rerank": {"key": [a for a in approaches if a.startswith("LLM:")],
+                        "color": "#2CA02C", "marker": "^"},
+    }
+
+    # Compute weighted mean per query type per family (best variant in family)
+    type_scores = {}  # {type_label: {family: recall}}
+    for type_label, levels, _ in query_types:
+        present = [lv for lv in levels if lv in per_level]
+        if not present:
+            continue
+        total_n = sum(per_level[lv]["n"] for lv in present)
+        type_scores[type_label] = {}
+        for fam_name, fam_info in families.items():
+            # Take the best variant in this family
+            best_recall = 0
+            for variant in fam_info["key"]:
+                if variant not in approaches:
+                    continue
+                weighted = sum(
+                    per_level[lv]["approaches"].get(variant, {}).get("mean_recall", 0)
+                    * per_level[lv]["n"]
+                    for lv in present
+                )
+                recall = weighted / total_n if total_n else 0
+                best_recall = max(best_recall, recall)
+            type_scores[type_label][fam_name] = best_recall
+
+    type_labels = [t[0] for t in query_types if t[0] in type_scores]
+    type_descs = {t[0]: t[2] for t in query_types}
+    n_types = len(type_labels)
+
+    fig, ax = plt.subplots(figsize=(10, 5.5))
+
+    y_positions = np.arange(n_types)
+
+    # Draw connecting lines between min and max for each row
+    for i, tl in enumerate(type_labels):
+        scores = list(type_scores[tl].values())
+        ax.plot([min(scores), max(scores)], [i, i],
+                color="#ddd", linewidth=2, zorder=1)
+
+    # Plot dots for each family
+    for fam_name, fam_info in families.items():
+        x_vals = [type_scores[tl][fam_name] for tl in type_labels]
+        ax.scatter(x_vals, y_positions, s=120, c=fam_info["color"],
+                   marker=fam_info["marker"], label=fam_name,
+                   zorder=5, edgecolors="white", linewidth=1.2)
+
+        # Annotate the best in each row
+        for i, (xv, tl) in enumerate(zip(x_vals, type_labels)):
+            all_scores = type_scores[tl]
+            if xv == max(all_scores.values()):
+                ax.annotate(f"{xv:.0%}", (xv, i), fontsize=8,
+                            fontweight="bold", color=fam_info["color"],
+                            xytext=(0, 10), textcoords="offset points",
+                            ha="center", va="bottom")
+
+    ax.set_yticks(y_positions)
+    ax.set_yticklabels(type_labels, fontsize=10, fontweight="bold")
+
+    # Add descriptions on the right
+    for i, tl in enumerate(type_labels):
+        ax.text(1.02, i, type_descs[tl], fontsize=7.5, color="#999",
+                va="center", transform=ax.get_yaxis_transform())
+
+    ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
+    ax.set_xlabel("Recall@K", fontsize=12)
+    ax.set_title("Where Each Approach Wins", fontsize=15,
+                 fontweight="bold", pad=20)
+    ax.set_xlim(0.25, 1.05)
+    ax.invert_yaxis()
+
+    ax.legend(loc="lower left", framealpha=0.9, fontsize=9,
+              ncol=4, columnspacing=1.5)
+
+    fig.tight_layout(rect=[0, 0.03, 0.75, 0.97])
+    _brand(fig)
+
+    path = output_dir / "chart4_approach_strengths.png"
+    fig.savefig(path, dpi=DPI, bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    print(f"  Chart 4 saved: {path}")
+    return path
+
+
 # ── CLI ──────────────────────────────────────────────────────────────────────
 
 
@@ -371,6 +489,7 @@ def main():
     chart_quality_vs_cost(data, args.output_dir)
     chart_hybrid_mix(data, args.output_dir)
     chart_summary_table(data, args.output_dir)
+    chart_approach_strengths(data, args.output_dir)
     print("\nDone! All charts saved to:", args.output_dir)
 
 
