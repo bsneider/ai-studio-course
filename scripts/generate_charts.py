@@ -293,14 +293,14 @@ def chart_approach_strengths(data, output_dir):
     per_level = data["per_level"]
     approaches = data["approaches"]
 
-    # Query types: label includes the description directly
+    # Query types with descriptions explaining what each tests
     query_types = [
-        ("Keyword Lookup",          ["L1", "L3"]),
-        ("Semantic Understanding",  ["L2", "L4"]),
-        ("Cross-Source Reasoning",  ["L5", "L7"]),
-        ("Paraphrased Queries",     ["L6"]),
-        ("Temporal Comparison",     ["L9", "L12"]),
-        ("Complex Reasoning",       ["L10", "L11"]),
+        ("Keyword Lookup",          "Exact terms and specific phrases",          ["L1", "L3"]),
+        ("Semantic Understanding",  "Meaning-based queries, no exact match",     ["L2", "L4"]),
+        ("Cross-Source Reasoning",  "Combining info across multiple documents",  ["L5", "L7"]),
+        ("Paraphrased Queries",     "Same question, different wording",          ["L6"]),
+        ("Temporal Comparison",     "Time-based and version comparisons",        ["L9", "L12"]),
+        ("Complex Reasoning",       "Multi-hop logic and inference chains",      ["L10", "L11"]),
     ]
 
     families = {
@@ -311,7 +311,7 @@ def chart_approach_strengths(data, output_dir):
     }
 
     scores = {}
-    for label, levels in query_types:
+    for label, _desc, levels in query_types:
         present = [lv for lv in levels if lv in per_level]
         if not present:
             continue
@@ -328,9 +328,10 @@ def chart_approach_strengths(data, output_dir):
             scores[label][fn] = best
 
     labels = [t[0] for t in query_types if t[0] in scores]
+    descs = {t[0]: t[1] for t in query_types}
     n = len(labels)
 
-    fig, ax = plt.subplots(figsize=(8, 4.5))
+    fig, ax = plt.subplots(figsize=(8, 5.8))
     yp = np.arange(n)
 
     # Range lines
@@ -352,8 +353,15 @@ def chart_approach_strengths(data, output_dir):
                             xytext=(0, 10), textcoords="offset points",
                             ha="center", va="bottom")
 
+    # Two-line y-labels: bold name + light description
     ax.set_yticks(yp)
     ax.set_yticklabels(labels, fontsize=9, fontweight="bold")
+    # Add description text below each label
+    for i, lb in enumerate(labels):
+        ax.annotate(descs[lb], xy=(0, i), xycoords=("axes fraction", "data"),
+                    xytext=(-10, -12), textcoords="offset points",
+                    fontsize=7, color="#999", ha="right", va="top")
+
     ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
     ax.set_xlabel("Recall@K", fontsize=10, color="#666")
     ax.set_title("Where Each Approach Wins", fontsize=13,
@@ -361,8 +369,9 @@ def chart_approach_strengths(data, output_dir):
     ax.set_xlim(0.28, 1.02)
     ax.invert_yaxis()
 
-    ax.legend(loc="lower left", framealpha=0.95, fontsize=8,
-              ncol=4, columnspacing=1, edgecolor="#ddd",
+    # Legend at top-right, out of the way of data
+    ax.legend(loc="upper right", framealpha=0.95, fontsize=8,
+              ncol=2, columnspacing=1, edgecolor="#ddd",
               handletextpad=0.4)
 
     fig.tight_layout(rect=[0, 0.02, 1, 0.975])
