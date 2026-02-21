@@ -68,8 +68,8 @@ class TestNotebookStructure:
                 # Skip cells with IPython magics (%%capture, !pip)
                 lines = source.split("\n")
                 py_lines = [
-                    l for l in lines
-                    if not l.strip().startswith(("!", "%%", "%"))
+                    line for line in lines
+                    if not line.strip().startswith(("!", "%%", "%"))
                 ]
                 py_source = "\n".join(py_lines)
                 if py_source.strip():
