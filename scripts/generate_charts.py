@@ -4,8 +4,7 @@
 Usage:
     uv run python scripts/generate_charts.py [--results path] [--output-dir path]
 
-Design: minimal, data-focused, inspired by artificialanalysis.ai.
-Each chart tells exactly one story. Soft colors, generous whitespace.
+Design: minimal, data-focused. Each chart tells one story.
 """
 
 import argparse
@@ -22,441 +21,381 @@ import numpy as np
 # ── Brand ────────────────────────────────────────────────────────────────────
 
 MIT_CRIMSON = "#A31F34"
-MIT_GRAY = "#8A8B8C"
-BG_COLOR = "#FAFAFA"
+BG = "#FAFAFA"
 
-# Softer, desaturated palette — easy on the eyes
-CLR_HYBRID = "#C0392B"
-CLR_BM25 = "#2980B9"
-CLR_SEMANTIC = "#E67E22"
-CLR_LLM = "#27AE60"
+# Muted, desaturated palette
+C_HYB = "#C0392B"
+C_BM25 = "#2980B9"
+C_SEM = "#E67E22"
+C_LLM = "#27AE60"
 
-APPROACH_COLORS = {
-    "Hybrid":        CLR_HYBRID,
-    "Hybrid+Expand": "#E74C3C",
-    "Hybrid+RRF":    "#922B21",
-    "BM25":          CLR_BM25,
-    "Semantic":      CLR_SEMANTIC,
+COLORS = {
+    "Hybrid": C_HYB, "Hybrid+Expand": "#E74C3C", "Hybrid+RRF": "#922B21",
+    "BM25": C_BM25, "Semantic": C_SEM,
 }
-_LLM_PALETTE = ["#27AE60", "#16A085", "#8E44AD", "#7F8C8D"]
+_LLM_PAL = ["#27AE60", "#16A085", "#8E44AD", "#7F8C8D"]
 
 
-def _color(name):
-    if name in APPROACH_COLORS:
-        return APPROACH_COLORS[name]
+def _c(name):
+    if name in COLORS:
+        return COLORS[name]
     if name.startswith("LLM:"):
-        llm_keys = [k for k in APPROACH_COLORS if k.startswith("LLM:")]
-        c = _LLM_PALETTE[len(llm_keys) % len(_LLM_PALETTE)]
-        APPROACH_COLORS[name] = c
-        return c
+        n = len([k for k in COLORS if k.startswith("LLM:")])
+        COLORS[name] = _LLM_PAL[n % len(_LLM_PAL)]
+        return COLORS[name]
     return "#555"
 
 
-COST_MAP = {
-    "gemini":   1.15,
-    "nemotron": 11.10,
-    "llama":    1.09,
-}
-
+COST = {"gemini": 1.15, "nemotron": 11.10, "llama": 1.09}
 DPI = 300
 FOOTER = "Research: Brandon Sneider | MIT AI Studio (MAS.664/665)"
-
-
-def _setup():
-    import matplotlib.font_manager as fm
-    available = {f.name for f in fm.fontManager.ttflist}
-    font = "Helvetica Neue" if "Helvetica Neue" in available else "DejaVu Sans"
-    plt.rcParams.update({
-        "font.family": "sans-serif",
-        "font.sans-serif": [font],
-        "font.size": 10,
-        "axes.spines.top": False,
-        "axes.spines.right": False,
-        "axes.spines.left": True,
-        "axes.spines.bottom": True,
-        "axes.linewidth": 0.6,
-        "axes.edgecolor": "#ccc",
-        "axes.grid": True,
-        "grid.alpha": 0.12,
-        "grid.linewidth": 0.4,
-        "grid.color": "#bbb",
-        "figure.facecolor": BG_COLOR,
-        "axes.facecolor": "white",
-        "xtick.color": "#555",
-        "ytick.color": "#555",
-        "text.color": "#333",
-    })
-
-
-def _brand(fig):
-    fig.patches.append(mpatches.FancyBboxPatch(
-        (0, 0.99), 1.0, 0.01,
-        boxstyle="square,pad=0", facecolor=MIT_CRIMSON,
-        edgecolor="none", transform=fig.transFigure, zorder=100,
-    ))
-    fig.text(0.98, 0.006, FOOTER, ha="right", va="bottom",
-             fontsize=6.5, color="#aaa", transform=fig.transFigure)
 
 
 def _cost(name):
     if not name.startswith("LLM:"):
         return 0.0
-    for key, val in COST_MAP.items():
-        if key in name.lower():
-            return val
+    for k, v in COST.items():
+        if k in name.lower():
+            return v
     return 2.0
+
+
+def _rc():
+    import matplotlib.font_manager as fm
+    f = "Helvetica Neue" if "Helvetica Neue" in {x.name for x in fm.fontManager.ttflist} else "DejaVu Sans"
+    plt.rcParams.update({
+        "font.family": "sans-serif", "font.sans-serif": [f], "font.size": 10,
+        "axes.spines.top": False, "axes.spines.right": False,
+        "axes.linewidth": 0.5, "axes.edgecolor": "#ccc",
+        "axes.grid": True, "grid.alpha": 0.1, "grid.linewidth": 0.4,
+        "figure.facecolor": BG, "axes.facecolor": "white",
+        "xtick.color": "#666", "ytick.color": "#666", "text.color": "#333",
+    })
+
+
+def _brand(fig):
+    fig.patches.append(mpatches.FancyBboxPatch(
+        (0, 0.99), 1.0, 0.01, boxstyle="square,pad=0",
+        facecolor=MIT_CRIMSON, edgecolor="none",
+        transform=fig.transFigure, zorder=100))
+    fig.text(0.98, 0.005, FOOTER, ha="right", va="bottom",
+             fontsize=6.5, color="#bbb", transform=fig.transFigure)
 
 
 # ── Chart 1: Quality vs Cost ─────────────────────────────────────────────────
 
 
 def chart_quality_vs_cost(data, output_dir):
-    """Horizontal bars ranked by recall, cost annotated."""
-    _setup()
+    _rc()
     agg = data["aggregates"]
-    approaches = data["approaches"]
-    sorted_apps = sorted(approaches, key=lambda a: agg[a]["Recall@K"])
+    apps = data["approaches"]
+    ranked = sorted(apps, key=lambda a: agg[a]["Recall@K"])
 
-    fig, ax = plt.subplots(figsize=(9, 5))
+    recalls = [agg[a]["Recall@K"] for a in ranked]
+    costs = [_cost(a) for a in ranked]
+    colors = [_c(a) for a in ranked]
 
-    y = np.arange(len(sorted_apps))
-    recalls = [agg[a]["Recall@K"] for a in sorted_apps]
-    colors = [_color(a) for a in sorted_apps]
-    costs = [_cost(a) for a in sorted_apps]
+    fig, ax = plt.subplots(figsize=(8, 4.8))
+    y = np.arange(len(ranked))
 
-    bars = ax.barh(y, recalls, color=colors, alpha=0.78, height=0.55, zorder=3,
-                   edgecolor="white", linewidth=0.8)
+    bars = ax.barh(y, recalls, color=colors, alpha=0.82, height=0.55,
+                   zorder=3, edgecolor="white", linewidth=0.8)
 
-    # Separator line between free and paid
-    free_count = sum(1 for c in costs if c == 0)
-    if 0 < free_count < len(sorted_apps):
-        ax.axhline(y=free_count - 0.5, color="#ddd", linewidth=1, linestyle="-", zorder=2)
-        ax.text(0.625, free_count - 0.5 + 0.15, "FREE", fontsize=7,
-                color="#aaa", fontweight="bold", va="bottom")
-        ax.text(0.625, free_count - 0.5 - 0.15, "PAID", fontsize=7,
-                color="#aaa", fontweight="bold", va="top")
+    # Separator between free and paid
+    free_n = sum(1 for c in costs if c == 0)
+    if 0 < free_n < len(ranked):
+        sep_y = free_n - 0.5
+        ax.axhline(sep_y, color="#e0e0e0", linewidth=0.8, zorder=2)
 
-    max_recall = max(recalls)
+    best = max(recalls)
     for bar, recall, cost in zip(bars, recalls, costs):
-        weight = "bold" if recall == max_recall else "normal"
-        ax.text(recall + 0.004, bar.get_y() + bar.get_height() / 2,
-                f"{recall:.1%}", va="center", fontsize=9.5, fontweight=weight,
-                color="#333")
-        cost_str = f"${cost:.2f}/1K" if cost > 0 else "Free"
-        cost_color = "#27AE60" if cost == 0 else "#C0392B"
-        ax.text(0.99, bar.get_y() + bar.get_height() / 2,
-                cost_str, va="center", ha="right", fontsize=8.5,
-                fontweight="bold", color=cost_color,
-                transform=ax.get_yaxis_transform())
+        mid = bar.get_y() + bar.get_height() / 2
+        w = "bold" if recall == best else "normal"
+        # Recall value
+        ax.text(recall + 0.002, mid, f"{recall:.1%}", va="center",
+                fontsize=9, fontweight=w, color="#333")
+        # Cost badge right-aligned inside plot area
+        cstr = "Free" if cost == 0 else f"${cost:.2f}/1K"
+        cc = "#27AE60" if cost == 0 else "#C0392B"
+        ax.text(best + 0.035, mid, cstr, va="center", ha="right",
+                fontsize=8, fontweight="bold", color=cc)
 
     ax.set_yticks(y)
-    ax.set_yticklabels(sorted_apps, fontsize=9.5, fontweight="bold")
-    ax.set_xlabel("Recall@K", fontsize=11, color="#555")
+    ax.set_yticklabels(ranked, fontsize=9.5, fontweight="bold")
+    ax.set_xlabel("Recall@K", fontsize=10, color="#666")
     ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
-    ax.set_xlim(0.62, max_recall + 0.06)
-    ax.set_title("Retrieval Quality vs. Cost", fontsize=14, fontweight="bold",
-                 pad=18, color="#222")
+    ax.set_xlim(0.62, best + 0.04)
+    ax.set_title("Retrieval Quality vs. Cost", fontsize=13, fontweight="bold",
+                 pad=14, color="#222")
 
-    fig.tight_layout(rect=[0, 0.025, 1, 0.975])
+    fig.tight_layout(rect=[0, 0.02, 1, 0.975])
     _brand(fig)
-    path = output_dir / "chart1_quality_vs_cost.png"
-    fig.savefig(path, dpi=DPI, bbox_inches="tight", facecolor=BG_COLOR)
+    p = output_dir / "chart1_quality_vs_cost.png"
+    fig.savefig(p, dpi=DPI, bbox_inches="tight", facecolor=BG)
     plt.close(fig)
-    print(f"  Chart 1 saved: {path}")
-    return path
+    print(f"  Chart 1 saved: {p}")
 
 
 # ── Chart 2: Hybrid Mix ──────────────────────────────────────────────────────
 
 
 def chart_hybrid_mix(data, output_dir):
-    """Line chart: BM25/Semantic weight sweep with LLM baseline band."""
-    _setup()
+    _rc()
     sweep = data.get("weight_sweep", [])
     if not sweep:
-        print("  Chart 2 skipped: no weight_sweep data")
-        return None
+        print("  Chart 2 skipped")
+        return
 
-    hybrid_pts = [p for p in sweep if p["kw"] is not None]
-    llm_pts = [p for p in sweep if p["kw"] is None]
+    hyb = [p for p in sweep if p["kw"] is not None]
+    llm = [p for p in sweep if p["kw"] is None]
 
-    fig, ax = plt.subplots(figsize=(9, 5))
+    x = [p["sw"] for p in hyb]
+    y = [p["mean_recall"] for p in hyb]
 
-    x = [p["sw"] for p in hybrid_pts]
-    y = [p["mean_recall"] for p in hybrid_pts]
+    fig, ax = plt.subplots(figsize=(8, 4.5))
 
-    # Smooth the curve slightly for visual appeal
-    ax.fill_between(x, y, alpha=0.06, color=CLR_HYBRID)
-    ax.plot(x, y, "o-", color=CLR_HYBRID, linewidth=2, markersize=5.5,
-            zorder=4, markeredgecolor="white", markeredgewidth=1.2)
+    ax.fill_between(x, y, alpha=0.05, color=C_HYB)
+    ax.plot(x, y, "o-", color=C_HYB, lw=2, ms=5, zorder=4,
+            markeredgecolor="white", markeredgewidth=1)
 
-    best_i = max(range(len(y)), key=lambda i: y[i])
-    ax.annotate(
-        f"Best: {x[best_i]:.0%} semantic\n{y[best_i]:.1%} recall",
-        xy=(x[best_i], y[best_i]),
-        xytext=(x[best_i] - 0.22, y[best_i] + 0.03),
-        fontsize=8.5, fontweight="bold", color=CLR_HYBRID,
-        arrowprops=dict(arrowstyle="->", color=CLR_HYBRID, lw=1.2),
-    )
+    bi = max(range(len(y)), key=lambda i: y[i])
+    ax.annotate(f"Best: {x[bi]:.0%} semantic\n{y[bi]:.1%} recall",
+                xy=(x[bi], y[bi]),
+                xytext=(x[bi] - 0.2, y[bi] + 0.025),
+                fontsize=8, fontweight="bold", color=C_HYB,
+                arrowprops=dict(arrowstyle="->", color=C_HYB, lw=1.2))
 
-    if llm_pts:
-        llm_recalls = [p["mean_recall"] for p in llm_pts]
-        llm_min, llm_max = min(llm_recalls), max(llm_recalls)
-        ax.axhspan(llm_min - 0.002, llm_max + 0.002, alpha=0.08,
-                   color=CLR_LLM, zorder=1)
-        ax.axhline(y=np.mean(llm_recalls), color=CLR_LLM, linestyle="--",
-                   linewidth=1.2, alpha=0.5, zorder=2)
-        ax.text(0.45, llm_max + 0.006,
-                f"LLM Rerankers ({llm_min:.1%}–{llm_max:.1%}, $1–$11/1K)",
-                fontsize=7.5, color=CLR_LLM, va="bottom", fontweight="bold")
+    if llm:
+        lr = [p["mean_recall"] for p in llm]
+        lo, hi = min(lr), max(lr)
+        ax.axhspan(lo - 0.001, hi + 0.001, alpha=0.07, color=C_LLM, zorder=1)
+        ax.axhline(np.mean(lr), color=C_LLM, ls="--", lw=1.2, alpha=0.5, zorder=2)
+        ax.text(0.5, hi + 0.005,
+                f"LLM Rerankers ({lo:.1%}–{hi:.1%}, $1–$11/1K)",
+                fontsize=7.5, color=C_LLM, va="bottom", fontweight="bold")
 
-    ax.text(-0.02, y[0] - 0.01, "Pure\nBM25", fontsize=7.5, ha="right",
-            color=CLR_BM25, fontweight="bold", va="top")
-    ax.text(1.02, y[-1] + 0.01, "Pure\nSemantic", fontsize=7.5, ha="left",
-            color=CLR_SEMANTIC, fontweight="bold", va="bottom")
+    # Endpoint labels inside the axes
+    ax.text(0.01, y[0] + 0.008, "Pure BM25", fontsize=7.5,
+            color=C_BM25, fontweight="bold", va="bottom")
+    ax.text(0.99, y[-1] + 0.008, "Pure Semantic", fontsize=7.5,
+            color=C_SEM, fontweight="bold", va="bottom", ha="right")
 
-    ax.set_xlabel("Semantic Weight  (BM25 = 1 − semantic)", fontsize=10, color="#555")
-    ax.set_ylabel("Recall@K", fontsize=10, color="#555")
+    ax.set_xlabel("Semantic Weight  (BM25 = 1 − semantic)", fontsize=10, color="#666")
+    ax.set_ylabel("Recall@K", fontsize=10, color="#666")
     ax.set_title("Hybrid Search: Finding the Optimal Mix",
-                 fontsize=14, fontweight="bold", pad=18, color="#222")
+                 fontsize=13, fontweight="bold", pad=14, color="#222")
     ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
-    ax.set_xlim(-0.08, 1.08)
-    ax.set_ylim(min(y) - 0.04, max(y) + 0.055)
+    ax.set_xlim(-0.03, 1.03)
+    # Tighter y range — cut the dead space below
+    ax.set_ylim(min(y) - 0.02, max(y) + 0.045)
 
-    fig.tight_layout(rect=[0, 0.025, 1, 0.975])
+    fig.tight_layout(rect=[0, 0.02, 1, 0.975])
     _brand(fig)
-    path = output_dir / "chart2_hybrid_mix.png"
-    fig.savefig(path, dpi=DPI, bbox_inches="tight", facecolor=BG_COLOR)
+    p = output_dir / "chart2_hybrid_mix.png"
+    fig.savefig(p, dpi=DPI, bbox_inches="tight", facecolor=BG)
     plt.close(fig)
-    print(f"  Chart 2 saved: {path}")
-    return path
+    print(f"  Chart 2 saved: {p}")
 
 
 # ── Chart 3: Summary Table ───────────────────────────────────────────────────
 
 
 def chart_summary_table(data, output_dir):
-    """Clean summary table with cost row."""
-    _setup()
-    approaches = data["approaches"]
+    _rc()
+    apps = data["approaches"]
     agg = data["aggregates"]
-    n_app = len(approaches)
+    na = len(apps)
 
     metrics = [
-        ("Recall@K", "How many right answers found?"),
-        ("MRR",      "First useful result rank?"),
-        ("NDCG@K",   "Best results near the top?"),
+        ("Recall@K",  "How many right answers found?"),
+        ("MRR",       "First useful result rank?"),
+        ("NDCG@K",    "Best results near the top?"),
         ("pass_rate", "Queries above 40% threshold"),
     ]
 
-    col_labels = [""] + approaches
-    rows = []
-    row_colors_list = []
+    cols = [""] + apps
+    rows, rcolors = [], []
 
-    for idx, (mkey, mdesc) in enumerate(metrics):
-        vals = [agg[a][mkey] for a in approaches]
+    for idx, (mk, md) in enumerate(metrics):
+        vals = [agg[a][mk] for a in apps]
         best = max(vals)
-        row = [mdesc]
         base = "#f5f5f5" if idx % 2 == 0 else "white"
-        colors = [base]
+        row = [md]
+        rc = [base]
         for v in vals:
             row.append(f"{v:.1%}")
-            colors.append("#e8f5e9" if v == best else base)
+            rc.append("#e8f5e9" if v == best else base)
         rows.append(row)
-        row_colors_list.append(colors)
+        rcolors.append(rc)
 
     # Cost row
-    cost_row = ["Cost / 1K queries"]
-    cost_colors = ["#f5f5f5"]
-    costs = [_cost(a) for a in approaches]
+    cr, cc = ["Cost / 1K queries"], ["#f5f5f5"]
+    costs = [_cost(a) for a in apps]
     for c in costs:
-        cost_row.append(f"${c:.2f}" if c > 0 else "Free")
-        cost_colors.append("#e8f5e9" if c == 0 else "#f5f5f5")
-    rows.append(cost_row)
-    row_colors_list.append(cost_colors)
+        cr.append(f"${c:.2f}" if c > 0 else "Free")
+        cc.append("#e8f5e9" if c == 0 else "#f5f5f5")
+    rows.append(cr)
+    rcolors.append(cc)
 
-    fig_w = max(10, 3 + n_app * 1.5)
-    fig, ax = plt.subplots(figsize=(fig_w, 3.8))
+    fw = max(10, 3 + na * 1.5)
+    fig, ax = plt.subplots(figsize=(fw, 3.2))
     ax.axis("off")
-    ax.set_title("Benchmark Summary — 35 queries, 8 approaches",
-                 fontsize=12, fontweight="bold", pad=15, color="#222")
+    ax.set_title(f"Benchmark Summary — {data['n_queries']} queries, {na} approaches",
+                 fontsize=12, fontweight="bold", pad=12, color="#222")
 
-    table = ax.table(
-        cellText=rows, colLabels=col_labels, cellColours=row_colors_list,
-        loc="center", cellLoc="center",
-    )
-    table.auto_set_font_size(False)
-    fs = 8 if n_app <= 5 else 6.8 if n_app <= 8 else 6
-    table.set_fontsize(fs)
-    table.scale(1.0, 1.9)
+    tbl = ax.table(cellText=rows, colLabels=cols, cellColours=rcolors,
+                   loc="center", cellLoc="center")
+    tbl.auto_set_font_size(False)
+    fs = 8 if na <= 5 else 6.8 if na <= 8 else 6
+    tbl.set_fontsize(fs)
+    tbl.scale(1.0, 1.8)
 
-    desc_w = 0.17
-    app_w = (1.0 - desc_w) / n_app
+    dw = 0.17
+    aw = (1.0 - dw) / na
     for r in range(len(rows) + 1):
-        table[r, 0].set_width(desc_w)
-        for j in range(1, n_app + 1):
-            table[r, j].set_width(app_w)
+        tbl[r, 0].set_width(dw)
+        for j in range(1, na + 1):
+            tbl[r, j].set_width(aw)
 
-    for j in range(n_app + 1):
-        cell = table[0, j]
-        cell.set_facecolor(MIT_CRIMSON)
-        cell.set_text_props(color="white", fontweight="bold", fontsize=fs)
+    for j in range(na + 1):
+        tbl[0, j].set_facecolor(MIT_CRIMSON)
+        tbl[0, j].set_text_props(color="white", fontweight="bold", fontsize=fs)
 
     for i in range(1, len(rows) + 1):
-        table[i, 0].get_text().set_ha("left")
-        table[i, 0].get_text().set_fontsize(max(5.5, fs - 0.5))
-        table[i, 0].get_text().set_color("#777")
+        tbl[i, 0].get_text().set_ha("left")
+        tbl[i, 0].get_text().set_fontsize(max(5.5, fs - 0.5))
+        tbl[i, 0].get_text().set_color("#888")
 
-    for i, (mkey, _) in enumerate(metrics):
-        vals = [agg[a][mkey] for a in approaches]
+    for i, (mk, _) in enumerate(metrics):
+        vals = [agg[a][mk] for a in apps]
         best = max(vals)
         for j, v in enumerate(vals):
             if v == best:
-                table[i + 1, j + 1].set_text_props(fontweight="bold", color="#1b5e20")
+                tbl[i + 1, j + 1].set_text_props(fontweight="bold", color="#1b5e20")
 
     for j, c in enumerate(costs):
         if c == 0:
-            table[len(metrics) + 1, j + 1].set_text_props(fontweight="bold", color="#1b5e20")
+            tbl[len(metrics) + 1, j + 1].set_text_props(fontweight="bold", color="#1b5e20")
 
-    fig.tight_layout(rect=[0, 0.025, 1, 0.955])
+    fig.tight_layout(rect=[0, 0.02, 1, 0.955])
     _brand(fig)
-    path = output_dir / "chart3_summary_table.png"
-    fig.savefig(path, dpi=DPI, bbox_inches="tight", facecolor=BG_COLOR)
+    p = output_dir / "chart3_summary_table.png"
+    fig.savefig(p, dpi=DPI, bbox_inches="tight", facecolor=BG)
     plt.close(fig)
-    print(f"  Chart 3 saved: {path}")
-    return path
+    print(f"  Chart 3 saved: {p}")
 
 
 # ── Chart 4: Where Each Approach Wins ─────────────────────────────────────────
 
 
 def chart_approach_strengths(data, output_dir):
-    """Dot plot: recall by query type for each approach family."""
-    _setup()
+    _rc()
     per_level = data["per_level"]
     approaches = data["approaches"]
 
+    # Query types: label includes the description directly
     query_types = [
-        ("Keyword\nLookup",        ["L1", "L3"],  "Exact terms in content"),
-        ("Semantic\nUnderstanding", ["L2", "L4"],  "Meaning-based retrieval"),
-        ("Cross-Source\nReasoning", ["L5", "L7"],  "Combining multiple pages"),
-        ("Paraphrased\nQueries",    ["L6"],        "Different user wording"),
-        ("Temporal\nComparison",    ["L9", "L12"], "Cross-semester changes"),
-        ("Complex\nReasoning",     ["L10", "L11"], "Inference & aggregation"),
+        ("Keyword Lookup",          ["L1", "L3"]),
+        ("Semantic Understanding",  ["L2", "L4"]),
+        ("Cross-Source Reasoning",  ["L5", "L7"]),
+        ("Paraphrased Queries",     ["L6"]),
+        ("Temporal Comparison",     ["L9", "L12"]),
+        ("Complex Reasoning",       ["L10", "L11"]),
     ]
 
     families = {
-        "Hybrid":     {"key": ["Hybrid", "Hybrid+Expand", "Hybrid+RRF"],
-                       "color": CLR_HYBRID, "marker": "o"},
-        "BM25":       {"key": ["BM25"],
-                       "color": CLR_BM25, "marker": "s"},
-        "Semantic":   {"key": ["Semantic"],
-                       "color": CLR_SEMANTIC, "marker": "D"},
-        "LLM Rerank": {"key": [a for a in approaches if a.startswith("LLM:")],
-                       "color": CLR_LLM, "marker": "^"},
+        "Hybrid":     (["Hybrid", "Hybrid+Expand", "Hybrid+RRF"], C_HYB, "o"),
+        "BM25":       (["BM25"], C_BM25, "s"),
+        "Semantic":   (["Semantic"], C_SEM, "D"),
+        "LLM Rerank": ([a for a in approaches if a.startswith("LLM:")], C_LLM, "^"),
     }
 
-    type_scores = {}
-    for type_label, levels, _ in query_types:
+    scores = {}
+    for label, levels in query_types:
         present = [lv for lv in levels if lv in per_level]
         if not present:
             continue
-        total_n = sum(per_level[lv]["n"] for lv in present)
-        type_scores[type_label] = {}
-        for fam_name, fam_info in families.items():
-            best_recall = 0
-            for variant in fam_info["key"]:
-                if variant not in approaches:
+        tn = sum(per_level[lv]["n"] for lv in present)
+        scores[label] = {}
+        for fn, (variants, _, _) in families.items():
+            best = 0
+            for v in variants:
+                if v not in approaches:
                     continue
-                weighted = sum(
-                    per_level[lv]["approaches"].get(variant, {}).get("mean_recall", 0)
-                    * per_level[lv]["n"]
-                    for lv in present
-                )
-                best_recall = max(best_recall, weighted / total_n if total_n else 0)
-            type_scores[type_label][fam_name] = best_recall
+                w = sum(per_level[lv]["approaches"].get(v, {}).get("mean_recall", 0)
+                        * per_level[lv]["n"] for lv in present)
+                best = max(best, w / tn if tn else 0)
+            scores[label][fn] = best
 
-    type_labels = [t[0] for t in query_types if t[0] in type_scores]
-    type_descs = {t[0]: t[2] for t in query_types}
-    n_types = len(type_labels)
+    labels = [t[0] for t in query_types if t[0] in scores]
+    n = len(labels)
 
-    fig, ax = plt.subplots(figsize=(10, 5))
-    y_pos = np.arange(n_types)
+    fig, ax = plt.subplots(figsize=(8, 4.5))
+    yp = np.arange(n)
 
-    # Connecting lines (range)
-    for i, tl in enumerate(type_labels):
-        scores = list(type_scores[tl].values())
-        ax.plot([min(scores), max(scores)], [i, i],
-                color="#e0e0e0", linewidth=2.5, zorder=1, solid_capstyle="round")
+    # Range lines
+    for i, lb in enumerate(labels):
+        sv = list(scores[lb].values())
+        ax.plot([min(sv), max(sv)], [i, i],
+                color="#e0e0e0", lw=3, zorder=1, solid_capstyle="round")
 
     # Dots
-    for fam_name, fam_info in families.items():
-        x_vals = [type_scores[tl][fam_name] for tl in type_labels]
-        ax.scatter(x_vals, y_pos, s=140, c=fam_info["color"],
-                   marker=fam_info["marker"], label=fam_name,
+    for fn, (_, color, marker) in families.items():
+        xv = [scores[lb][fn] for lb in labels]
+        ax.scatter(xv, yp, s=130, c=color, marker=marker, label=fn,
                    zorder=5, edgecolors="white", linewidth=1.5, alpha=0.9)
-
-        for i, (xv, tl) in enumerate(zip(x_vals, type_labels)):
-            if xv == max(type_scores[tl].values()):
-                ax.annotate(f"{xv:.0%}", (xv, i), fontsize=7.5,
-                            fontweight="bold", color=fam_info["color"],
-                            xytext=(0, 11), textcoords="offset points",
+        # Label the winner in each row
+        for i, (x, lb) in enumerate(zip(xv, labels)):
+            if x == max(scores[lb].values()):
+                ax.annotate(f"{x:.0%}", (x, i), fontsize=7.5,
+                            fontweight="bold", color=color,
+                            xytext=(0, 10), textcoords="offset points",
                             ha="center", va="bottom")
 
-    ax.set_yticks(y_pos)
-    ax.set_yticklabels(type_labels, fontsize=9.5, fontweight="bold")
-
-    for i, tl in enumerate(type_labels):
-        ax.text(1.02, i, type_descs[tl], fontsize=7, color="#aaa",
-                va="center", transform=ax.get_yaxis_transform())
-
+    ax.set_yticks(yp)
+    ax.set_yticklabels(labels, fontsize=9, fontweight="bold")
     ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
-    ax.set_xlabel("Recall@K", fontsize=11, color="#555")
-    ax.set_title("Where Each Approach Wins", fontsize=14,
-                 fontweight="bold", pad=18, color="#222")
-    ax.set_xlim(0.25, 1.05)
+    ax.set_xlabel("Recall@K", fontsize=10, color="#666")
+    ax.set_title("Where Each Approach Wins", fontsize=13,
+                 fontweight="bold", pad=14, color="#222")
+    ax.set_xlim(0.28, 1.02)
     ax.invert_yaxis()
 
-    ax.legend(loc="lower left", framealpha=0.95, fontsize=8.5,
-              ncol=4, columnspacing=1.2, edgecolor="#ddd")
+    ax.legend(loc="lower left", framealpha=0.95, fontsize=8,
+              ncol=4, columnspacing=1, edgecolor="#ddd",
+              handletextpad=0.4)
 
-    fig.tight_layout(rect=[0, 0.025, 0.76, 0.975])
+    fig.tight_layout(rect=[0, 0.02, 1, 0.975])
     _brand(fig)
-    path = output_dir / "chart4_approach_strengths.png"
-    fig.savefig(path, dpi=DPI, bbox_inches="tight", facecolor=BG_COLOR)
+    p = output_dir / "chart4_approach_strengths.png"
+    fig.savefig(p, dpi=DPI, bbox_inches="tight", facecolor=BG)
     plt.close(fig)
-    print(f"  Chart 4 saved: {path}")
-    return path
+    print(f"  Chart 4 saved: {p}")
 
 
 # ── CLI ──────────────────────────────────────────────────────────────────────
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Generate benchmark charts")
-    parser.add_argument("--results", type=Path,
-                        default=Path("benchmark_results/results.json"))
-    parser.add_argument("--output-dir", type=Path,
-                        default=Path("benchmark_results"))
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--results", type=Path, default=Path("benchmark_results/results.json"))
+    parser.add_argument("--output-dir", type=Path, default=Path("benchmark_results"))
     args = parser.parse_args()
 
     if not args.results.exists():
         print(f"Error: {args.results} not found.")
-        print("Run 'uv run pytest tests/test_pageindex.py -v -s' first.")
         sys.exit(1)
 
     data = json.loads(args.results.read_text())
     print(f"Loaded {data['n_queries']} queries x {len(data['approaches'])} approaches")
-    print(f"Generated at: {data['generated_at']}")
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
-
     print("\nGenerating charts...")
     chart_quality_vs_cost(data, args.output_dir)
     chart_hybrid_mix(data, args.output_dir)
     chart_summary_table(data, args.output_dir)
     chart_approach_strengths(data, args.output_dir)
-    print("\nDone! All charts saved to:", args.output_dir)
+    print("\nDone!")
 
 
 if __name__ == "__main__":
