@@ -13,10 +13,28 @@ dependencies = [
     "beautifulsoup4>=4.12.0",
     "lxml>=5.0.0",
     "ipywidgets>=8.0.0",
+    "ipykernel>=6.0.0",
 ]
 
 [project.optional-dependencies]
 dev = [
     "jupyter>=1.0.0",
     "nbformat>=5.0.0",
+    "nbmake>=1.5.0",
+    "pytest>=8.0.0",
+    "ruff>=0.6.0",
 ]
+
+[tool.ruff]
+extend-include = ["*.ipynb"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = [
+    "E501",   # line too long — notebooks have wide cells
+    "F401",   # unused imports — cells run incrementally
+    "E402",   # module-level import not at top — notebook structure
+]
+
+[tool.pytest.ini_options]
+addopts = "--tb=short"
