@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-02-21T03:24:17.180764+00:00",
-  "n_queries": 26,
+  "generated_at": "2026-02-21T04:02:32.308067+00:00",
+  "n_queries": 35,
   "approaches": [
     "Hybrid",
     "BM25",
@@ -25,6 +25,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "BM25": {
@@ -32,6 +34,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "Semantic": {
@@ -39,6 +43,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "LLM-Rerank": {
@@ -46,6 +52,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         }
       }
@@ -65,6 +73,8 @@
           "mrr": 0.3333333333333333,
           "ndcg": 0.5,
           "effective_recall": 1.0,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.5,
           "passed": true
         },
         "BM25": {
@@ -72,6 +82,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "Semantic": {
@@ -79,6 +91,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "LLM-Rerank": {
@@ -86,6 +100,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         }
       }
@@ -107,6 +123,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "BM25": {
@@ -114,6 +132,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "Semantic": {
@@ -121,6 +141,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "LLM-Rerank": {
@@ -128,6 +150,8 @@
           "mrr": 1.0,
           "ndcg": 0.8919478197221425,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8919478197221425,
           "passed": true
         }
       }
@@ -149,6 +173,8 @@
           "mrr": 0.3333333333333333,
           "ndcg": 0.5976315487360696,
           "effective_recall": 0.75,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.5976315487360696,
           "passed": true
         },
         "BM25": {
@@ -156,6 +182,8 @@
           "mrr": 1.0,
           "ndcg": 0.8986776544421414,
           "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8986776544421414,
           "passed": true
         },
         "Semantic": {
@@ -163,6 +191,8 @@
           "mrr": 0.3333333333333333,
           "ndcg": 0.4573369727327457,
           "effective_recall": 0.75,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.4573369727327457,
           "passed": true
         },
         "LLM-Rerank": {
@@ -170,6 +200,8 @@
           "mrr": 1.0,
           "ndcg": 0.9121656860366328,
           "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9121656860366328,
           "passed": true
         }
       }
@@ -190,6 +222,8 @@
           "mrr": 1.0,
           "ndcg": 0.9920466006454152,
           "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9920466006454152,
           "passed": true
         },
         "BM25": {
@@ -197,6 +231,8 @@
           "mrr": 1.0,
           "ndcg": 0.971408902537385,
           "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.971408902537385,
           "passed": true
         },
         "Semantic": {
@@ -204,6 +240,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "LLM-Rerank": {
@@ -211,6 +249,8 @@
           "mrr": 1.0,
           "ndcg": 0.866107201235062,
           "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.866107201235062,
           "passed": true
         }
       }
@@ -234,6 +274,8 @@
           "mrr": 1.0,
           "ndcg": 0.7671980430548917,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7671980430548917,
           "passed": true
         },
         "BM25": {
@@ -241,6 +283,8 @@
           "mrr": 1.0,
           "ndcg": 0.9827994861811935,
           "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9827994861811935,
           "passed": true
         },
         "Semantic": {
@@ -248,6 +292,8 @@
           "mrr": 1.0,
           "ndcg": 0.5531239834838553,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.5531239834838553,
           "passed": true
         },
         "LLM-Rerank": {
@@ -255,6 +301,8 @@
           "mrr": 1.0,
           "ndcg": 0.7033736910334266,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7033736910334266,
           "passed": true
         }
       }
@@ -277,6 +325,8 @@
           "mrr": 1.0,
           "ndcg": 0.6022440725213158,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.6022440725213158,
           "passed": true
         },
         "BM25": {
@@ -284,6 +334,8 @@
           "mrr": 1.0,
           "ndcg": 0.9595981238976526,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9595981238976526,
           "passed": true
         },
         "Semantic": {
@@ -291,13 +343,17 @@
           "mrr": 1.0,
           "ndcg": 0.8221120471878671,
           "effective_recall": 0.2,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8221120471878671,
           "passed": false
         },
         "LLM-Rerank": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 0.7614851882563043,
+          "ndcg": 0.8791456368861218,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8791456368861218,
           "passed": true
         }
       }
@@ -319,6 +375,8 @@
           "mrr": 1.0,
           "ndcg": 0.8442355845243696,
           "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8442355845243696,
           "passed": true
         },
         "BM25": {
@@ -326,6 +384,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "Semantic": {
@@ -333,6 +393,8 @@
           "mrr": 1.0,
           "ndcg": 0.6776636931349654,
           "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.6776636931349654,
           "passed": true
         },
         "LLM-Rerank": {
@@ -340,6 +402,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         }
       }
@@ -363,6 +427,8 @@
           "mrr": 1.0,
           "ndcg": 0.8401498110374593,
           "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8401498110374593,
           "passed": true
         },
         "BM25": {
@@ -370,6 +436,8 @@
           "mrr": 0.5,
           "ndcg": 0.567207416956871,
           "effective_recall": 0.5,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.567207416956871,
           "passed": true
         },
         "Semantic": {
@@ -377,6 +445,8 @@
           "mrr": 1.0,
           "ndcg": 0.8447122853992027,
           "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8447122853992027,
           "passed": true
         },
         "LLM-Rerank": {
@@ -384,6 +454,8 @@
           "mrr": 1.0,
           "ndcg": 0.8599797111848092,
           "effective_recall": 0.3333333333333333,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8599797111848092,
           "passed": false
         }
       }
@@ -406,6 +478,8 @@
           "mrr": 1.0,
           "ndcg": 0.6673385207601783,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.6673385207601783,
           "passed": true
         },
         "BM25": {
@@ -413,6 +487,8 @@
           "mrr": 1.0,
           "ndcg": 0.8223779611386884,
           "effective_recall": 0.4,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8223779611386884,
           "passed": true
         },
         "Semantic": {
@@ -420,6 +496,8 @@
           "mrr": 1.0,
           "ndcg": 0.9735792424866951,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9735792424866951,
           "passed": true
         },
         "LLM-Rerank": {
@@ -427,6 +505,8 @@
           "mrr": 1.0,
           "ndcg": 0.9359980548891793,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9359980548891793,
           "passed": true
         }
       }
@@ -448,6 +528,8 @@
           "mrr": 1.0,
           "ndcg": 0.9629027936988324,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9629027936988324,
           "passed": true
         },
         "BM25": {
@@ -455,6 +537,8 @@
           "mrr": 1.0,
           "ndcg": 0.9488136009556424,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9488136009556424,
           "passed": true
         },
         "Semantic": {
@@ -462,6 +546,8 @@
           "mrr": 1.0,
           "ndcg": 0.9629027936988324,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9629027936988324,
           "passed": true
         },
         "LLM-Rerank": {
@@ -469,6 +555,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         }
       }
@@ -490,6 +578,8 @@
           "mrr": 1.0,
           "ndcg": 0.7770227215242603,
           "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7770227215242603,
           "passed": true
         },
         "BM25": {
@@ -497,6 +587,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "Semantic": {
@@ -504,13 +596,17 @@
           "mrr": 1.0,
           "ndcg": 0.7979168917078058,
           "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7979168917078058,
           "passed": true
         },
         "LLM-Rerank": {
           "recall": 0.5,
           "mrr": 1.0,
-          "ndcg": 0.9065280314885752,
+          "ndcg": 0.8447122853992027,
           "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8447122853992027,
           "passed": true
         }
       }
@@ -533,6 +629,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.6,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "BM25": {
@@ -540,6 +638,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "Semantic": {
@@ -547,6 +647,8 @@
           "mrr": 1.0,
           "ndcg": 0.7521728881423634,
           "effective_recall": 0.8,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7521728881423634,
           "passed": true
         },
         "LLM-Rerank": {
@@ -554,6 +656,8 @@
           "mrr": 1.0,
           "ndcg": 0.9338511340819263,
           "effective_recall": 0.8,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9338511340819263,
           "passed": true
         }
       }
@@ -577,6 +681,8 @@
           "mrr": 1.0,
           "ndcg": 0.7521866188906461,
           "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7521866188906461,
           "passed": true
         },
         "BM25": {
@@ -584,6 +690,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "Semantic": {
@@ -591,6 +699,8 @@
           "mrr": 1.0,
           "ndcg": 0.7521866188906461,
           "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7521866188906461,
           "passed": true
         },
         "LLM-Rerank": {
@@ -598,6 +708,8 @@
           "mrr": 1.0,
           "ndcg": 0.9413225986683531,
           "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9413225986683531,
           "passed": true
         }
       }
@@ -621,6 +733,8 @@
           "mrr": 1.0,
           "ndcg": 0.8174152298079348,
           "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8174152298079348,
           "passed": true
         },
         "BM25": {
@@ -628,6 +742,8 @@
           "mrr": 1.0,
           "ndcg": 0.8307469081123,
           "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8307469081123,
           "passed": true
         },
         "Semantic": {
@@ -635,13 +751,17 @@
           "mrr": 1.0,
           "ndcg": 0.6838554026395006,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.6838554026395006,
           "passed": true
         },
         "LLM-Rerank": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 0.5988175737097489,
+          "ndcg": 0.8412934800411139,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8412934800411139,
           "passed": true
         }
       }
@@ -665,6 +785,8 @@
           "mrr": 0.0,
           "ndcg": 1.0,
           "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 1.0,
           "passed": false
         },
         "BM25": {
@@ -672,6 +794,8 @@
           "mrr": 0.2,
           "ndcg": 0.38685280723454163,
           "effective_recall": 0.16666666666666666,
+          "effective_mrr": 0.2,
+          "effective_ndcg": 0.38685280723454163,
           "passed": false
         },
         "Semantic": {
@@ -679,6 +803,8 @@
           "mrr": 0.0,
           "ndcg": 1.0,
           "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 1.0,
           "passed": false
         },
         "LLM-Rerank": {
@@ -686,6 +812,8 @@
           "mrr": 0.5,
           "ndcg": 0.6959964588011701,
           "effective_recall": 0.5,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.6959964588011701,
           "passed": true
         }
       }
@@ -709,6 +837,8 @@
           "mrr": 0.3333333333333333,
           "ndcg": 0.6126858339449328,
           "effective_recall": 0.6666666666666666,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.6126858339449328,
           "passed": true
         },
         "BM25": {
@@ -716,6 +846,8 @@
           "mrr": 1.0,
           "ndcg": 0.7527035338965439,
           "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7527035338965439,
           "passed": true
         },
         "Semantic": {
@@ -723,6 +855,8 @@
           "mrr": 0.3333333333333333,
           "ndcg": 0.5106716842493384,
           "effective_recall": 0.6666666666666666,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.5106716842493384,
           "passed": true
         },
         "LLM-Rerank": {
@@ -730,6 +864,8 @@
           "mrr": 1.0,
           "ndcg": 0.7567348568360622,
           "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7567348568360622,
           "passed": true
         }
       }
@@ -752,6 +888,8 @@
           "mrr": 1.0,
           "ndcg": 0.8241377469002206,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8241377469002206,
           "passed": true
         },
         "BM25": {
@@ -759,6 +897,8 @@
           "mrr": 1.0,
           "ndcg": 0.8056979221630077,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8056979221630077,
           "passed": true
         },
         "Semantic": {
@@ -766,13 +906,17 @@
           "mrr": 1.0,
           "ndcg": 0.8241377469002206,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8241377469002206,
           "passed": true
         },
         "LLM-Rerank": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 1.0,
+          "ndcg": 0.9801522273172875,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9801522273172875,
           "passed": true
         }
       }
@@ -795,6 +939,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.4,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "BM25": {
@@ -802,6 +948,8 @@
           "mrr": 1.0,
           "ndcg": 0.9720982957292578,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9720982957292578,
           "passed": true
         },
         "Semantic": {
@@ -809,6 +957,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.4,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "LLM-Rerank": {
@@ -816,6 +966,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.4,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         }
       }
@@ -840,6 +992,8 @@
           "mrr": 0.125,
           "ndcg": 0.3458369414795075,
           "effective_recall": 0.42857142857142855,
+          "effective_mrr": 0.125,
+          "effective_ndcg": 0.3458369414795075,
           "passed": true
         },
         "BM25": {
@@ -847,6 +1001,8 @@
           "mrr": 1.0,
           "ndcg": 0.919399865400546,
           "effective_recall": 0.8571428571428571,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.919399865400546,
           "passed": true
         },
         "Semantic": {
@@ -854,6 +1010,8 @@
           "mrr": 0.07692307692307693,
           "ndcg": 0.360691176496464,
           "effective_recall": 0.2857142857142857,
+          "effective_mrr": 0.07692307692307693,
+          "effective_ndcg": 0.360691176496464,
           "passed": false
         },
         "LLM-Rerank": {
@@ -861,6 +1019,8 @@
           "mrr": 1.0,
           "ndcg": 0.7681402000657983,
           "effective_recall": 0.2857142857142857,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7681402000657983,
           "passed": false
         }
       }
@@ -883,6 +1043,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.4,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "BM25": {
@@ -890,6 +1052,8 @@
           "mrr": 1.0,
           "ndcg": 0.9069783029220914,
           "effective_recall": 0.8,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9069783029220914,
           "passed": true
         },
         "Semantic": {
@@ -897,6 +1061,8 @@
           "mrr": 1.0,
           "ndcg": 0.9605753368118397,
           "effective_recall": 0.4,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9605753368118397,
           "passed": true
         },
         "LLM-Rerank": {
@@ -904,6 +1070,8 @@
           "mrr": 1.0,
           "ndcg": 0.8558112355261802,
           "effective_recall": 0.4,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8558112355261802,
           "passed": true
         }
       }
@@ -925,6 +1093,8 @@
           "mrr": 1.0,
           "ndcg": 0.8011166442354041,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8011166442354041,
           "passed": true
         },
         "BM25": {
@@ -932,6 +1102,8 @@
           "mrr": 0.5,
           "ndcg": 0.8663422763540115,
           "effective_recall": 0.25,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.8663422763540115,
           "passed": false
         },
         "Semantic": {
@@ -939,13 +1111,17 @@
           "mrr": 1.0,
           "ndcg": 0.9170245493900888,
           "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9170245493900888,
           "passed": true
         },
         "LLM-Rerank": {
-          "recall": 1.0,
+          "recall": 0.5,
           "mrr": 1.0,
-          "ndcg": 0.8007393408971533,
-          "effective_recall": 1.0,
+          "ndcg": 0.9028373627369358,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9028373627369358,
           "passed": true
         }
       }
@@ -969,6 +1145,8 @@
           "mrr": 1.0,
           "ndcg": 0.8080267481237329,
           "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8080267481237329,
           "passed": true
         },
         "BM25": {
@@ -976,6 +1154,8 @@
           "mrr": 1.0,
           "ndcg": 0.7960767356132932,
           "effective_recall": 0.3333333333333333,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7960767356132932,
           "passed": false
         },
         "Semantic": {
@@ -983,6 +1163,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "LLM-Rerank": {
@@ -990,6 +1172,8 @@
           "mrr": 1.0,
           "ndcg": 0.9467009784197935,
           "effective_recall": 0.3333333333333333,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9467009784197935,
           "passed": false
         }
       }
@@ -1013,6 +1197,8 @@
           "mrr": 0.5,
           "ndcg": 0.6728853390803203,
           "effective_recall": 0.5,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.32711466091967967,
           "passed": true
         },
         "BM25": {
@@ -1020,6 +1206,8 @@
           "mrr": 1.0,
           "ndcg": 0.9238850086262383,
           "effective_recall": 0.5,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.07611499137376165,
           "passed": true
         },
         "Semantic": {
@@ -1027,6 +1215,8 @@
           "mrr": 0.5,
           "ndcg": 0.6728853390803203,
           "effective_recall": 0.5,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.32711466091967967,
           "passed": true
         },
         "LLM-Rerank": {
@@ -1034,6 +1224,8 @@
           "mrr": 0.0,
           "ndcg": 1.0,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.0,
           "passed": true
         }
       }
@@ -1057,6 +1249,8 @@
           "mrr": 0.5,
           "ndcg": 0.6934264036172707,
           "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.3065735963827293,
           "passed": true
         },
         "BM25": {
@@ -1064,6 +1258,8 @@
           "mrr": 0.0,
           "ndcg": 1.0,
           "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.0,
           "passed": true
         },
         "Semantic": {
@@ -1071,6 +1267,8 @@
           "mrr": 0.5,
           "ndcg": 0.6934264036172707,
           "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.3065735963827293,
           "passed": true
         },
         "LLM-Rerank": {
@@ -1078,6 +1276,8 @@
           "mrr": 0.5,
           "ndcg": 0.6934264036172707,
           "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.3065735963827293,
           "passed": true
         }
       }
@@ -1101,6 +1301,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
           "passed": true
         },
         "BM25": {
@@ -1108,6 +1310,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
           "passed": true
         },
         "Semantic": {
@@ -1115,6 +1319,8 @@
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
           "passed": true
         },
         "LLM-Rerank": {
@@ -1122,6 +1328,480 @@
           "mrr": 0.25,
           "ndcg": 0.5012658353418871,
           "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.75,
+          "effective_ndcg": 0.49873416465811293,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "Which VCs are no longer participating in the course this year?",
+      "level": "L9",
+      "scoring": "normal",
+      "keywords": [
+        "khosla",
+        "lux",
+        "link",
+        "e14",
+        "pillar",
+        "two lanterns"
+      ],
+      "top_k": 15,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.7031432329334039,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7031432329334039,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.5,
+          "mrr": 0.5,
+          "ndcg": 0.7006233574948963,
+          "effective_recall": 0.5,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.7006233574948963,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.6821160297746383,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.6821160297746383,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8107702033316995,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8107702033316995,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "How have the demo day judging criteria evolved from Spring 2023 to Fall 2025?",
+      "level": "L9",
+      "scoring": "normal",
+      "keywords": [
+        "impact",
+        "unique",
+        "complete",
+        "demo",
+        "judge",
+        "gigas scale",
+        "criteria"
+      ],
+      "top_k": 10,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.8571428571428571,
+          "mrr": 1.0,
+          "ndcg": 0.9211410805414261,
+          "effective_recall": 0.8571428571428571,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9211410805414261,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.2857142857142857,
+          "mrr": 1.0,
+          "ndcg": 0.9461595718627467,
+          "effective_recall": 0.2857142857142857,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9461595718627467,
+          "passed": false
+        },
+        "Semantic": {
+          "recall": 0.8571428571428571,
+          "mrr": 1.0,
+          "ndcg": 0.9557911522471707,
+          "effective_recall": 0.8571428571428571,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9557911522471707,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.922614891023392,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.922614891023392,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "How has the number of student teams grown from Spring 2023 to Fall 2025?",
+      "level": "L9",
+      "scoring": "normal",
+      "keywords": [
+        "15",
+        "24",
+        "38",
+        "teams",
+        "presenting",
+        "demo"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.960960846717329,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.960960846717329,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.3333333333333333,
+          "mrr": 1.0,
+          "ndcg": 0.7747592084729605,
+          "effective_recall": 0.3333333333333333,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7747592084729605,
+          "passed": false
+        },
+        "Semantic": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.3333333333333333,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.3333333333333333,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        }
+      }
+    },
+    {
+      "query": "Why does Raskar say NANDA needs to involve universities and not just companies?",
+      "level": "L10",
+      "scoring": "normal",
+      "keywords": [
+        "university",
+        "nanda",
+        "trust",
+        "decentralized",
+        "neutral",
+        "open"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.9488136009556423,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9488136009556423,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.8508342748471082,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8508342748471082,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.9343710124351232,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9343710124351232,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.8508342748471082,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8508342748471082,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "What does gigascale impact mean in the context of this course?",
+      "level": "L10",
+      "scoring": "normal",
+      "keywords": [
+        "gigas scale",
+        "billion",
+        "impact",
+        "people",
+        "scale"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.921396320854073,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.921396320854073,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.921396320854073,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.921396320854073,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.8,
+          "mrr": 1.0,
+          "ndcg": 0.8241911108942168,
+          "effective_recall": 0.8,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8241911108942168,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "What is the quilt approach to building AI products that Raskar describes?",
+      "level": "L10",
+      "scoring": "normal",
+      "keywords": [
+        "quilt",
+        "quilting",
+        "model",
+        "combine",
+        "agent"
+      ],
+      "top_k": 5,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.2,
+          "mrr": 1.0,
+          "ndcg": 0.9469024295259743,
+          "effective_recall": 0.2,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9469024295259743,
+          "passed": false
+        },
+        "BM25": {
+          "recall": 0.6,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.6,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.2,
+          "mrr": 1.0,
+          "ndcg": 0.9469024295259743,
+          "effective_recall": 0.2,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9469024295259743,
+          "passed": false
+        },
+        "LLM-Rerank": {
+          "recall": 0.4,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.4,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "Name all the companies that have ever been judges or sponsors at demo days.",
+      "level": "L11",
+      "scoring": "normal",
+      "keywords": [
+        "mitsubishi",
+        "state street",
+        "ey",
+        "mass challenge",
+        "sponsor",
+        "judge"
+      ],
+      "top_k": 15,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.8626044552122213,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8626044552122213,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.856517514799784,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.856517514799784,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.9402268036207482,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9402268036207482,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.8112134259965621,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8112134259965621,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "What are all the healthcare or medical AI applications discussed across all semesters?",
+      "level": "L11",
+      "scoring": "normal",
+      "keywords": [
+        "health",
+        "medical",
+        "patient",
+        "diabetic",
+        "chest",
+        "hospital",
+        "clinical"
+      ],
+      "top_k": 10,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.7142857142857143,
+          "mrr": 1.0,
+          "ndcg": 0.7826853730468758,
+          "effective_recall": 0.7142857142857143,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7826853730468758,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.8571428571428571,
+          "mrr": 1.0,
+          "ndcg": 0.9833928888197015,
+          "effective_recall": 0.8571428571428571,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9833928888197015,
+          "passed": true
+        },
+        "Semantic": {
+          "recall": 0.7142857142857143,
+          "mrr": 1.0,
+          "ndcg": 0.7826853730468758,
+          "effective_recall": 0.7142857142857143,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7826853730468758,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 0.8571428571428571,
+          "mrr": 1.0,
+          "ndcg": 0.9380187625423563,
+          "effective_recall": 0.8571428571428571,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9380187625423563,
+          "passed": true
+        }
+      }
+    },
+    {
+      "query": "Whose bio or role has changed the most across semesters of the course?",
+      "level": "L12",
+      "scoring": "normal",
+      "keywords": [
+        "werner",
+        "john",
+        "visiting lecturer",
+        "link ventures",
+        "santanu",
+        "bhattacharya",
+        "airtel",
+        "media lab",
+        "nanda",
+        "chris pease"
+      ],
+      "top_k": 15,
+      "approaches": {
+        "Hybrid": {
+          "recall": 0.9,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.4590777890428118,
+          "effective_recall": 0.9,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.4590777890428118,
+          "passed": true
+        },
+        "BM25": {
+          "recall": 0.3,
+          "mrr": 1.0,
+          "ndcg": 0.7448938292196018,
+          "effective_recall": 0.3,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7448938292196018,
+          "passed": false
+        },
+        "Semantic": {
+          "recall": 0.9,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.47742744029197676,
+          "effective_recall": 0.9,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.47742744029197676,
+          "passed": true
+        },
+        "LLM-Rerank": {
+          "recall": 1.0,
+          "mrr": 0.25,
+          "ndcg": 0.4927598258751643,
+          "effective_recall": 1.0,
+          "effective_mrr": 0.25,
+          "effective_ndcg": 0.4927598258751643,
           "passed": true
         }
       }
@@ -1129,48 +1809,48 @@
   ],
   "aggregates": {
     "Hybrid": {
-      "Recall@K": 0.7209706959706961,
-      "MRR": 0.8125,
-      "NDCG@K": 0.8030187385608755,
-      "pass@1": 0.9615384615384616,
+      "Recall@K": 0.7214285714285714,
+      "MRR": 0.8130952380952381,
+      "NDCG@K": 0.7615025384576383,
+      "pass@1": 0.9428571428571428,
       "pass@3": 1.0,
-      "pass^3": 0.888996358670915,
-      "pass_rate": 0.9615384615384616,
-      "n_passed": 25,
-      "n_total": 26
+      "pass^3": 0.8381807580174927,
+      "pass_rate": 0.9428571428571428,
+      "n_passed": 33,
+      "n_total": 35
     },
     "BM25": {
-      "Recall@K": 0.748992673992674,
-      "MRR": 0.8923076923076922,
-      "NDCG@K": 0.8966024923908233,
-      "pass@1": 0.8846153846153846,
-      "pass@3": 0.9996153846153846,
-      "pass^3": 0.6922507965407373,
-      "pass_rate": 0.8846153846153846,
-      "n_passed": 23,
-      "n_total": 26
+      "Recall@K": 0.7052380952380952,
+      "MRR": 0.8771428571428571,
+      "NDCG@K": 0.8091735837264494,
+      "pass@1": 0.8285714285714285,
+      "pass@3": 0.9969442322383499,
+      "pass^3": 0.5688396501457728,
+      "pass_rate": 0.8285714285714286,
+      "n_passed": 29,
+      "n_total": 35
     },
     "Semantic": {
-      "Recall@K": 0.6891941391941392,
-      "MRR": 0.8362919132149902,
-      "NDCG@K": 0.8160375021557701,
-      "pass@1": 0.8846153846153846,
-      "pass@3": 0.9996153846153846,
-      "pass^3": 0.6922507965407373,
-      "pass_rate": 0.8846153846153846,
-      "n_passed": 23,
-      "n_total": 26
+      "Recall@K": 0.6930612244897959,
+      "MRR": 0.8307692307692308,
+      "NDCG@K": 0.7750076609271834,
+      "pass@1": 0.8857142857142857,
+      "pass@3": 0.99938884644767,
+      "pass^3": 0.6948338192419824,
+      "pass_rate": 0.8857142857142857,
+      "n_passed": 31,
+      "n_total": 35
     },
     "LLM-Rerank": {
-      "Recall@K": 0.7520146520146521,
-      "MRR": 0.8942307692307693,
-      "NDCG@K": 0.8588612307619798,
-      "pass@1": 0.8846153846153846,
-      "pass@3": 0.9996153846153846,
-      "pass^3": 0.6922507965407373,
-      "pass_rate": 0.8846153846153846,
-      "n_passed": 23,
-      "n_total": 26
+      "Recall@K": 0.7269387755102041,
+      "MRR": 0.9428571428571428,
+      "NDCG@K": 0.827770882126644,
+      "pass@1": 0.8857142857142857,
+      "pass@3": 0.99938884644767,
+      "pass^3": 0.6948338192419824,
+      "pass_rate": 0.8857142857142857,
+      "n_passed": 31,
+      "n_total": 35
     }
   },
   "per_level": {
@@ -1245,7 +1925,7 @@
         "LLM-Rerank": {
           "mean_recall": 0.7708333333333334,
           "mean_mrr": 1.0,
-          "mean_ndcg": 0.831209647618635
+          "mean_ndcg": 0.8606247597760894
         }
       }
     },
@@ -1295,7 +1975,7 @@
         "LLM-Rerank": {
           "mean_recall": 0.6555555555555556,
           "mean_mrr": 1.0,
-          "mean_ndcg": 0.9272339214129515
+          "mean_ndcg": 0.906628672716494
         }
       }
     },
@@ -1320,7 +2000,7 @@
         "LLM-Rerank": {
           "mean_recall": 0.6799999999999999,
           "mean_mrr": 0.9,
-          "mean_ndcg": 0.8103097778693963
+          "mean_ndcg": 0.8548354045991268
         }
       }
     },
@@ -1343,9 +2023,9 @@
           "mean_ndcg": 0.8095727656745981
         },
         "LLM-Rerank": {
-          "mean_recall": 0.5047619047619047,
+          "mean_recall": 0.37976190476190474,
           "mean_mrr": 1.0,
-          "mean_ndcg": 0.8428479387272313
+          "mean_ndcg": 0.868372444187177
         }
       }
     },
@@ -1354,23 +2034,123 @@
       "approaches": {
         "Hybrid": {
           "mean_recall": 0.7222222222222223,
-          "mean_mrr": 0.6666666666666666,
-          "mean_ndcg": 0.788770580899197
+          "mean_mrr": 0.3333333333333333,
+          "mean_ndcg": 0.21122941910080298
         },
         "BM25": {
           "mean_recall": 0.7777777777777778,
-          "mean_mrr": 0.6666666666666666,
-          "mean_ndcg": 0.9746283362087461
+          "mean_mrr": 0.3333333333333333,
+          "mean_ndcg": 0.025371663791253884
         },
         "Semantic": {
           "mean_recall": 0.7222222222222223,
-          "mean_mrr": 0.6666666666666666,
-          "mean_ndcg": 0.788770580899197
+          "mean_mrr": 0.3333333333333333,
+          "mean_ndcg": 0.21122941910080298
         },
         "LLM-Rerank": {
           "mean_recall": 0.888888888888889,
+          "mean_mrr": 0.75,
+          "mean_ndcg": 0.2684359203469474
+        }
+      }
+    },
+    "L9": {
+      "n": 3,
+      "approaches": {
+        "Hybrid": {
+          "mean_recall": 0.6746031746031745,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8617483867307195
+        },
+        "BM25": {
+          "mean_recall": 0.373015873015873,
+          "mean_mrr": 0.8333333333333334,
+          "mean_ndcg": 0.8071807126102012
+        },
+        "Semantic": {
+          "mean_recall": 0.7301587301587301,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8793023940072696
+        },
+        "LLM-Rerank": {
+          "mean_recall": 0.7777777777777778,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9111283647850305
+        }
+      }
+    },
+    "L10": {
+      "n": 3,
+      "approaches": {
+        "Hybrid": {
+          "mean_recall": 0.6777777777777777,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9390374504452298
+        },
+        "BM25": {
+          "mean_recall": 0.7555555555555555,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9502780916157026
+        },
+        "Semantic": {
+          "mean_recall": 0.6777777777777777,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9342232542717235
+        },
+        "LLM-Rerank": {
+          "mean_recall": 0.5666666666666668,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8916751285804416
+        }
+      }
+    },
+    "L11": {
+      "n": 2,
+      "approaches": {
+        "Hybrid": {
+          "mean_recall": 0.7738095238095238,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8226449141295485
+        },
+        "BM25": {
+          "mean_recall": 0.7619047619047619,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9199552018097428
+        },
+        "Semantic": {
+          "mean_recall": 0.6071428571428572,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.861456088333812
+        },
+        "LLM-Rerank": {
+          "mean_recall": 0.6785714285714286,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8746160942694592
+        }
+      }
+    },
+    "L12": {
+      "n": 1,
+      "approaches": {
+        "Hybrid": {
+          "mean_recall": 0.9,
+          "mean_mrr": 0.3333333333333333,
+          "mean_ndcg": 0.4590777890428118
+        },
+        "BM25": {
+          "mean_recall": 0.3,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.7448938292196018
+        },
+        "Semantic": {
+          "mean_recall": 0.9,
+          "mean_mrr": 0.3333333333333333,
+          "mean_ndcg": 0.47742744029197676
+        },
+        "LLM-Rerank": {
+          "mean_recall": 1.0,
           "mean_mrr": 0.25,
-          "mean_ndcg": 0.7315640796530526
+          "mean_ndcg": 0.4927598258751643
         }
       }
     }
@@ -1380,85 +2160,85 @@
       "kw": 1.0,
       "sw": 0.0,
       "label": "BM25=100% Sem=0%",
-      "mean_recall": 0.6198717948717949,
-      "pass_rate": 0.7692307692307693
+      "mean_recall": 0.5248299319727892,
+      "pass_rate": 0.6285714285714286
     },
     {
       "kw": 0.9,
       "sw": 0.1,
       "label": "BM25=90% Sem=10%",
-      "mean_recall": 0.7132783882783882,
-      "pass_rate": 0.8846153846153846
+      "mean_recall": 0.6525850340136055,
+      "pass_rate": 0.8
     },
     {
       "kw": 0.8,
       "sw": 0.2,
       "label": "BM25=80% Sem=20%",
-      "mean_recall": 0.694047619047619,
-      "pass_rate": 0.8846153846153846
+      "mean_recall": 0.6498639455782312,
+      "pass_rate": 0.8285714285714286
     },
     {
       "kw": 0.7,
       "sw": 0.3,
       "label": "BM25=70% Sem=30%",
-      "mean_recall": 0.7075091575091575,
-      "pass_rate": 0.8846153846153846
+      "mean_recall": 0.6693877551020407,
+      "pass_rate": 0.8571428571428571
     },
     {
       "kw": 0.6,
       "sw": 0.4,
       "label": "BM25=60% Sem=40%",
-      "mean_recall": 0.7228937728937729,
-      "pass_rate": 0.9230769230769231
+      "mean_recall": 0.7025850340136055,
+      "pass_rate": 0.9142857142857143
     },
     {
       "kw": 0.5,
       "sw": 0.5,
       "label": "BM25=50% Sem=50%",
-      "mean_recall": 0.703021978021978,
-      "pass_rate": 0.8846153846153846
+      "mean_recall": 0.6878231292517006,
+      "pass_rate": 0.8857142857142857
     },
     {
       "kw": 0.4,
       "sw": 0.6,
       "label": "BM25=40% Sem=60%",
-      "mean_recall": 0.7145604395604396,
-      "pass_rate": 0.9230769230769231
+      "mean_recall": 0.7166666666666667,
+      "pass_rate": 0.9142857142857143
     },
     {
       "kw": 0.3,
       "sw": 0.7,
       "label": "BM25=30% Sem=70%",
-      "mean_recall": 0.7209706959706961,
-      "pass_rate": 0.9615384615384616
+      "mean_recall": 0.7214285714285714,
+      "pass_rate": 0.9428571428571428
     },
     {
       "kw": 0.2,
       "sw": 0.8,
       "label": "BM25=20% Sem=80%",
-      "mean_recall": 0.735989010989011,
-      "pass_rate": 0.9230769230769231
+      "mean_recall": 0.7230612244897959,
+      "pass_rate": 0.9142857142857143
     },
     {
       "kw": 0.1,
       "sw": 0.9,
       "label": "BM25=10% Sem=90%",
-      "mean_recall": 0.6975274725274725,
-      "pass_rate": 0.8846153846153846
+      "mean_recall": 0.6992517006802721,
+      "pass_rate": 0.8857142857142857
     },
     {
       "kw": 0.0,
       "sw": 1.0,
       "label": "BM25=0% Sem=100%",
-      "mean_recall": 0.6727106227106228,
-      "pass_rate": 0.8461538461538461
+      "mean_recall": 0.6808163265306123,
+      "pass_rate": 0.8571428571428571
     },
     {
       "kw": null,
       "sw": null,
       "label": "LLM-Rerank",
-      "mean_recall": 0.7520146520146521,
-      "pass_rate": 0.8846153846153846
+      "mean_recall": 0.7269387755102041,
+      "pass_rate": 0.8857142857142857
     }
   ]
 }
