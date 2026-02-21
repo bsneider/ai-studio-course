@@ -415,125 +415,113 @@ def chart_weight_sweep(data, output_dir):
 
 
 def chart_approach_progression(data, output_dir):
-    """Waterfall chart showing incremental improvement from BM25 -> Hybrid -> LLM-Rerank."""
+    """Grouped bar chart: Recall vs Pass Rate for each approach, showing trade-offs."""
     _setup_font()
 
     aggregates = data.get("aggregates", {})
     sweep = data.get("weight_sweep", [])
 
-    # Build progression stages — ordered to tell an "improvement" story:
-    # worst baseline -> better baseline -> hybrid combines both -> LLM tops it
+    # Build progression stages — ordered from single methods to combined
     stages = []
 
     # Determine which single-method baseline is weaker to put it first
     bm25_recall = aggregates.get("BM25", {}).get("Recall@K", 0)
+    bm25_pass = aggregates.get("BM25", {}).get("pass_rate", 0)
     sem_recall = aggregates.get("Semantic", {}).get("Recall@K", 0)
+    sem_pass = aggregates.get("Semantic", {}).get("pass_rate", 0)
 
     if sem_recall <= bm25_recall:
-        # Semantic is the weaker baseline
         if "Semantic" in aggregates:
-            stages.append({
-                "label": "Semantic\n(embeddings only)",
-                "recall": sem_recall,
-                "color": WARM_GOLD,
-            })
+            stages.append({"label": "Semantic\n(embeddings)", "recall": sem_recall,
+                           "pass_rate": sem_pass, "color": WARM_GOLD})
         if "BM25" in aggregates:
-            stages.append({
-                "label": "BM25\n(keywords only)",
-                "recall": bm25_recall,
-                "color": MIT_GRAY,
-            })
+            stages.append({"label": "BM25\n(keywords)", "recall": bm25_recall,
+                           "pass_rate": bm25_pass, "color": MIT_GRAY})
     else:
-        # BM25 is the weaker baseline
         if "BM25" in aggregates:
-            stages.append({
-                "label": "BM25\n(keywords only)",
-                "recall": bm25_recall,
-                "color": MIT_GRAY,
-            })
+            stages.append({"label": "BM25\n(keywords)", "recall": bm25_recall,
+                           "pass_rate": bm25_pass, "color": MIT_GRAY})
         if "Semantic" in aggregates:
-            stages.append({
-                "label": "Semantic\n(embeddings only)",
-                "recall": sem_recall,
-                "color": WARM_GOLD,
-            })
+            stages.append({"label": "Semantic\n(embeddings)", "recall": sem_recall,
+                           "pass_rate": sem_pass, "color": WARM_GOLD})
 
-    # Hybrid combines both — use best mix from sweep if available
+    # Best hybrid from sweep (or default)
     hybrid_pts = [p for p in sweep if p["kw"] is not None]
     if hybrid_pts:
         best = max(hybrid_pts, key=lambda p: p["mean_recall"])
-        stages.append({
-            "label": f"Hybrid\n(BM25={best['kw']:.0%}+Sem={best['sw']:.0%})",
-            "recall": best["mean_recall"],
-            "color": MIT_CRIMSON,
-        })
+        stages.append({"label": f"Hybrid (best)\n(BM25={best['kw']:.0%}+Sem={best['sw']:.0%})",
+                        "recall": best["mean_recall"], "pass_rate": best["pass_rate"],
+                        "color": MIT_CRIMSON})
     elif "Hybrid" in aggregates:
-        stages.append({
-            "label": "Hybrid\n(BM25=30%+Sem=70%)",
-            "recall": aggregates["Hybrid"]["Recall@K"],
-            "color": MIT_CRIMSON,
-        })
+        stages.append({"label": "Hybrid\n(BM25=30%+Sem=70%)",
+                        "recall": aggregates["Hybrid"]["Recall@K"],
+                        "pass_rate": aggregates["Hybrid"].get("pass_rate", 0),
+                        "color": MIT_CRIMSON})
 
-    # LLM-Rerank adds reasoning on top
+    # LLM-Rerank
     if "LLM-Rerank" in aggregates:
-        stages.append({
-            "label": "LLM-Rerank\n(hybrid + LLM judge)",
-            "recall": aggregates["LLM-Rerank"]["Recall@K"],
-            "color": DARK_NAVY,
-        })
+        stages.append({"label": "LLM-Rerank\n(hybrid + LLM judge)",
+                        "recall": aggregates["LLM-Rerank"]["Recall@K"],
+                        "pass_rate": aggregates["LLM-Rerank"].get("pass_rate", 0),
+                        "color": DARK_NAVY})
 
     if len(stages) < 2:
         print("  Chart 6 skipped: not enough approaches for progression")
         return None
 
-    fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(12, 6))
 
     x = np.arange(len(stages))
-    bar_vals = [s["recall"] for s in stages]
+    bar_w = 0.35
+
+    # Recall bars (left)
+    recall_vals = [s["recall"] for s in stages]
     colors = [s["color"] for s in stages]
-    labels = [s["label"] for s in stages]
+    bars_r = ax.bar(x - bar_w / 2, recall_vals, bar_w, color=colors,
+                    edgecolor="white", linewidth=1.5, zorder=3, label="Mean Recall@K")
 
-    bars = ax.bar(x, bar_vals, width=0.6, color=colors, edgecolor="white",
-                  linewidth=1.5, zorder=3)
+    # Pass rate bars (right, lighter shade)
+    pass_vals = [s["pass_rate"] for s in stages]
+    light_colors = [c + "80" for c in colors]  # add alpha via hex
+    bars_p = ax.bar(x + bar_w / 2, pass_vals, bar_w, color=light_colors,
+                    edgecolor=[c for c in colors], linewidth=1.5, linestyle="--",
+                    zorder=3, label="Pass Rate (>=40%)")
 
-    # Value labels on bars
-    for bar, val in zip(bars, bar_vals):
-        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.015,
-                f"{val:.1%}", ha="center", va="bottom", fontsize=12,
+    # Value labels
+    for bar, val in zip(bars_r, recall_vals):
+        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.01,
+                f"{val:.1%}", ha="center", va="bottom", fontsize=10,
                 fontweight="bold", color="#333333")
+    for bar, val in zip(bars_p, pass_vals):
+        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.01,
+                f"{val:.0%}", ha="center", va="bottom", fontsize=10,
+                fontweight="bold", color="#555555")
 
-    # Delta arrows between stages
+    # Recall delta arrows (between recall bars only)
     for i in range(1, len(stages)):
-        prev = bar_vals[i - 1]
-        curr = bar_vals[i]
+        prev = recall_vals[i - 1]
+        curr = recall_vals[i]
         delta = curr - prev
         sign = "+" if delta >= 0 else ""
-        mid_y = (prev + curr) / 2
         color = "#2e7d32" if delta >= 0 else "#c62828"
-
+        mid_x = (i - 1 + i) / 2 - bar_w / 2
         ax.annotate(
-            "", xy=(i, curr), xytext=(i - 1, prev),
-            arrowprops=dict(
-                arrowstyle="-|>", color=color, lw=2,
-                connectionstyle="arc3,rad=-0.2",
-            ),
+            "", xy=(i - bar_w / 2, curr), xytext=(i - 1 - bar_w / 2, prev),
+            arrowprops=dict(arrowstyle="-|>", color=color, lw=1.5,
+                            connectionstyle="arc3,rad=-0.15"),
         )
-        # Delta text along the arrow
-        mid_x = (i - 1 + i) / 2
         ax.text(mid_x, max(prev, curr) + 0.04, f"{sign}{delta:.1%}",
-                ha="center", fontsize=10, fontweight="bold", color=color)
+                ha="center", fontsize=9, fontweight="bold", color=color)
 
-    # Pass threshold
-    ax.axhline(y=0.4, color=MIT_CRIMSON, linestyle="--", linewidth=1, alpha=0.5, zorder=2)
-    ax.text(len(stages) - 0.7, 0.415, "40% pass threshold", fontsize=8,
-            color=MIT_CRIMSON, alpha=0.7)
+    ax.axhline(y=0.4, color=MIT_CRIMSON, linestyle="--", linewidth=1, alpha=0.4, zorder=2)
 
     ax.set_xticks(x)
-    ax.set_xticklabels(labels, fontsize=9)
-    ax.set_ylabel("Mean Effective Recall@K", fontsize=11)
+    ax.set_xticklabels([s["label"] for s in stages], fontsize=9)
+    ax.set_ylabel("Score (0 to 1)", fontsize=11)
     ax.set_title("Retrieval Quality: From Single Methods to Combined Approaches",
                   fontsize=14, fontweight="bold", pad=20)
-    ax.set_ylim(0, max(bar_vals) + 0.15)
+    ax.set_ylim(0, max(max(recall_vals), max(pass_vals)) + 0.15)
+    ax.legend(loc="upper left", framealpha=0.9, fontsize=10)
     ax.grid(axis="y", alpha=0.2, zorder=0)
     ax.set_axisbelow(True)
 
