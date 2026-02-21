@@ -5,7 +5,7 @@ Usage:
     uv run python scripts/generate_charts.py [--results path] [--output-dir path]
 
 Reads benchmark_results/results.json (produced by pytest conftest.py plugin)
-and generates 4 PNG charts with MIT AI Studio branding.
+and generates PNG charts with MIT AI Studio branding.
 """
 
 import argparse
@@ -18,19 +18,24 @@ matplotlib.use("Agg")  # non-interactive backend
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np
+from matplotlib.colors import LinearSegmentedColormap
 
 # ── Brand constants ──────────────────────────────────────────────────────────
 
+# High-contrast, colorblind-friendly palette
+CLR_HYBRID = "#D62728"    # vivid red
+CLR_BM25 = "#1F77B4"      # standard blue
+CLR_SEMANTIC = "#FF7F0E"   # orange
+CLR_LLM = "#2CA02C"        # green
+
 MIT_CRIMSON = "#A31F34"
 MIT_GRAY = "#8A8B8C"
-WARM_GOLD = "#C4A265"
-DARK_NAVY = "#1B365D"
 
 APPROACH_COLORS = {
-    "Hybrid": MIT_CRIMSON,
-    "BM25": MIT_GRAY,
-    "Semantic": WARM_GOLD,
-    "LLM-Rerank": DARK_NAVY,
+    "Hybrid": CLR_HYBRID,
+    "BM25": CLR_BM25,
+    "Semantic": CLR_SEMANTIC,
+    "LLM-Rerank": CLR_LLM,
 }
 
 FONT_FAMILY = "Helvetica Neue"
@@ -54,7 +59,6 @@ def _setup_font():
 
 def add_branding(fig):
     """Add MIT Crimson header line and researcher attribution footer."""
-    # Thin crimson line at top
     fig.patches.append(mpatches.FancyBboxPatch(
         (0, 0.985), 1.0, 0.015,
         boxstyle="square,pad=0",
@@ -63,7 +67,6 @@ def add_branding(fig):
         transform=fig.transFigure,
         zorder=100,
     ))
-    # Footer attribution
     fig.text(
         0.98, 0.008, FOOTER_TEXT,
         ha="right", va="bottom",
@@ -72,7 +75,7 @@ def add_branding(fig):
     )
 
 
-# ── Chart 1: Grouped Bar — Recall@K by Difficulty Level ─────────────────────
+# ── Chart 1: Recall by Level — focused grouped bar ──────────────────────────
 
 
 def chart_recall_by_level(data, output_dir):
@@ -85,51 +88,69 @@ def chart_recall_by_level(data, output_dir):
     n_approaches = len(approaches)
     n_levels = len(levels)
 
-    fig_width = max(12, n_levels * 1.5)
-    fig, ax = plt.subplots(figsize=(fig_width, 6))
+    # Group levels into categories for readability
+    level_categories = {}
+    for lv in levels:
+        num = int(lv[1:])
+        if num <= 2:
+            level_categories[lv] = "Easy"
+        elif num <= 5:
+            level_categories[lv] = "Hard"
+        elif num <= 8:
+            level_categories[lv] = "Differentiating"
+        else:
+            level_categories[lv] = "Complex"
+
+    fig, ax = plt.subplots(figsize=(max(12, n_levels * 1.3), 6))
 
     bar_width = 0.8 / n_approaches
     x = np.arange(n_levels)
-    label_fontsize = 6 if n_levels > 8 else 7
 
     for i, aname in enumerate(approaches):
         color = APPROACH_COLORS.get(aname, "#333333")
-        vals = []
-        for level in levels:
-            vals.append(per_level[level]["approaches"].get(aname, {}).get("mean_recall", 0))
+        vals = [per_level[lv]["approaches"].get(aname, {}).get("mean_recall", 0) for lv in levels]
         offset = (i - n_approaches / 2 + 0.5) * bar_width
-        bars = ax.bar(x + offset, vals, bar_width * 0.9, label=aname, color=color, zorder=3)
-        # Value labels above bars
-        for bar, val in zip(bars, vals):
-            ax.text(
-                bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.015,
-                f"{val:.0%}", ha="center", va="bottom", fontsize=label_fontsize, fontweight="bold",
-            )
+        bars = ax.bar(x + offset, vals, bar_width * 0.88, label=aname, color=color,
+                      alpha=0.9, zorder=3)
+        # Only show value labels for extreme values (best/worst per level)
+        for bar_idx, (bar, val) in enumerate(zip(bars, vals)):
+            all_vals = [per_level[levels[bar_idx]]["approaches"].get(a, {}).get("mean_recall", 0)
+                        for a in approaches]
+            if val == max(all_vals) or val == min(all_vals):
+                ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.01,
+                        f"{val:.0%}", ha="center", va="bottom", fontsize=6, fontweight="bold")
 
-    # Pass threshold line
-    ax.axhline(y=0.4, color=MIT_CRIMSON, linestyle="--", linewidth=1, alpha=0.7, zorder=2)
-    ax.text(n_levels - 0.3, 0.42, "Pass threshold (40%)", fontsize=8, color=MIT_CRIMSON, alpha=0.8)
+    # Pass threshold
+    ax.axhline(y=0.4, color="#999999", linestyle="--", linewidth=1, alpha=0.6, zorder=2)
+    ax.text(n_levels - 0.5, 0.415, "40% pass", fontsize=7, color="#999999", ha="right")
 
-    # L8 annotation if present
-    if "L8" in levels:
-        l8_idx = levels.index("L8")
-        ax.text(
-            l8_idx, -0.09, "(inverse-scored)",
-            fontsize=7, ha="center", color=MIT_CRIMSON, fontstyle="italic",
-            transform=ax.get_xaxis_transform(), clip_on=False,
-        )
+    # Category spans at bottom
+    prev_cat = None
+    cat_start = 0
+    for i, lv in enumerate(levels + [None]):
+        cat = level_categories.get(lv, None) if lv else None
+        if cat != prev_cat:
+            if prev_cat is not None:
+                mid = (cat_start + i - 1) / 2
+                ax.text(mid, -0.14, prev_cat, fontsize=8, ha="center", color="#666666",
+                        fontstyle="italic", transform=ax.get_xaxis_transform(), clip_on=False)
+                if cat_start > 0:
+                    ax.axvline(x=cat_start - 0.5, color="#cccccc", linewidth=0.8,
+                               linestyle=":", zorder=1)
+            cat_start = i
+            prev_cat = cat
 
     ax.set_xlabel("Difficulty Level", fontsize=11)
     ax.set_ylabel("Mean Effective Recall@K", fontsize=11)
     ax.set_title("Retrieval Recall by Difficulty Level", fontsize=14, fontweight="bold", pad=20)
     ax.set_xticks(x)
-    ax.set_xticklabels(levels)
-    ax.set_ylim(0, 1.15)
-    ax.legend(loc="upper right", framealpha=0.9)
-    ax.grid(axis="y", alpha=0.3, zorder=0)
+    ax.set_xticklabels(levels, fontsize=9)
+    ax.set_ylim(0, 1.12)
+    ax.legend(loc="upper right", framealpha=0.9, fontsize=9)
+    ax.grid(axis="y", alpha=0.2, zorder=0)
     ax.set_axisbelow(True)
 
-    fig.tight_layout(rect=[0, 0.03, 1, 0.97])
+    fig.tight_layout(rect=[0, 0.05, 1, 0.97])
     add_branding(fig)
 
     path = output_dir / "chart1_recall_by_level.png"
@@ -139,50 +160,7 @@ def chart_recall_by_level(data, output_dir):
     return path
 
 
-# ── Chart 2: Radar — Metric Profiles ────────────────────────────────────────
-
-
-def chart_radar_metrics(data, output_dir):
-    """Radar chart comparing metric profiles across approaches."""
-    _setup_font()
-
-    approaches = data["approaches"]
-    aggregates = data["aggregates"]
-    metric_names = ["Recall@K", "MRR", "NDCG@K", "pass@1", "pass@3", "pass^3"]
-    n_metrics = len(metric_names)
-
-    angles = np.linspace(0, 2 * np.pi, n_metrics, endpoint=False).tolist()
-    angles += angles[:1]  # close the polygon
-
-    fig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
-
-    for aname in approaches:
-        color = APPROACH_COLORS.get(aname, "#333333")
-        agg = aggregates.get(aname, {})
-        values = [agg.get(m, 0) for m in metric_names]
-        values += values[:1]  # close
-        ax.plot(angles, values, "o-", linewidth=2, color=color, label=aname, markersize=5)
-        ax.fill(angles, values, alpha=0.15, color=color)
-
-    ax.set_xticks(angles[:-1])
-    ax.set_xticklabels(metric_names, fontsize=10)
-    ax.set_ylim(0, 1.0)
-    ax.set_yticks([0.2, 0.4, 0.6, 0.8, 1.0])
-    ax.set_yticklabels(["0.2", "0.4", "0.6", "0.8", "1.0"], fontsize=8, color=MIT_GRAY)
-    ax.set_title("Retrieval Metric Profiles", fontsize=14, fontweight="bold", pad=30)
-    ax.legend(loc="upper right", bbox_to_anchor=(1.25, 1.1), framealpha=0.9)
-
-    fig.tight_layout(rect=[0, 0.03, 1, 0.97])
-    add_branding(fig)
-
-    path = output_dir / "chart2_radar_metrics.png"
-    fig.savefig(path, dpi=DPI, bbox_inches="tight", facecolor="white")
-    plt.close(fig)
-    print(f"  Chart 2 saved: {path}")
-    return path
-
-
-# ── Chart 3: Heatmap — Per-Query Scores ──────────────────────────────────────
+# ── Chart 2: Heatmap — Per-Query Scores ──────────────────────────────────────
 
 
 def chart_heatmap(data, output_dir):
@@ -194,116 +172,110 @@ def chart_heatmap(data, output_dir):
     n_queries = len(per_query)
     n_approaches = len(approaches)
 
-    # Build matrix and labels
     matrix = np.zeros((n_queries, n_approaches))
     query_labels = []
     for i, q in enumerate(per_query):
-        label = q["query"][:45]
+        label = q["query"][:42]
         if q["scoring"] == "inverse":
             label += " [INV]"
         query_labels.append(f"[{q['level']}] {label}")
         for j, aname in enumerate(approaches):
             matrix[i, j] = q["approaches"].get(aname, {}).get("effective_recall", 0)
 
-    # Identify level boundaries for separator lines
     level_breaks = []
     for i in range(1, n_queries):
         if per_query[i]["level"] != per_query[i - 1]["level"]:
             level_breaks.append(i)
 
-    fig_height = max(10, n_queries * 0.45)
-    fig, ax = plt.subplots(figsize=(10, fig_height))
+    fig_height = max(10, n_queries * 0.42)
+    fig, ax = plt.subplots(figsize=(8, fig_height))
 
-    # Custom colormap: Red -> Yellow -> Green
-    from matplotlib.colors import LinearSegmentedColormap
-    cmap = LinearSegmentedColormap.from_list("rag", ["#d32f2f", "#fdd835", "#388e3c"])
+    # Diverging colormap centered at 0.4 threshold
+    cmap = LinearSegmentedColormap.from_list("rag", [
+        "#c62828", "#ef5350",  # reds (0-0.3)
+        "#ffca28",             # yellow (0.4)
+        "#66bb6a", "#2e7d32",  # greens (0.6-1.0)
+    ])
 
     im = ax.imshow(matrix, cmap=cmap, aspect="auto", vmin=0, vmax=1)
 
-    # Text annotations in each cell
     for i in range(n_queries):
         for j in range(n_approaches):
             val = matrix[i, j]
-            text_color = "white" if val < 0.3 or val > 0.8 else "black"
+            text_color = "white" if val < 0.25 or val > 0.85 else "black"
             ax.text(j, i, f"{val:.0%}", ha="center", va="center",
-                    fontsize=8, fontweight="bold", color=text_color)
+                    fontsize=7.5, fontweight="bold", color=text_color)
 
-    # Level separator lines
     for brk in level_breaks:
-        ax.axhline(y=brk - 0.5, color="white", linewidth=2)
+        ax.axhline(y=brk - 0.5, color="white", linewidth=2.5)
 
     ax.set_xticks(range(n_approaches))
     ax.set_xticklabels(approaches, fontsize=10, fontweight="bold")
     ax.set_yticks(range(n_queries))
-    ax.set_yticklabels(query_labels, fontsize=7)
-    ax.set_title("Per-Query Effective Recall (All Approaches)", fontsize=14, fontweight="bold", pad=15)
+    ax.set_yticklabels(query_labels, fontsize=6.5)
+    ax.set_title("Per-Query Effective Recall", fontsize=14, fontweight="bold", pad=15)
 
-    # Colorbar
-    cbar = fig.colorbar(im, ax=ax, shrink=0.6, pad=0.02)
-    cbar.set_label("Effective Recall", fontsize=10)
-    # Mark threshold on colorbar
-    cbar.ax.axhline(y=0.4, color=MIT_CRIMSON, linewidth=2, linestyle="--")
+    cbar = fig.colorbar(im, ax=ax, shrink=0.5, pad=0.02)
+    cbar.set_label("Effective Recall", fontsize=9)
+    cbar.ax.axhline(y=0.4, color="white", linewidth=2, linestyle="--")
 
     fig.tight_layout(rect=[0, 0.02, 1, 0.97])
     add_branding(fig)
 
-    path = output_dir / "chart3_heatmap.png"
+    path = output_dir / "chart2_heatmap.png"
     fig.savefig(path, dpi=DPI, bbox_inches="tight", facecolor="white")
     plt.close(fig)
-    print(f"  Chart 3 saved: {path}")
+    print(f"  Chart 2 saved: {path}")
     return path
 
 
-# ── Chart 4: Summary Metrics Table ───────────────────────────────────────────
+# ── Chart 3: Summary Metrics Table ───────────────────────────────────────────
 
 
 def chart_summary_table(data, output_dir):
-    """Styled matplotlib table figure showing aggregate metrics with plain-English explanations."""
+    """Styled table showing aggregate metrics as percentages."""
     _setup_font()
 
     approaches = data["approaches"]
     aggregates = data["aggregates"]
 
-    # Metric definitions: (json_key, display_name, plain_english)
     metrics = [
         ("Recall@K", "Recall@K",
-         "Of all the right answers, what fraction did we find?"),
+         "Of all right answers, how many did we find?"),
         ("MRR", "MRR",
-         "How high up is the first useful result? (1st=1.0, 2nd=0.5, ...)"),
+         "How high is the first useful result?"),
         ("NDCG@K", "NDCG@K",
-         "Are the best results ranked near the top? (order quality)"),
-        ("pass@1", "pass@1",
-         "If you pick 1 random query, how likely is it to pass?"),
-        ("pass@3", "pass@3",
-         "If you pick 3 random queries, will at least 1 pass?"),
-        ("pass^3", "pass^3",
-         "If you pick 3 random queries, will ALL 3 pass? (reliability)"),
+         "Are the best results near the top?"),
         ("pass_rate", "Pass Rate",
-         "What % of queries scored above the 40% threshold?"),
+         "% of queries above 40% threshold"),
+        ("pass^3", "pass^3",
+         "Probability all 3 random queries pass"),
     ]
 
-    # Build table data: columns are Metric | What It Measures | approach1 | approach2 | ...
     col_labels = ["Metric", "What It Measures"] + approaches
     cell_text = []
     cell_colors = []
 
     for idx, (mname, mdisp, explanation) in enumerate(metrics):
-        row_vals = []
-        for aname in approaches:
-            row_vals.append(aggregates.get(aname, {}).get(mname, 0))
+        row_vals = [aggregates.get(a, {}).get(mname, 0) for a in approaches]
+        best_val = max(row_vals)
         row = [mdisp, explanation]
         for val in row_vals:
-            row.append(f"{val:.4f}")
+            row.append(f"{val:.1%}")
         cell_text.append(row)
 
-        base_color = "#f5f5f5" if idx % 2 == 0 else "white"
-        row_colors = [base_color] * len(col_labels)
+        base = "#f7f7f7" if idx % 2 == 0 else "white"
+        row_colors = [base] * len(col_labels)
+        # Highlight best value cell
+        for j, val in enumerate(row_vals):
+            if val == best_val and best_val > 0:
+                row_colors[j + 2] = "#e8f5e9"  # light green highlight
         cell_colors.append(row_colors)
 
-    fig_width = 8 + len(approaches) * 1.5
-    fig, ax = plt.subplots(figsize=(fig_width, 5))
+    fig_width = 7 + len(approaches) * 1.2
+    fig, ax = plt.subplots(figsize=(fig_width, 4))
     ax.axis("off")
-    ax.set_title("Aggregate Benchmark Metrics Summary", fontsize=14, fontweight="bold", pad=20)
+    ax.set_title("Aggregate Benchmark Metrics", fontsize=14, fontweight="bold", pad=15)
 
     table = ax.table(
         cellText=cell_text,
@@ -316,52 +288,44 @@ def chart_summary_table(data, output_dir):
     table.set_fontsize(9)
     table.scale(1.0, 1.8)
 
-    # Size the columns: Metric narrow, explanation wide, values medium
     n_cols = len(col_labels)
-    for row_idx in range(len(metrics) + 1):  # +1 for header
-        # Metric column
-        table[row_idx, 0].set_width(0.08)
-        # Explanation column
-        table[row_idx, 1].set_width(0.30)
-        # Value columns
+    for row_idx in range(len(metrics) + 1):
+        table[row_idx, 0].set_width(0.09)
+        table[row_idx, 1].set_width(0.28)
         for j in range(2, n_cols):
             table[row_idx, j].set_width(0.10)
 
-    # Left-align the explanation column
     for i in range(1, len(metrics) + 1):
         table[i, 1].get_text().set_ha("left")
         table[i, 1].get_text().set_fontsize(8)
-        table[i, 1].get_text().set_fontstyle("italic")
-        table[i, 1].get_text().set_color("#555555")
+        table[i, 1].get_text().set_color("#666666")
 
-    # Style header row
+    # Style header
     for j in range(n_cols):
         cell = table[0, j]
         cell.set_facecolor(MIT_CRIMSON)
         cell.set_text_props(color="white", fontweight="bold")
 
-    # Bold best values in crimson
+    # Bold best values
     for i, (mname, _, _) in enumerate(metrics):
-        row_vals = []
-        for aname in approaches:
-            row_vals.append(aggregates.get(aname, {}).get(mname, 0))
+        row_vals = [aggregates.get(a, {}).get(mname, 0) for a in approaches]
         best_val = max(row_vals)
         for j, val in enumerate(row_vals):
             if val == best_val and best_val > 0:
-                cell = table[i + 1, j + 2]  # +1 header, +2 for metric+explanation cols
-                cell.set_text_props(color=MIT_CRIMSON, fontweight="bold")
+                cell = table[i + 1, j + 2]
+                cell.set_text_props(fontweight="bold", color="#1b5e20")
 
     fig.tight_layout(rect=[0, 0.03, 1, 0.95])
     add_branding(fig)
 
-    path = output_dir / "chart4_summary_table.png"
+    path = output_dir / "chart3_summary_table.png"
     fig.savefig(path, dpi=DPI, bbox_inches="tight", facecolor="white")
     plt.close(fig)
-    print(f"  Chart 4 saved: {path}")
+    print(f"  Chart 3 saved: {path}")
     return path
 
 
-# ── Chart 5: Weight Sweep — BM25/Semantic Mix ────────────────────────────────
+# ── Chart 4: Weight Sweep — single axis, clean ──────────────────────────────
 
 
 def chart_weight_sweep(data, output_dir):
@@ -370,203 +334,113 @@ def chart_weight_sweep(data, output_dir):
 
     sweep = data.get("weight_sweep", [])
     if not sweep:
-        print("  Chart 5 skipped: no weight_sweep data in results.json")
+        print("  Chart 4 skipped: no weight_sweep data")
         return None
 
-    # Separate hybrid sweep points from LLM-Rerank
     hybrid_pts = [p for p in sweep if p["kw"] is not None]
     llm_pt = next((p for p in sweep if p["label"] == "LLM-Rerank"), None)
 
-    fig, ax1 = plt.subplots(figsize=(12, 6))
+    fig, ax = plt.subplots(figsize=(10, 5))
 
-    # X-axis: semantic weight (0.0 to 1.0)
     x = [p["sw"] for p in hybrid_pts]
     recalls = [p["mean_recall"] for p in hybrid_pts]
-    pass_rates = [p["pass_rate"] for p in hybrid_pts]
 
-    # Primary axis: Mean Recall
-    line1 = ax1.plot(x, recalls, "o-", color=MIT_CRIMSON, linewidth=2.5,
-                     markersize=8, label="Mean Recall@K", zorder=4)
-    ax1.set_xlabel("Semantic Weight (BM25 weight = 1 - semantic)", fontsize=11)
-    ax1.set_ylabel("Mean Effective Recall@K", fontsize=11, color=MIT_CRIMSON)
-    ax1.tick_params(axis="y", labelcolor=MIT_CRIMSON)
+    # Fill area under curve
+    ax.fill_between(x, recalls, alpha=0.15, color=CLR_HYBRID)
+    ax.plot(x, recalls, "o-", color=CLR_HYBRID, linewidth=2.5, markersize=7,
+            label="Hybrid Recall@K", zorder=4)
 
-    # Secondary axis: Pass Rate
-    ax2 = ax1.twinx()
-    line2 = ax2.plot(x, pass_rates, "s--", color=DARK_NAVY, linewidth=2,
-                     markersize=7, label="Pass Rate (>=40%)", zorder=3)
-    ax2.set_ylabel("Pass Rate", fontsize=11, color=DARK_NAVY)
-    ax2.tick_params(axis="y", labelcolor=DARK_NAVY)
-    ax2.set_ylim(0, 1.05)
-
-    # Mark the best hybrid point
+    # Best point
     best_idx = max(range(len(recalls)), key=lambda i: recalls[i])
-    ax1.annotate(
-        f"Best: sw={x[best_idx]:.1f}\n({recalls[best_idx]:.0%})",
+    ax.annotate(
+        f"Best: {x[best_idx]:.0%} semantic\n({recalls[best_idx]:.1%} recall)",
         xy=(x[best_idx], recalls[best_idx]),
-        xytext=(x[best_idx] - 0.15, recalls[best_idx] + 0.06),
-        fontsize=9, fontweight="bold", color=MIT_CRIMSON,
-        arrowprops=dict(arrowstyle="->", color=MIT_CRIMSON, lw=1.5),
+        xytext=(x[best_idx] - 0.2, recalls[best_idx] + 0.04),
+        fontsize=9, fontweight="bold", color=CLR_HYBRID,
+        arrowprops=dict(arrowstyle="->", color=CLR_HYBRID, lw=1.5),
     )
 
-    # LLM-Rerank as a horizontal reference line
+    # LLM-Rerank reference
     if llm_pt:
-        ax1.axhline(y=llm_pt["mean_recall"], color=WARM_GOLD, linestyle=":",
-                     linewidth=2, alpha=0.8, zorder=2)
-        ax1.text(0.02, llm_pt["mean_recall"] + 0.01,
-                 f"LLM-Rerank ({llm_pt['mean_recall']:.0%})",
-                 fontsize=9, color=WARM_GOLD, fontweight="bold")
+        ax.axhline(y=llm_pt["mean_recall"], color=CLR_LLM, linestyle=":",
+                    linewidth=2, alpha=0.8, zorder=2, label=f"LLM-Rerank ({llm_pt['mean_recall']:.1%})")
 
-    # Labels for endpoints
-    ax1.text(0.0, recalls[0] - 0.03, "Pure\nBM25", fontsize=8, ha="center",
-             color=MIT_GRAY, fontstyle="italic")
-    ax1.text(1.0, recalls[-1] - 0.03, "Pure\nSemantic", fontsize=8, ha="center",
-             color=MIT_GRAY, fontstyle="italic")
+    ax.text(-0.02, recalls[0] - 0.015, "Pure BM25", fontsize=8, ha="right",
+            color=CLR_BM25, fontweight="bold")
+    ax.text(1.02, recalls[-1] - 0.015, "Pure Semantic", fontsize=8, ha="left",
+            color=CLR_SEMANTIC, fontweight="bold")
 
-    # Pass threshold
-    ax1.axhline(y=0.4, color=MIT_GRAY, linestyle="--", linewidth=0.8, alpha=0.5)
-
-    # Combined legend
-    lines = line1 + line2
-    labels = [l.get_label() for l in lines]
-    ax1.legend(lines, labels, loc="lower center", framealpha=0.9)
-
-    ax1.set_title("Effect of BM25/Semantic Weight Mix on Retrieval Quality",
-                   fontsize=14, fontweight="bold", pad=20)
-    ax1.set_xlim(-0.05, 1.05)
-    ax1.grid(axis="both", alpha=0.2, zorder=0)
-
-    fig.tight_layout(rect=[0, 0.03, 1, 0.97])
-    add_branding(fig)
-
-    path = output_dir / "chart5_weight_sweep.png"
-    fig.savefig(path, dpi=DPI, bbox_inches="tight", facecolor="white")
-    plt.close(fig)
-    print(f"  Chart 5 saved: {path}")
-    return path
-
-
-# ── Chart 6: Approach Progression — Waterfall ────────────────────────────────
-
-
-def chart_approach_progression(data, output_dir):
-    """Grouped bar chart: Recall vs Pass Rate for each approach, showing trade-offs."""
-    _setup_font()
-
-    aggregates = data.get("aggregates", {})
-    sweep = data.get("weight_sweep", [])
-
-    # Build progression stages — ordered from single methods to combined
-    stages = []
-
-    # Determine which single-method baseline is weaker to put it first
-    bm25_recall = aggregates.get("BM25", {}).get("Recall@K", 0)
-    bm25_pass = aggregates.get("BM25", {}).get("pass_rate", 0)
-    sem_recall = aggregates.get("Semantic", {}).get("Recall@K", 0)
-    sem_pass = aggregates.get("Semantic", {}).get("pass_rate", 0)
-
-    if sem_recall <= bm25_recall:
-        if "Semantic" in aggregates:
-            stages.append({"label": "Semantic\n(embeddings)", "recall": sem_recall,
-                           "pass_rate": sem_pass, "color": WARM_GOLD})
-        if "BM25" in aggregates:
-            stages.append({"label": "BM25\n(keywords)", "recall": bm25_recall,
-                           "pass_rate": bm25_pass, "color": MIT_GRAY})
-    else:
-        if "BM25" in aggregates:
-            stages.append({"label": "BM25\n(keywords)", "recall": bm25_recall,
-                           "pass_rate": bm25_pass, "color": MIT_GRAY})
-        if "Semantic" in aggregates:
-            stages.append({"label": "Semantic\n(embeddings)", "recall": sem_recall,
-                           "pass_rate": sem_pass, "color": WARM_GOLD})
-
-    # Best hybrid from sweep (or default)
-    hybrid_pts = [p for p in sweep if p["kw"] is not None]
-    if hybrid_pts:
-        best = max(hybrid_pts, key=lambda p: p["mean_recall"])
-        stages.append({"label": f"Hybrid (best)\n(BM25={best['kw']:.0%}+Sem={best['sw']:.0%})",
-                        "recall": best["mean_recall"], "pass_rate": best["pass_rate"],
-                        "color": MIT_CRIMSON})
-    elif "Hybrid" in aggregates:
-        stages.append({"label": "Hybrid\n(BM25=30%+Sem=70%)",
-                        "recall": aggregates["Hybrid"]["Recall@K"],
-                        "pass_rate": aggregates["Hybrid"].get("pass_rate", 0),
-                        "color": MIT_CRIMSON})
-
-    # LLM-Rerank
-    if "LLM-Rerank" in aggregates:
-        stages.append({"label": "LLM-Rerank\n(hybrid + LLM judge)",
-                        "recall": aggregates["LLM-Rerank"]["Recall@K"],
-                        "pass_rate": aggregates["LLM-Rerank"].get("pass_rate", 0),
-                        "color": DARK_NAVY})
-
-    if len(stages) < 2:
-        print("  Chart 6 skipped: not enough approaches for progression")
-        return None
-
-    fig, ax = plt.subplots(figsize=(12, 6))
-
-    x = np.arange(len(stages))
-    bar_w = 0.35
-
-    # Recall bars (left)
-    recall_vals = [s["recall"] for s in stages]
-    colors = [s["color"] for s in stages]
-    bars_r = ax.bar(x - bar_w / 2, recall_vals, bar_w, color=colors,
-                    edgecolor="white", linewidth=1.5, zorder=3, label="Mean Recall@K")
-
-    # Pass rate bars (right, lighter shade)
-    pass_vals = [s["pass_rate"] for s in stages]
-    light_colors = [c + "80" for c in colors]  # add alpha via hex
-    bars_p = ax.bar(x + bar_w / 2, pass_vals, bar_w, color=light_colors,
-                    edgecolor=[c for c in colors], linewidth=1.5, linestyle="--",
-                    zorder=3, label="Pass Rate (>=40%)")
-
-    # Value labels
-    for bar, val in zip(bars_r, recall_vals):
-        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.01,
-                f"{val:.1%}", ha="center", va="bottom", fontsize=10,
-                fontweight="bold", color="#333333")
-    for bar, val in zip(bars_p, pass_vals):
-        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.01,
-                f"{val:.0%}", ha="center", va="bottom", fontsize=10,
-                fontweight="bold", color="#555555")
-
-    # Recall delta arrows (between recall bars only)
-    for i in range(1, len(stages)):
-        prev = recall_vals[i - 1]
-        curr = recall_vals[i]
-        delta = curr - prev
-        sign = "+" if delta >= 0 else ""
-        color = "#2e7d32" if delta >= 0 else "#c62828"
-        mid_x = (i - 1 + i) / 2 - bar_w / 2
-        ax.annotate(
-            "", xy=(i - bar_w / 2, curr), xytext=(i - 1 - bar_w / 2, prev),
-            arrowprops=dict(arrowstyle="-|>", color=color, lw=1.5,
-                            connectionstyle="arc3,rad=-0.15"),
-        )
-        ax.text(mid_x, max(prev, curr) + 0.04, f"{sign}{delta:.1%}",
-                ha="center", fontsize=9, fontweight="bold", color=color)
-
-    ax.axhline(y=0.4, color=MIT_CRIMSON, linestyle="--", linewidth=1, alpha=0.4, zorder=2)
-
-    ax.set_xticks(x)
-    ax.set_xticklabels([s["label"] for s in stages], fontsize=9)
-    ax.set_ylabel("Score (0 to 1)", fontsize=11)
-    ax.set_title("Retrieval Quality: From Single Methods to Combined Approaches",
-                  fontsize=14, fontweight="bold", pad=20)
-    ax.set_ylim(0, max(max(recall_vals), max(pass_vals)) + 0.15)
-    ax.legend(loc="upper left", framealpha=0.9, fontsize=10)
-    ax.grid(axis="y", alpha=0.2, zorder=0)
+    ax.set_xlabel("Semantic Weight  (BM25 = 1 - semantic)", fontsize=11)
+    ax.set_ylabel("Mean Recall@K", fontsize=11)
+    ax.set_title("How BM25/Semantic Mix Affects Retrieval Quality",
+                 fontsize=14, fontweight="bold", pad=15)
+    ax.set_xlim(-0.05, 1.05)
+    ax.set_ylim(min(recalls) - 0.05, max(recalls) + 0.08)
+    ax.legend(loc="lower right", framealpha=0.9, fontsize=9)
+    ax.grid(alpha=0.2, zorder=0)
     ax.set_axisbelow(True)
 
     fig.tight_layout(rect=[0, 0.03, 1, 0.97])
     add_branding(fig)
 
-    path = output_dir / "chart6_approach_progression.png"
+    path = output_dir / "chart4_weight_sweep.png"
     fig.savefig(path, dpi=DPI, bbox_inches="tight", facecolor="white")
     plt.close(fig)
-    print(f"  Chart 6 saved: {path}")
+    print(f"  Chart 4 saved: {path}")
+    return path
+
+
+# ── Chart 5: Approach Comparison — horizontal bars ───────────────────────────
+
+
+def chart_approach_comparison(data, output_dir):
+    """Horizontal bar chart comparing approaches on the 3 most important metrics."""
+    _setup_font()
+
+    aggregates = data.get("aggregates", {})
+    approaches = data["approaches"]
+
+    # Focus on the 3 metrics that matter most
+    key_metrics = [
+        ("Recall@K", "Recall@K"),
+        ("MRR", "MRR"),
+        ("pass_rate", "Pass Rate"),
+    ]
+
+    fig, axes = plt.subplots(1, len(key_metrics), figsize=(14, 5), sharey=True)
+
+    y = np.arange(len(approaches))
+    colors = [APPROACH_COLORS.get(a, "#333") for a in approaches]
+
+    for ax, (mkey, mlabel) in zip(axes, key_metrics):
+        vals = [aggregates.get(a, {}).get(mkey, 0) for a in approaches]
+        best = max(vals)
+
+        bars = ax.barh(y, vals, color=colors, alpha=0.85, height=0.6, zorder=3)
+
+        for bar, val in zip(bars, vals):
+            weight = "bold" if val == best else "normal"
+            ax.text(val + 0.01, bar.get_y() + bar.get_height() / 2,
+                    f"{val:.1%}", va="center", fontsize=10, fontweight=weight)
+
+        ax.set_xlim(0, 1.08)
+        ax.set_title(mlabel, fontsize=12, fontweight="bold")
+        ax.set_xticks([0, 0.25, 0.5, 0.75, 1.0])
+        ax.set_xticklabels(["0%", "25%", "50%", "75%", "100%"], fontsize=8)
+        ax.grid(axis="x", alpha=0.2, zorder=0)
+        ax.set_axisbelow(True)
+
+    axes[0].set_yticks(y)
+    axes[0].set_yticklabels(approaches, fontsize=10, fontweight="bold")
+
+    fig.suptitle("Approach Comparison: Key Metrics", fontsize=14, fontweight="bold")
+    fig.tight_layout(rect=[0, 0.03, 1, 0.95])
+    add_branding(fig)
+
+    path = output_dir / "chart5_approach_comparison.png"
+    fig.savefig(path, dpi=DPI, bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    print(f"  Chart 5 saved: {path}")
     return path
 
 
@@ -579,19 +453,17 @@ def main():
         "--results",
         type=Path,
         default=Path("benchmark_results/results.json"),
-        help="Path to results.json (default: benchmark_results/results.json)",
     )
     parser.add_argument(
         "--output-dir",
         type=Path,
         default=Path("benchmark_results"),
-        help="Output directory for PNG charts (default: benchmark_results)",
     )
     args = parser.parse_args()
 
     if not args.results.exists():
         print(f"Error: {args.results} not found.")
-        print("Run 'uv run pytest tests/test_pageindex.py -v -s' first to generate benchmark data.")
+        print("Run 'uv run pytest tests/test_pageindex.py -v -s' first.")
         sys.exit(1)
 
     data = json.loads(args.results.read_text())
@@ -602,11 +474,10 @@ def main():
 
     print("\nGenerating charts...")
     chart_recall_by_level(data, args.output_dir)
-    chart_radar_metrics(data, args.output_dir)
     chart_heatmap(data, args.output_dir)
     chart_summary_table(data, args.output_dir)
     chart_weight_sweep(data, args.output_dir)
-    chart_approach_progression(data, args.output_dir)
+    chart_approach_comparison(data, args.output_dir)
     print("\nDone! All charts saved to:", args.output_dir)
 
 
