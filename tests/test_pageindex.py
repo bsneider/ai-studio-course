@@ -62,12 +62,12 @@ if _env_path.exists():
             os.environ.setdefault(key.strip(), val.strip())
 
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
-LLM_RERANK_MODELS = [
-    "google/gemini-2.0-flash-001",
-    "nvidia/llama-3.1-nemotron-70b-instruct",
-    "meta-llama/llama-3.3-70b-instruct",
-]
-LLM_RERANK_MODEL = LLM_RERANK_MODELS[0]  # default for single-model tests
+LLM_RERANK_MODELS = {
+    "google/gemini-2.0-flash-001": "gemini-2.0-flash",
+    "nvidia/llama-3.1-nemotron-70b-instruct": "nemotron-70b",
+    "meta-llama/llama-3.3-70b-instruct": "llama-3.3-70b",
+}
+LLM_RERANK_MODEL = list(LLM_RERANK_MODELS.keys())[0]  # default for single-model tests
 
 
 # ── Fixtures ─────────────────────────────────────────────────────────────────

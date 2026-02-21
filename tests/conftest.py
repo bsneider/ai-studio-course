@@ -71,9 +71,8 @@ def benchmark_capture(rag_db, request):
         "Semantic": lambda bq, k: semantic_only_search(conn, emb_model, bq["q"], top_k=k),
     }
     if openrouter:
-        for model_id in LLM_RERANK_MODELS:
-            short_name = model_id.split("/")[-1].split("-instruct")[0]
-            label = f"LLM:{short_name}"
+        for model_id, display_name in LLM_RERANK_MODELS.items():
+            label = f"LLM:{display_name}"
             # Capture model_id in closure
             approaches[label] = (lambda mid: lambda bq, k: llm_rerank_search(
                 conn, emb_model, openrouter, bq["q"], top_k=k, model=mid

@@ -7,8 +7,8 @@
     "Hybrid+RRF",
     "BM25",
     "Semantic",
-    "LLM:gemini-2.0-flash-001",
-    "LLM:llama-3.1-nemotron-70b",
+    "LLM:gemini-2.0-flash",
+    "LLM:nemotron-70b",
     "LLM:llama-3.3-70b"
   ],
   "per_query": [
@@ -69,25 +69,25 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 1.0,
-          "mrr": 1.0,
-          "ndcg": 1.0,
-          "effective_recall": 1.0,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 1.0,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 1.0,
-          "mrr": 1.0,
-          "ndcg": 1.0,
-          "effective_recall": 1.0,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 1.0,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -153,25 +153,25 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 1.0,
-          "mrr": 1.0,
-          "ndcg": 1.0,
-          "effective_recall": 1.0,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 1.0,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 1.0,
-          "mrr": 1.0,
-          "ndcg": 1.0,
-          "effective_recall": 1.0,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 1.0,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -239,24 +239,6 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 1.0,
-          "mrr": 1.0,
-          "ndcg": 0.8919478197221425,
-          "effective_recall": 1.0,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.8919478197221425,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.5,
-          "mrr": 1.0,
-          "ndcg": 1.0,
-          "effective_recall": 0.5,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 1.0,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
           "recall": 0.5,
           "mrr": 1.0,
@@ -264,6 +246,24 @@
           "effective_recall": 0.5,
           "effective_mrr": 1.0,
           "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8919478197221425,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8919478197221425,
           "passed": true
         }
       }
@@ -325,7 +325,7 @@
           "effective_ndcg": 0.4573369727327457,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.75,
           "mrr": 1.0,
           "ndcg": 0.9121656860366328,
@@ -334,7 +334,7 @@
           "effective_ndcg": 0.9121656860366328,
           "passed": true
         },
-        "LLM:llama-3.1-nemotron-70b": {
+        "LLM:nemotron-70b": {
           "recall": 0.75,
           "mrr": 1.0,
           "ndcg": 0.9049765583210164,
@@ -343,7 +343,7 @@
           "effective_ndcg": 0.9049765583210164,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.75,
           "mrr": 1.0,
           "ndcg": 0.9121656860366328,
@@ -410,16 +410,16 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.6666666666666666,
+        "LLM:llama-3.3-70b": {
+          "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 0.8656392231763174,
-          "effective_recall": 0.6666666666666666,
+          "ndcg": 0.8375161037724468,
+          "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.8656392231763174,
+          "effective_ndcg": 0.8375161037724468,
           "passed": true
         },
-        "LLM:llama-3.1-nemotron-70b": {
+        "LLM:nemotron-70b": {
           "recall": 0.6666666666666666,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -428,13 +428,13 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
-          "recall": 1.0,
+        "LLM:gemini-2.0-flash": {
+          "recall": 0.6666666666666666,
           "mrr": 1.0,
-          "ndcg": 0.8375161037724468,
-          "effective_recall": 1.0,
+          "ndcg": 0.8656392231763174,
+          "effective_recall": 0.6666666666666666,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.8375161037724468,
+          "effective_ndcg": 0.8656392231763174,
           "passed": true
         }
       }
@@ -498,16 +498,16 @@
           "effective_ndcg": 0.5531239834838553,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
+        "LLM:llama-3.3-70b": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 0.7033736910334266,
+          "ndcg": 0.9132595666297368,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.7033736910334266,
+          "effective_ndcg": 0.9132595666297368,
           "passed": true
         },
-        "LLM:llama-3.1-nemotron-70b": {
+        "LLM:nemotron-70b": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 0.6901332867457537,
@@ -516,13 +516,13 @@
           "effective_ndcg": 0.6901332867457537,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 0.9132595666297368,
+          "ndcg": 0.7033736910334266,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.9132595666297368,
+          "effective_ndcg": 0.7033736910334266,
           "passed": true
         }
       }
@@ -585,16 +585,16 @@
           "effective_ndcg": 0.8221120471878671,
           "passed": false
         },
-        "LLM:gemini-2.0-flash-001": {
+        "LLM:llama-3.3-70b": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 0.7614851882563043,
+          "ndcg": 0.8686633200819412,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.7614851882563043,
+          "effective_ndcg": 0.8686633200819412,
           "passed": true
         },
-        "LLM:llama-3.1-nemotron-70b": {
+        "LLM:nemotron-70b": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 0.5713939514994553,
@@ -603,13 +603,13 @@
           "effective_ndcg": 0.5713939514994553,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 0.8686633200819412,
+          "ndcg": 0.7614851882563043,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.8686633200819412,
+          "effective_ndcg": 0.7614851882563043,
           "passed": true
         }
       }
@@ -671,7 +671,7 @@
           "effective_ndcg": 0.6776636931349654,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.75,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -680,7 +680,7 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:llama-3.1-nemotron-70b": {
+        "LLM:nemotron-70b": {
           "recall": 0.75,
           "mrr": 1.0,
           "ndcg": 0.9813883936133462,
@@ -689,7 +689,7 @@
           "effective_ndcg": 0.9813883936133462,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.75,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -759,24 +759,6 @@
           "effective_ndcg": 0.8447122853992027,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.3333333333333333,
-          "mrr": 1.0,
-          "ndcg": 0.8599797111848092,
-          "effective_recall": 0.3333333333333333,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.8599797111848092,
-          "passed": false
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.3333333333333333,
-          "mrr": 1.0,
-          "ndcg": 0.9469024295259745,
-          "effective_recall": 0.3333333333333333,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.9469024295259745,
-          "passed": false
-        },
         "LLM:llama-3.3-70b": {
           "recall": 0.5,
           "mrr": 0.5,
@@ -785,6 +767,24 @@
           "effective_mrr": 0.5,
           "effective_ndcg": 0.7242206596550013,
           "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.3333333333333333,
+          "mrr": 1.0,
+          "ndcg": 0.9469024295259745,
+          "effective_recall": 0.3333333333333333,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9469024295259745,
+          "passed": false
+        },
+        "LLM:gemini-2.0-flash": {
+          "recall": 0.3333333333333333,
+          "mrr": 1.0,
+          "ndcg": 0.8599797111848092,
+          "effective_recall": 0.3333333333333333,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8599797111848092,
+          "passed": false
         }
       }
     },
@@ -846,16 +846,16 @@
           "effective_ndcg": 0.9735792424866951,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
+        "LLM:llama-3.3-70b": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 0.9359980548891793,
+          "ndcg": 1.0,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.9359980548891793,
+          "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:llama-3.1-nemotron-70b": {
+        "LLM:nemotron-70b": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 0.6673385207601783,
@@ -864,13 +864,13 @@
           "effective_ndcg": 0.6673385207601783,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 1.0,
+          "ndcg": 0.9359980548891793,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 1.0,
+          "effective_ndcg": 0.9359980548891793,
           "passed": true
         }
       }
@@ -932,16 +932,16 @@
           "effective_ndcg": 0.9629027936988324,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
+        "LLM:llama-3.3-70b": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 1.0,
+          "ndcg": 0.9629027936988324,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 1.0,
+          "effective_ndcg": 0.9629027936988324,
           "passed": true
         },
-        "LLM:llama-3.1-nemotron-70b": {
+        "LLM:nemotron-70b": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 0.7302937468156797,
@@ -950,13 +950,13 @@
           "effective_ndcg": 0.7302937468156797,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 0.9629027936988324,
+          "ndcg": 1.0,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.9629027936988324,
+          "effective_ndcg": 1.0,
           "passed": true
         }
       }
@@ -1018,24 +1018,6 @@
           "effective_ndcg": 0.7979168917078058,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.5,
-          "mrr": 1.0,
-          "ndcg": 0.8447122853992027,
-          "effective_recall": 0.5,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.8447122853992027,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.75,
-          "mrr": 1.0,
-          "ndcg": 0.8239560888032269,
-          "effective_recall": 0.75,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.8239560888032269,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
           "recall": 0.25,
           "mrr": 0.5,
@@ -1044,6 +1026,24 @@
           "effective_mrr": 0.5,
           "effective_ndcg": 0.7328286204777911,
           "passed": false
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.8239560888032269,
+          "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8239560888032269,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.8447122853992027,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8447122853992027,
+          "passed": true
         }
       }
     },
@@ -1105,25 +1105,25 @@
           "effective_ndcg": 0.7521728881423634,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.8,
-          "mrr": 1.0,
-          "ndcg": 0.7770227215242603,
-          "effective_recall": 0.8,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.7770227215242603,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.8,
-          "mrr": 1.0,
-          "ndcg": 0.7770227215242603,
-          "effective_recall": 0.8,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.7770227215242603,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.8,
+          "mrr": 1.0,
+          "ndcg": 0.7770227215242603,
+          "effective_recall": 0.8,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7770227215242603,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.8,
+          "mrr": 1.0,
+          "ndcg": 0.7770227215242603,
+          "effective_recall": 0.8,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7770227215242603,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.8,
           "mrr": 1.0,
           "ndcg": 0.7770227215242603,
@@ -1193,25 +1193,25 @@
           "effective_ndcg": 0.7521866188906461,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.16666666666666666,
-          "mrr": 1.0,
-          "ndcg": 1.0,
-          "effective_recall": 0.16666666666666666,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 1.0,
-          "passed": false
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.16666666666666666,
-          "mrr": 1.0,
-          "ndcg": 1.0,
-          "effective_recall": 0.16666666666666666,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 1.0,
-          "passed": false
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.16666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.16666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.16666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.16666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.16666666666666666,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -1281,25 +1281,25 @@
           "effective_ndcg": 0.6838554026395006,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.8333333333333334,
-          "mrr": 1.0,
-          "ndcg": 0.881282782391275,
-          "effective_recall": 0.8333333333333334,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.881282782391275,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.8333333333333334,
-          "mrr": 1.0,
-          "ndcg": 0.881282782391275,
-          "effective_recall": 0.8333333333333334,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.881282782391275,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.881282782391275,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.881282782391275,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.881282782391275,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.881282782391275,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.8333333333333334,
           "mrr": 1.0,
           "ndcg": 0.881282782391275,
@@ -1369,25 +1369,25 @@
           "effective_ndcg": 1.0,
           "passed": false
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.0,
-          "mrr": 0.0,
-          "ndcg": 1.0,
-          "effective_recall": 0.0,
-          "effective_mrr": 0.0,
-          "effective_ndcg": 1.0,
-          "passed": false
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.0,
-          "mrr": 0.0,
-          "ndcg": 1.0,
-          "effective_recall": 0.0,
-          "effective_mrr": 0.0,
-          "effective_ndcg": 1.0,
-          "passed": false
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.0,
           "mrr": 0.0,
           "ndcg": 1.0,
@@ -1457,25 +1457,25 @@
           "effective_ndcg": 0.5106716842493384,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.6666666666666666,
-          "mrr": 0.3333333333333333,
-          "ndcg": 0.6279040080595649,
-          "effective_recall": 0.6666666666666666,
-          "effective_mrr": 0.3333333333333333,
-          "effective_ndcg": 0.6279040080595649,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.6666666666666666,
-          "mrr": 0.3333333333333333,
-          "ndcg": 0.6279040080595649,
-          "effective_recall": 0.6666666666666666,
-          "effective_mrr": 0.3333333333333333,
-          "effective_ndcg": 0.6279040080595649,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.6666666666666666,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.6279040080595649,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.6279040080595649,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.6666666666666666,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.6279040080595649,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.6279040080595649,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.6666666666666666,
           "mrr": 0.3333333333333333,
           "ndcg": 0.6279040080595649,
@@ -1544,25 +1544,25 @@
           "effective_ndcg": 0.8241377469002206,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 1.0,
-          "mrr": 1.0,
-          "ndcg": 0.8241377469002206,
-          "effective_recall": 1.0,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.8241377469002206,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 1.0,
-          "mrr": 1.0,
-          "ndcg": 0.8241377469002206,
-          "effective_recall": 1.0,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.8241377469002206,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8241377469002206,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8241377469002206,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8241377469002206,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8241377469002206,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 0.8241377469002206,
@@ -1631,25 +1631,25 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.0,
-          "mrr": 0.0,
-          "ndcg": 1.0,
-          "effective_recall": 0.0,
-          "effective_mrr": 0.0,
-          "effective_ndcg": 1.0,
-          "passed": false
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.0,
-          "mrr": 0.0,
-          "ndcg": 1.0,
-          "effective_recall": 0.0,
-          "effective_mrr": 0.0,
-          "effective_ndcg": 1.0,
-          "passed": false
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.0,
           "mrr": 0.0,
           "ndcg": 1.0,
@@ -1720,25 +1720,25 @@
           "effective_ndcg": 0.360691176496464,
           "passed": false
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.2857142857142857,
-          "mrr": 0.25,
-          "ndcg": 0.43954268380428807,
-          "effective_recall": 0.2857142857142857,
-          "effective_mrr": 0.25,
-          "effective_ndcg": 0.43954268380428807,
-          "passed": false
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.2857142857142857,
-          "mrr": 0.25,
-          "ndcg": 0.43954268380428807,
-          "effective_recall": 0.2857142857142857,
-          "effective_mrr": 0.25,
-          "effective_ndcg": 0.43954268380428807,
-          "passed": false
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.2857142857142857,
+          "mrr": 0.25,
+          "ndcg": 0.43954268380428807,
+          "effective_recall": 0.2857142857142857,
+          "effective_mrr": 0.25,
+          "effective_ndcg": 0.43954268380428807,
+          "passed": false
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.2857142857142857,
+          "mrr": 0.25,
+          "ndcg": 0.43954268380428807,
+          "effective_recall": 0.2857142857142857,
+          "effective_mrr": 0.25,
+          "effective_ndcg": 0.43954268380428807,
+          "passed": false
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.2857142857142857,
           "mrr": 0.25,
           "ndcg": 0.43954268380428807,
@@ -1807,25 +1807,25 @@
           "effective_ndcg": 0.9605753368118397,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.4,
-          "mrr": 1.0,
-          "ndcg": 1.0,
-          "effective_recall": 0.4,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 1.0,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.4,
-          "mrr": 1.0,
-          "ndcg": 1.0,
-          "effective_recall": 0.4,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 1.0,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.4,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.4,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.4,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.4,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.4,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -1893,25 +1893,25 @@
           "effective_ndcg": 0.9170245493900888,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.5,
-          "mrr": 1.0,
-          "ndcg": 0.9061710886726135,
-          "effective_recall": 0.5,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.9061710886726135,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.5,
-          "mrr": 1.0,
-          "ndcg": 0.9061710886726135,
-          "effective_recall": 0.5,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.9061710886726135,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.9061710886726135,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9061710886726135,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.9061710886726135,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9061710886726135,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.5,
           "mrr": 1.0,
           "ndcg": 0.9061710886726135,
@@ -1981,25 +1981,25 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.8333333333333334,
-          "mrr": 1.0,
-          "ndcg": 0.7932495804570024,
-          "effective_recall": 0.8333333333333334,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.7932495804570024,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.8333333333333334,
-          "mrr": 1.0,
-          "ndcg": 0.7932495804570024,
-          "effective_recall": 0.8333333333333334,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.7932495804570024,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.7932495804570024,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7932495804570024,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.7932495804570024,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7932495804570024,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.8333333333333334,
           "mrr": 1.0,
           "ndcg": 0.7932495804570024,
@@ -2069,25 +2069,25 @@
           "effective_ndcg": 0.32711466091967967,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.5,
-          "mrr": 0.25,
-          "ndcg": 0.46238363047462905,
-          "effective_recall": 0.5,
-          "effective_mrr": 0.75,
-          "effective_ndcg": 0.537616369525371,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.5,
-          "mrr": 0.25,
-          "ndcg": 0.46238363047462905,
-          "effective_recall": 0.5,
-          "effective_mrr": 0.75,
-          "effective_ndcg": 0.537616369525371,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.5,
+          "mrr": 0.25,
+          "ndcg": 0.46238363047462905,
+          "effective_recall": 0.5,
+          "effective_mrr": 0.75,
+          "effective_ndcg": 0.537616369525371,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.5,
+          "mrr": 0.25,
+          "ndcg": 0.46238363047462905,
+          "effective_recall": 0.5,
+          "effective_mrr": 0.75,
+          "effective_ndcg": 0.537616369525371,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.5,
           "mrr": 0.25,
           "ndcg": 0.46238363047462905,
@@ -2157,25 +2157,25 @@
           "effective_ndcg": 0.3065735963827293,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.16666666666666666,
-          "mrr": 0.5,
-          "ndcg": 0.6934264036172707,
-          "effective_recall": 0.8333333333333334,
-          "effective_mrr": 0.5,
-          "effective_ndcg": 0.3065735963827293,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.16666666666666666,
-          "mrr": 0.5,
-          "ndcg": 0.6934264036172707,
-          "effective_recall": 0.8333333333333334,
-          "effective_mrr": 0.5,
-          "effective_ndcg": 0.3065735963827293,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.16666666666666666,
+          "mrr": 0.5,
+          "ndcg": 0.6934264036172707,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.3065735963827293,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.16666666666666666,
+          "mrr": 0.5,
+          "ndcg": 0.6934264036172707,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.3065735963827293,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.16666666666666666,
           "mrr": 0.5,
           "ndcg": 0.6934264036172707,
@@ -2245,25 +2245,25 @@
           "effective_ndcg": 0.0,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.16666666666666666,
-          "mrr": 1.0,
-          "ndcg": 1.0,
-          "effective_recall": 0.8333333333333334,
-          "effective_mrr": 0.0,
-          "effective_ndcg": 0.0,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.16666666666666666,
-          "mrr": 1.0,
-          "ndcg": 1.0,
-          "effective_recall": 0.8333333333333334,
-          "effective_mrr": 0.0,
-          "effective_ndcg": 0.0,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.16666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.16666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.16666666666666666,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -2333,25 +2333,25 @@
           "effective_ndcg": 0.6821160297746383,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.6666666666666666,
-          "mrr": 1.0,
-          "ndcg": 0.7178947288412965,
-          "effective_recall": 0.6666666666666666,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.7178947288412965,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.6666666666666666,
-          "mrr": 1.0,
-          "ndcg": 0.7178947288412965,
-          "effective_recall": 0.6666666666666666,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.7178947288412965,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.7178947288412965,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7178947288412965,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.7178947288412965,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7178947288412965,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.6666666666666666,
           "mrr": 1.0,
           "ndcg": 0.7178947288412965,
@@ -2422,25 +2422,25 @@
           "effective_ndcg": 0.9557911522471707,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.8571428571428571,
-          "mrr": 1.0,
-          "ndcg": 0.7837581800467175,
-          "effective_recall": 0.8571428571428571,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.7837581800467175,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.8571428571428571,
-          "mrr": 1.0,
-          "ndcg": 0.7837581800467175,
-          "effective_recall": 0.8571428571428571,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.7837581800467175,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.8571428571428571,
+          "mrr": 1.0,
+          "ndcg": 0.7837581800467175,
+          "effective_recall": 0.8571428571428571,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7837581800467175,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.8571428571428571,
+          "mrr": 1.0,
+          "ndcg": 0.7837581800467175,
+          "effective_recall": 0.8571428571428571,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7837581800467175,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.8571428571428571,
           "mrr": 1.0,
           "ndcg": 0.7837581800467175,
@@ -2510,25 +2510,25 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.6666666666666666,
-          "mrr": 1.0,
-          "ndcg": 0.960960846717329,
-          "effective_recall": 0.6666666666666666,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.960960846717329,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.6666666666666666,
-          "mrr": 1.0,
-          "ndcg": 0.960960846717329,
-          "effective_recall": 0.6666666666666666,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.960960846717329,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.960960846717329,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.960960846717329,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.960960846717329,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.960960846717329,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.6666666666666666,
           "mrr": 1.0,
           "ndcg": 0.960960846717329,
@@ -2598,25 +2598,25 @@
           "effective_ndcg": 0.9343710124351232,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.8333333333333334,
-          "mrr": 1.0,
-          "ndcg": 0.9550479995674238,
-          "effective_recall": 0.8333333333333334,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.9550479995674238,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.8333333333333334,
-          "mrr": 1.0,
-          "ndcg": 0.9550479995674238,
-          "effective_recall": 0.8333333333333334,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.9550479995674238,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.9550479995674238,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9550479995674238,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.9550479995674238,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9550479995674238,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.8333333333333334,
           "mrr": 1.0,
           "ndcg": 0.9550479995674238,
@@ -2685,25 +2685,25 @@
           "effective_ndcg": 0.921396320854073,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.8,
-          "mrr": 1.0,
-          "ndcg": 0.8241911108942168,
-          "effective_recall": 0.8,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.8241911108942168,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.8,
-          "mrr": 1.0,
-          "ndcg": 0.8241911108942168,
-          "effective_recall": 0.8,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.8241911108942168,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.8,
+          "mrr": 1.0,
+          "ndcg": 0.8241911108942168,
+          "effective_recall": 0.8,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8241911108942168,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.8,
+          "mrr": 1.0,
+          "ndcg": 0.8241911108942168,
+          "effective_recall": 0.8,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8241911108942168,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.8,
           "mrr": 1.0,
           "ndcg": 0.8241911108942168,
@@ -2772,25 +2772,25 @@
           "effective_ndcg": 0.9469024295259743,
           "passed": false
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.2,
-          "mrr": 1.0,
-          "ndcg": 1.0,
-          "effective_recall": 0.2,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 1.0,
-          "passed": false
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.2,
-          "mrr": 1.0,
-          "ndcg": 1.0,
-          "effective_recall": 0.2,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 1.0,
-          "passed": false
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.2,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.2,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.2,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -2860,25 +2860,25 @@
           "effective_ndcg": 0.9402268036207482,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.5,
-          "mrr": 1.0,
-          "ndcg": 0.9398058304490399,
-          "effective_recall": 0.5,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.9398058304490399,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.5,
-          "mrr": 1.0,
-          "ndcg": 0.9398058304490399,
-          "effective_recall": 0.5,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.9398058304490399,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.9398058304490399,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9398058304490399,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.9398058304490399,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9398058304490399,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.5,
           "mrr": 1.0,
           "ndcg": 0.9398058304490399,
@@ -2949,25 +2949,25 @@
           "effective_ndcg": 0.7826853730468758,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.42857142857142855,
-          "mrr": 1.0,
-          "ndcg": 0.8124614702704668,
-          "effective_recall": 0.42857142857142855,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.8124614702704668,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.42857142857142855,
-          "mrr": 1.0,
-          "ndcg": 0.8124614702704668,
-          "effective_recall": 0.42857142857142855,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.8124614702704668,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.42857142857142855,
+          "mrr": 1.0,
+          "ndcg": 0.8124614702704668,
+          "effective_recall": 0.42857142857142855,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8124614702704668,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.42857142857142855,
+          "mrr": 1.0,
+          "ndcg": 0.8124614702704668,
+          "effective_recall": 0.42857142857142855,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8124614702704668,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.42857142857142855,
           "mrr": 1.0,
           "ndcg": 0.8124614702704668,
@@ -3041,25 +3041,25 @@
           "effective_ndcg": 0.47742744029197676,
           "passed": true
         },
-        "LLM:gemini-2.0-flash-001": {
-          "recall": 0.9,
-          "mrr": 0.3333333333333333,
-          "ndcg": 0.4052614906197505,
-          "effective_recall": 0.9,
-          "effective_mrr": 0.3333333333333333,
-          "effective_ndcg": 0.4052614906197505,
-          "passed": true
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "recall": 0.9,
-          "mrr": 0.3333333333333333,
-          "ndcg": 0.4052614906197505,
-          "effective_recall": 0.9,
-          "effective_mrr": 0.3333333333333333,
-          "effective_ndcg": 0.4052614906197505,
-          "passed": true
-        },
         "LLM:llama-3.3-70b": {
+          "recall": 0.9,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.4052614906197505,
+          "effective_recall": 0.9,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.4052614906197505,
+          "passed": true
+        },
+        "LLM:nemotron-70b": {
+          "recall": 0.9,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.4052614906197505,
+          "effective_recall": 0.9,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.4052614906197505,
+          "passed": true
+        },
+        "LLM:gemini-2.0-flash": {
           "recall": 0.9,
           "mrr": 0.3333333333333333,
           "ndcg": 0.4052614906197505,
@@ -3127,10 +3127,10 @@
       "n_passed": 31,
       "n_total": 35
     },
-    "LLM:gemini-2.0-flash-001": {
-      "Recall@K": 0.6715646258503402,
-      "MRR": 0.8333333333333334,
-      "NDCG@K": 0.8076623969949023,
+    "LLM:llama-3.3-70b": {
+      "Recall@K": 0.664421768707483,
+      "MRR": 0.8047619047619048,
+      "NDCG@K": 0.8126982567278842,
       "pass@1": 0.8285714285714285,
       "pass@3": 0.9969442322383499,
       "pass^3": 0.5688396501457728,
@@ -3138,7 +3138,7 @@
       "n_passed": 29,
       "n_total": 35
     },
-    "LLM:llama-3.1-nemotron-70b": {
+    "LLM:nemotron-70b": {
       "Recall@K": 0.664421768707483,
       "MRR": 0.8333333333333334,
       "NDCG@K": 0.7945504346059484,
@@ -3149,10 +3149,10 @@
       "n_passed": 29,
       "n_total": 35
     },
-    "LLM:llama-3.3-70b": {
-      "Recall@K": 0.664421768707483,
-      "MRR": 0.8047619047619048,
-      "NDCG@K": 0.8126982567278842,
+    "LLM:gemini-2.0-flash": {
+      "Recall@K": 0.6715646258503402,
+      "MRR": 0.8333333333333334,
+      "NDCG@K": 0.8076623969949023,
       "pass@1": 0.8285714285714285,
       "pass@3": 0.9969442322383499,
       "pass^3": 0.5688396501457728,
@@ -3190,20 +3190,20 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 1.0
         },
-        "LLM:gemini-2.0-flash-001": {
-          "mean_recall": 1.0,
-          "mean_mrr": 1.0,
-          "mean_ndcg": 0.9639826065740476
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "mean_recall": 0.8333333333333334,
-          "mean_mrr": 1.0,
-          "mean_ndcg": 1.0
-        },
         "LLM:llama-3.3-70b": {
           "mean_recall": 0.8333333333333334,
           "mean_mrr": 1.0,
           "mean_ndcg": 1.0
+        },
+        "LLM:nemotron-70b": {
+          "mean_recall": 0.8333333333333334,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 1.0
+        },
+        "LLM:gemini-2.0-flash": {
+          "mean_recall": 1.0,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9639826065740476
         }
       }
     },
@@ -3235,20 +3235,20 @@
           "mean_mrr": 0.6666666666666666,
           "mean_ndcg": 0.7286684863663728
         },
-        "LLM:gemini-2.0-flash-001": {
-          "mean_recall": 0.7083333333333333,
-          "mean_mrr": 1.0,
-          "mean_ndcg": 0.8889024546064751
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "mean_recall": 0.7083333333333333,
-          "mean_mrr": 1.0,
-          "mean_ndcg": 0.9524882791605083
-        },
         "LLM:llama-3.3-70b": {
           "mean_recall": 0.875,
           "mean_mrr": 1.0,
           "mean_ndcg": 0.8748408949045399
+        },
+        "LLM:nemotron-70b": {
+          "mean_recall": 0.7083333333333333,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9524882791605083
+        },
+        "LLM:gemini-2.0-flash": {
+          "mean_recall": 0.7083333333333333,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8889024546064751
         }
       }
     },
@@ -3280,20 +3280,20 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.7244030023014727
         },
-        "LLM:gemini-2.0-flash-001": {
-          "mean_recall": 0.7708333333333334,
-          "mean_mrr": 1.0,
-          "mean_ndcg": 0.831209647618635
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "mean_recall": 0.7708333333333334,
-          "mean_mrr": 1.0,
-          "mean_ndcg": 0.7974545153461324
-        },
         "LLM:llama-3.3-70b": {
           "mean_recall": 0.8125,
           "mean_mrr": 0.875,
           "mean_ndcg": 0.8765358865916698
+        },
+        "LLM:nemotron-70b": {
+          "mean_recall": 0.7708333333333334,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.7974545153461324
+        },
+        "LLM:gemini-2.0-flash": {
+          "mean_recall": 0.7708333333333334,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.831209647618635
         }
       }
     },
@@ -3325,20 +3325,20 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.9682410180927637
         },
-        "LLM:gemini-2.0-flash-001": {
-          "mean_recall": 1.0,
-          "mean_mrr": 1.0,
-          "mean_ndcg": 0.9679990274445897
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "mean_recall": 1.0,
-          "mean_mrr": 1.0,
-          "mean_ndcg": 0.6988161337879291
-        },
         "LLM:llama-3.3-70b": {
           "mean_recall": 1.0,
           "mean_mrr": 1.0,
           "mean_ndcg": 0.9814513968494162
+        },
+        "LLM:nemotron-70b": {
+          "mean_recall": 1.0,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.6988161337879291
+        },
+        "LLM:gemini-2.0-flash": {
+          "mean_recall": 1.0,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9679990274445897
         }
       }
     },
@@ -3370,20 +3370,20 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.7674254662469385
         },
-        "LLM:gemini-2.0-flash-001": {
-          "mean_recall": 0.48888888888888893,
-          "mean_mrr": 1.0,
-          "mean_ndcg": 0.8739116689744876
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "mean_recall": 0.5722222222222223,
-          "mean_mrr": 1.0,
-          "mean_ndcg": 0.8669929367758291
-        },
         "LLM:llama-3.3-70b": {
           "mean_recall": 0.4055555555555556,
           "mean_mrr": 0.8333333333333334,
           "mean_ndcg": 0.8366171140006838
+        },
+        "LLM:nemotron-70b": {
+          "mean_recall": 0.5722222222222223,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8669929367758291
+        },
+        "LLM:gemini-2.0-flash": {
+          "mean_recall": 0.48888888888888893,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8739116689744876
         }
       }
     },
@@ -3415,17 +3415,17 @@
           "mean_mrr": 0.6666666666666667,
           "mean_ndcg": 0.8037329667578119
         },
-        "LLM:gemini-2.0-flash-001": {
-          "mean_recall": 0.5,
-          "mean_mrr": 0.4666666666666667,
-          "mean_ndcg": 0.8666649074702122
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "mean_recall": 0.5,
-          "mean_mrr": 0.4666666666666667,
-          "mean_ndcg": 0.8666649074702122
-        },
         "LLM:llama-3.3-70b": {
+          "mean_recall": 0.5,
+          "mean_mrr": 0.4666666666666667,
+          "mean_ndcg": 0.8666649074702122
+        },
+        "LLM:nemotron-70b": {
+          "mean_recall": 0.5,
+          "mean_mrr": 0.4666666666666667,
+          "mean_ndcg": 0.8666649074702122
+        },
+        "LLM:gemini-2.0-flash": {
           "mean_recall": 0.5,
           "mean_mrr": 0.4666666666666667,
           "mean_ndcg": 0.8666649074702122
@@ -3460,17 +3460,17 @@
           "mean_mrr": 0.7692307692307693,
           "mean_ndcg": 0.8095727656745981
         },
-        "LLM:gemini-2.0-flash-001": {
-          "mean_recall": 0.5047619047619047,
-          "mean_mrr": 0.8125,
-          "mean_ndcg": 0.784740838233476
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "mean_recall": 0.5047619047619047,
-          "mean_mrr": 0.8125,
-          "mean_ndcg": 0.784740838233476
-        },
         "LLM:llama-3.3-70b": {
+          "mean_recall": 0.5047619047619047,
+          "mean_mrr": 0.8125,
+          "mean_ndcg": 0.784740838233476
+        },
+        "LLM:nemotron-70b": {
+          "mean_recall": 0.5047619047619047,
+          "mean_mrr": 0.8125,
+          "mean_ndcg": 0.784740838233476
+        },
+        "LLM:gemini-2.0-flash": {
           "mean_recall": 0.5047619047619047,
           "mean_mrr": 0.8125,
           "mean_ndcg": 0.784740838233476
@@ -3505,17 +3505,17 @@
           "mean_mrr": 0.3333333333333333,
           "mean_ndcg": 0.21122941910080298
         },
-        "LLM:gemini-2.0-flash-001": {
-          "mean_recall": 0.7222222222222223,
-          "mean_mrr": 0.4166666666666667,
-          "mean_ndcg": 0.2813966553027001
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "mean_recall": 0.7222222222222223,
-          "mean_mrr": 0.4166666666666667,
-          "mean_ndcg": 0.2813966553027001
-        },
         "LLM:llama-3.3-70b": {
+          "mean_recall": 0.7222222222222223,
+          "mean_mrr": 0.4166666666666667,
+          "mean_ndcg": 0.2813966553027001
+        },
+        "LLM:nemotron-70b": {
+          "mean_recall": 0.7222222222222223,
+          "mean_mrr": 0.4166666666666667,
+          "mean_ndcg": 0.2813966553027001
+        },
+        "LLM:gemini-2.0-flash": {
           "mean_recall": 0.7222222222222223,
           "mean_mrr": 0.4166666666666667,
           "mean_ndcg": 0.2813966553027001
@@ -3550,17 +3550,17 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.8793023940072696
         },
-        "LLM:gemini-2.0-flash-001": {
-          "mean_recall": 0.7301587301587301,
-          "mean_mrr": 1.0,
-          "mean_ndcg": 0.8208712518684477
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "mean_recall": 0.7301587301587301,
-          "mean_mrr": 1.0,
-          "mean_ndcg": 0.8208712518684477
-        },
         "LLM:llama-3.3-70b": {
+          "mean_recall": 0.7301587301587301,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8208712518684477
+        },
+        "LLM:nemotron-70b": {
+          "mean_recall": 0.7301587301587301,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8208712518684477
+        },
+        "LLM:gemini-2.0-flash": {
           "mean_recall": 0.7301587301587301,
           "mean_mrr": 1.0,
           "mean_ndcg": 0.8208712518684477
@@ -3595,17 +3595,17 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.9342232542717235
         },
-        "LLM:gemini-2.0-flash-001": {
-          "mean_recall": 0.6111111111111112,
-          "mean_mrr": 1.0,
-          "mean_ndcg": 0.9264130368205469
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "mean_recall": 0.6111111111111112,
-          "mean_mrr": 1.0,
-          "mean_ndcg": 0.9264130368205469
-        },
         "LLM:llama-3.3-70b": {
+          "mean_recall": 0.6111111111111112,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9264130368205469
+        },
+        "LLM:nemotron-70b": {
+          "mean_recall": 0.6111111111111112,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9264130368205469
+        },
+        "LLM:gemini-2.0-flash": {
           "mean_recall": 0.6111111111111112,
           "mean_mrr": 1.0,
           "mean_ndcg": 0.9264130368205469
@@ -3640,17 +3640,17 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.861456088333812
         },
-        "LLM:gemini-2.0-flash-001": {
-          "mean_recall": 0.4642857142857143,
-          "mean_mrr": 1.0,
-          "mean_ndcg": 0.8761336503597533
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "mean_recall": 0.4642857142857143,
-          "mean_mrr": 1.0,
-          "mean_ndcg": 0.8761336503597533
-        },
         "LLM:llama-3.3-70b": {
+          "mean_recall": 0.4642857142857143,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8761336503597533
+        },
+        "LLM:nemotron-70b": {
+          "mean_recall": 0.4642857142857143,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8761336503597533
+        },
+        "LLM:gemini-2.0-flash": {
           "mean_recall": 0.4642857142857143,
           "mean_mrr": 1.0,
           "mean_ndcg": 0.8761336503597533
@@ -3685,17 +3685,17 @@
           "mean_mrr": 0.3333333333333333,
           "mean_ndcg": 0.47742744029197676
         },
-        "LLM:gemini-2.0-flash-001": {
-          "mean_recall": 0.9,
-          "mean_mrr": 0.3333333333333333,
-          "mean_ndcg": 0.4052614906197505
-        },
-        "LLM:llama-3.1-nemotron-70b": {
-          "mean_recall": 0.9,
-          "mean_mrr": 0.3333333333333333,
-          "mean_ndcg": 0.4052614906197505
-        },
         "LLM:llama-3.3-70b": {
+          "mean_recall": 0.9,
+          "mean_mrr": 0.3333333333333333,
+          "mean_ndcg": 0.4052614906197505
+        },
+        "LLM:nemotron-70b": {
+          "mean_recall": 0.9,
+          "mean_mrr": 0.3333333333333333,
+          "mean_ndcg": 0.4052614906197505
+        },
+        "LLM:gemini-2.0-flash": {
           "mean_recall": 0.9,
           "mean_mrr": 0.3333333333333333,
           "mean_ndcg": 0.4052614906197505
@@ -3784,14 +3784,14 @@
     {
       "kw": null,
       "sw": null,
-      "label": "LLM:gemini-2.0-flash-001",
+      "label": "LLM:gemini-2.0-flash",
       "mean_recall": 0.6715646258503402,
       "pass_rate": 0.8285714285714286
     },
     {
       "kw": null,
       "sw": null,
-      "label": "LLM:llama-3.1-nemotron-70b",
+      "label": "LLM:nemotron-70b",
       "mean_recall": 0.664421768707483,
       "pass_rate": 0.8285714285714286
     },

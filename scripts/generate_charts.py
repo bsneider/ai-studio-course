@@ -503,20 +503,22 @@ def chart_cost_comparison(data, output_dir):
     approaches = data["approaches"]
     aggregates = data.get("aggregates", {})
 
-    # Cost estimates per 1,000 queries
+    # Cost estimates per 1,000 queries (OpenRouter pricing, Feb 2026)
     # BM25/Semantic/Hybrid: all local computation, $0
-    # LLM models: estimated from OpenRouter pricing
-    # ~8,500 input tokens + ~750 output tokens per query (50 candidates x 600 chars)
+    # LLM models: ~8,500 input tokens + ~750 output tokens per query
+    # Gemini 2.0 Flash: $0.10/M in, $0.40/M out → ~$1.15/1K queries
+    # Nemotron 70B:     $1.20/M in, $1.20/M out → ~$11.10/1K queries
+    # Llama 3.3 70B:    $0.10/M in, $0.32/M out → ~$1.09/1K queries
     cost_per_1k = {}
     for aname in approaches:
         if aname in ("Hybrid", "BM25", "Semantic") or aname.startswith("Hybrid+"):
             cost_per_1k[aname] = 0.0
         elif "gemini" in aname.lower():
-            cost_per_1k[aname] = 1.10  # ~$0.0011/query
+            cost_per_1k[aname] = 1.15
         elif "nemotron" in aname.lower():
-            cost_per_1k[aname] = 3.50  # ~$0.0035/query (70B model)
-        elif "llama-3.3" in aname.lower() or "llama-3.1" in aname.lower():
-            cost_per_1k[aname] = 3.50  # ~$0.0035/query (70B model)
+            cost_per_1k[aname] = 11.10
+        elif "llama-3.3" in aname.lower():
+            cost_per_1k[aname] = 1.09
         else:
             cost_per_1k[aname] = 2.00  # default estimate for unknown LLM
 
