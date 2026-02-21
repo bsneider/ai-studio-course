@@ -1,11 +1,15 @@
 {
-  "generated_at": "2026-02-21T04:02:32.308067+00:00",
+  "generated_at": "2026-02-21T04:35:49.588474+00:00",
   "n_queries": 35,
   "approaches": [
     "Hybrid",
+    "Hybrid+Expand",
+    "Hybrid+RRF",
     "BM25",
     "Semantic",
-    "LLM-Rerank"
+    "LLM:gemini-2.0-flash-001",
+    "LLM:llama-3.1-nemotron-70b",
+    "LLM:llama-3.3-70b"
   ],
   "per_query": [
     {
@@ -21,6 +25,24 @@
       "top_k": 5,
       "approaches": {
         "Hybrid": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "Hybrid+Expand": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "Hybrid+RRF": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -47,7 +69,25 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -77,6 +117,24 @@
           "effective_ndcg": 0.5,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 1.0,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.5,
+          "effective_recall": 1.0,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.5,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
         "BM25": {
           "recall": 1.0,
           "mrr": 1.0,
@@ -95,7 +153,25 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -127,6 +203,24 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.9828920819566879,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9828920819566879,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.75,
           "mrr": 1.0,
@@ -145,13 +239,31 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 0.8919478197221425,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
           "effective_ndcg": 0.8919478197221425,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         }
       }
@@ -177,6 +289,24 @@
           "effective_ndcg": 0.5976315487360696,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.75,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.5976315487360696,
+          "effective_recall": 0.75,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.5976315487360696,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.9699225363013644,
+          "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9699225363013644,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.75,
           "mrr": 1.0,
@@ -195,7 +325,25 @@
           "effective_ndcg": 0.4573369727327457,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.9121656860366328,
+          "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9121656860366328,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.9049765583210164,
+          "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9049765583210164,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
           "recall": 0.75,
           "mrr": 1.0,
           "ndcg": 0.9121656860366328,
@@ -226,6 +374,24 @@
           "effective_ndcg": 0.9920466006454152,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.9920466006454152,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9920466006454152,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.6666666666666666,
           "mrr": 1.0,
@@ -244,13 +410,31 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "recall": 0.6666666666666666,
           "mrr": 1.0,
-          "ndcg": 0.866107201235062,
+          "ndcg": 0.8656392231763174,
           "effective_recall": 0.6666666666666666,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.866107201235062,
+          "effective_ndcg": 0.8656392231763174,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8375161037724468,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8375161037724468,
           "passed": true
         }
       }
@@ -278,6 +462,24 @@
           "effective_ndcg": 0.7671980430548917,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.9297949982523477,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9297949982523477,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.6272607566348145,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.6272607566348145,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.8333333333333334,
           "mrr": 1.0,
@@ -296,13 +498,31 @@
           "effective_ndcg": 0.5531239834838553,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 0.7033736910334266,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
           "effective_ndcg": 0.7033736910334266,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.6901332867457537,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.6901332867457537,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.9132595666297368,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9132595666297368,
           "passed": true
         }
       }
@@ -329,6 +549,24 @@
           "effective_ndcg": 0.6022440725213158,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.6672365503089726,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.6672365503089726,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.6415596441058588,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.6415596441058588,
+          "passed": true
+        },
         "BM25": {
           "recall": 1.0,
           "mrr": 1.0,
@@ -347,13 +585,31 @@
           "effective_ndcg": 0.8221120471878671,
           "passed": false
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 0.8791456368861218,
+          "ndcg": 0.7614851882563043,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.8791456368861218,
+          "effective_ndcg": 0.7614851882563043,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.5713939514994553,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.5713939514994553,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8686633200819412,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8686633200819412,
           "passed": true
         }
       }
@@ -379,6 +635,24 @@
           "effective_ndcg": 0.8442355845243696,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.8442355845243696,
+          "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8442355845243696,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.982619653523767,
+          "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.982619653523767,
+          "passed": true
+        },
         "BM25": {
           "recall": 1.0,
           "mrr": 1.0,
@@ -397,7 +671,25 @@
           "effective_ndcg": 0.6776636931349654,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.9813883936133462,
+          "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9813883936133462,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
           "recall": 0.75,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -431,6 +723,24 @@
           "effective_ndcg": 0.8401498110374593,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.8401498110374593,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8401498110374593,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.7040663144958564,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7040663144958564,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.5,
           "mrr": 0.5,
@@ -449,7 +759,7 @@
           "effective_ndcg": 0.8447122853992027,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "recall": 0.3333333333333333,
           "mrr": 1.0,
           "ndcg": 0.8599797111848092,
@@ -457,6 +767,24 @@
           "effective_mrr": 1.0,
           "effective_ndcg": 0.8599797111848092,
           "passed": false
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.3333333333333333,
+          "mrr": 1.0,
+          "ndcg": 0.9469024295259745,
+          "effective_recall": 0.3333333333333333,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9469024295259745,
+          "passed": false
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.5,
+          "mrr": 0.5,
+          "ndcg": 0.7242206596550013,
+          "effective_recall": 0.5,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.7242206596550013,
+          "passed": true
         }
       }
     },
@@ -474,6 +802,24 @@
       "top_k": 5,
       "approaches": {
         "Hybrid": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.6673385207601783,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.6673385207601783,
+          "passed": true
+        },
+        "Hybrid+Expand": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.6673385207601783,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.6673385207601783,
+          "passed": true
+        },
+        "Hybrid+RRF": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 0.6673385207601783,
@@ -500,13 +846,31 @@
           "effective_ndcg": 0.9735792424866951,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 0.9359980548891793,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
           "effective_ndcg": 0.9359980548891793,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.6673385207601783,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.6673385207601783,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         }
       }
@@ -532,6 +896,24 @@
           "effective_ndcg": 0.9629027936988324,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.9629027936988324,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9629027936988324,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.9066180787084464,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9066180787084464,
+          "passed": true
+        },
         "BM25": {
           "recall": 1.0,
           "mrr": 1.0,
@@ -550,13 +932,31 @@
           "effective_ndcg": 0.9629027936988324,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
           "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.7302937468156797,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7302937468156797,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.9629027936988324,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9629027936988324,
           "passed": true
         }
       }
@@ -582,6 +982,24 @@
           "effective_ndcg": 0.7770227215242603,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.7979168917078058,
+          "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7979168917078058,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.9121656860366328,
+          "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9121656860366328,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.75,
           "mrr": 1.0,
@@ -600,7 +1018,7 @@
           "effective_ndcg": 0.7979168917078058,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "recall": 0.5,
           "mrr": 1.0,
           "ndcg": 0.8447122853992027,
@@ -608,6 +1026,24 @@
           "effective_mrr": 1.0,
           "effective_ndcg": 0.8447122853992027,
           "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.8239560888032269,
+          "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8239560888032269,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.25,
+          "mrr": 0.5,
+          "ndcg": 0.7328286204777911,
+          "effective_recall": 0.25,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.7328286204777911,
+          "passed": false
         }
       }
     },
@@ -633,6 +1069,24 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.6,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.6,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.8,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.8,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
         "BM25": {
           "recall": 1.0,
           "mrr": 1.0,
@@ -651,13 +1105,31 @@
           "effective_ndcg": 0.7521728881423634,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "recall": 0.8,
           "mrr": 1.0,
-          "ndcg": 0.9338511340819263,
+          "ndcg": 0.7770227215242603,
           "effective_recall": 0.8,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.9338511340819263,
+          "effective_ndcg": 0.7770227215242603,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.8,
+          "mrr": 1.0,
+          "ndcg": 0.7770227215242603,
+          "effective_recall": 0.8,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7770227215242603,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.8,
+          "mrr": 1.0,
+          "ndcg": 0.7770227215242603,
+          "effective_recall": 0.8,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7770227215242603,
           "passed": true
         }
       }
@@ -685,6 +1157,24 @@
           "effective_ndcg": 0.7521866188906461,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.7521866188906461,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7521866188906461,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.7320886311979027,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7320886311979027,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.6666666666666666,
           "mrr": 1.0,
@@ -703,14 +1193,32 @@
           "effective_ndcg": 0.7521866188906461,
           "passed": true
         },
-        "LLM-Rerank": {
-          "recall": 0.6666666666666666,
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 0.16666666666666666,
           "mrr": 1.0,
-          "ndcg": 0.9413225986683531,
-          "effective_recall": 0.6666666666666666,
+          "ndcg": 1.0,
+          "effective_recall": 0.16666666666666666,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.9413225986683531,
-          "passed": true
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.16666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.16666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.16666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.16666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": false
         }
       }
     },
@@ -737,6 +1245,24 @@
           "effective_ndcg": 0.8174152298079348,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.8174152298079348,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8174152298079348,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.8796810374691769,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8796810374691769,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.8333333333333334,
           "mrr": 1.0,
@@ -755,13 +1281,31 @@
           "effective_ndcg": 0.6838554026395006,
           "passed": true
         },
-        "LLM-Rerank": {
-          "recall": 1.0,
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 0.8333333333333334,
           "mrr": 1.0,
-          "ndcg": 0.8412934800411139,
-          "effective_recall": 1.0,
+          "ndcg": 0.881282782391275,
+          "effective_recall": 0.8333333333333334,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.8412934800411139,
+          "effective_ndcg": 0.881282782391275,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.881282782391275,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.881282782391275,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.881282782391275,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.881282782391275,
           "passed": true
         }
       }
@@ -789,6 +1333,24 @@
           "effective_ndcg": 1.0,
           "passed": false
         },
+        "Hybrid+Expand": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "Hybrid+RRF": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
         "BM25": {
           "recall": 0.16666666666666666,
           "mrr": 0.2,
@@ -807,14 +1369,32 @@
           "effective_ndcg": 1.0,
           "passed": false
         },
-        "LLM-Rerank": {
-          "recall": 0.5,
-          "mrr": 0.5,
-          "ndcg": 0.6959964588011701,
-          "effective_recall": 0.5,
-          "effective_mrr": 0.5,
-          "effective_ndcg": 0.6959964588011701,
-          "passed": true
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 1.0,
+          "passed": false
         }
       }
     },
@@ -841,6 +1421,24 @@
           "effective_ndcg": 0.6126858339449328,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.6666666666666666,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.6126858339449328,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.6126858339449328,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.8641073220006465,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8641073220006465,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.8333333333333334,
           "mrr": 1.0,
@@ -859,13 +1457,31 @@
           "effective_ndcg": 0.5106716842493384,
           "passed": true
         },
-        "LLM-Rerank": {
-          "recall": 0.5,
-          "mrr": 1.0,
-          "ndcg": 0.7567348568360622,
-          "effective_recall": 0.5,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.7567348568360622,
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 0.6666666666666666,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.6279040080595649,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.6279040080595649,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.6666666666666666,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.6279040080595649,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.6279040080595649,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.6666666666666666,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.6279040080595649,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.6279040080595649,
           "passed": true
         }
       }
@@ -892,6 +1508,24 @@
           "effective_ndcg": 0.8241377469002206,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8241377469002206,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8241377469002206,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8149343938070834,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8149343938070834,
+          "passed": true
+        },
         "BM25": {
           "recall": 1.0,
           "mrr": 1.0,
@@ -910,13 +1544,31 @@
           "effective_ndcg": 0.8241377469002206,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 0.9801522273172875,
+          "ndcg": 0.8241377469002206,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.9801522273172875,
+          "effective_ndcg": 0.8241377469002206,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8241377469002206,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8241377469002206,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8241377469002206,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8241377469002206,
           "passed": true
         }
       }
@@ -943,6 +1595,24 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.4,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.4,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.8,
+          "mrr": 1.0,
+          "ndcg": 0.8300014060367712,
+          "effective_recall": 0.8,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8300014060367712,
+          "passed": true
+        },
         "BM25": {
           "recall": 1.0,
           "mrr": 1.0,
@@ -961,14 +1631,32 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM-Rerank": {
-          "recall": 0.4,
-          "mrr": 1.0,
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 0.0,
+          "mrr": 0.0,
           "ndcg": 1.0,
-          "effective_recall": 0.4,
-          "effective_mrr": 1.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
           "effective_ndcg": 1.0,
-          "passed": true
+          "passed": false
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 1.0,
+          "passed": false
         }
       }
     },
@@ -996,6 +1684,24 @@
           "effective_ndcg": 0.3458369414795075,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.42857142857142855,
+          "mrr": 0.125,
+          "ndcg": 0.3458369414795075,
+          "effective_recall": 0.42857142857142855,
+          "effective_mrr": 0.125,
+          "effective_ndcg": 0.3458369414795075,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.7142857142857143,
+          "mrr": 0.5,
+          "ndcg": 0.6649501334973374,
+          "effective_recall": 0.7142857142857143,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.6649501334973374,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.8571428571428571,
           "mrr": 1.0,
@@ -1014,13 +1720,31 @@
           "effective_ndcg": 0.360691176496464,
           "passed": false
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "recall": 0.2857142857142857,
-          "mrr": 1.0,
-          "ndcg": 0.7681402000657983,
+          "mrr": 0.25,
+          "ndcg": 0.43954268380428807,
           "effective_recall": 0.2857142857142857,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.7681402000657983,
+          "effective_mrr": 0.25,
+          "effective_ndcg": 0.43954268380428807,
+          "passed": false
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.2857142857142857,
+          "mrr": 0.25,
+          "ndcg": 0.43954268380428807,
+          "effective_recall": 0.2857142857142857,
+          "effective_mrr": 0.25,
+          "effective_ndcg": 0.43954268380428807,
+          "passed": false
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.2857142857142857,
+          "mrr": 0.25,
+          "ndcg": 0.43954268380428807,
+          "effective_recall": 0.2857142857142857,
+          "effective_mrr": 0.25,
+          "effective_ndcg": 0.43954268380428807,
           "passed": false
         }
       }
@@ -1047,6 +1771,24 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.4,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.4,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.4,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.4,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.8,
           "mrr": 1.0,
@@ -1065,13 +1807,31 @@
           "effective_ndcg": 0.9605753368118397,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "recall": 0.4,
           "mrr": 1.0,
-          "ndcg": 0.8558112355261802,
+          "ndcg": 1.0,
           "effective_recall": 0.4,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.8558112355261802,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.4,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.4,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.4,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.4,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         }
       }
@@ -1097,6 +1857,24 @@
           "effective_ndcg": 0.8011166442354041,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8045634000992654,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8045634000992654,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.8062497036910624,
+          "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8062497036910624,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.25,
           "mrr": 0.5,
@@ -1115,13 +1893,31 @@
           "effective_ndcg": 0.9170245493900888,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "recall": 0.5,
           "mrr": 1.0,
-          "ndcg": 0.9028373627369358,
+          "ndcg": 0.9061710886726135,
           "effective_recall": 0.5,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.9028373627369358,
+          "effective_ndcg": 0.9061710886726135,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.9061710886726135,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9061710886726135,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.9061710886726135,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9061710886726135,
           "passed": true
         }
       }
@@ -1149,6 +1945,24 @@
           "effective_ndcg": 0.8080267481237329,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.8080267481237329,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8080267481237329,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.3333333333333333,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.3333333333333333,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
         "BM25": {
           "recall": 0.3333333333333333,
           "mrr": 1.0,
@@ -1167,14 +1981,32 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM-Rerank": {
-          "recall": 0.3333333333333333,
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 0.8333333333333334,
           "mrr": 1.0,
-          "ndcg": 0.9467009784197935,
-          "effective_recall": 0.3333333333333333,
+          "ndcg": 0.7932495804570024,
+          "effective_recall": 0.8333333333333334,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.9467009784197935,
-          "passed": false
+          "effective_ndcg": 0.7932495804570024,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.7932495804570024,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7932495804570024,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.7932495804570024,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7932495804570024,
+          "passed": true
         }
       }
     },
@@ -1201,6 +2033,24 @@
           "effective_ndcg": 0.32711466091967967,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.5,
+          "mrr": 0.5,
+          "ndcg": 0.6728853390803203,
+          "effective_recall": 0.5,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.32711466091967967,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.16666666666666666,
+          "mrr": 0.2,
+          "ndcg": 0.38685280723454163,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.8,
+          "effective_ndcg": 0.6131471927654584,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.5,
           "mrr": 1.0,
@@ -1219,13 +2069,31 @@
           "effective_ndcg": 0.32711466091967967,
           "passed": true
         },
-        "LLM-Rerank": {
-          "recall": 0.0,
-          "mrr": 0.0,
-          "ndcg": 1.0,
-          "effective_recall": 1.0,
-          "effective_mrr": 1.0,
-          "effective_ndcg": 0.0,
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 0.5,
+          "mrr": 0.25,
+          "ndcg": 0.46238363047462905,
+          "effective_recall": 0.5,
+          "effective_mrr": 0.75,
+          "effective_ndcg": 0.537616369525371,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.5,
+          "mrr": 0.25,
+          "ndcg": 0.46238363047462905,
+          "effective_recall": 0.5,
+          "effective_mrr": 0.75,
+          "effective_ndcg": 0.537616369525371,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.5,
+          "mrr": 0.25,
+          "ndcg": 0.46238363047462905,
+          "effective_recall": 0.5,
+          "effective_mrr": 0.75,
+          "effective_ndcg": 0.537616369525371,
           "passed": true
         }
       }
@@ -1253,6 +2121,24 @@
           "effective_ndcg": 0.3065735963827293,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.16666666666666666,
+          "mrr": 0.5,
+          "ndcg": 0.6934264036172707,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.3065735963827293,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.0,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.0,
           "mrr": 0.0,
@@ -1271,7 +2157,25 @@
           "effective_ndcg": 0.3065735963827293,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 0.16666666666666666,
+          "mrr": 0.5,
+          "ndcg": 0.6934264036172707,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.3065735963827293,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.16666666666666666,
+          "mrr": 0.5,
+          "ndcg": 0.6934264036172707,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.3065735963827293,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
           "recall": 0.16666666666666666,
           "mrr": 0.5,
           "ndcg": 0.6934264036172707,
@@ -1305,6 +2209,24 @@
           "effective_ndcg": 0.0,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.16666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.3333333333333333,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.6666666666666667,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.16666666666666666,
           "mrr": 1.0,
@@ -1323,13 +2245,31 @@
           "effective_ndcg": 0.0,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "recall": 0.16666666666666666,
-          "mrr": 0.25,
-          "ndcg": 0.5012658353418871,
+          "mrr": 1.0,
+          "ndcg": 1.0,
           "effective_recall": 0.8333333333333334,
-          "effective_mrr": 0.75,
-          "effective_ndcg": 0.49873416465811293,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.16666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.16666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
           "passed": true
         }
       }
@@ -1357,6 +2297,24 @@
           "effective_ndcg": 0.7031432329334039,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.7031432329334039,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7031432329334039,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.7414636530982025,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7414636530982025,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.5,
           "mrr": 0.5,
@@ -1375,13 +2333,31 @@
           "effective_ndcg": 0.6821160297746383,
           "passed": true
         },
-        "LLM-Rerank": {
-          "recall": 1.0,
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 0.6666666666666666,
           "mrr": 1.0,
-          "ndcg": 0.8107702033316995,
-          "effective_recall": 1.0,
+          "ndcg": 0.7178947288412965,
+          "effective_recall": 0.6666666666666666,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.8107702033316995,
+          "effective_ndcg": 0.7178947288412965,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.7178947288412965,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7178947288412965,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.7178947288412965,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7178947288412965,
           "passed": true
         }
       }
@@ -1410,6 +2386,24 @@
           "effective_ndcg": 0.9211410805414261,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.8571428571428571,
+          "mrr": 1.0,
+          "ndcg": 0.9189930317978608,
+          "effective_recall": 0.8571428571428571,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9189930317978608,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.7142857142857143,
+          "mrr": 1.0,
+          "ndcg": 0.7546554012697665,
+          "effective_recall": 0.7142857142857143,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7546554012697665,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.2857142857142857,
           "mrr": 1.0,
@@ -1428,13 +2422,31 @@
           "effective_ndcg": 0.9557911522471707,
           "passed": true
         },
-        "LLM-Rerank": {
-          "recall": 1.0,
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 0.8571428571428571,
           "mrr": 1.0,
-          "ndcg": 0.922614891023392,
-          "effective_recall": 1.0,
+          "ndcg": 0.7837581800467175,
+          "effective_recall": 0.8571428571428571,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.922614891023392,
+          "effective_ndcg": 0.7837581800467175,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.8571428571428571,
+          "mrr": 1.0,
+          "ndcg": 0.7837581800467175,
+          "effective_recall": 0.8571428571428571,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7837581800467175,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.8571428571428571,
+          "mrr": 1.0,
+          "ndcg": 0.7837581800467175,
+          "effective_recall": 0.8571428571428571,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7837581800467175,
           "passed": true
         }
       }
@@ -1462,6 +2474,24 @@
           "effective_ndcg": 0.960960846717329,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.960960846717329,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.960960846717329,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.8986776544421414,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8986776544421414,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.3333333333333333,
           "mrr": 1.0,
@@ -1480,14 +2510,32 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM-Rerank": {
-          "recall": 0.3333333333333333,
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 0.6666666666666666,
           "mrr": 1.0,
-          "ndcg": 1.0,
-          "effective_recall": 0.3333333333333333,
+          "ndcg": 0.960960846717329,
+          "effective_recall": 0.6666666666666666,
           "effective_mrr": 1.0,
-          "effective_ndcg": 1.0,
-          "passed": false
+          "effective_ndcg": 0.960960846717329,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.960960846717329,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.960960846717329,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.960960846717329,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.960960846717329,
+          "passed": true
         }
       }
     },
@@ -1514,6 +2562,24 @@
           "effective_ndcg": 0.9488136009556423,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.9488136009556423,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9488136009556423,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.9355095261428394,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9355095261428394,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.6666666666666666,
           "mrr": 1.0,
@@ -1532,13 +2598,31 @@
           "effective_ndcg": 0.9343710124351232,
           "passed": true
         },
-        "LLM-Rerank": {
-          "recall": 0.5,
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 0.8333333333333334,
           "mrr": 1.0,
-          "ndcg": 0.8508342748471082,
-          "effective_recall": 0.5,
+          "ndcg": 0.9550479995674238,
+          "effective_recall": 0.8333333333333334,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.8508342748471082,
+          "effective_ndcg": 0.9550479995674238,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.9550479995674238,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9550479995674238,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.9550479995674238,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9550479995674238,
           "passed": true
         }
       }
@@ -1565,6 +2649,24 @@
           "effective_ndcg": 0.921396320854073,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.921396320854073,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.921396320854073,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8025392158797567,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8025392158797567,
+          "passed": true
+        },
         "BM25": {
           "recall": 1.0,
           "mrr": 1.0,
@@ -1583,7 +2685,25 @@
           "effective_ndcg": 0.921396320854073,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 0.8,
+          "mrr": 1.0,
+          "ndcg": 0.8241911108942168,
+          "effective_recall": 0.8,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8241911108942168,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.8,
+          "mrr": 1.0,
+          "ndcg": 0.8241911108942168,
+          "effective_recall": 0.8,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8241911108942168,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
           "recall": 0.8,
           "mrr": 1.0,
           "ndcg": 0.8241911108942168,
@@ -1616,6 +2736,24 @@
           "effective_ndcg": 0.9469024295259743,
           "passed": false
         },
+        "Hybrid+Expand": {
+          "recall": 0.2,
+          "mrr": 1.0,
+          "ndcg": 0.9469024295259743,
+          "effective_recall": 0.2,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9469024295259743,
+          "passed": false
+        },
+        "Hybrid+RRF": {
+          "recall": 0.4,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.543791241910304,
+          "effective_recall": 0.4,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.543791241910304,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.6,
           "mrr": 1.0,
@@ -1634,14 +2772,32 @@
           "effective_ndcg": 0.9469024295259743,
           "passed": false
         },
-        "LLM-Rerank": {
-          "recall": 0.4,
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 0.2,
           "mrr": 1.0,
           "ndcg": 1.0,
-          "effective_recall": 0.4,
+          "effective_recall": 0.2,
           "effective_mrr": 1.0,
           "effective_ndcg": 1.0,
-          "passed": true
+          "passed": false
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.2,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.2,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": false
         }
       }
     },
@@ -1668,6 +2824,24 @@
           "effective_ndcg": 0.8626044552122213,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8521860157869707,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8521860157869707,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.3333333333333333,
+          "mrr": 1.0,
+          "ndcg": 0.9964451522221968,
+          "effective_recall": 0.3333333333333333,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9964451522221968,
+          "passed": false
+        },
         "BM25": {
           "recall": 0.6666666666666666,
           "mrr": 1.0,
@@ -1686,13 +2860,31 @@
           "effective_ndcg": 0.9402268036207482,
           "passed": true
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "recall": 0.5,
           "mrr": 1.0,
-          "ndcg": 0.8112134259965621,
+          "ndcg": 0.9398058304490399,
           "effective_recall": 0.5,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.8112134259965621,
+          "effective_ndcg": 0.9398058304490399,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.9398058304490399,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9398058304490399,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.9398058304490399,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9398058304490399,
           "passed": true
         }
       }
@@ -1721,6 +2913,24 @@
           "effective_ndcg": 0.7826853730468758,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.7142857142857143,
+          "mrr": 1.0,
+          "ndcg": 0.7826853730468758,
+          "effective_recall": 0.7142857142857143,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7826853730468758,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.8571428571428571,
+          "mrr": 1.0,
+          "ndcg": 0.970562823022889,
+          "effective_recall": 0.8571428571428571,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.970562823022889,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.8571428571428571,
           "mrr": 1.0,
@@ -1739,13 +2949,31 @@
           "effective_ndcg": 0.7826853730468758,
           "passed": true
         },
-        "LLM-Rerank": {
-          "recall": 0.8571428571428571,
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 0.42857142857142855,
           "mrr": 1.0,
-          "ndcg": 0.9380187625423563,
-          "effective_recall": 0.8571428571428571,
+          "ndcg": 0.8124614702704668,
+          "effective_recall": 0.42857142857142855,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.9380187625423563,
+          "effective_ndcg": 0.8124614702704668,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.42857142857142855,
+          "mrr": 1.0,
+          "ndcg": 0.8124614702704668,
+          "effective_recall": 0.42857142857142855,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8124614702704668,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.42857142857142855,
+          "mrr": 1.0,
+          "ndcg": 0.8124614702704668,
+          "effective_recall": 0.42857142857142855,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8124614702704668,
           "passed": true
         }
       }
@@ -1777,6 +3005,24 @@
           "effective_ndcg": 0.4590777890428118,
           "passed": true
         },
+        "Hybrid+Expand": {
+          "recall": 0.9,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.47021740025345654,
+          "effective_recall": 0.9,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.47021740025345654,
+          "passed": true
+        },
+        "Hybrid+RRF": {
+          "recall": 0.4,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.6155622552380583,
+          "effective_recall": 0.4,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.6155622552380583,
+          "passed": true
+        },
         "BM25": {
           "recall": 0.3,
           "mrr": 1.0,
@@ -1795,13 +3041,31 @@
           "effective_ndcg": 0.47742744029197676,
           "passed": true
         },
-        "LLM-Rerank": {
-          "recall": 1.0,
-          "mrr": 0.25,
-          "ndcg": 0.4927598258751643,
-          "effective_recall": 1.0,
-          "effective_mrr": 0.25,
-          "effective_ndcg": 0.4927598258751643,
+        "LLM:gemini-2.0-flash-001": {
+          "recall": 0.9,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.4052614906197505,
+          "effective_recall": 0.9,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.4052614906197505,
+          "passed": true
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "recall": 0.9,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.4052614906197505,
+          "effective_recall": 0.9,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.4052614906197505,
+          "passed": true
+        },
+        "LLM:llama-3.3-70b": {
+          "recall": 0.9,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.4052614906197505,
+          "effective_recall": 0.9,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.4052614906197505,
           "passed": true
         }
       }
@@ -1817,6 +3081,28 @@
       "pass^3": 0.8381807580174927,
       "pass_rate": 0.9428571428571428,
       "n_passed": 33,
+      "n_total": 35
+    },
+    "Hybrid+Expand": {
+      "Recall@K": 0.7261904761904763,
+      "MRR": 0.8130952380952381,
+      "NDCG@K": 0.7686597808026195,
+      "pass@1": 0.9428571428571428,
+      "pass@3": 1.0,
+      "pass^3": 0.8381807580174927,
+      "pass_rate": 0.9428571428571428,
+      "n_passed": 33,
+      "n_total": 35
+    },
+    "Hybrid+RRF": {
+      "Recall@K": 0.7167346938775511,
+      "MRR": 0.8847619047619047,
+      "NDCG@K": 0.7959660004632915,
+      "pass@1": 0.9142857142857143,
+      "pass@3": 0.9998472116119175,
+      "pass^3": 0.7642682215743439,
+      "pass_rate": 0.9142857142857143,
+      "n_passed": 32,
       "n_total": 35
     },
     "BM25": {
@@ -1841,15 +3127,37 @@
       "n_passed": 31,
       "n_total": 35
     },
-    "LLM-Rerank": {
-      "Recall@K": 0.7269387755102041,
-      "MRR": 0.9428571428571428,
-      "NDCG@K": 0.827770882126644,
-      "pass@1": 0.8857142857142857,
-      "pass@3": 0.99938884644767,
-      "pass^3": 0.6948338192419824,
-      "pass_rate": 0.8857142857142857,
-      "n_passed": 31,
+    "LLM:gemini-2.0-flash-001": {
+      "Recall@K": 0.6715646258503402,
+      "MRR": 0.8333333333333334,
+      "NDCG@K": 0.8076623969949023,
+      "pass@1": 0.8285714285714285,
+      "pass@3": 0.9969442322383499,
+      "pass^3": 0.5688396501457728,
+      "pass_rate": 0.8285714285714286,
+      "n_passed": 29,
+      "n_total": 35
+    },
+    "LLM:llama-3.1-nemotron-70b": {
+      "Recall@K": 0.664421768707483,
+      "MRR": 0.8333333333333334,
+      "NDCG@K": 0.7945504346059484,
+      "pass@1": 0.8285714285714285,
+      "pass@3": 0.9969442322383499,
+      "pass^3": 0.5688396501457728,
+      "pass_rate": 0.8285714285714286,
+      "n_passed": 29,
+      "n_total": 35
+    },
+    "LLM:llama-3.3-70b": {
+      "Recall@K": 0.664421768707483,
+      "MRR": 0.8047619047619048,
+      "NDCG@K": 0.8126982567278842,
+      "pass@1": 0.8285714285714285,
+      "pass@3": 0.9969442322383499,
+      "pass^3": 0.5688396501457728,
+      "pass_rate": 0.8285714285714286,
+      "n_passed": 29,
       "n_total": 35
     }
   },
@@ -1862,6 +3170,16 @@
           "mean_mrr": 0.7777777777777778,
           "mean_ndcg": 0.8333333333333334
         },
+        "Hybrid+Expand": {
+          "mean_recall": 0.8333333333333334,
+          "mean_mrr": 0.7777777777777778,
+          "mean_ndcg": 0.8333333333333334
+        },
+        "Hybrid+RRF": {
+          "mean_recall": 0.8333333333333334,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9942973606522293
+        },
         "BM25": {
           "mean_recall": 0.8333333333333334,
           "mean_mrr": 1.0,
@@ -1872,10 +3190,20 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 1.0
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "mean_recall": 1.0,
           "mean_mrr": 1.0,
           "mean_ndcg": 0.9639826065740476
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "mean_recall": 0.8333333333333334,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 1.0
+        },
+        "LLM:llama-3.3-70b": {
+          "mean_recall": 0.8333333333333334,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 1.0
         }
       }
     },
@@ -1887,6 +3215,16 @@
           "mean_mrr": 0.6666666666666666,
           "mean_ndcg": 0.7948390746907423
         },
+        "Hybrid+Expand": {
+          "mean_recall": 0.7083333333333333,
+          "mean_mrr": 0.6666666666666666,
+          "mean_ndcg": 0.7948390746907423
+        },
+        "Hybrid+RRF": {
+          "mean_recall": 0.7083333333333333,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9849612681506822
+        },
         "BM25": {
           "mean_recall": 0.7083333333333333,
           "mean_mrr": 1.0,
@@ -1897,10 +3235,20 @@
           "mean_mrr": 0.6666666666666666,
           "mean_ndcg": 0.7286684863663728
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "mean_recall": 0.7083333333333333,
           "mean_mrr": 1.0,
-          "mean_ndcg": 0.8891364436358474
+          "mean_ndcg": 0.8889024546064751
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "mean_recall": 0.7083333333333333,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9524882791605083
+        },
+        "LLM:llama-3.3-70b": {
+          "mean_recall": 0.875,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8748408949045399
         }
       }
     },
@@ -1912,6 +3260,16 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.7634568777845091
         },
+        "Hybrid+Expand": {
+          "mean_recall": 0.8125,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8203542360307873
+        },
+        "Hybrid+RRF": {
+          "mean_recall": 0.8125,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.7388765921900742
+        },
         "BM25": {
           "mean_recall": 0.8333333333333334,
           "mean_mrr": 0.875,
@@ -1922,10 +3280,20 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.7244030023014727
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "mean_recall": 0.7708333333333334,
           "mean_mrr": 1.0,
-          "mean_ndcg": 0.8606247597760894
+          "mean_ndcg": 0.831209647618635
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "mean_recall": 0.7708333333333334,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.7974545153461324
+        },
+        "LLM:llama-3.3-70b": {
+          "mean_recall": 0.8125,
+          "mean_mrr": 0.875,
+          "mean_ndcg": 0.8765358865916698
         }
       }
     },
@@ -1937,6 +3305,16 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.8151206572295053
         },
+        "Hybrid+Expand": {
+          "mean_recall": 1.0,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8151206572295053
+        },
+        "Hybrid+RRF": {
+          "mean_recall": 1.0,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.7869782997343123
+        },
         "BM25": {
           "mean_recall": 0.7,
           "mean_mrr": 1.0,
@@ -1947,10 +3325,20 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.9682410180927637
         },
-        "LLM-Rerank": {
+        "LLM:gemini-2.0-flash-001": {
           "mean_recall": 1.0,
           "mean_mrr": 1.0,
           "mean_ndcg": 0.9679990274445897
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "mean_recall": 1.0,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.6988161337879291
+        },
+        "LLM:llama-3.3-70b": {
+          "mean_recall": 1.0,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9814513968494162
         }
       }
     },
@@ -1962,6 +3350,16 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.8430697801383021
         },
+        "Hybrid+Expand": {
+          "mean_recall": 0.6166666666666667,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8500345035328173
+        },
+        "Hybrid+RRF": {
+          "mean_recall": 0.7388888888888889,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8814181057448452
+        },
         "BM25": {
           "mean_recall": 0.8055555555555555,
           "mean_mrr": 1.0,
@@ -1972,10 +3370,20 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.7674254662469385
         },
-        "LLM-Rerank": {
-          "mean_recall": 0.6555555555555556,
+        "LLM:gemini-2.0-flash-001": {
+          "mean_recall": 0.48888888888888893,
           "mean_mrr": 1.0,
-          "mean_ndcg": 0.906628672716494
+          "mean_ndcg": 0.8739116689744876
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "mean_recall": 0.5722222222222223,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8669929367758291
+        },
+        "LLM:llama-3.3-70b": {
+          "mean_recall": 0.4055555555555556,
+          "mean_mrr": 0.8333333333333334,
+          "mean_ndcg": 0.8366171140006838
         }
       }
     },
@@ -1987,6 +3395,16 @@
           "mean_mrr": 0.6666666666666667,
           "mean_ndcg": 0.8508477621306177
         },
+        "Hybrid+Expand": {
+          "mean_recall": 0.58,
+          "mean_mrr": 0.6666666666666667,
+          "mean_ndcg": 0.8508477621306177
+        },
+        "Hybrid+RRF": {
+          "mean_recall": 0.6599999999999999,
+          "mean_mrr": 0.8,
+          "mean_ndcg": 0.8777448318627357
+        },
         "BM25": {
           "mean_recall": 0.7666666666666667,
           "mean_mrr": 0.8400000000000001,
@@ -1997,10 +3415,20 @@
           "mean_mrr": 0.6666666666666667,
           "mean_ndcg": 0.8037329667578119
         },
-        "LLM-Rerank": {
-          "mean_recall": 0.6799999999999999,
-          "mean_mrr": 0.9,
-          "mean_ndcg": 0.8548354045991268
+        "LLM:gemini-2.0-flash-001": {
+          "mean_recall": 0.5,
+          "mean_mrr": 0.4666666666666667,
+          "mean_ndcg": 0.8666649074702122
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "mean_recall": 0.5,
+          "mean_mrr": 0.4666666666666667,
+          "mean_ndcg": 0.8666649074702122
+        },
+        "LLM:llama-3.3-70b": {
+          "mean_recall": 0.5,
+          "mean_mrr": 0.4666666666666667,
+          "mean_ndcg": 0.8666649074702122
         }
       }
     },
@@ -2012,6 +3440,16 @@
           "mean_mrr": 0.78125,
           "mean_ndcg": 0.7387450834596612
         },
+        "Hybrid+Expand": {
+          "mean_recall": 0.6654761904761904,
+          "mean_mrr": 0.78125,
+          "mean_ndcg": 0.7396067724256264
+        },
+        "Hybrid+RRF": {
+          "mean_recall": 0.549404761904762,
+          "mean_mrr": 0.875,
+          "mean_ndcg": 0.8677999592971
+        },
         "BM25": {
           "mean_recall": 0.5601190476190476,
           "mean_mrr": 0.875,
@@ -2022,10 +3460,20 @@
           "mean_mrr": 0.7692307692307693,
           "mean_ndcg": 0.8095727656745981
         },
-        "LLM-Rerank": {
-          "mean_recall": 0.37976190476190474,
-          "mean_mrr": 1.0,
-          "mean_ndcg": 0.868372444187177
+        "LLM:gemini-2.0-flash-001": {
+          "mean_recall": 0.5047619047619047,
+          "mean_mrr": 0.8125,
+          "mean_ndcg": 0.784740838233476
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "mean_recall": 0.5047619047619047,
+          "mean_mrr": 0.8125,
+          "mean_ndcg": 0.784740838233476
+        },
+        "LLM:llama-3.3-70b": {
+          "mean_recall": 0.5047619047619047,
+          "mean_mrr": 0.8125,
+          "mean_ndcg": 0.784740838233476
         }
       }
     },
@@ -2037,6 +3485,16 @@
           "mean_mrr": 0.3333333333333333,
           "mean_ndcg": 0.21122941910080298
         },
+        "Hybrid+Expand": {
+          "mean_recall": 0.7222222222222223,
+          "mean_mrr": 0.3333333333333333,
+          "mean_ndcg": 0.21122941910080298
+        },
+        "Hybrid+RRF": {
+          "mean_recall": 0.8333333333333334,
+          "mean_mrr": 0.6,
+          "mean_ndcg": 0.20438239758848611
+        },
         "BM25": {
           "mean_recall": 0.7777777777777778,
           "mean_mrr": 0.3333333333333333,
@@ -2047,10 +3505,20 @@
           "mean_mrr": 0.3333333333333333,
           "mean_ndcg": 0.21122941910080298
         },
-        "LLM-Rerank": {
-          "mean_recall": 0.888888888888889,
-          "mean_mrr": 0.75,
-          "mean_ndcg": 0.2684359203469474
+        "LLM:gemini-2.0-flash-001": {
+          "mean_recall": 0.7222222222222223,
+          "mean_mrr": 0.4166666666666667,
+          "mean_ndcg": 0.2813966553027001
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "mean_recall": 0.7222222222222223,
+          "mean_mrr": 0.4166666666666667,
+          "mean_ndcg": 0.2813966553027001
+        },
+        "LLM:llama-3.3-70b": {
+          "mean_recall": 0.7222222222222223,
+          "mean_mrr": 0.4166666666666667,
+          "mean_ndcg": 0.2813966553027001
         }
       }
     },
@@ -2062,6 +3530,16 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.8617483867307195
         },
+        "Hybrid+Expand": {
+          "mean_recall": 0.6746031746031745,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8610323704828646
+        },
+        "Hybrid+RRF": {
+          "mean_recall": 0.6825396825396824,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.7982655696033701
+        },
         "BM25": {
           "mean_recall": 0.373015873015873,
           "mean_mrr": 0.8333333333333334,
@@ -2072,10 +3550,20 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.8793023940072696
         },
-        "LLM-Rerank": {
-          "mean_recall": 0.7777777777777778,
+        "LLM:gemini-2.0-flash-001": {
+          "mean_recall": 0.7301587301587301,
           "mean_mrr": 1.0,
-          "mean_ndcg": 0.9111283647850305
+          "mean_ndcg": 0.8208712518684477
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "mean_recall": 0.7301587301587301,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8208712518684477
+        },
+        "LLM:llama-3.3-70b": {
+          "mean_recall": 0.7301587301587301,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8208712518684477
         }
       }
     },
@@ -2087,6 +3575,16 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.9390374504452298
         },
+        "Hybrid+Expand": {
+          "mean_recall": 0.6777777777777777,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9390374504452298
+        },
+        "Hybrid+RRF": {
+          "mean_recall": 0.6888888888888888,
+          "mean_mrr": 0.7777777777777778,
+          "mean_ndcg": 0.7606133279776334
+        },
         "BM25": {
           "mean_recall": 0.7555555555555555,
           "mean_mrr": 1.0,
@@ -2097,10 +3595,20 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.9342232542717235
         },
-        "LLM-Rerank": {
-          "mean_recall": 0.5666666666666668,
+        "LLM:gemini-2.0-flash-001": {
+          "mean_recall": 0.6111111111111112,
           "mean_mrr": 1.0,
-          "mean_ndcg": 0.8916751285804416
+          "mean_ndcg": 0.9264130368205469
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "mean_recall": 0.6111111111111112,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9264130368205469
+        },
+        "LLM:llama-3.3-70b": {
+          "mean_recall": 0.6111111111111112,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9264130368205469
         }
       }
     },
@@ -2112,6 +3620,16 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.8226449141295485
         },
+        "Hybrid+Expand": {
+          "mean_recall": 0.8571428571428572,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8174356944169232
+        },
+        "Hybrid+RRF": {
+          "mean_recall": 0.5952380952380952,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9835039876225429
+        },
         "BM25": {
           "mean_recall": 0.7619047619047619,
           "mean_mrr": 1.0,
@@ -2122,10 +3640,20 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.861456088333812
         },
-        "LLM-Rerank": {
-          "mean_recall": 0.6785714285714286,
+        "LLM:gemini-2.0-flash-001": {
+          "mean_recall": 0.4642857142857143,
           "mean_mrr": 1.0,
-          "mean_ndcg": 0.8746160942694592
+          "mean_ndcg": 0.8761336503597533
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "mean_recall": 0.4642857142857143,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8761336503597533
+        },
+        "LLM:llama-3.3-70b": {
+          "mean_recall": 0.4642857142857143,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8761336503597533
         }
       }
     },
@@ -2137,6 +3665,16 @@
           "mean_mrr": 0.3333333333333333,
           "mean_ndcg": 0.4590777890428118
         },
+        "Hybrid+Expand": {
+          "mean_recall": 0.9,
+          "mean_mrr": 0.3333333333333333,
+          "mean_ndcg": 0.47021740025345654
+        },
+        "Hybrid+RRF": {
+          "mean_recall": 0.4,
+          "mean_mrr": 0.3333333333333333,
+          "mean_ndcg": 0.6155622552380583
+        },
         "BM25": {
           "mean_recall": 0.3,
           "mean_mrr": 1.0,
@@ -2147,10 +3685,20 @@
           "mean_mrr": 0.3333333333333333,
           "mean_ndcg": 0.47742744029197676
         },
-        "LLM-Rerank": {
-          "mean_recall": 1.0,
-          "mean_mrr": 0.25,
-          "mean_ndcg": 0.4927598258751643
+        "LLM:gemini-2.0-flash-001": {
+          "mean_recall": 0.9,
+          "mean_mrr": 0.3333333333333333,
+          "mean_ndcg": 0.4052614906197505
+        },
+        "LLM:llama-3.1-nemotron-70b": {
+          "mean_recall": 0.9,
+          "mean_mrr": 0.3333333333333333,
+          "mean_ndcg": 0.4052614906197505
+        },
+        "LLM:llama-3.3-70b": {
+          "mean_recall": 0.9,
+          "mean_mrr": 0.3333333333333333,
+          "mean_ndcg": 0.4052614906197505
         }
       }
     }
@@ -2236,9 +3784,23 @@
     {
       "kw": null,
       "sw": null,
-      "label": "LLM-Rerank",
-      "mean_recall": 0.7269387755102041,
-      "pass_rate": 0.8857142857142857
+      "label": "LLM:gemini-2.0-flash-001",
+      "mean_recall": 0.6715646258503402,
+      "pass_rate": 0.8285714285714286
+    },
+    {
+      "kw": null,
+      "sw": null,
+      "label": "LLM:llama-3.1-nemotron-70b",
+      "mean_recall": 0.664421768707483,
+      "pass_rate": 0.8285714285714286
+    },
+    {
+      "kw": null,
+      "sw": null,
+      "label": "LLM:llama-3.3-70b",
+      "mean_recall": 0.664421768707483,
+      "pass_rate": 0.8285714285714286
     }
   ]
 }

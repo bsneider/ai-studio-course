@@ -179,41 +179,64 @@ def chart_recall_by_category(data, output_dir):
     return path
 
 
-# ── Chart 2: Heatmap — Per-Query Scores ──────────────────────────────────────
+# ── Chart 2: Failure Analysis — where approaches disagree ─────────────────────
 
 
-def chart_heatmap(data, output_dir):
-    """Heatmap of per-query recall scores across all approaches."""
+def chart_failure_analysis(data, output_dir):
+    """Show only queries where at least one approach fails (recall < 40%).
+
+    This is much more actionable than a full heatmap — it highlights exactly
+    where the approaches differ and which queries are hard.
+    """
     _setup_font()
 
     per_query = data["per_query"]
     approaches = data["approaches"]
-    n_queries = len(per_query)
+
+    # Filter to queries where at least one approach fails
+    THRESHOLD = 0.4
+    interesting = []
+    for q in per_query:
+        recalls = {a: q["approaches"].get(a, {}).get("effective_recall", 0) for a in approaches}
+        any_fail = any(v < THRESHOLD for v in recalls.values())
+        if any_fail:
+            interesting.append(q)
+
+    if not interesting:
+        # All queries pass for all approaches — show a simple message
+        fig, ax = plt.subplots(figsize=(8, 3))
+        ax.axis("off")
+        ax.text(0.5, 0.5, "All queries pass the 40% threshold for all approaches!",
+                ha="center", va="center", fontsize=14, fontweight="bold", color="#2e7d32")
+        add_branding(fig)
+        path = output_dir / "chart2_failure_analysis.png"
+        fig.savefig(path, dpi=DPI, bbox_inches="tight", facecolor="white")
+        plt.close(fig)
+        print(f"  Chart 2 saved: {path}")
+        return path
+
+    n_queries = len(interesting)
     n_approaches = len(approaches)
+
+    fig_height = max(4, n_queries * 0.5 + 1.5)
+    fig, ax = plt.subplots(figsize=(max(8, n_approaches * 1.8), fig_height))
 
     matrix = np.zeros((n_queries, n_approaches))
     query_labels = []
-    for i, q in enumerate(per_query):
-        label = q["query"][:42]
+    for i, q in enumerate(interesting):
+        label = q["query"][:50]
         if q["scoring"] == "inverse":
             label += " [INV]"
         query_labels.append(f"[{q['level']}] {label}")
         for j, aname in enumerate(approaches):
             matrix[i, j] = q["approaches"].get(aname, {}).get("effective_recall", 0)
 
-    level_breaks = []
-    for i in range(1, n_queries):
-        if per_query[i]["level"] != per_query[i - 1]["level"]:
-            level_breaks.append(i)
-
-    fig_height = max(10, n_queries * 0.42)
-    fig, ax = plt.subplots(figsize=(8, fig_height))
-
-    # Diverging colormap centered at 0.4 threshold
-    cmap = LinearSegmentedColormap.from_list("rag", [
-        "#c62828", "#ef5350",  # reds (0-0.3)
-        "#ffca28",             # yellow (0.4)
-        "#66bb6a", "#2e7d32",  # greens (0.6-1.0)
+    # Simple two-tone: pass (light green) / fail (light red)
+    cmap = LinearSegmentedColormap.from_list("passfail", [
+        "#ffcdd2",  # fail red
+        "#ffcdd2",  # fail red
+        "#c8e6c9",  # pass green
+        "#c8e6c9",  # pass green
     ])
 
     im = ax.imshow(matrix, cmap=cmap, aspect="auto", vmin=0, vmax=1)
@@ -221,27 +244,22 @@ def chart_heatmap(data, output_dir):
     for i in range(n_queries):
         for j in range(n_approaches):
             val = matrix[i, j]
-            text_color = "white" if val < 0.25 or val > 0.85 else "black"
-            ax.text(j, i, f"{val:.0%}", ha="center", va="center",
-                    fontsize=7.5, fontweight="bold", color=text_color)
-
-    for brk in level_breaks:
-        ax.axhline(y=brk - 0.5, color="white", linewidth=2.5)
+            status = "PASS" if val >= THRESHOLD else "FAIL"
+            color = "#1b5e20" if val >= THRESHOLD else "#b71c1c"
+            ax.text(j, i, f"{val:.0%}\n{status}", ha="center", va="center",
+                    fontsize=8, fontweight="bold", color=color)
 
     ax.set_xticks(range(n_approaches))
-    ax.set_xticklabels(approaches, fontsize=10, fontweight="bold")
+    ax.set_xticklabels(approaches, fontsize=9, fontweight="bold", rotation=30, ha="right")
     ax.set_yticks(range(n_queries))
-    ax.set_yticklabels(query_labels, fontsize=6.5)
-    ax.set_title("Per-Query Effective Recall", fontsize=14, fontweight="bold", pad=15)
+    ax.set_yticklabels(query_labels, fontsize=7)
+    ax.set_title(f"Failure Analysis: {n_queries} Queries Where Approaches Disagree",
+                 fontsize=13, fontweight="bold", pad=15)
 
-    cbar = fig.colorbar(im, ax=ax, shrink=0.5, pad=0.02)
-    cbar.set_label("Effective Recall", fontsize=9)
-    cbar.ax.axhline(y=0.4, color="white", linewidth=2, linestyle="--")
-
-    fig.tight_layout(rect=[0, 0.02, 1, 0.97])
+    fig.tight_layout(rect=[0, 0.03, 1, 0.97])
     add_branding(fig)
 
-    path = output_dir / "chart2_heatmap.png"
+    path = output_dir / "chart2_failure_analysis.png"
     fig.savefig(path, dpi=DPI, bbox_inches="tight", facecolor="white")
     plt.close(fig)
     print(f"  Chart 2 saved: {path}")
@@ -291,7 +309,11 @@ def chart_summary_table(data, output_dir):
                 row_colors[j + 2] = "#e8f5e9"  # light green highlight
         cell_colors.append(row_colors)
 
-    fig_width = 7 + len(approaches) * 1.2
+    n_cols = len(col_labels)
+    n_app = len(approaches)
+    # Scale figure width to fit all columns
+    fig_width = max(10, 4 + n_app * 1.4)
+    font_size = 9 if n_app <= 5 else 7.5 if n_app <= 8 else 6.5
     fig, ax = plt.subplots(figsize=(fig_width, 4))
     ax.axis("off")
     ax.set_title("Aggregate Benchmark Metrics", fontsize=14, fontweight="bold", pad=15)
@@ -304,19 +326,23 @@ def chart_summary_table(data, output_dir):
         cellLoc="center",
     )
     table.auto_set_font_size(False)
-    table.set_fontsize(9)
+    table.set_fontsize(font_size)
     table.scale(1.0, 1.8)
 
-    n_cols = len(col_labels)
+    # Auto-size columns proportionally
+    metric_w = 0.06
+    desc_w = 0.18
+    remaining = 1.0 - metric_w - desc_w
+    app_w = remaining / n_app
     for row_idx in range(len(metrics) + 1):
-        table[row_idx, 0].set_width(0.09)
-        table[row_idx, 1].set_width(0.28)
+        table[row_idx, 0].set_width(metric_w)
+        table[row_idx, 1].set_width(desc_w)
         for j in range(2, n_cols):
-            table[row_idx, j].set_width(0.10)
+            table[row_idx, j].set_width(app_w)
 
     for i in range(1, len(metrics) + 1):
         table[i, 1].get_text().set_ha("left")
-        table[i, 1].get_text().set_fontsize(8)
+        table[i, 1].get_text().set_fontsize(max(6, font_size - 1.5))
         table[i, 1].get_text().set_color("#666666")
 
     # Style header
@@ -483,7 +509,7 @@ def chart_cost_comparison(data, output_dir):
     # ~8,500 input tokens + ~750 output tokens per query (50 candidates x 600 chars)
     cost_per_1k = {}
     for aname in approaches:
-        if aname in ("Hybrid", "BM25", "Semantic"):
+        if aname in ("Hybrid", "BM25", "Semantic") or aname.startswith("Hybrid+"):
             cost_per_1k[aname] = 0.0
         elif "gemini" in aname.lower():
             cost_per_1k[aname] = 1.10  # ~$0.0011/query
@@ -559,7 +585,7 @@ def main():
 
     print("\nGenerating charts...")
     chart_recall_by_category(data, args.output_dir)
-    chart_heatmap(data, args.output_dir)
+    chart_failure_analysis(data, args.output_dir)
     chart_summary_table(data, args.output_dir)
     chart_weight_sweep(data, args.output_dir)
     chart_approach_comparison(data, args.output_dir)
