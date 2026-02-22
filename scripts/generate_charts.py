@@ -318,9 +318,10 @@ def chart_approach_strengths(data, output_dir):
         "BM25":       (["BM25"], C_BM25, "s"),
         "Semantic":   (["Semantic"], C_SEM, "D"),
         "LLM Rerank": ([a for a in approaches if a.startswith("LLM:")], C_LLM, "^"),
-        # PageIndex disabled until tree summaries are fixed
-        # "PageIndex":  ([a for a in approaches if a == "PageIndex"], C_PI, "P"),
+        "PageIndex":  ([a for a in approaches if a == "PageIndex"], C_PI, "P"),
     }
+    # Drop families with no matching approaches in the data
+    families = {k: v for k, v in families.items() if v[0]}
     family_names = list(families.keys())
 
     scores = {}
@@ -451,8 +452,8 @@ def main():
 
     data = json.loads(args.results.read_text())
 
-    # Filter out disabled approaches (e.g. PageIndex before summaries are fixed)
-    _HIDDEN = {"PageIndex"}
+    # Filter out disabled approaches for clean sharing
+    _HIDDEN = {"PageIndex"} | {a for a in data.get("approaches", []) if a.startswith("LLM:")}
     if any(a in _HIDDEN for a in data["approaches"]):
         data["approaches"] = [a for a in data["approaches"] if a not in _HIDDEN]
         data["aggregates"] = {k: v for k, v in data["aggregates"].items() if k not in _HIDDEN}
