@@ -386,6 +386,7 @@ def chart_approach_strengths(data, output_dir):
 
         # Plot dots — draw in consistent order, largest markers first (lowest zorder)
         best_val = max(scores[lb].values())
+        labeled_x = []  # track labeled x positions to avoid overlaps
         for fn in family_names:
             _, color, marker = families[fn]
             xval, yo = placed[fn]
@@ -394,12 +395,15 @@ def chart_approach_strengths(data, output_dir):
                        zorder=6, edgecolors="white", linewidth=1.2, alpha=0.92,
                        label=fn if row_i == 0 else None)
 
-            # Only label the winner in each row
+            # Label the winner; skip if another label is already close
             if xval == best_val:
-                ax.annotate(f"{xval:.0%}", (xval, yval), fontsize=7.5,
-                            fontweight="bold", color=color,
-                            xytext=(0, 10), textcoords="offset points",
-                            ha="center", va="bottom")
+                too_close = any(abs(xval - lx) < 0.03 for lx in labeled_x)
+                if not too_close:
+                    ax.annotate(f"{xval:.0%}", (xval, yval), fontsize=7.5,
+                                fontweight="bold", color=color,
+                                xytext=(0, 10), textcoords="offset points",
+                                ha="center", va="bottom")
+                    labeled_x.append(xval)
 
     # Y-axis labels
     ax.set_yticks(yp)
