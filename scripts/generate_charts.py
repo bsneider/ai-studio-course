@@ -318,7 +318,8 @@ def chart_approach_strengths(data, output_dir):
         "BM25":       (["BM25"], C_BM25, "s"),
         "Semantic":   (["Semantic"], C_SEM, "D"),
         "LLM Rerank": ([a for a in approaches if a.startswith("LLM:")], C_LLM, "^"),
-        "PageIndex":  ([a for a in approaches if a == "PageIndex"], C_PI, "P"),
+        # PageIndex disabled until tree summaries are fixed
+        # "PageIndex":  ([a for a in approaches if a == "PageIndex"], C_PI, "P"),
     }
     family_names = list(families.keys())
 
@@ -420,7 +421,7 @@ def chart_approach_strengths(data, output_dir):
     # Legend below the chart, fully outside plot area
     ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.07),
               framealpha=0.95, fontsize=8.5,
-              ncol=5, columnspacing=1.2, edgecolor="#ddd",
+              ncol=4, columnspacing=1.5, edgecolor="#ddd",
               handletextpad=0.4)
 
     fig.tight_layout(rect=[0, 0.06, 1, 0.975])
@@ -445,6 +446,16 @@ def main():
         sys.exit(1)
 
     data = json.loads(args.results.read_text())
+
+    # Filter out disabled approaches (e.g. PageIndex before summaries are fixed)
+    _HIDDEN = {"PageIndex"}
+    if any(a in _HIDDEN for a in data["approaches"]):
+        data["approaches"] = [a for a in data["approaches"] if a not in _HIDDEN]
+        data["aggregates"] = {k: v for k, v in data["aggregates"].items() if k not in _HIDDEN}
+        for level_data in data.get("per_level", {}).values():
+            level_data["approaches"] = {k: v for k, v in level_data.get("approaches", {}).items() if k not in _HIDDEN}
+        data["weight_sweep"] = [p for p in data.get("weight_sweep", []) if p.get("label") not in _HIDDEN]
+
     print(f"Loaded {data['n_queries']} queries x {len(data['approaches'])} approaches")
 
     args.output_dir.mkdir(parents=True, exist_ok=True)

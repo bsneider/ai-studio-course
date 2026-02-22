@@ -82,9 +82,10 @@ def benchmark_capture(rag_db, request):
         approaches["LLM:improved"] = lambda bq, k: improved_llm_rerank_search(
             conn, emb_model, openrouter, bq["q"], top_k=k
         )
-        approaches["PageIndex"] = lambda bq, k: pageindex_tree_search(
-            openrouter, bq["q"], top_k=k
-        )
+        # PageIndex disabled until tree summaries are fixed (8.6% recall)
+        # approaches["PageIndex"] = lambda bq, k: pageindex_tree_search(
+        #     openrouter, bq["q"], top_k=k
+        # )
 
     per_query = []
     for bq in ALL_QUERIES:
@@ -192,9 +193,9 @@ def benchmark_capture(rag_db, request):
             "pass_rate": pass_count / len(sweep_recalls),
         })
 
-    # Also record LLM/PageIndex approaches as separate points for the progression chart
+    # Also record LLM approaches as separate points for the progression chart
     for aname in approach_names:
-        if aname.startswith("LLM:") or aname == "PageIndex":
+        if aname.startswith("LLM:"):
             agg_entry = aggregates[aname]
             weight_sweep.append({
                 "kw": None,
