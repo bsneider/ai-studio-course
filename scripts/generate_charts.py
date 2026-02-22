@@ -29,9 +29,13 @@ C_BM25 = "#2980B9"
 C_SEM = "#E67E22"
 C_LLM = "#27AE60"
 
+C_IMP = "#2ECC71"
+C_PI = "#9B59B6"
+
 COLORS = {
     "Hybrid": C_HYB, "Hybrid+Expand": "#E74C3C", "Hybrid+RRF": "#922B21",
     "BM25": C_BM25, "Semantic": C_SEM,
+    "LLM:improved": C_IMP, "PageIndex": C_PI,
 }
 _LLM_PAL = ["#27AE60", "#16A085", "#8E44AD", "#7F8C8D"]
 
@@ -46,16 +50,19 @@ def _c(name):
     return "#555"
 
 
-COST = {"gemini": 1.15, "nemotron": 11.10, "llama": 1.09}
+COST = {"gemini": 1.15, "nemotron": 11.10, "llama": 1.09, "improved": 1.15, "pageindex": 1.15}
 DPI = 300
 FOOTER = "Research: Brandon Sneider | MIT AI Studio (MAS.664/665)"
 
 
 def _cost(name):
+    nl = name.lower()
+    if name == "PageIndex":
+        return COST["pageindex"]
     if not name.startswith("LLM:"):
         return 0.0
     for k, v in COST.items():
-        if k in name.lower():
+        if k in nl:
             return v
     return 2.0
 
@@ -311,6 +318,7 @@ def chart_approach_strengths(data, output_dir):
         "BM25":       (["BM25"], C_BM25, "s"),
         "Semantic":   (["Semantic"], C_SEM, "D"),
         "LLM Rerank": ([a for a in approaches if a.startswith("LLM:")], C_LLM, "^"),
+        "PageIndex":  ([a for a in approaches if a == "PageIndex"], C_PI, "P"),
     }
     family_names = list(families.keys())
 
@@ -412,7 +420,7 @@ def chart_approach_strengths(data, output_dir):
     # Legend below the chart, fully outside plot area
     ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.07),
               framealpha=0.95, fontsize=8.5,
-              ncol=4, columnspacing=1.5, edgecolor="#ddd",
+              ncol=5, columnspacing=1.2, edgecolor="#ddd",
               handletextpad=0.4)
 
     fig.tight_layout(rect=[0, 0.06, 1, 0.975])

@@ -1,0 +1,124 @@
+{
+  "documents": [
+    {
+      "doc_name": "index",
+      "type": "page",
+      "source_url": "https://aiforimpact.github.io/",
+      "title": "AI Studio, MIT class",
+      "description": "MIT AI Studio main page. Overview of the course, current semester info, and speaker/mentor directory.",
+      "file": "index.json"
+    },
+    {
+      "doc_name": "spring26",
+      "type": "page",
+      "source_url": "https://aiforimpact.github.io/spring26.html",
+      "title": "AI Studio | Spring 2026",
+      "description": "MIT AI Studio course page for Spring 2026. Lists instructors, speakers, mentors, and course details.",
+      "file": "spring26.json"
+    },
+    {
+      "doc_name": "fall25",
+      "type": "page",
+      "source_url": "https://aiforimpact.github.io/fall25.html",
+      "title": "AI Studio, MIT class",
+      "description": "MIT AI Studio course page for Fall 2025. Lists instructors, speakers, mentors, and course details.",
+      "file": "fall25.json"
+    },
+    {
+      "doc_name": "spring25",
+      "type": "page",
+      "source_url": "https://aiforimpact.github.io/spring25.html",
+      "title": "AI Venture studio, MIT class",
+      "description": "MIT AI Studio course page for Spring 2025. Lists instructors, speakers, mentors, and course details.",
+      "file": "spring25.json"
+    },
+    {
+      "doc_name": "fall24",
+      "type": "page",
+      "source_url": "https://aiforimpact.github.io/fall24.html",
+      "title": "MIT AI Venture Studio",
+      "description": "MIT AI Studio course page for Fall 2024. Lists instructors, speakers, mentors, and course details.",
+      "file": "fall24.json"
+    },
+    {
+      "doc_name": "spring24",
+      "type": "page",
+      "source_url": "https://aiforimpact.github.io/spring24.html",
+      "title": "AI and Web3 for Impact: Venture studio, MIT class",
+      "description": "MIT AI Studio course page for Spring 2024. Lists instructors, speakers, mentors, and course details.",
+      "file": "spring24.json"
+    },
+    {
+      "doc_name": "fall23",
+      "type": "page",
+      "source_url": "https://aiforimpact.github.io/fall23.html",
+      "title": "AI and Web3 for Impact: Venture studio, MIT class",
+      "description": "MIT AI Studio course page for Fall 2023. Lists instructors, speakers, mentors, and course details.",
+      "file": "fall23.json"
+    },
+    {
+      "doc_name": "-S51FOnqF0o",
+      "type": "transcript",
+      "source_url": "https://www.youtube.com/watch?v=-S51FOnqF0o",
+      "title": "Ramesh Raskar - Intro to NANDA - Summit July 14",
+      "description": "Video transcript: Ramesh Raskar - Intro to NANDA - Summit July 14. Channel: Project NANDA. Duration: 40:36.",
+      "file": "-S51FOnqF0o.json"
+    },
+    {
+      "doc_name": "71A8PN-z1rI",
+      "type": "transcript",
+      "source_url": "https://www.youtube.com/watch?v=71A8PN-z1rI",
+      "title": "71A8PN-z1rI",
+      "description": "Video transcript: 71A8PN-z1rI. Channel: Ai4Impact. Duration: 1:37:47.",
+      "file": "71A8PN-z1rI.json"
+    },
+    {
+      "doc_name": "BEav6MIjmyk",
+      "type": "transcript",
+      "source_url": "https://www.youtube.com/watch?v=BEav6MIjmyk",
+      "title": "Web3++ Unspoken Opportunities | Ramesh Raskar",
+      "description": "Video transcript: Web3++ Unspoken Opportunities | Ramesh Raskar. Channel: Imagination in Action. Duration: 16:44.",
+      "file": "BEav6MIjmyk.json"
+    },
+    {
+      "doc_name": "SSSffQsbFo4",
+      "type": "transcript",
+      "source_url": "https://www.youtube.com/watch?v=SSSffQsbFo4",
+      "title": "Horizon 2023 | Ramesh Raskar | MIT Decentralized AI",
+      "description": "Video transcript: Horizon 2023 | Ramesh Raskar | MIT Decentralized AI. Channel: Ramesh Raskar. Duration: 4:47.",
+      "file": "SSSffQsbFo4.json"
+    },
+    {
+      "doc_name": "jlcO19XyQ1I",
+      "type": "transcript",
+      "source_url": "https://www.youtube.com/watch?v=jlcO19XyQ1I",
+      "title": "jlcO19XyQ1I",
+      "description": "Video transcript: jlcO19XyQ1I. Channel: Imagination in Action. Duration: 12:12.",
+      "file": "jlcO19XyQ1I.json"
+    },
+    {
+      "doc_name": "qtCBLC5zRNU",
+      "type": "transcript",
+      "source_url": "https://www.youtube.com/watch?v=qtCBLC5zRNU",
+      "title": "MIT AI Venture Studio Demo Day | Spring 2025",
+      "description": "Video transcript: MIT AI Venture Studio Demo Day | Spring 2025. Channel: MIT AI Studio. Duration: 2:51:42.",
+      "file": "qtCBLC5zRNU.json"
+    },
+    {
+      "doc_name": "tYw5TW1T5zo",
+      "type": "transcript",
+      "source_url": "https://www.youtube.com/watch?v=tYw5TW1T5zo",
+      "title": "MIT AI Studio Demo Day | Fall 2025",
+      "description": "Video transcript: MIT AI Studio Demo Day | Fall 2025. Channel: MIT AI Studio. Duration: 2:20:17.",
+      "file": "tYw5TW1T5zo.json"
+    },
+    {
+      "doc_name": "wLb9pWQHIbA",
+      "type": "transcript",
+      "source_url": "https://www.youtube.com/watch?v=wLb9pWQHIbA",
+      "title": "MIT AI Venture Studio Demo Day | Fall 2024",
+      "description": "Video transcript: MIT AI Venture Studio Demo Day | Fall 2024. Channel: MIT AI Studio. Duration: 2:06:53.",
+      "file": "wLb9pWQHIbA.json"
+    }
+  ]
+}

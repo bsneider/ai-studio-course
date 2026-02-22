@@ -42,8 +42,10 @@ from tests.shared import (
     bm25_only_search,
     build_rag_db,
     hybrid_search,
+    improved_llm_rerank_search,
     mrr_score,
     ndcg_score,
+    pageindex_tree_search,
     pass_at_k,
     pass_power_k,
     recall_at_k,
@@ -437,6 +439,58 @@ class TestRetrievalMetrics:
             print(f"  {mname:<12} -> {' + '.join(best_approaches)} ({best_val:.4f})")
 
 
+# ── Tests: Improved LLM Reranking ──────────────────────────────────────────
+
+
+class TestImprovedLLMReranking:
+    """Improved LLM reranking: fewer candidates, full content, multi-chunk selection."""
+
+    @pytest.mark.parametrize("bq", HARD_QUERIES, ids=[e["q"][:50] for e in HARD_QUERIES])
+    def test_improved_rerank_hard_queries(self, rag_db, openrouter_client, bq):
+        conn, emb_model, _chunks = rag_db
+        top_k = bq.get("top_k", 5)
+        results = improved_llm_rerank_search(conn, emb_model, openrouter_client, bq["q"], top_k=top_k)
+        score = score_retrieval(results, bq["keywords"])
+        print(f"  LLM:improved [{bq['level']}] '{bq['q']}': {score:.0%} ({bq['note']})")
+
+    def test_improved_rerank_overall_hard_pass_rate(self, rag_db, openrouter_client):
+        conn, emb_model, _chunks = rag_db
+        passed = 0
+        for bq in HARD_QUERIES:
+            top_k = bq.get("top_k", 5)
+            results = improved_llm_rerank_search(conn, emb_model, openrouter_client, bq["q"], top_k=top_k)
+            score = score_retrieval(results, bq["keywords"])
+            if score >= 0.4:
+                passed += 1
+        rate = passed / len(HARD_QUERIES)
+        print(f"\n  LLM:improved hard-query pass rate: {rate:.0%} ({passed}/{len(HARD_QUERIES)})")
+
+
+# ── Tests: PageIndex Tree Search ───────────────────────────────────────────
+
+
+class TestPageIndexTreeSearch:
+    """PageIndex-style hierarchical tree search -- no SQLite dependency."""
+
+    @pytest.mark.parametrize("bq", HARD_QUERIES, ids=[e["q"][:50] for e in HARD_QUERIES])
+    def test_pageindex_hard_queries(self, openrouter_client, bq):
+        top_k = bq.get("top_k", 5)
+        results = pageindex_tree_search(openrouter_client, bq["q"], top_k=top_k)
+        score = score_retrieval(results, bq["keywords"])
+        print(f"  PageIndex [{bq['level']}] '{bq['q']}': {score:.0%} ({bq['note']})")
+
+    def test_pageindex_overall_hard_pass_rate(self, openrouter_client):
+        passed = 0
+        for bq in HARD_QUERIES:
+            top_k = bq.get("top_k", 5)
+            results = pageindex_tree_search(openrouter_client, bq["q"], top_k=top_k)
+            score = score_retrieval(results, bq["keywords"])
+            if score >= 0.4:
+                passed += 1
+        rate = passed / len(HARD_QUERIES)
+        print(f"\n  PageIndex hard-query pass rate: {rate:.0%} ({passed}/{len(HARD_QUERIES)})")
+
+
 # ── Benchmark data capture for visualization ─────────────────────────────────
 
 
@@ -444,7 +498,7 @@ class TestBenchmarkCapture:
     """Trigger benchmark_capture fixture to save results.json for chart generation."""
 
     def test_capture_benchmark_results(self, benchmark_capture):
-        """Run all 4 approaches on ALL_QUERIES and save to benchmark_results/results.json."""
+        """Run all approaches on ALL_QUERIES and save to benchmark_results/results.json."""
         n = benchmark_capture["n_queries"]
         approaches = benchmark_capture["approaches"]
         print(f"\n  Captured benchmark data: {n} queries x {len(approaches)} approaches")

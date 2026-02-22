@@ -1,0 +1,1205 @@
+{
+  "doc_name": "fall23",
+  "structure": [
+    {
+      "level": 1,
+      "title": "AI and Web3 for Impact: Venture studio, MIT class",
+      "text": "",
+      "children": [
+        {
+          "level": 2,
+          "title": "Overview",
+          "text": "Join our MAS.664 AI for Impact: Venture Studio class. \nThe rapid developments in AI can enable or accelerate major positive impact throughout the world. This semester\u2019s course will be structured as a\"Venture Studio\"with mentors and engagement with Scientists, VCs, CEOs and Academics. The course will focus on opportunities in the broad sectors of digital health, sustainability and mobility with data and AI centric technologies such as identity, privacy-tech, foundation models, blockchain, VR/AR and Web3. Follow these steps to register for the course.\n- Step 0: Register for course : For MIT (Link), For Harvard (Link)\n- Step 1: Questionnaire (Link 1) before September 13th\n- Step 2: Finishing the Online AI blockchain course (Link 2) by September 15th\nYou must finish Step 1 to attend the first class. You will be expected to finish Step 2 and upload the snapshot that you\u2019ve finished the course. If you have finished a degree course or have a professional background in these areas, you do not need to finish the online course.Please sign up for future updates and share them with your colleagues and on your mailing lists.Also, please join the LinkedIn and Facebook groups to post your questions there.\n- Sign up for future updates: (Link)\n- Socials: (Link 1,Link 2)\n- Facebook group: (Link)\n- LinkedIn group: (Link)\nClass Schedule: Thursdays 10 AM -12 noon in room E14-633 at MIT Media Lab starting September 7th",
+          "children": [],
+          "node_id": "0002"
+        },
+        {
+          "level": 2,
+          "title": "Faculty",
+          "text": "",
+          "children": [
+            {
+              "level": 3,
+              "title": "Ramesh Raskar",
+              "text": "MIT Media Lab Pulkit Agrawal MIT EECS Sertac Karaman MIT AeroAstro, Director of LIDS",
+              "children": [],
+              "node_id": "0004"
+            },
+            {
+              "level": 3,
+              "title": "Ramesh Raskar",
+              "text": "",
+              "children": [],
+              "node_id": "0005"
+            },
+            {
+              "level": 3,
+              "title": "Pulkit Agrawal",
+              "text": "MIT EECS",
+              "children": [],
+              "node_id": "0006"
+            },
+            {
+              "level": 3,
+              "title": "Pulkit Agrawal",
+              "text": "",
+              "children": [],
+              "node_id": "0007"
+            },
+            {
+              "level": 3,
+              "title": "Sertac Karaman",
+              "text": "MIT AeroAstro, Director of LIDS",
+              "children": [],
+              "node_id": "0008"
+            },
+            {
+              "level": 3,
+              "title": "Sertac Karaman",
+              "text": "",
+              "children": [],
+              "node_id": "0009"
+            }
+          ],
+          "node_id": "0003"
+        },
+        {
+          "level": 2,
+          "title": "Leaders",
+          "text": "",
+          "children": [
+            {
+              "level": 3,
+              "title": "John Werner",
+              "text": "MIT David Blundin Link Ventures Elizabeth Beth Porter MIT Media Lab Alex 'Sandy' Pentland MIT Media Lab",
+              "children": [],
+              "node_id": "0011"
+            },
+            {
+              "level": 3,
+              "title": "John Werner",
+              "text": "",
+              "children": [],
+              "node_id": "0012"
+            },
+            {
+              "level": 3,
+              "title": "David Blundin",
+              "text": "Link Ventures",
+              "children": [],
+              "node_id": "0013"
+            },
+            {
+              "level": 3,
+              "title": "David Blundin",
+              "text": "",
+              "children": [],
+              "node_id": "0014"
+            },
+            {
+              "level": 3,
+              "title": "Elizabeth Beth Porter",
+              "text": "MIT Media Lab",
+              "children": [],
+              "node_id": "0015"
+            },
+            {
+              "level": 3,
+              "title": "Elizabeth Beth Porter",
+              "text": "",
+              "children": [],
+              "node_id": "0016"
+            },
+            {
+              "level": 3,
+              "title": "Alex 'Sandy' Pentland",
+              "text": "MIT Media Lab",
+              "children": [],
+              "node_id": "0017"
+            },
+            {
+              "level": 3,
+              "title": "Alex 'Sandy' Pentland",
+              "text": "",
+              "children": [],
+              "node_id": "0018"
+            }
+          ],
+          "node_id": "0010"
+        },
+        {
+          "level": 2,
+          "title": "Background",
+          "text": "This long running course has led to many spin offs including Dimagi, Cogito, Prosperia, Ginger, Sanergy, and nonprofit PathCheck Foundation.Our previous class links:\n- Spring'23: AI + Web3 for Impact: Venture Studio\n- Fall'22: AI + Web3 for Impact: Venture Studio\n- Spring'22: AI for Impact: Venture Studio\n- Fall'21: AI for Impact ~ Building Global Ventures Solving Societal-Scale Problems\n- Spring'21: AI for Impact\n- Fall'20: Global Ventures ~ Data and AI for Resilience after COVID19\n- Spring'20: AI for Impact ~ Towards Solving Societal-Scale Problems via Media Ventures\nAll other previous AI for Impact/Global Ventures class links can be found here:\n- Spring Term\n- MIT News: \"AI for Impact\" lives up to its name\n- Recent Demo Day Report",
+          "children": [],
+          "node_id": "0019"
+        },
+        {
+          "level": 2,
+          "title": "Speakers & Mentors",
+          "text": "",
+          "children": [
+            {
+              "level": 3,
+              "title": "Peter Diamandis",
+              "text": "Xprize Vinod Khosla Khosla Ventures Sam Altman OpenAI Paul English Boston Venture Studio Grace Isaford Lux Capital Jason Pontin DCVC Raymond Liao Samsung Next Ventures Daniela Rus CSAIL, MIT Milo Werner The Engine Jadyn Bryden Xfund Henrik Landgren Ark Kapital Hela Cheikhrouhou Regional Vice President - International Finance Corporation Ellie Evans Responsible AI - Cohere George Kasssas Bireme Systems Steve Jurvetson Future Ventures Rahul Sukthankar Google Research Calvin Chin E14 Fund Eric Chen OVO Fund Michal Gilon-Yanai Two Lanterns VC Reed Sturtevant The Engine Bilal Zuberi Lux Capital Jinhua Zhao MIT City and Transportation Planning Neha Narula Digital Currency Initiative Mohammad (Mo) Islam Threshold VC Ronnie Martinez CEAS Investments Santanu Bhattacharya Airtel X Labs Thomas Hardjono MIT Connection Science Jeffrey Saviano EY Global Tax Innovation Leader Anna Koscielecka Two Lanterns VC Fadel Adib MIT Media Lab John Harthorne Two Lanterns VC Satrajit Ghosh MIT Daniel Kraft XPRIZE Richard Dulude Underscore VC Narendra Kale Kale Logistics Graham Dodge PathCheck Foundation Umar Arshad Matiria Susan Garfield EY Rob Fisher Cogo Labs Stash Pomichter Oculo AI Jamie Goldstein Pillar VC Parker McKee Pillar VC Deb Hordon Cultivating Greatness LLC Joan LaRovere Harvard Medical School, iSelect Fund Toby Moore Optoro Nikhil Bhojwani Recon Strategy Shahid Azim MIT Patricia Geli Harvard Taleb Alashkar AlgoFace Habib Haddad E14 Fund Ahmad Butt Deep Science Ventures",
+              "children": [],
+              "node_id": "0021"
+            },
+            {
+              "level": 3,
+              "title": "Peter Diamandis",
+              "text": "",
+              "children": [],
+              "node_id": "0022"
+            },
+            {
+              "level": 3,
+              "title": "Vinod Khosla",
+              "text": "Khosla Ventures",
+              "children": [],
+              "node_id": "0023"
+            },
+            {
+              "level": 3,
+              "title": "Vinod Khosla",
+              "text": "",
+              "children": [],
+              "node_id": "0024"
+            },
+            {
+              "level": 3,
+              "title": "Sam Altman",
+              "text": "OpenAI",
+              "children": [],
+              "node_id": "0025"
+            },
+            {
+              "level": 3,
+              "title": "Sam Altman",
+              "text": "",
+              "children": [],
+              "node_id": "0026"
+            },
+            {
+              "level": 3,
+              "title": "Paul English",
+              "text": "Boston Venture Studio",
+              "children": [],
+              "node_id": "0027"
+            },
+            {
+              "level": 3,
+              "title": "Paul English",
+              "text": "",
+              "children": [],
+              "node_id": "0028"
+            },
+            {
+              "level": 3,
+              "title": "Grace Isaford",
+              "text": "Lux Capital",
+              "children": [],
+              "node_id": "0029"
+            },
+            {
+              "level": 3,
+              "title": "Grace Isaford",
+              "text": "",
+              "children": [],
+              "node_id": "0030"
+            },
+            {
+              "level": 3,
+              "title": "Jason Pontin",
+              "text": "DCVC",
+              "children": [],
+              "node_id": "0031"
+            },
+            {
+              "level": 3,
+              "title": "Jason Pontin",
+              "text": "",
+              "children": [],
+              "node_id": "0032"
+            },
+            {
+              "level": 3,
+              "title": "Raymond Liao",
+              "text": "Samsung Next Ventures",
+              "children": [],
+              "node_id": "0033"
+            },
+            {
+              "level": 3,
+              "title": "Raymond Liao",
+              "text": "",
+              "children": [],
+              "node_id": "0034"
+            },
+            {
+              "level": 3,
+              "title": "Daniela Rus",
+              "text": "CSAIL, MIT",
+              "children": [],
+              "node_id": "0035"
+            },
+            {
+              "level": 3,
+              "title": "Daniela Rus",
+              "text": "",
+              "children": [],
+              "node_id": "0036"
+            },
+            {
+              "level": 3,
+              "title": "Milo Werner",
+              "text": "The Engine",
+              "children": [],
+              "node_id": "0037"
+            },
+            {
+              "level": 3,
+              "title": "Milo Werner",
+              "text": "",
+              "children": [],
+              "node_id": "0038"
+            },
+            {
+              "level": 3,
+              "title": "Jadyn Bryden",
+              "text": "Xfund",
+              "children": [],
+              "node_id": "0039"
+            },
+            {
+              "level": 3,
+              "title": "Jadyn Bryden",
+              "text": "",
+              "children": [],
+              "node_id": "0040"
+            },
+            {
+              "level": 3,
+              "title": "Henrik Landgren",
+              "text": "Ark Kapital",
+              "children": [],
+              "node_id": "0041"
+            },
+            {
+              "level": 3,
+              "title": "Henrik Landgren",
+              "text": "",
+              "children": [],
+              "node_id": "0042"
+            },
+            {
+              "level": 3,
+              "title": "Hela Cheikhrouhou",
+              "text": "Regional Vice President - International Finance Corporation",
+              "children": [],
+              "node_id": "0043"
+            },
+            {
+              "level": 3,
+              "title": "Hela Cheikhrouhou",
+              "text": "",
+              "children": [],
+              "node_id": "0044"
+            },
+            {
+              "level": 3,
+              "title": "Ellie Evans",
+              "text": "Responsible AI - Cohere",
+              "children": [],
+              "node_id": "0045"
+            },
+            {
+              "level": 3,
+              "title": "Ellie Evans",
+              "text": "",
+              "children": [],
+              "node_id": "0046"
+            },
+            {
+              "level": 3,
+              "title": "George Kasssas",
+              "text": "Bireme Systems",
+              "children": [],
+              "node_id": "0047"
+            },
+            {
+              "level": 3,
+              "title": "George Kasssas",
+              "text": "",
+              "children": [],
+              "node_id": "0048"
+            },
+            {
+              "level": 3,
+              "title": "Steve Jurvetson",
+              "text": "Future Ventures",
+              "children": [],
+              "node_id": "0049"
+            },
+            {
+              "level": 3,
+              "title": "Steve Jurvetson",
+              "text": "",
+              "children": [],
+              "node_id": "0050"
+            },
+            {
+              "level": 3,
+              "title": "Rahul Sukthankar",
+              "text": "Google Research",
+              "children": [],
+              "node_id": "0051"
+            },
+            {
+              "level": 3,
+              "title": "Rahul Sukthankar",
+              "text": "",
+              "children": [],
+              "node_id": "0052"
+            },
+            {
+              "level": 3,
+              "title": "Calvin Chin",
+              "text": "E14 Fund",
+              "children": [],
+              "node_id": "0053"
+            },
+            {
+              "level": 3,
+              "title": "Calvin Chin",
+              "text": "",
+              "children": [],
+              "node_id": "0054"
+            },
+            {
+              "level": 3,
+              "title": "Eric Chen",
+              "text": "OVO Fund",
+              "children": [],
+              "node_id": "0055"
+            },
+            {
+              "level": 3,
+              "title": "Eric Chen",
+              "text": "",
+              "children": [],
+              "node_id": "0056"
+            },
+            {
+              "level": 3,
+              "title": "Michal Gilon-Yanai",
+              "text": "Two Lanterns VC",
+              "children": [],
+              "node_id": "0057"
+            },
+            {
+              "level": 3,
+              "title": "Michal Gilon-Yanai",
+              "text": "",
+              "children": [],
+              "node_id": "0058"
+            },
+            {
+              "level": 3,
+              "title": "Reed Sturtevant",
+              "text": "The Engine",
+              "children": [],
+              "node_id": "0059"
+            },
+            {
+              "level": 3,
+              "title": "Reed Sturtevant",
+              "text": "",
+              "children": [],
+              "node_id": "0060"
+            },
+            {
+              "level": 3,
+              "title": "Bilal Zuberi",
+              "text": "Lux Capital",
+              "children": [],
+              "node_id": "0061"
+            },
+            {
+              "level": 3,
+              "title": "Bilal Zuberi",
+              "text": "",
+              "children": [],
+              "node_id": "0062"
+            },
+            {
+              "level": 3,
+              "title": "Jinhua Zhao",
+              "text": "MIT City and Transportation Planning",
+              "children": [],
+              "node_id": "0063"
+            },
+            {
+              "level": 3,
+              "title": "Jinhua Zhao",
+              "text": "",
+              "children": [],
+              "node_id": "0064"
+            },
+            {
+              "level": 3,
+              "title": "Neha Narula",
+              "text": "Digital Currency Initiative",
+              "children": [],
+              "node_id": "0065"
+            },
+            {
+              "level": 3,
+              "title": "Neha Narula",
+              "text": "",
+              "children": [],
+              "node_id": "0066"
+            },
+            {
+              "level": 3,
+              "title": "Mohammad (Mo) Islam",
+              "text": "Threshold VC",
+              "children": [],
+              "node_id": "0067"
+            },
+            {
+              "level": 3,
+              "title": "Mohammad (Mo) Islam",
+              "text": "",
+              "children": [],
+              "node_id": "0068"
+            },
+            {
+              "level": 3,
+              "title": "Ronnie Martinez",
+              "text": "CEAS Investments",
+              "children": [],
+              "node_id": "0069"
+            },
+            {
+              "level": 3,
+              "title": "Ronnie Martinez",
+              "text": "",
+              "children": [],
+              "node_id": "0070"
+            },
+            {
+              "level": 3,
+              "title": "Santanu Bhattacharya",
+              "text": "Airtel X Labs",
+              "children": [],
+              "node_id": "0071"
+            },
+            {
+              "level": 3,
+              "title": "Santanu Bhattacharya",
+              "text": "",
+              "children": [],
+              "node_id": "0072"
+            },
+            {
+              "level": 3,
+              "title": "Thomas Hardjono",
+              "text": "MIT Connection Science",
+              "children": [],
+              "node_id": "0073"
+            },
+            {
+              "level": 3,
+              "title": "Thomas Hardjono",
+              "text": "",
+              "children": [],
+              "node_id": "0074"
+            },
+            {
+              "level": 3,
+              "title": "Jeffrey Saviano",
+              "text": "EY Global Tax Innovation Leader",
+              "children": [],
+              "node_id": "0075"
+            },
+            {
+              "level": 3,
+              "title": "Jeffrey Saviano",
+              "text": "",
+              "children": [],
+              "node_id": "0076"
+            },
+            {
+              "level": 3,
+              "title": "Anna Koscielecka",
+              "text": "Two Lanterns VC",
+              "children": [],
+              "node_id": "0077"
+            },
+            {
+              "level": 3,
+              "title": "Anna Koscielecka",
+              "text": "",
+              "children": [],
+              "node_id": "0078"
+            },
+            {
+              "level": 3,
+              "title": "Fadel Adib",
+              "text": "MIT Media Lab",
+              "children": [],
+              "node_id": "0079"
+            },
+            {
+              "level": 3,
+              "title": "Fadel Adib",
+              "text": "",
+              "children": [],
+              "node_id": "0080"
+            },
+            {
+              "level": 3,
+              "title": "John Harthorne",
+              "text": "Two Lanterns VC",
+              "children": [],
+              "node_id": "0081"
+            },
+            {
+              "level": 3,
+              "title": "John Harthorne",
+              "text": "",
+              "children": [],
+              "node_id": "0082"
+            },
+            {
+              "level": 3,
+              "title": "Satrajit Ghosh",
+              "text": "MIT",
+              "children": [],
+              "node_id": "0083"
+            },
+            {
+              "level": 3,
+              "title": "Satrajit Ghosh",
+              "text": "",
+              "children": [],
+              "node_id": "0084"
+            },
+            {
+              "level": 3,
+              "title": "Daniel Kraft",
+              "text": "XPRIZE",
+              "children": [],
+              "node_id": "0085"
+            },
+            {
+              "level": 3,
+              "title": "Daniel Kraft",
+              "text": "",
+              "children": [],
+              "node_id": "0086"
+            },
+            {
+              "level": 3,
+              "title": "Richard Dulude",
+              "text": "Underscore VC",
+              "children": [],
+              "node_id": "0087"
+            },
+            {
+              "level": 3,
+              "title": "Richard Dulude",
+              "text": "",
+              "children": [],
+              "node_id": "0088"
+            },
+            {
+              "level": 3,
+              "title": "Narendra Kale",
+              "text": "Kale Logistics",
+              "children": [],
+              "node_id": "0089"
+            },
+            {
+              "level": 3,
+              "title": "Narendra Kale",
+              "text": "",
+              "children": [],
+              "node_id": "0090"
+            },
+            {
+              "level": 3,
+              "title": "Graham Dodge",
+              "text": "PathCheck Foundation",
+              "children": [],
+              "node_id": "0091"
+            },
+            {
+              "level": 3,
+              "title": "Graham Dodge",
+              "text": "",
+              "children": [],
+              "node_id": "0092"
+            },
+            {
+              "level": 3,
+              "title": "Umar Arshad",
+              "text": "Matiria",
+              "children": [],
+              "node_id": "0093"
+            },
+            {
+              "level": 3,
+              "title": "Umar Arshad",
+              "text": "",
+              "children": [],
+              "node_id": "0094"
+            },
+            {
+              "level": 3,
+              "title": "Susan Garfield",
+              "text": "EY",
+              "children": [],
+              "node_id": "0095"
+            },
+            {
+              "level": 3,
+              "title": "Susan Garfield",
+              "text": "",
+              "children": [],
+              "node_id": "0096"
+            },
+            {
+              "level": 3,
+              "title": "Rob Fisher",
+              "text": "Cogo Labs",
+              "children": [],
+              "node_id": "0097"
+            },
+            {
+              "level": 3,
+              "title": "Rob Fisher",
+              "text": "",
+              "children": [],
+              "node_id": "0098"
+            },
+            {
+              "level": 3,
+              "title": "Stash Pomichter",
+              "text": "Oculo AI",
+              "children": [],
+              "node_id": "0099"
+            },
+            {
+              "level": 3,
+              "title": "Stash Pomichter",
+              "text": "",
+              "children": [],
+              "node_id": "0100"
+            },
+            {
+              "level": 3,
+              "title": "Jamie Goldstein",
+              "text": "Pillar VC",
+              "children": [],
+              "node_id": "0101"
+            },
+            {
+              "level": 3,
+              "title": "Jamie Goldstein",
+              "text": "",
+              "children": [],
+              "node_id": "0102"
+            },
+            {
+              "level": 3,
+              "title": "Parker McKee",
+              "text": "Pillar VC",
+              "children": [],
+              "node_id": "0103"
+            },
+            {
+              "level": 3,
+              "title": "Parker McKee",
+              "text": "",
+              "children": [],
+              "node_id": "0104"
+            },
+            {
+              "level": 3,
+              "title": "Deb Hordon",
+              "text": "Cultivating Greatness LLC",
+              "children": [],
+              "node_id": "0105"
+            },
+            {
+              "level": 3,
+              "title": "Deb Hordon",
+              "text": "",
+              "children": [],
+              "node_id": "0106"
+            },
+            {
+              "level": 3,
+              "title": "Joan LaRovere",
+              "text": "Harvard Medical School, iSelect Fund",
+              "children": [],
+              "node_id": "0107"
+            },
+            {
+              "level": 3,
+              "title": "Joan LaRovere",
+              "text": "",
+              "children": [],
+              "node_id": "0108"
+            },
+            {
+              "level": 3,
+              "title": "Toby Moore",
+              "text": "Optoro",
+              "children": [],
+              "node_id": "0109"
+            },
+            {
+              "level": 3,
+              "title": "Toby Moore",
+              "text": "",
+              "children": [],
+              "node_id": "0110"
+            },
+            {
+              "level": 3,
+              "title": "Nikhil Bhojwani",
+              "text": "Recon Strategy",
+              "children": [],
+              "node_id": "0111"
+            },
+            {
+              "level": 3,
+              "title": "Nikhil Bhojwani",
+              "text": "",
+              "children": [],
+              "node_id": "0112"
+            },
+            {
+              "level": 3,
+              "title": "Shahid Azim",
+              "text": "MIT",
+              "children": [],
+              "node_id": "0113"
+            },
+            {
+              "level": 3,
+              "title": "Shahid Azim",
+              "text": "",
+              "children": [],
+              "node_id": "0114"
+            },
+            {
+              "level": 3,
+              "title": "Patricia Geli",
+              "text": "Harvard",
+              "children": [],
+              "node_id": "0115"
+            },
+            {
+              "level": 3,
+              "title": "Patricia Geli",
+              "text": "",
+              "children": [],
+              "node_id": "0116"
+            },
+            {
+              "level": 3,
+              "title": "Taleb Alashkar",
+              "text": "AlgoFace",
+              "children": [],
+              "node_id": "0117"
+            },
+            {
+              "level": 3,
+              "title": "Taleb Alashkar",
+              "text": "",
+              "children": [],
+              "node_id": "0118"
+            },
+            {
+              "level": 3,
+              "title": "Habib Haddad",
+              "text": "E14 Fund",
+              "children": [],
+              "node_id": "0119"
+            },
+            {
+              "level": 3,
+              "title": "Habib Haddad",
+              "text": "",
+              "children": [],
+              "node_id": "0120"
+            },
+            {
+              "level": 3,
+              "title": "Ahmad Butt",
+              "text": "Deep Science Ventures",
+              "children": [],
+              "node_id": "0121"
+            },
+            {
+              "level": 3,
+              "title": "Ahmad Butt",
+              "text": "",
+              "children": [],
+              "node_id": "0122"
+            }
+          ],
+          "node_id": "0020"
+        },
+        {
+          "level": 2,
+          "title": "Course Support",
+          "text": "",
+          "children": [
+            {
+              "level": 3,
+              "title": "Meera Lakhavani",
+              "text": "Teaching Assistant Google Hannah Corbin Course Communications MIT Media Lab",
+              "children": [],
+              "node_id": "0124"
+            },
+            {
+              "level": 3,
+              "title": "Meera Lakhavani",
+              "text": "",
+              "children": [],
+              "node_id": "0125"
+            },
+            {
+              "level": 3,
+              "title": "Hannah Corbin",
+              "text": "Course Communications MIT Media Lab",
+              "children": [],
+              "node_id": "0126"
+            },
+            {
+              "level": 3,
+              "title": "Hannah Corbin",
+              "text": "",
+              "children": [],
+              "node_id": "0127"
+            }
+          ],
+          "node_id": "0123"
+        },
+        {
+          "level": 2,
+          "title": "Course Outline",
+          "text": "Class Goals:\n- Venture Studio format for-credit course where instructors seed and stimulate high-impact, high-value projects that are attractive for the best engineering, design, and builder students\n- Advance \"Big Ideas\" into MVP-seed-stage commercial consideration\n- Meet and Greet held at MIT/Harvard\n- First day of class: September 7, 2023\n- Mid-term review: October 12, 2023\n- Final Class Presentations and \u201cDemo Day\u201d awards: December 7, 2023\nClass Structure:\n- Venture studio format, with team projects with 5-8 students per team\n- Guest speakers share leading-edge thinking\n- Minimum Viable Product (MVP) by the end of the term\nSupport for Students:\n- Weekly class mentor meetings on Friday after class / guest lectures / work sessions\n- Class visits to local start-ups and technology companies\n- Data and AI scientists from startups for experience\n- Sessions with startup coaches\n- Teams will receive milestone-based seed funds\nExpected Mentors and Speakers:\n- Profs / Lecturers:\n- Jinhua Zhao\n- Daniela Rus\n- Cynthia Breazeal\n- Hari Balakrishnan\n- Morczinek (AirWorks)\n- Kartik Venkataraman (Akasha Imaging)\n- Shahid Azim (REACT Neuro)\n- Rajeev Surati (Skyline Nav AI Inc)\n- Kuldeep Singh Rajput (Biofourmis)\n- Aditya Khosla (PathAI)\n- Dan Raviv (Lendbuzz)\n- Tobin Moore (Optoro)\n- John Hawthorne (2Lantern)\n- Eric Chen (OVO Fund)\n- Calvin Chin (E14 Fund)\n- Habib Haddad (E14 Fund)\n- Dave Blundin (Link Ventures)\n- John Werner (Link Ventures)\n- Sven Strohband (Khosla Ventures)\n- Bilal Zuberi (Lux Capital)\n- Jon McNeil (DVx Ventures)\n- Katie Rae (The Engine)\n- Paul English (Boston Venture Studio)\n- Vinod Khosla (Khosla Ventures)\n- Jason Pontin (DCVC)\n- Steve Jurvetson (Future Ventures)\n- Reed Sturtevant (The Engine)\n- John Hawthrone (Two Lantern VC)\n- Giuseppe Stuto (186 Ventures)\n- Hesam N. Motlagh (Kohsla Ventures)\n- Raza Shaikh (Launchpad Venture Group)\n- Ali Mahmoud (Glasswing Ventures)\n- Imran Saeed (MITSloan)\n- Stephen Marcus (Riot Ventures)\n- Rana el Kaliouby (Entrepreneur)\n- Cavin Mozarmi (Remus Capital)\n- Mark Castleman (Intel Ignite)\n- Bo Vargas (BV Capital Partners)\n- Milo Werner (The Engine)\n- Beth Porter (Esme Learning)\n- Otkrist Gupta (Lendbuzz)\n- Alex Pentland (MIT)\n- David Zug (HarbourVest)\n- Kahini Shah (Obvious Ventures)\n- Jorge Cortell (Harvard Innovation Labs)\n- Davey Bakhshi (FORTEFAi)\n- Geoff Oblak (Data Point Capital)\n- John Sharp MD (Harvard Medical School)\n- Rob Fisher (Cogo Labs)\n- Terry V. Eagan MD (Eagan Medical Group, Inc)\n- Narendra Kale (Kale Logistics Solutions)\n- Rick Mehra (Continuum Health Ventures)\n- Jadyn Bryden (Xfund)\n- Mohamad Ali\n- Dafu Gao (OnePieceLabs)",
+          "children": [],
+          "node_id": "0128"
+        },
+        {
+          "level": 2,
+          "title": "Agenda",
+          "text": "All times are listed in Eastern Standard Time (EST)",
+          "children": [
+            {
+              "level": 5,
+              "title": "August 24, 2023",
+              "text": "",
+              "children": [],
+              "node_id": "0130"
+            },
+            {
+              "level": 4,
+              "title": "Virtual Meet & Greet 1: Course pre-meetup",
+              "text": "Registration Link: (Link)\nJoin us to meet instructors and understand the pre-homework, timeline and expectations.",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "August 31, 2023",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0132"
+                }
+              ],
+              "node_id": "0131"
+            },
+            {
+              "level": 4,
+              "title": "Virtual Meet & Greet 2: Course pre-meetup",
+              "text": "Registration Link: (Link)\nJoin us to meet instructors and understand the pre-homework, timeline and expectations.",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "September 6, 2023",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0134"
+                }
+              ],
+              "node_id": "0133"
+            },
+            {
+              "level": 4,
+              "title": "In-person Meet & Greet 1: Pre-class social",
+              "text": "Registration Link: (Link)\nLaboratory for Information and Decision Systems, Room 32-D608, 77 Massachusetts Avenue, Cambridge, MA 02139",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "September 7, 2023",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0136"
+                }
+              ],
+              "node_id": "0135"
+            },
+            {
+              "level": 4,
+              "title": "In-person Meet & Greet 2: Class social",
+              "text": "Registration Link: (Link)\nComputer Science & Artificial Intelligence Laboratory, 32 Vassar St, Cambridge, MA 02139",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "September 7, 2023",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0138"
+                }
+              ],
+              "node_id": "0137"
+            },
+            {
+              "level": 4,
+              "title": "First day of class",
+              "text": "MIT Media Lab, E14-633",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "September 14, 2023",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0140"
+                }
+              ],
+              "node_id": "0139"
+            },
+            {
+              "level": 4,
+              "title": "Second Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "September 21, 2023",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0142"
+                }
+              ],
+              "node_id": "0141"
+            },
+            {
+              "level": 4,
+              "title": "Third Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "September 28, 2023",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0144"
+                }
+              ],
+              "node_id": "0143"
+            },
+            {
+              "level": 4,
+              "title": "Fourth Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "October 5, 2023",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0146"
+                }
+              ],
+              "node_id": "0145"
+            },
+            {
+              "level": 4,
+              "title": "Fifth Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "October 12, 2023",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0148"
+                }
+              ],
+              "node_id": "0147"
+            },
+            {
+              "level": 4,
+              "title": "Sixth Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "Midterm",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0150"
+                },
+                {
+                  "level": 5,
+                  "title": "October 19, 2023",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0151"
+                }
+              ],
+              "node_id": "0149"
+            },
+            {
+              "level": 4,
+              "title": "Seventh Session of Class",
+              "text": "Individual Meeting",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "October 26, 2023",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0153"
+                }
+              ],
+              "node_id": "0152"
+            },
+            {
+              "level": 4,
+              "title": "Eighth Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "November 2, 2023",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0155"
+                }
+              ],
+              "node_id": "0154"
+            },
+            {
+              "level": 4,
+              "title": "Ninth Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "November 9, 2023",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0157"
+                }
+              ],
+              "node_id": "0156"
+            },
+            {
+              "level": 4,
+              "title": "Tenth Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "November 16, 2023",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0159"
+                }
+              ],
+              "node_id": "0158"
+            },
+            {
+              "level": 4,
+              "title": "Eleventh Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "November 23, 2023",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0161"
+                }
+              ],
+              "node_id": "0160"
+            },
+            {
+              "level": 4,
+              "title": "Thanksgiving holiday, No class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "November 30, 2023",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0163"
+                }
+              ],
+              "node_id": "0162"
+            },
+            {
+              "level": 4,
+              "title": "Thirteenth Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "December 7, 2023",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0165"
+                }
+              ],
+              "node_id": "0164"
+            },
+            {
+              "level": 4,
+              "title": "Final Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "Student final deliverables presentation",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0167"
+                }
+              ],
+              "node_id": "0166"
+            },
+            {
+              "level": 4,
+              "title": "Social Event",
+              "text": "Hosted at MIT Media Lab\nImages from Fall 2022 MIT/Harvard Course Meetup @Link Ventures, \u00a9 John Werner\nSlides from Spring 2023 Demo Day at the Media Lab\nSpring 2023 Demo Day at the Media Lab\n\"Web 3++ and Unspoken Opportunities\" by Professor Ramesh Raskar at Web3 Summit MIT 2022",
+              "children": [],
+              "node_id": "0168"
+            }
+          ],
+          "node_id": "0129"
+        }
+      ],
+      "node_id": "0001"
+    }
+  ]
+}

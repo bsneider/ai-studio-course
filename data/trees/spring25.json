@@ -1,0 +1,788 @@
+{
+  "doc_name": "spring25",
+  "structure": [
+    {
+      "level": 1,
+      "title": "AI Venture studio, MIT class",
+      "text": "",
+      "children": [
+        {
+          "level": 2,
+          "title": "Overview",
+          "text": "Join this class to learn how to spot, evaluate and build high-impact AI-first companies.This semester we expect teams to produce end to end functioning prototype and customer traction for their startup idea. The class will teach students a variety of technical frameworks and tools for prototyping with AI. We will heavily use low-code GenAI tools.This is a hands-on practical course. We will teach you to master systematic methods for identifying high-impact real-world opportunities for AI applications, learn technical fundamentals of the modern AI stack, and gain hands-on experience with rapid prototyping and product development. The course features guest lectures from leading AI scientists, CEOs, VCs, and culminates in a demo day with top investors from the MIT ecosystem.We will pay specific focus to digital health, AI-driven sustainability and mobility, identity and privacy-tech, foundation models and decentralized AI.NB: You can use this course for Entrepreneurship Minor credits. Fill upthis formunder 'E&I Context' and meet E&I minor advisor, Reza Rahaman (rezar@mit.edu) for sign off.Follow these steps to register for the course.\n- Step 0: Register for course : For MIT (Link), For Harvard (Link)\n- Step 1: Questionnaire (Link 1) before February 6th\n- Step 2: Finish short online course pre-requisites (Link 2) by February 13th\nYou must finish Step 1 to attend the first class. You will be expected to finish Step 2 and upload the snapshot that you've finished the course. If you have finished a degree course or have a professional background in these areas, you do not need to finish the online course.\n- Pre-Course Info Session & Social: (Link,Link)\n- LinkedIn group: (Link)\n- Whatsapp group: (Link)\n- Sign up for future updates: (Link)\nClass Schedule: Thursdays 10 AM -12 noon in room E14-633 at MIT Media Lab starting February 6th",
+          "children": [],
+          "node_id": "0002"
+        },
+        {
+          "level": 2,
+          "title": "Course Instructors",
+          "text": "",
+          "children": [
+            {
+              "level": 3,
+              "title": "Ramesh Raskar",
+              "text": "MIT Media Lab Pulkit Agrawal MIT EECS Sertac Karaman MIT AeroAstro, Director of LIDS John Werner MIT Serge Vasylechko Harvard Medical School AI",
+              "children": [],
+              "node_id": "0004"
+            },
+            {
+              "level": 3,
+              "title": "Ramesh Raskar",
+              "text": "",
+              "children": [],
+              "node_id": "0005"
+            },
+            {
+              "level": 3,
+              "title": "Pulkit Agrawal",
+              "text": "MIT EECS",
+              "children": [],
+              "node_id": "0006"
+            },
+            {
+              "level": 3,
+              "title": "Pulkit Agrawal",
+              "text": "",
+              "children": [],
+              "node_id": "0007"
+            },
+            {
+              "level": 3,
+              "title": "Sertac Karaman",
+              "text": "MIT AeroAstro, Director of LIDS",
+              "children": [],
+              "node_id": "0008"
+            },
+            {
+              "level": 3,
+              "title": "Sertac Karaman",
+              "text": "",
+              "children": [],
+              "node_id": "0009"
+            },
+            {
+              "level": 3,
+              "title": "John Werner",
+              "text": "MIT",
+              "children": [],
+              "node_id": "0010"
+            },
+            {
+              "level": 3,
+              "title": "John Werner",
+              "text": "",
+              "children": [],
+              "node_id": "0011"
+            },
+            {
+              "level": 3,
+              "title": "Serge Vasylechko",
+              "text": "Harvard Medical School AI",
+              "children": [],
+              "node_id": "0012"
+            },
+            {
+              "level": 3,
+              "title": "Serge Vasylechko",
+              "text": "",
+              "children": [],
+              "node_id": "0013"
+            }
+          ],
+          "node_id": "0003"
+        },
+        {
+          "level": 2,
+          "title": "Leaders",
+          "text": "",
+          "children": [
+            {
+              "level": 3,
+              "title": "Santanu Bhattacharya",
+              "text": "MIT Media Lab David Blundin Link Ventures Alex 'Sandy' Pentland MIT Media Lab Raj Simhan EcoWiz Global Elizabeth Beth Porter MIT Media Lab Hossein Rahnama MIT Media Lab/Flybits John Harthorne Two Lanterns Venture Capital",
+              "children": [],
+              "node_id": "0015"
+            },
+            {
+              "level": 3,
+              "title": "Santanu Bhattacharya",
+              "text": "",
+              "children": [],
+              "node_id": "0016"
+            },
+            {
+              "level": 3,
+              "title": "David Blundin",
+              "text": "Link Ventures",
+              "children": [],
+              "node_id": "0017"
+            },
+            {
+              "level": 3,
+              "title": "David Blundin",
+              "text": "",
+              "children": [],
+              "node_id": "0018"
+            },
+            {
+              "level": 3,
+              "title": "Alex 'Sandy' Pentland",
+              "text": "MIT Media Lab",
+              "children": [],
+              "node_id": "0019"
+            },
+            {
+              "level": 3,
+              "title": "Alex 'Sandy' Pentland",
+              "text": "",
+              "children": [],
+              "node_id": "0020"
+            },
+            {
+              "level": 3,
+              "title": "Raj Simhan",
+              "text": "EcoWiz Global",
+              "children": [],
+              "node_id": "0021"
+            },
+            {
+              "level": 3,
+              "title": "Raj Simhan",
+              "text": "",
+              "children": [],
+              "node_id": "0022"
+            },
+            {
+              "level": 3,
+              "title": "Elizabeth Beth Porter",
+              "text": "MIT Media Lab",
+              "children": [],
+              "node_id": "0023"
+            },
+            {
+              "level": 3,
+              "title": "Elizabeth Beth Porter",
+              "text": "",
+              "children": [],
+              "node_id": "0024"
+            },
+            {
+              "level": 3,
+              "title": "Hossein Rahnama",
+              "text": "MIT Media Lab/Flybits",
+              "children": [],
+              "node_id": "0025"
+            },
+            {
+              "level": 3,
+              "title": "Hossein Rahnama",
+              "text": "",
+              "children": [],
+              "node_id": "0026"
+            },
+            {
+              "level": 3,
+              "title": "John Harthorne",
+              "text": "Two Lanterns Venture Capital",
+              "children": [],
+              "node_id": "0027"
+            },
+            {
+              "level": 3,
+              "title": "John Harthorne",
+              "text": "",
+              "children": [],
+              "node_id": "0028"
+            }
+          ],
+          "node_id": "0014"
+        },
+        {
+          "level": 2,
+          "title": "Mentors",
+          "text": "",
+          "children": [
+            {
+              "level": 3,
+              "title": "Ana Pantelic",
+              "text": "MIT D-Lab Mark Weber MIT Media Lab and Tectonic Ventures Michael Hayes Practical AI Gargi Dasgupta Palo Alto Networks",
+              "children": [],
+              "node_id": "0030"
+            },
+            {
+              "level": 3,
+              "title": "Ana Pantelic",
+              "text": "",
+              "children": [],
+              "node_id": "0031"
+            },
+            {
+              "level": 3,
+              "title": "Mark Weber",
+              "text": "MIT Media Lab and Tectonic Ventures",
+              "children": [],
+              "node_id": "0032"
+            },
+            {
+              "level": 3,
+              "title": "Mark Weber",
+              "text": "",
+              "children": [],
+              "node_id": "0033"
+            },
+            {
+              "level": 3,
+              "title": "Michael Hayes",
+              "text": "Practical AI",
+              "children": [],
+              "node_id": "0034"
+            },
+            {
+              "level": 3,
+              "title": "Michael Hayes",
+              "text": "",
+              "children": [],
+              "node_id": "0035"
+            },
+            {
+              "level": 3,
+              "title": "Gargi Dasgupta",
+              "text": "Palo Alto Networks",
+              "children": [],
+              "node_id": "0036"
+            },
+            {
+              "level": 3,
+              "title": "Gargi Dasgupta",
+              "text": "",
+              "children": [],
+              "node_id": "0037"
+            },
+            {
+              "level": 3,
+              "title": "Shree Shirgurkar",
+              "text": "Catchpoint Chris Pease MIT Media Lab Taleb Alashkar AlgoFace Christy Fernandez-Cull Davinci Wearables",
+              "children": [],
+              "node_id": "0038"
+            },
+            {
+              "level": 3,
+              "title": "Shree Shirgurkar",
+              "text": "",
+              "children": [],
+              "node_id": "0039"
+            },
+            {
+              "level": 3,
+              "title": "Chris Pease",
+              "text": "MIT Media Lab",
+              "children": [],
+              "node_id": "0040"
+            },
+            {
+              "level": 3,
+              "title": "Chris Pease",
+              "text": "",
+              "children": [],
+              "node_id": "0041"
+            },
+            {
+              "level": 3,
+              "title": "Taleb Alashkar",
+              "text": "AlgoFace",
+              "children": [],
+              "node_id": "0042"
+            },
+            {
+              "level": 3,
+              "title": "Taleb Alashkar",
+              "text": "",
+              "children": [],
+              "node_id": "0043"
+            },
+            {
+              "level": 3,
+              "title": "Christy Fernandez-Cull",
+              "text": "Davinci Wearables",
+              "children": [],
+              "node_id": "0044"
+            },
+            {
+              "level": 3,
+              "title": "Christy Fernandez-Cull",
+              "text": "",
+              "children": [],
+              "node_id": "0045"
+            },
+            {
+              "level": 3,
+              "title": "Satayan Mahajan",
+              "text": "Datalign Advisory Roman Cepeda Link Ventures and Exponential Management, LLC Boaz Fachler Link Ventures Narendra Kale Kale Logistics",
+              "children": [],
+              "node_id": "0046"
+            },
+            {
+              "level": 3,
+              "title": "Satayan Mahajan",
+              "text": "",
+              "children": [],
+              "node_id": "0047"
+            },
+            {
+              "level": 3,
+              "title": "Roman Cepeda",
+              "text": "Link Ventures and Exponential Management, LLC",
+              "children": [],
+              "node_id": "0048"
+            },
+            {
+              "level": 3,
+              "title": "Roman Cepeda",
+              "text": "",
+              "children": [],
+              "node_id": "0049"
+            },
+            {
+              "level": 3,
+              "title": "Boaz Fachler",
+              "text": "Link Ventures",
+              "children": [],
+              "node_id": "0050"
+            },
+            {
+              "level": 3,
+              "title": "Boaz Fachler",
+              "text": "",
+              "children": [],
+              "node_id": "0051"
+            },
+            {
+              "level": 3,
+              "title": "Narendra Kale",
+              "text": "Kale Logistics",
+              "children": [],
+              "node_id": "0052"
+            },
+            {
+              "level": 3,
+              "title": "Narendra Kale",
+              "text": "",
+              "children": [],
+              "node_id": "0053"
+            },
+            {
+              "level": 3,
+              "title": "Jana Mike",
+              "text": "UCSF and BrainMind Rajeev Surati Scalable Display Technologies and Skyline Nav Mark Castleman Intel Tiber Cloud Brendan Mcsheffrey DataRight.org and The Kendall Project",
+              "children": [],
+              "node_id": "0054"
+            },
+            {
+              "level": 3,
+              "title": "Jana Mike",
+              "text": "",
+              "children": [],
+              "node_id": "0055"
+            },
+            {
+              "level": 3,
+              "title": "Rajeev Surati",
+              "text": "Scalable Display Technologies and Skyline Nav",
+              "children": [],
+              "node_id": "0056"
+            },
+            {
+              "level": 3,
+              "title": "Rajeev Surati",
+              "text": "",
+              "children": [],
+              "node_id": "0057"
+            },
+            {
+              "level": 3,
+              "title": "Mark Castleman",
+              "text": "Intel Tiber Cloud",
+              "children": [],
+              "node_id": "0058"
+            },
+            {
+              "level": 3,
+              "title": "Mark Castleman",
+              "text": "",
+              "children": [],
+              "node_id": "0059"
+            },
+            {
+              "level": 3,
+              "title": "Brendan Mcsheffrey",
+              "text": "DataRight.org and The Kendall Project",
+              "children": [],
+              "node_id": "0060"
+            },
+            {
+              "level": 3,
+              "title": "Brendan Mcsheffrey",
+              "text": "",
+              "children": [],
+              "node_id": "0061"
+            },
+            {
+              "level": 3,
+              "title": "Steve Derezinski",
+              "text": "C10 Labs Artem Lukoianov CSAIL and SundAI Nikolay Vyahhi Hyperskill and SundAI Morgan Rockett Cerebras and SundAI",
+              "children": [],
+              "node_id": "0062"
+            },
+            {
+              "level": 3,
+              "title": "Steve Derezinski",
+              "text": "",
+              "children": [],
+              "node_id": "0063"
+            },
+            {
+              "level": 3,
+              "title": "Artem Lukoianov",
+              "text": "CSAIL and SundAI",
+              "children": [],
+              "node_id": "0064"
+            },
+            {
+              "level": 3,
+              "title": "Artem Lukoianov",
+              "text": "",
+              "children": [],
+              "node_id": "0065"
+            },
+            {
+              "level": 3,
+              "title": "Nikolay Vyahhi",
+              "text": "Hyperskill and SundAI",
+              "children": [],
+              "node_id": "0066"
+            },
+            {
+              "level": 3,
+              "title": "Nikolay Vyahhi",
+              "text": "",
+              "children": [],
+              "node_id": "0067"
+            },
+            {
+              "level": 3,
+              "title": "Morgan Rockett",
+              "text": "Cerebras and SundAI",
+              "children": [],
+              "node_id": "0068"
+            },
+            {
+              "level": 3,
+              "title": "Morgan Rockett",
+              "text": "",
+              "children": [],
+              "node_id": "0069"
+            },
+            {
+              "level": 3,
+              "title": "Frido Haugg",
+              "text": "Harvard and SundAI Konstantina Yaneva Harvard and SundAI",
+              "children": [],
+              "node_id": "0070"
+            },
+            {
+              "level": 3,
+              "title": "Frido Haugg",
+              "text": "",
+              "children": [],
+              "node_id": "0071"
+            },
+            {
+              "level": 3,
+              "title": "Konstantina Yaneva",
+              "text": "Harvard and SundAI",
+              "children": [],
+              "node_id": "0072"
+            },
+            {
+              "level": 3,
+              "title": "Konstantina Yaneva",
+              "text": "",
+              "children": [],
+              "node_id": "0073"
+            }
+          ],
+          "node_id": "0029"
+        },
+        {
+          "level": 2,
+          "title": "Background",
+          "text": "This long running course has led to many spin offs including Dimagi, Cogito, Prosperia, Ginger, Sanergy, and nonprofit PathCheck Foundation.Our previous class links:\n- Fall'24: MIT Foundations of AI Ventures\n- Spring'24: AI Venture Studio\n- Fall'23: AI Venture Studio\n- Spring'23: AI + Web3 for Impact: Venture Studio\n- Fall'22: AI + Web3 for Impact: Venture Studio\n- Spring'22: AI for Impact: Venture Studio\n- Fall'21: AI for Impact ~ Building Global Ventures Solving Societal-Scale Problems\n- Spring'21: AI for Impact\n- Fall'20: Global Ventures ~ Data and AI for Resilience after COVID19\n- Spring'20: AI for Impact ~ Towards Solving Societal-Scale Problems via Media Ventures\nAll other previous AI for Impact/Global Ventures class links can be found here:\n- Spring Term\n- Recent Demo Day Report\n- MIT News: \"AI for Impact\" lives up to its name",
+          "children": [],
+          "node_id": "0074"
+        },
+        {
+          "level": 2,
+          "title": "Course Outline",
+          "text": "Class Goals:\n- Guide students to identify, evaluate and build high-impact projects with AI. Focus on deep technology applications that are best suited to students with top engineering and design skills at MIT.\n- Advance \"Big Ideas\" into MVP-seed-stage for commercial consideration.\n- Teach the technical fundamentals of the modern AI stack (rapid prototyping, deployment, and model management).\n- Discuss practical trade-offs in AI product development (model accuracy, efficiency, and latency).\n- Meet and Greet held at MIT/Harvard\n- First day of class: Feb 6, 2025\n- Mid-term review: March 14, 2025\n- Final Class Presentations and \"Demo Day\" awards: May 8, 2025\nClass Structure:\n- Venture studio format, with team projects with 3-5 students per team\n- Guest speakers share leading-edge thinking\n- Minimum Viable Product (MVP) by the end of the term\nSupport for Students:\n- Weekly class mentor meetings on Thursday after class / guest lectures / work sessions\n- Class visits to local start-ups and technology companies\n- Data and AI scientists from startups for experience\n- Sessions with startup coaches",
+          "children": [],
+          "node_id": "0075"
+        },
+        {
+          "level": 2,
+          "title": "Agenda",
+          "text": "All times are listed in Eastern Standard Time (EST)",
+          "children": [
+            {
+              "level": 5,
+              "title": "February 5, 2025",
+              "text": "",
+              "children": [],
+              "node_id": "0077"
+            },
+            {
+              "level": 4,
+              "title": "Meet & Greet 1: Course pre-meetup",
+              "text": "Registration Link: (Link)\nJoin us to meet instructors and understand the pre-homework, timeline and expectations.",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "February 6, 2025",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0079"
+                }
+              ],
+              "node_id": "0078"
+            },
+            {
+              "level": 4,
+              "title": "First day of class",
+              "text": "MIT Media Lab, E14-633",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "February 13, 2025",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0081"
+                }
+              ],
+              "node_id": "0080"
+            },
+            {
+              "level": 4,
+              "title": "Second Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "February 20, 2025",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0083"
+                }
+              ],
+              "node_id": "0082"
+            },
+            {
+              "level": 4,
+              "title": "Third Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "February 27, 2025",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0085"
+                }
+              ],
+              "node_id": "0084"
+            },
+            {
+              "level": 4,
+              "title": "Fourth Session of Class",
+              "text": "Individual Meeting",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "March 6, 2025",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0087"
+                }
+              ],
+              "node_id": "0086"
+            },
+            {
+              "level": 4,
+              "title": "Fifth Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "March 13, 2025",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0089"
+                }
+              ],
+              "node_id": "0088"
+            },
+            {
+              "level": 4,
+              "title": "Sixth Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "Midterm",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0091"
+                },
+                {
+                  "level": 5,
+                  "title": "March 20, 2025",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0092"
+                }
+              ],
+              "node_id": "0090"
+            },
+            {
+              "level": 4,
+              "title": "Seventh Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "March 27, 2025",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0094"
+                }
+              ],
+              "node_id": "0093"
+            },
+            {
+              "level": 4,
+              "title": "Eighth Session of Class",
+              "text": "Individual Meeting",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "April 3, 2025",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0096"
+                }
+              ],
+              "node_id": "0095"
+            },
+            {
+              "level": 4,
+              "title": "Ninth Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "April 10, 2025",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0098"
+                }
+              ],
+              "node_id": "0097"
+            },
+            {
+              "level": 4,
+              "title": "Tenth Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "April 17, 2025",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0100"
+                }
+              ],
+              "node_id": "0099"
+            },
+            {
+              "level": 4,
+              "title": "Eleventh Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "April 24, 2025",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0102"
+                }
+              ],
+              "node_id": "0101"
+            },
+            {
+              "level": 4,
+              "title": "Twelfth Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "May 1, 2025",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0104"
+                }
+              ],
+              "node_id": "0103"
+            },
+            {
+              "level": 4,
+              "title": "Thirteenth Session of Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "May 8, 2025",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0106"
+                }
+              ],
+              "node_id": "0105"
+            },
+            {
+              "level": 4,
+              "title": "Final Class",
+              "text": "",
+              "children": [
+                {
+                  "level": 5,
+                  "title": "Student final deliverables presentation",
+                  "text": "",
+                  "children": [],
+                  "node_id": "0108"
+                }
+              ],
+              "node_id": "0107"
+            },
+            {
+              "level": 4,
+              "title": "Social Event",
+              "text": "Hosted at MIT Media Lab\nSlides from Spring 2024 Demo Day at the Media Lab\nFall 2024 Demo Day at the Media Lab",
+              "children": [],
+              "node_id": "0109"
+            }
+          ],
+          "node_id": "0076"
+        }
+      ],
+      "node_id": "0001"
+    }
+  ]
+}

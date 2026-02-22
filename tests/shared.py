@@ -765,6 +765,221 @@ def semantic_only_search(conn, emb_model, query, top_k=5):
     return results
 
 
+# ── Improved LLM Rerank ──────────────────────────────────────────────────────
+
+
+def improved_llm_rerank_search(conn, emb_model, client, query, top_k=5, candidate_k=20, model=None):
+    """Improved LLM reranking: fewer candidates, full content, multi-chunk selection.
+
+    Fixes three flaws in the original llm_rerank_search:
+    1. candidate_k=20 instead of 50 (less noise)
+    2. Full content instead of 600-char truncation (only truncate if > 2000 chars)
+    3. Multi-chunk selection prompt instead of per-chunk scoring
+    """
+    if model is None:
+        model = "google/gemini-2.0-flash-001"
+    candidates = hybrid_search(conn, emb_model, query, top_k=candidate_k)
+    if not candidates:
+        return []
+
+    chunks_text = ""
+    for i, c in enumerate(candidates):
+        content = c["content"]
+        if len(content) > 2000:
+            content = content[:2000] + "..."
+        chunks_text += f"\n--- Chunk {i} (type: {c['content_type']}) ---\n{content}\n"
+
+    prompt = (
+        f"Given a query and {len(candidates)} candidate chunks, select the {top_k} "
+        f"chunks that TOGETHER best answer the query. Consider which chunks complement "
+        f"each other to provide the most complete answer.\n\n"
+        f"Query: {query}\n\n"
+        f"Candidate chunks:\n{chunks_text}\n\n"
+        f'Return JSON: {{"selected": [3, 7, 12, 1, 9]}} — list the chunk IDs in order '
+        f"of relevance (most relevant first). Return exactly {top_k} IDs."
+    )
+
+    try:
+        response = client.chat.completions.create(
+            model=model,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.0,
+            max_tokens=200,
+        )
+        raw = response.choices[0].message.content.strip()
+        if "```" in raw:
+            raw = raw.split("```")[1]
+            if raw.startswith("json"):
+                raw = raw[4:]
+        parsed = json.loads(raw)
+        selected_ids = parsed.get("selected", [])
+    except (json.JSONDecodeError, IndexError, KeyError, Exception):
+        return candidates[:top_k]
+
+    results = []
+    for rank, idx in enumerate(selected_ids):
+        if isinstance(idx, int) and 0 <= idx < len(candidates):
+            results.append({**candidates[idx], "score": top_k - rank})
+    # Fill remaining slots if LLM returned fewer than top_k
+    seen = {r["id"] for r in results}
+    for c in candidates:
+        if len(results) >= top_k:
+            break
+        if c["id"] not in seen:
+            results.append({**c, "score": 0})
+            seen.add(c["id"])
+    return results[:top_k]
+
+
+# ── PageIndex Tree Search ────────────────────────────────────────────────────
+
+
+def pageindex_tree_search(client, query, top_k=5, model=None, trees_dir=None):
+    """PageIndex-style hierarchical tree search — no SQLite dependency.
+
+    1. Document selection: pick relevant docs from manifest
+    2. Tree navigation: LLM navigates tree structure to find relevant nodes
+    3. Text extraction: return text from selected nodes
+
+    Args:
+        client: OpenAI-compatible client (e.g. OpenRouter).
+        query: User query string.
+        top_k: Number of results to return.
+        model: LLM model ID.
+        trees_dir: Path to tree JSON directory (default: data/trees/).
+    """
+    if model is None:
+        model = "google/gemini-2.0-flash-001"
+    if trees_dir is None:
+        trees_dir = Path(__file__).parent.parent / "data" / "trees"
+    else:
+        trees_dir = Path(trees_dir)
+
+    # ── Step 1: Document selection ────────────────────────────────────────
+    manifest_path = trees_dir / "_manifest.json"
+    manifest = json.loads(manifest_path.read_text())
+    docs = manifest["documents"]
+
+    doc_list = "\n".join(
+        f"- {d['doc_name']}: {d['description']}" for d in docs
+    )
+    doc_prompt = (
+        f"Which of these documents might contain information to answer this query?\n\n"
+        f"Query: {query}\n\n"
+        f"Documents:\n{doc_list}\n\n"
+        f'Return JSON: {{"docs": ["doc_name1", "doc_name2", ...]}}. '
+        f"Select up to 6 most relevant documents."
+    )
+
+    try:
+        resp = client.chat.completions.create(
+            model=model,
+            messages=[{"role": "user", "content": doc_prompt}],
+            temperature=0.0,
+            max_tokens=200,
+        )
+        raw = resp.choices[0].message.content.strip()
+        if "```" in raw:
+            raw = raw.split("```")[1]
+            if raw.startswith("json"):
+                raw = raw[4:]
+        selected_docs = json.loads(raw).get("docs", [])
+    except Exception:
+        # Fallback: use all page docs
+        selected_docs = [d["doc_name"] for d in docs if d["type"] == "page"]
+
+    selected_docs = selected_docs[:6]
+    doc_files = {d["doc_name"]: d["file"] for d in docs}
+
+    # ── Step 2: Tree navigation ───────────────────────────────────────────
+    all_nodes = []
+    for doc_name in selected_docs:
+        if doc_name not in doc_files:
+            continue
+        tree_path = trees_dir / doc_files[doc_name]
+        if not tree_path.exists():
+            continue
+        tree_data = json.loads(tree_path.read_text())
+
+        # Build compact tree representation (titles + summaries + node_ids, no full text)
+        compact = _compact_tree(tree_data["structure"])
+
+        nav_prompt = (
+            f"Navigate this document tree to find sections that answer the query.\n\n"
+            f"Query: {query}\n\n"
+            f"Document: {doc_name}\n"
+            f"Tree:\n{compact}\n\n"
+            f'Return JSON: {{"node_ids": ["0001", "0003", ...]}}. '
+            f"Select the most relevant node IDs (up to {top_k})."
+        )
+
+        try:
+            resp = client.chat.completions.create(
+                model=model,
+                messages=[{"role": "user", "content": nav_prompt}],
+                temperature=0.0,
+                max_tokens=200,
+            )
+            raw = resp.choices[0].message.content.strip()
+            if "```" in raw:
+                raw = raw.split("```")[1]
+                if raw.startswith("json"):
+                    raw = raw[4:]
+            node_ids = json.loads(raw).get("node_ids", [])
+        except Exception:
+            node_ids = []
+
+        # Look up text for selected nodes
+        node_map = _build_node_map(tree_data["structure"])
+        for nid in node_ids:
+            if nid in node_map:
+                node = node_map[nid]
+                text = node.get("text", "")
+                if text:
+                    all_nodes.append({
+                        "content": f"{node.get('title', '')}\n\n{text}",
+                        "content_type": "text",
+                        "score": 0,
+                        "doc_name": doc_name,
+                        "node_id": nid,
+                    })
+
+    # ── Step 3: Score by selection order and return ────────────────────────
+    for i, node in enumerate(all_nodes):
+        node["score"] = max(0, top_k * 2 - i)
+    return all_nodes[:top_k]
+
+
+def _compact_tree(nodes, indent=0):
+    """Build a compact text representation of the tree for LLM navigation."""
+    lines = []
+    for node in nodes:
+        prefix = "  " * indent
+        title = node.get("title", "")
+        nid = node.get("node_id", "")
+        summary = node.get("summary", "")
+        # Show first 100 chars of text as preview if no summary
+        text_preview = summary or (node.get("text", "")[:100] + "..." if len(node.get("text", "")) > 100 else node.get("text", ""))
+        line = f"{prefix}[{nid}] {title}"
+        if text_preview:
+            line += f" — {text_preview[:120]}"
+        lines.append(line)
+        if node.get("children"):
+            lines.append(_compact_tree(node["children"], indent + 1))
+    return "\n".join(lines)
+
+
+def _build_node_map(nodes):
+    """Build a flat dict of node_id -> node for quick lookup."""
+    node_map = {}
+    for node in nodes:
+        if "node_id" in node:
+            node_map[node["node_id"]] = node
+        if node.get("children"):
+            node_map.update(_build_node_map(node["children"]))
+    return node_map
+
+
 # ── Scoring ──────────────────────────────────────────────────────────────────
 
 def score_retrieval(results, keywords):

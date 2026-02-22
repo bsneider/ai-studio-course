@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-21T04:35:49.588474+00:00",
+  "generated_at": "2026-02-22T16:34:57.550174+00:00",
   "n_queries": 35,
   "approaches": [
     "Hybrid",
@@ -9,7 +9,9 @@
     "Semantic",
     "LLM:gemini-2.0-flash",
     "LLM:nemotron-70b",
-    "LLM:llama-3.3-70b"
+    "LLM:llama-3.3-70b",
+    "LLM:improved",
+    "PageIndex"
   ],
   "per_query": [
     {
@@ -69,7 +71,7 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -87,7 +89,7 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -95,6 +97,24 @@
           "effective_mrr": 1.0,
           "effective_ndcg": 1.0,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -153,7 +173,7 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -171,7 +191,7 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -179,6 +199,24 @@
           "effective_mrr": 1.0,
           "effective_ndcg": 1.0,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -239,7 +277,7 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.5,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -257,14 +295,32 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
-          "recall": 1.0,
+        "LLM:llama-3.3-70b": {
+          "recall": 0.5,
           "mrr": 1.0,
-          "ndcg": 0.8919478197221425,
-          "effective_recall": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.5,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.8919478197221425,
+          "effective_ndcg": 1.0,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -325,13 +381,13 @@
           "effective_ndcg": 0.4573369727327457,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.75,
           "mrr": 1.0,
-          "ndcg": 0.9121656860366328,
+          "ndcg": 0.9049765583210164,
           "effective_recall": 0.75,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.9121656860366328,
+          "effective_ndcg": 0.9049765583210164,
           "passed": true
         },
         "LLM:nemotron-70b": {
@@ -343,14 +399,32 @@
           "effective_ndcg": 0.9049765583210164,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.75,
           "mrr": 1.0,
-          "ndcg": 0.9121656860366328,
+          "ndcg": 0.9049765583210164,
           "effective_recall": 0.75,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.9121656860366328,
+          "effective_ndcg": 0.9049765583210164,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.840466744283681,
+          "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.840466744283681,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -410,13 +484,13 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
-          "recall": 1.0,
+        "LLM:gemini-2.0-flash": {
+          "recall": 0.6666666666666666,
           "mrr": 1.0,
-          "ndcg": 0.8375161037724468,
-          "effective_recall": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.6666666666666666,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.8375161037724468,
+          "effective_ndcg": 1.0,
           "passed": true
         },
         "LLM:nemotron-70b": {
@@ -428,14 +502,32 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.6666666666666666,
           "mrr": 1.0,
-          "ndcg": 0.8656392231763174,
+          "ndcg": 1.0,
           "effective_recall": 0.6666666666666666,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.8656392231763174,
+          "effective_ndcg": 1.0,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.9920466006454152,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9920466006454152,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -498,13 +590,13 @@
           "effective_ndcg": 0.5531239834838553,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 0.9132595666297368,
+          "ndcg": 0.6901332867457537,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.9132595666297368,
+          "effective_ndcg": 0.6901332867457537,
           "passed": true
         },
         "LLM:nemotron-70b": {
@@ -516,14 +608,32 @@
           "effective_ndcg": 0.6901332867457537,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 0.7033736910334266,
+          "ndcg": 0.6901332867457537,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.7033736910334266,
+          "effective_ndcg": 0.6901332867457537,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.9297949982523477,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9297949982523477,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -585,13 +695,13 @@
           "effective_ndcg": 0.8221120471878671,
           "passed": false
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 0.8686633200819412,
+          "ndcg": 0.5713939514994553,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.8686633200819412,
+          "effective_ndcg": 0.5713939514994553,
           "passed": true
         },
         "LLM:nemotron-70b": {
@@ -603,14 +713,32 @@
           "effective_ndcg": 0.5713939514994553,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 0.7614851882563043,
+          "ndcg": 0.5713939514994553,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.7614851882563043,
+          "effective_ndcg": 0.5713939514994553,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.6672365503089726,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.6672365503089726,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -671,13 +799,13 @@
           "effective_ndcg": 0.6776636931349654,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.75,
           "mrr": 1.0,
-          "ndcg": 1.0,
+          "ndcg": 0.9813883936133462,
           "effective_recall": 0.75,
           "effective_mrr": 1.0,
-          "effective_ndcg": 1.0,
+          "effective_ndcg": 0.9813883936133462,
           "passed": true
         },
         "LLM:nemotron-70b": {
@@ -689,14 +817,32 @@
           "effective_ndcg": 0.9813883936133462,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.75,
           "mrr": 1.0,
-          "ndcg": 1.0,
+          "ndcg": 0.9813883936133462,
           "effective_recall": 0.75,
           "effective_mrr": 1.0,
-          "effective_ndcg": 1.0,
+          "effective_ndcg": 0.9813883936133462,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.8442355845243696,
+          "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8442355845243696,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -759,14 +905,14 @@
           "effective_ndcg": 0.8447122853992027,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
-          "recall": 0.5,
-          "mrr": 0.5,
-          "ndcg": 0.7242206596550013,
-          "effective_recall": 0.5,
-          "effective_mrr": 0.5,
-          "effective_ndcg": 0.7242206596550013,
-          "passed": true
+        "LLM:gemini-2.0-flash": {
+          "recall": 0.3333333333333333,
+          "mrr": 1.0,
+          "ndcg": 0.9469024295259745,
+          "effective_recall": 0.3333333333333333,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9469024295259745,
+          "passed": false
         },
         "LLM:nemotron-70b": {
           "recall": 0.3333333333333333,
@@ -777,13 +923,31 @@
           "effective_ndcg": 0.9469024295259745,
           "passed": false
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.3333333333333333,
           "mrr": 1.0,
-          "ndcg": 0.8599797111848092,
+          "ndcg": 0.9469024295259745,
           "effective_recall": 0.3333333333333333,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.8599797111848092,
+          "effective_ndcg": 0.9469024295259745,
+          "passed": false
+        },
+        "LLM:improved": {
+          "recall": 0.3333333333333333,
+          "mrr": 1.0,
+          "ndcg": 0.9558295932317544,
+          "effective_recall": 0.3333333333333333,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9558295932317544,
+          "passed": false
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
           "passed": false
         }
       }
@@ -846,13 +1010,13 @@
           "effective_ndcg": 0.9735792424866951,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 1.0,
+          "ndcg": 0.6673385207601783,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 1.0,
+          "effective_ndcg": 0.6673385207601783,
           "passed": true
         },
         "LLM:nemotron-70b": {
@@ -864,14 +1028,32 @@
           "effective_ndcg": 0.6673385207601783,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 0.9359980548891793,
+          "ndcg": 0.6673385207601783,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.9359980548891793,
+          "effective_ndcg": 0.6673385207601783,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.6673385207601783,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.6673385207601783,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -932,13 +1114,13 @@
           "effective_ndcg": 0.9629027936988324,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 0.9629027936988324,
+          "ndcg": 0.7302937468156797,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.9629027936988324,
+          "effective_ndcg": 0.7302937468156797,
           "passed": true
         },
         "LLM:nemotron-70b": {
@@ -950,14 +1132,32 @@
           "effective_ndcg": 0.7302937468156797,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 1.0,
           "mrr": 1.0,
-          "ndcg": 1.0,
+          "ndcg": 0.7302937468156797,
           "effective_recall": 1.0,
           "effective_mrr": 1.0,
-          "effective_ndcg": 1.0,
+          "effective_ndcg": 0.7302937468156797,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.9629027936988324,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9629027936988324,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -1018,14 +1218,14 @@
           "effective_ndcg": 0.7979168917078058,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
-          "recall": 0.25,
-          "mrr": 0.5,
-          "ndcg": 0.7328286204777911,
-          "effective_recall": 0.25,
-          "effective_mrr": 0.5,
-          "effective_ndcg": 0.7328286204777911,
-          "passed": false
+        "LLM:gemini-2.0-flash": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.8239560888032269,
+          "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8239560888032269,
+          "passed": true
         },
         "LLM:nemotron-70b": {
           "recall": 0.75,
@@ -1036,14 +1236,32 @@
           "effective_ndcg": 0.8239560888032269,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
-          "recall": 0.5,
+        "LLM:llama-3.3-70b": {
+          "recall": 0.75,
           "mrr": 1.0,
-          "ndcg": 0.8447122853992027,
-          "effective_recall": 0.5,
+          "ndcg": 0.8239560888032269,
+          "effective_recall": 0.75,
           "effective_mrr": 1.0,
-          "effective_ndcg": 0.8447122853992027,
+          "effective_ndcg": 0.8239560888032269,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.75,
+          "mrr": 1.0,
+          "ndcg": 0.7698986984637216,
+          "effective_recall": 0.75,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7698986984637216,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -1105,7 +1323,7 @@
           "effective_ndcg": 0.7521728881423634,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.8,
           "mrr": 1.0,
           "ndcg": 0.7770227215242603,
@@ -1123,7 +1341,7 @@
           "effective_ndcg": 0.7770227215242603,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.8,
           "mrr": 1.0,
           "ndcg": 0.7770227215242603,
@@ -1131,6 +1349,24 @@
           "effective_mrr": 1.0,
           "effective_ndcg": 0.7770227215242603,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.8,
+          "mrr": 1.0,
+          "ndcg": 0.7770227215242603,
+          "effective_recall": 0.8,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7770227215242603,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -1193,7 +1429,7 @@
           "effective_ndcg": 0.7521866188906461,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.16666666666666666,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -1211,13 +1447,31 @@
           "effective_ndcg": 1.0,
           "passed": false
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.16666666666666666,
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.16666666666666666,
           "effective_mrr": 1.0,
           "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "LLM:improved": {
+          "recall": 0.16666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.16666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
           "passed": false
         }
       }
@@ -1281,7 +1535,7 @@
           "effective_ndcg": 0.6838554026395006,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.8333333333333334,
           "mrr": 1.0,
           "ndcg": 0.881282782391275,
@@ -1299,7 +1553,7 @@
           "effective_ndcg": 0.881282782391275,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.8333333333333334,
           "mrr": 1.0,
           "ndcg": 0.881282782391275,
@@ -1307,6 +1561,24 @@
           "effective_mrr": 1.0,
           "effective_ndcg": 0.881282782391275,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8105173806663685,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8105173806663685,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -1369,7 +1641,7 @@
           "effective_ndcg": 1.0,
           "passed": false
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.0,
           "mrr": 0.0,
           "ndcg": 1.0,
@@ -1387,13 +1659,31 @@
           "effective_ndcg": 1.0,
           "passed": false
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.0,
           "mrr": 0.0,
           "ndcg": 1.0,
           "effective_recall": 0.0,
           "effective_mrr": 0.0,
           "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "LLM:improved": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
           "passed": false
         }
       }
@@ -1457,7 +1747,7 @@
           "effective_ndcg": 0.5106716842493384,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.6666666666666666,
           "mrr": 0.3333333333333333,
           "ndcg": 0.6279040080595649,
@@ -1475,7 +1765,7 @@
           "effective_ndcg": 0.6279040080595649,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.6666666666666666,
           "mrr": 0.3333333333333333,
           "ndcg": 0.6279040080595649,
@@ -1483,6 +1773,24 @@
           "effective_mrr": 0.3333333333333333,
           "effective_ndcg": 0.6279040080595649,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.6666666666666666,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.6088964459718201,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.6088964459718201,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -1544,7 +1852,7 @@
           "effective_ndcg": 0.8241377469002206,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 0.8241377469002206,
@@ -1562,7 +1870,7 @@
           "effective_ndcg": 0.8241377469002206,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 1.0,
           "mrr": 1.0,
           "ndcg": 0.8241377469002206,
@@ -1570,6 +1878,24 @@
           "effective_mrr": 1.0,
           "effective_ndcg": 0.8241377469002206,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8241377469002206,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8241377469002206,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -1631,7 +1957,7 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.0,
           "mrr": 0.0,
           "ndcg": 1.0,
@@ -1649,13 +1975,31 @@
           "effective_ndcg": 1.0,
           "passed": false
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.0,
           "mrr": 0.0,
           "ndcg": 1.0,
           "effective_recall": 0.0,
           "effective_mrr": 0.0,
           "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "LLM:improved": {
+          "recall": 0.4,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.4,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
           "passed": false
         }
       }
@@ -1720,7 +2064,7 @@
           "effective_ndcg": 0.360691176496464,
           "passed": false
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.2857142857142857,
           "mrr": 0.25,
           "ndcg": 0.43954268380428807,
@@ -1738,13 +2082,31 @@
           "effective_ndcg": 0.43954268380428807,
           "passed": false
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.2857142857142857,
           "mrr": 0.25,
           "ndcg": 0.43954268380428807,
           "effective_recall": 0.2857142857142857,
           "effective_mrr": 0.25,
           "effective_ndcg": 0.43954268380428807,
+          "passed": false
+        },
+        "LLM:improved": {
+          "recall": 0.2857142857142857,
+          "mrr": 0.07692307692307693,
+          "ndcg": 0.360691176496464,
+          "effective_recall": 0.2857142857142857,
+          "effective_mrr": 0.07692307692307693,
+          "effective_ndcg": 0.360691176496464,
+          "passed": false
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
           "passed": false
         }
       }
@@ -1807,7 +2169,7 @@
           "effective_ndcg": 0.9605753368118397,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.4,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -1825,7 +2187,7 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.4,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -1833,6 +2195,24 @@
           "effective_mrr": 1.0,
           "effective_ndcg": 1.0,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.4,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.4,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -1893,7 +2273,7 @@
           "effective_ndcg": 0.9170245493900888,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.5,
           "mrr": 1.0,
           "ndcg": 0.9061710886726135,
@@ -1911,7 +2291,7 @@
           "effective_ndcg": 0.9061710886726135,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.5,
           "mrr": 1.0,
           "ndcg": 0.9061710886726135,
@@ -1919,6 +2299,24 @@
           "effective_mrr": 1.0,
           "effective_ndcg": 0.9061710886726135,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.8093545982231206,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.8093545982231206,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -1981,7 +2379,7 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.8333333333333334,
           "mrr": 1.0,
           "ndcg": 0.7932495804570024,
@@ -1999,7 +2397,7 @@
           "effective_ndcg": 0.7932495804570024,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.8333333333333334,
           "mrr": 1.0,
           "ndcg": 0.7932495804570024,
@@ -2007,6 +2405,24 @@
           "effective_mrr": 1.0,
           "effective_ndcg": 0.7932495804570024,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.3333333333333333,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.3333333333333333,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -2069,7 +2485,7 @@
           "effective_ndcg": 0.32711466091967967,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.5,
           "mrr": 0.25,
           "ndcg": 0.46238363047462905,
@@ -2087,13 +2503,31 @@
           "effective_ndcg": 0.537616369525371,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.5,
           "mrr": 0.25,
           "ndcg": 0.46238363047462905,
           "effective_recall": 0.5,
           "effective_mrr": 0.75,
           "effective_ndcg": 0.537616369525371,
+          "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.5,
+          "mrr": 0.5,
+          "ndcg": 0.6590018048024133,
+          "effective_recall": 0.5,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.3409981951975867,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         }
       }
@@ -2157,7 +2591,7 @@
           "effective_ndcg": 0.3065735963827293,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.16666666666666666,
           "mrr": 0.5,
           "ndcg": 0.6934264036172707,
@@ -2175,13 +2609,31 @@
           "effective_ndcg": 0.3065735963827293,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.16666666666666666,
           "mrr": 0.5,
           "ndcg": 0.6934264036172707,
           "effective_recall": 0.8333333333333334,
           "effective_mrr": 0.5,
           "effective_ndcg": 0.3065735963827293,
+          "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.16666666666666666,
+          "mrr": 0.5,
+          "ndcg": 0.6934264036172707,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.5,
+          "effective_ndcg": 0.3065735963827293,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         }
       }
@@ -2245,7 +2697,7 @@
           "effective_ndcg": 0.0,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.16666666666666666,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -2263,13 +2715,31 @@
           "effective_ndcg": 0.0,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.16666666666666666,
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.8333333333333334,
           "effective_mrr": 0.0,
           "effective_ndcg": 0.0,
+          "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.16666666666666666,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 1.0,
           "passed": true
         }
       }
@@ -2333,7 +2803,7 @@
           "effective_ndcg": 0.6821160297746383,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.6666666666666666,
           "mrr": 1.0,
           "ndcg": 0.7178947288412965,
@@ -2351,7 +2821,7 @@
           "effective_ndcg": 0.7178947288412965,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.6666666666666666,
           "mrr": 1.0,
           "ndcg": 0.7178947288412965,
@@ -2359,6 +2829,24 @@
           "effective_mrr": 1.0,
           "effective_ndcg": 0.7178947288412965,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.6666666666666666,
+          "mrr": 1.0,
+          "ndcg": 0.7145481847964748,
+          "effective_recall": 0.6666666666666666,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7145481847964748,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -2422,7 +2910,7 @@
           "effective_ndcg": 0.9557911522471707,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.8571428571428571,
           "mrr": 1.0,
           "ndcg": 0.7837581800467175,
@@ -2440,7 +2928,7 @@
           "effective_ndcg": 0.7837581800467175,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.8571428571428571,
           "mrr": 1.0,
           "ndcg": 0.7837581800467175,
@@ -2448,6 +2936,24 @@
           "effective_mrr": 1.0,
           "effective_ndcg": 0.7837581800467175,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.8571428571428571,
+          "mrr": 1.0,
+          "ndcg": 0.7782472507427312,
+          "effective_recall": 0.8571428571428571,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7782472507427312,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -2510,7 +3016,7 @@
           "effective_ndcg": 1.0,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.6666666666666666,
           "mrr": 1.0,
           "ndcg": 0.960960846717329,
@@ -2528,7 +3034,7 @@
           "effective_ndcg": 0.960960846717329,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.6666666666666666,
           "mrr": 1.0,
           "ndcg": 0.960960846717329,
@@ -2536,6 +3042,24 @@
           "effective_mrr": 1.0,
           "effective_ndcg": 0.960960846717329,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.9733983476116024,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9733983476116024,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -2598,7 +3122,7 @@
           "effective_ndcg": 0.9343710124351232,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.8333333333333334,
           "mrr": 1.0,
           "ndcg": 0.9550479995674238,
@@ -2616,7 +3140,7 @@
           "effective_ndcg": 0.9550479995674238,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.8333333333333334,
           "mrr": 1.0,
           "ndcg": 0.9550479995674238,
@@ -2624,6 +3148,24 @@
           "effective_mrr": 1.0,
           "effective_ndcg": 0.9550479995674238,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.8333333333333334,
+          "mrr": 1.0,
+          "ndcg": 0.9550479995674238,
+          "effective_recall": 0.8333333333333334,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9550479995674238,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -2685,7 +3227,7 @@
           "effective_ndcg": 0.921396320854073,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.8,
           "mrr": 1.0,
           "ndcg": 0.8241911108942168,
@@ -2703,7 +3245,7 @@
           "effective_ndcg": 0.8241911108942168,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.8,
           "mrr": 1.0,
           "ndcg": 0.8241911108942168,
@@ -2711,6 +3253,24 @@
           "effective_mrr": 1.0,
           "effective_ndcg": 0.8241911108942168,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 1.0,
+          "mrr": 1.0,
+          "ndcg": 0.921396320854073,
+          "effective_recall": 1.0,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.921396320854073,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -2772,7 +3332,7 @@
           "effective_ndcg": 0.9469024295259743,
           "passed": false
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.2,
           "mrr": 1.0,
           "ndcg": 1.0,
@@ -2790,13 +3350,31 @@
           "effective_ndcg": 1.0,
           "passed": false
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.2,
           "mrr": 1.0,
           "ndcg": 1.0,
           "effective_recall": 0.2,
           "effective_mrr": 1.0,
           "effective_ndcg": 1.0,
+          "passed": false
+        },
+        "LLM:improved": {
+          "recall": 0.2,
+          "mrr": 1.0,
+          "ndcg": 0.9469024295259743,
+          "effective_recall": 0.2,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9469024295259743,
+          "passed": false
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
           "passed": false
         }
       }
@@ -2860,7 +3438,7 @@
           "effective_ndcg": 0.9402268036207482,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.5,
           "mrr": 1.0,
           "ndcg": 0.9398058304490399,
@@ -2878,7 +3456,7 @@
           "effective_ndcg": 0.9398058304490399,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.5,
           "mrr": 1.0,
           "ndcg": 0.9398058304490399,
@@ -2886,6 +3464,24 @@
           "effective_mrr": 1.0,
           "effective_ndcg": 0.9398058304490399,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.5,
+          "mrr": 1.0,
+          "ndcg": 0.9484873334016,
+          "effective_recall": 0.5,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.9484873334016,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -2949,7 +3545,7 @@
           "effective_ndcg": 0.7826853730468758,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.42857142857142855,
           "mrr": 1.0,
           "ndcg": 0.8124614702704668,
@@ -2967,7 +3563,7 @@
           "effective_ndcg": 0.8124614702704668,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.42857142857142855,
           "mrr": 1.0,
           "ndcg": 0.8124614702704668,
@@ -2975,6 +3571,24 @@
           "effective_mrr": 1.0,
           "effective_ndcg": 0.8124614702704668,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.7142857142857143,
+          "mrr": 1.0,
+          "ndcg": 0.7826853730468758,
+          "effective_recall": 0.7142857142857143,
+          "effective_mrr": 1.0,
+          "effective_ndcg": 0.7826853730468758,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     },
@@ -3041,7 +3655,7 @@
           "effective_ndcg": 0.47742744029197676,
           "passed": true
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "recall": 0.9,
           "mrr": 0.3333333333333333,
           "ndcg": 0.4052614906197505,
@@ -3059,7 +3673,7 @@
           "effective_ndcg": 0.4052614906197505,
           "passed": true
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "recall": 0.9,
           "mrr": 0.3333333333333333,
           "ndcg": 0.4052614906197505,
@@ -3067,6 +3681,24 @@
           "effective_mrr": 0.3333333333333333,
           "effective_ndcg": 0.4052614906197505,
           "passed": true
+        },
+        "LLM:improved": {
+          "recall": 0.9,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.4359329074535664,
+          "effective_recall": 0.9,
+          "effective_mrr": 0.3333333333333333,
+          "effective_ndcg": 0.4359329074535664,
+          "passed": true
+        },
+        "PageIndex": {
+          "recall": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "effective_recall": 0.0,
+          "effective_mrr": 0.0,
+          "effective_ndcg": 0.0,
+          "passed": false
         }
       }
     }
@@ -3127,10 +3759,10 @@
       "n_passed": 31,
       "n_total": 35
     },
-    "LLM:llama-3.3-70b": {
+    "LLM:gemini-2.0-flash": {
       "Recall@K": 0.664421768707483,
-      "MRR": 0.8047619047619048,
-      "NDCG@K": 0.8126982567278842,
+      "MRR": 0.8333333333333334,
+      "NDCG@K": 0.7945504346059484,
       "pass@1": 0.8285714285714285,
       "pass@3": 0.9969442322383499,
       "pass^3": 0.5688396501457728,
@@ -3149,15 +3781,37 @@
       "n_passed": 29,
       "n_total": 35
     },
-    "LLM:gemini-2.0-flash": {
-      "Recall@K": 0.6715646258503402,
+    "LLM:llama-3.3-70b": {
+      "Recall@K": 0.664421768707483,
       "MRR": 0.8333333333333334,
-      "NDCG@K": 0.8076623969949023,
+      "NDCG@K": 0.7945504346059484,
       "pass@1": 0.8285714285714285,
       "pass@3": 0.9969442322383499,
       "pass^3": 0.5688396501457728,
       "pass_rate": 0.8285714285714286,
       "n_passed": 29,
+      "n_total": 35
+    },
+    "LLM:improved": {
+      "Recall@K": 0.6897278911564625,
+      "MRR": 0.8498168498168498,
+      "NDCG@K": 0.7978453740723476,
+      "pass@1": 0.8285714285714285,
+      "pass@3": 0.9969442322383499,
+      "pass^3": 0.5688396501457728,
+      "pass_rate": 0.8285714285714286,
+      "n_passed": 29,
+      "n_total": 35
+    },
+    "PageIndex": {
+      "Recall@K": 0.08571428571428572,
+      "MRR": 0.08571428571428572,
+      "NDCG@K": 0.08571428571428572,
+      "pass@1": 0.08571428571428574,
+      "pass@3": 0.24216959511077163,
+      "pass^3": 0.0006297376093294461,
+      "pass_rate": 0.08571428571428572,
+      "n_passed": 3,
       "n_total": 35
     }
   },
@@ -3190,7 +3844,7 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 1.0
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "mean_recall": 0.8333333333333334,
           "mean_mrr": 1.0,
           "mean_ndcg": 1.0
@@ -3200,10 +3854,20 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 1.0
         },
-        "LLM:gemini-2.0-flash": {
-          "mean_recall": 1.0,
+        "LLM:llama-3.3-70b": {
+          "mean_recall": 0.8333333333333334,
           "mean_mrr": 1.0,
-          "mean_ndcg": 0.9639826065740476
+          "mean_ndcg": 1.0
+        },
+        "LLM:improved": {
+          "mean_recall": 0.8333333333333334,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 1.0
+        },
+        "PageIndex": {
+          "mean_recall": 0.0,
+          "mean_mrr": 0.0,
+          "mean_ndcg": 0.0
         }
       }
     },
@@ -3235,20 +3899,30 @@
           "mean_mrr": 0.6666666666666666,
           "mean_ndcg": 0.7286684863663728
         },
-        "LLM:llama-3.3-70b": {
-          "mean_recall": 0.875,
+        "LLM:gemini-2.0-flash": {
+          "mean_recall": 0.7083333333333333,
           "mean_mrr": 1.0,
-          "mean_ndcg": 0.8748408949045399
+          "mean_ndcg": 0.9524882791605083
         },
         "LLM:nemotron-70b": {
           "mean_recall": 0.7083333333333333,
           "mean_mrr": 1.0,
           "mean_ndcg": 0.9524882791605083
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "mean_recall": 0.7083333333333333,
           "mean_mrr": 1.0,
-          "mean_ndcg": 0.8889024546064751
+          "mean_ndcg": 0.9524882791605083
+        },
+        "LLM:improved": {
+          "mean_recall": 0.7083333333333333,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.916256672464548
+        },
+        "PageIndex": {
+          "mean_recall": 0.0,
+          "mean_mrr": 0.0,
+          "mean_ndcg": 0.0
         }
       }
     },
@@ -3280,20 +3954,30 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.7244030023014727
         },
-        "LLM:llama-3.3-70b": {
-          "mean_recall": 0.8125,
-          "mean_mrr": 0.875,
-          "mean_ndcg": 0.8765358865916698
+        "LLM:gemini-2.0-flash": {
+          "mean_recall": 0.7708333333333334,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.7974545153461324
         },
         "LLM:nemotron-70b": {
           "mean_recall": 0.7708333333333334,
           "mean_mrr": 1.0,
           "mean_ndcg": 0.7974545153461324
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "mean_recall": 0.7708333333333334,
           "mean_mrr": 1.0,
-          "mean_ndcg": 0.831209647618635
+          "mean_ndcg": 0.7974545153461324
+        },
+        "LLM:improved": {
+          "mean_recall": 0.7708333333333334,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8492741815793611
+        },
+        "PageIndex": {
+          "mean_recall": 0.0,
+          "mean_mrr": 0.0,
+          "mean_ndcg": 0.0
         }
       }
     },
@@ -3325,20 +4009,30 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.9682410180927637
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "mean_recall": 1.0,
           "mean_mrr": 1.0,
-          "mean_ndcg": 0.9814513968494162
+          "mean_ndcg": 0.6988161337879291
         },
         "LLM:nemotron-70b": {
           "mean_recall": 1.0,
           "mean_mrr": 1.0,
           "mean_ndcg": 0.6988161337879291
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "mean_recall": 1.0,
           "mean_mrr": 1.0,
-          "mean_ndcg": 0.9679990274445897
+          "mean_ndcg": 0.6988161337879291
+        },
+        "LLM:improved": {
+          "mean_recall": 1.0,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8151206572295053
+        },
+        "PageIndex": {
+          "mean_recall": 0.0,
+          "mean_mrr": 0.0,
+          "mean_ndcg": 0.0
         }
       }
     },
@@ -3370,20 +4064,30 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.7674254662469385
         },
-        "LLM:llama-3.3-70b": {
-          "mean_recall": 0.4055555555555556,
-          "mean_mrr": 0.8333333333333334,
-          "mean_ndcg": 0.8366171140006838
+        "LLM:gemini-2.0-flash": {
+          "mean_recall": 0.5722222222222223,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8669929367758291
         },
         "LLM:nemotron-70b": {
           "mean_recall": 0.5722222222222223,
           "mean_mrr": 1.0,
           "mean_ndcg": 0.8669929367758291
         },
-        "LLM:gemini-2.0-flash": {
-          "mean_recall": 0.48888888888888893,
+        "LLM:llama-3.3-70b": {
+          "mean_recall": 0.5722222222222223,
           "mean_mrr": 1.0,
-          "mean_ndcg": 0.8739116689744876
+          "mean_ndcg": 0.8669929367758291
+        },
+        "LLM:improved": {
+          "mean_recall": 0.5722222222222223,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8489738066626606
+        },
+        "PageIndex": {
+          "mean_recall": 0.0,
+          "mean_mrr": 0.0,
+          "mean_ndcg": 0.0
         }
       }
     },
@@ -3415,7 +4119,7 @@
           "mean_mrr": 0.6666666666666667,
           "mean_ndcg": 0.8037329667578119
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "mean_recall": 0.5,
           "mean_mrr": 0.4666666666666667,
           "mean_ndcg": 0.8666649074702122
@@ -3425,10 +4129,20 @@
           "mean_mrr": 0.4666666666666667,
           "mean_ndcg": 0.8666649074702122
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "mean_recall": 0.5,
           "mean_mrr": 0.4666666666666667,
           "mean_ndcg": 0.8666649074702122
+        },
+        "LLM:improved": {
+          "mean_recall": 0.6133333333333333,
+          "mean_mrr": 0.6666666666666667,
+          "mean_ndcg": 0.8487103147076818
+        },
+        "PageIndex": {
+          "mean_recall": 0.0,
+          "mean_mrr": 0.0,
+          "mean_ndcg": 0.0
         }
       }
     },
@@ -3460,7 +4174,7 @@
           "mean_mrr": 0.7692307692307693,
           "mean_ndcg": 0.8095727656745981
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "mean_recall": 0.5047619047619047,
           "mean_mrr": 0.8125,
           "mean_ndcg": 0.784740838233476
@@ -3470,10 +4184,20 @@
           "mean_mrr": 0.8125,
           "mean_ndcg": 0.784740838233476
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "mean_recall": 0.5047619047619047,
           "mean_mrr": 0.8125,
           "mean_ndcg": 0.784740838233476
+        },
+        "LLM:improved": {
+          "mean_recall": 0.5047619047619047,
+          "mean_mrr": 0.7692307692307693,
+          "mean_ndcg": 0.7925114436798961
+        },
+        "PageIndex": {
+          "mean_recall": 0.0,
+          "mean_mrr": 0.0,
+          "mean_ndcg": 0.0
         }
       }
     },
@@ -3505,7 +4229,7 @@
           "mean_mrr": 0.3333333333333333,
           "mean_ndcg": 0.21122941910080298
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "mean_recall": 0.7222222222222223,
           "mean_mrr": 0.4166666666666667,
           "mean_ndcg": 0.2813966553027001
@@ -3515,10 +4239,20 @@
           "mean_mrr": 0.4166666666666667,
           "mean_ndcg": 0.2813966553027001
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "mean_recall": 0.7222222222222223,
           "mean_mrr": 0.4166666666666667,
           "mean_ndcg": 0.2813966553027001
+        },
+        "LLM:improved": {
+          "mean_recall": 0.7222222222222223,
+          "mean_mrr": 0.3333333333333333,
+          "mean_ndcg": 0.21585726386010531
+        },
+        "PageIndex": {
+          "mean_recall": 1.0,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 1.0
         }
       }
     },
@@ -3550,7 +4284,7 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.8793023940072696
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "mean_recall": 0.7301587301587301,
           "mean_mrr": 1.0,
           "mean_ndcg": 0.8208712518684477
@@ -3560,10 +4294,20 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.8208712518684477
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "mean_recall": 0.7301587301587301,
           "mean_mrr": 1.0,
           "mean_ndcg": 0.8208712518684477
+        },
+        "LLM:improved": {
+          "mean_recall": 0.6746031746031745,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8220645943836028
+        },
+        "PageIndex": {
+          "mean_recall": 0.0,
+          "mean_mrr": 0.0,
+          "mean_ndcg": 0.0
         }
       }
     },
@@ -3595,7 +4339,7 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.9342232542717235
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "mean_recall": 0.6111111111111112,
           "mean_mrr": 1.0,
           "mean_ndcg": 0.9264130368205469
@@ -3605,10 +4349,20 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.9264130368205469
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "mean_recall": 0.6111111111111112,
           "mean_mrr": 1.0,
           "mean_ndcg": 0.9264130368205469
+        },
+        "LLM:improved": {
+          "mean_recall": 0.6777777777777777,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.9411155833158237
+        },
+        "PageIndex": {
+          "mean_recall": 0.0,
+          "mean_mrr": 0.0,
+          "mean_ndcg": 0.0
         }
       }
     },
@@ -3640,7 +4394,7 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.861456088333812
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "mean_recall": 0.4642857142857143,
           "mean_mrr": 1.0,
           "mean_ndcg": 0.8761336503597533
@@ -3650,10 +4404,20 @@
           "mean_mrr": 1.0,
           "mean_ndcg": 0.8761336503597533
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "mean_recall": 0.4642857142857143,
           "mean_mrr": 1.0,
           "mean_ndcg": 0.8761336503597533
+        },
+        "LLM:improved": {
+          "mean_recall": 0.6071428571428572,
+          "mean_mrr": 1.0,
+          "mean_ndcg": 0.8655863532242378
+        },
+        "PageIndex": {
+          "mean_recall": 0.0,
+          "mean_mrr": 0.0,
+          "mean_ndcg": 0.0
         }
       }
     },
@@ -3685,7 +4449,7 @@
           "mean_mrr": 0.3333333333333333,
           "mean_ndcg": 0.47742744029197676
         },
-        "LLM:llama-3.3-70b": {
+        "LLM:gemini-2.0-flash": {
           "mean_recall": 0.9,
           "mean_mrr": 0.3333333333333333,
           "mean_ndcg": 0.4052614906197505
@@ -3695,10 +4459,20 @@
           "mean_mrr": 0.3333333333333333,
           "mean_ndcg": 0.4052614906197505
         },
-        "LLM:gemini-2.0-flash": {
+        "LLM:llama-3.3-70b": {
           "mean_recall": 0.9,
           "mean_mrr": 0.3333333333333333,
           "mean_ndcg": 0.4052614906197505
+        },
+        "LLM:improved": {
+          "mean_recall": 0.9,
+          "mean_mrr": 0.3333333333333333,
+          "mean_ndcg": 0.4359329074535664
+        },
+        "PageIndex": {
+          "mean_recall": 0.0,
+          "mean_mrr": 0.0,
+          "mean_ndcg": 0.0
         }
       }
     }
@@ -3785,7 +4559,7 @@
       "kw": null,
       "sw": null,
       "label": "LLM:gemini-2.0-flash",
-      "mean_recall": 0.6715646258503402,
+      "mean_recall": 0.664421768707483,
       "pass_rate": 0.8285714285714286
     },
     {
@@ -3801,6 +4575,20 @@
       "label": "LLM:llama-3.3-70b",
       "mean_recall": 0.664421768707483,
       "pass_rate": 0.8285714285714286
+    },
+    {
+      "kw": null,
+      "sw": null,
+      "label": "LLM:improved",
+      "mean_recall": 0.6897278911564625,
+      "pass_rate": 0.8285714285714286
+    },
+    {
+      "kw": null,
+      "sw": null,
+      "label": "PageIndex",
+      "mean_recall": 0.08571428571428572,
+      "pass_rate": 0.08571428571428572
     }
   ]
 }

@@ -1,0 +1,729 @@
+{
+  "doc_name": "index",
+  "structure": [
+    {
+      "level": 1,
+      "title": "AI Studio, MIT class",
+      "text": "",
+      "children": [
+        {
+          "level": 2,
+          "title": "Overview",
+          "text": "Join this class to learn the foundations of how to spot, evaluate and build high-impact AI-first companies.This hands-on practical course will teach you to master systematic methods for identifying high-impact real-world opportunities for AI applications, learn technical fundamentals of the modern AI stack, and gain hands-on experience with rapid prototyping and product development. The course features guest lectures from leading AI scientists, CEOs, VCs, and culminates in a demo day with top investors from the MIT ecosystem.Join the Spring 2026 class here.",
+          "children": [],
+          "node_id": "0002"
+        },
+        {
+          "level": 2,
+          "title": "Instructors",
+          "text": "",
+          "children": [
+            {
+              "level": 3,
+              "title": "Ramesh Raskar",
+              "text": "Lead Professor\nMIT Media Lab Speakers & Mentors Alex 'Sandy' Pentland MIT Media Lab Vinod Khosla Khosla Ventures Paul English Boston Venture Studio Jason Pontin DCVC Reed Sturtevant The Engine Bilal Zuberi Lux Capital Steve Jurvetson Future Ventures Calvin Chin E14 Fund Eric Chen OVO Fund Michal Gilon-Yanai Two Lanterns VC Jinhua Zhao MIT City and Transportation Planning Daniela Rus CSAIL, MIT Habib Haddad E14 Fund Neha Narula Digital Currency Initiative Mohammad (Mo) Islam Threshold VC Riddhiman Das TripleBlind Ronnie Martinez CEAS Investments Santanu Bhattacharya Airtel X Labs Chris Pease MIT Media Lab Scott Phoenix Vicarious Thomas Hardjono MIT Connection Science Jeffrey Saviano EY Global Tax Innovation Leader David Shrier Imperial College Business School Anna Koscielecka Two Lanterns VC David Blundin Link Ventures John Werner Link Ventures Elizabeth Beth Porter MIT Media Lab Fadel Adib MIT Media Lab John Harthorne Two Lanterns VC Lakshminarasimhan Srinivasan TCS Satrajit Ghosh MIT Daniel Kraft XPRIZE Grace Isaford Lux Capital Patricia Geli Harvard Richard Dulude Underscore VC Graham Dodge PathCheck Foundation Umar Arshad Matiria Susan Garfield EY Rob Fisher Cogo Labs Stash Pomichter Oculo AI Jamie Goldstein Pillar VC Parker McKee Pillar VC Deb Hordon Cultivating Greatness LLC Nikolay Vyahhi Visiting Lecturer, MIT Maria Gorskikh Visiting Lecturer, MIT Pradyumna Chari Researcher, MIT Frido Haugg Researcher Serge Vasylechko Researcher",
+              "children": [],
+              "node_id": "0004"
+            },
+            {
+              "level": 3,
+              "title": "Lead Professor:",
+              "text": "",
+              "children": [],
+              "node_id": "0005"
+            },
+            {
+              "level": 3,
+              "title": "Ramesh Raskar",
+              "text": "",
+              "children": [],
+              "node_id": "0006"
+            }
+          ],
+          "node_id": "0003"
+        },
+        {
+          "level": 2,
+          "title": "Speakers & Mentors",
+          "text": "",
+          "children": [
+            {
+              "level": 3,
+              "title": "Alex 'Sandy' Pentland",
+              "text": "MIT Media Lab Vinod Khosla Khosla Ventures Paul English Boston Venture Studio Jason Pontin DCVC Reed Sturtevant The Engine Bilal Zuberi Lux Capital Steve Jurvetson Future Ventures Calvin Chin E14 Fund Eric Chen OVO Fund Michal Gilon-Yanai Two Lanterns VC Jinhua Zhao MIT City and Transportation Planning Daniela Rus CSAIL, MIT Habib Haddad E14 Fund Neha Narula Digital Currency Initiative Mohammad (Mo) Islam Threshold VC Riddhiman Das TripleBlind Ronnie Martinez CEAS Investments Santanu Bhattacharya Airtel X Labs Chris Pease MIT Media Lab Scott Phoenix Vicarious Thomas Hardjono MIT Connection Science Jeffrey Saviano EY Global Tax Innovation Leader David Shrier Imperial College Business School Anna Koscielecka Two Lanterns VC David Blundin Link Ventures John Werner Link Ventures Elizabeth Beth Porter MIT Media Lab Fadel Adib MIT Media Lab John Harthorne Two Lanterns VC Lakshminarasimhan Srinivasan TCS Satrajit Ghosh MIT Daniel Kraft XPRIZE Grace Isaford Lux Capital Patricia Geli Harvard Richard Dulude Underscore VC Graham Dodge PathCheck Foundation Umar Arshad Matiria Susan Garfield EY Rob Fisher Cogo Labs Stash Pomichter Oculo AI Jamie Goldstein Pillar VC Parker McKee Pillar VC Deb Hordon Cultivating Greatness LLC Nikolay Vyahhi Visiting Lecturer, MIT Maria Gorskikh Visiting Lecturer, MIT Pradyumna Chari Researcher, MIT Frido Haugg Researcher Serge Vasylechko Researcher",
+              "children": [],
+              "node_id": "0008"
+            },
+            {
+              "level": 3,
+              "title": "Alex 'Sandy' Pentland",
+              "text": "",
+              "children": [],
+              "node_id": "0009"
+            },
+            {
+              "level": 3,
+              "title": "Vinod Khosla",
+              "text": "Khosla Ventures",
+              "children": [],
+              "node_id": "0010"
+            },
+            {
+              "level": 3,
+              "title": "Vinod Khosla",
+              "text": "",
+              "children": [],
+              "node_id": "0011"
+            },
+            {
+              "level": 3,
+              "title": "Paul English",
+              "text": "Boston Venture Studio",
+              "children": [],
+              "node_id": "0012"
+            },
+            {
+              "level": 3,
+              "title": "Paul English",
+              "text": "",
+              "children": [],
+              "node_id": "0013"
+            },
+            {
+              "level": 3,
+              "title": "Jason Pontin",
+              "text": "DCVC",
+              "children": [],
+              "node_id": "0014"
+            },
+            {
+              "level": 3,
+              "title": "Jason Pontin",
+              "text": "",
+              "children": [],
+              "node_id": "0015"
+            },
+            {
+              "level": 3,
+              "title": "Reed Sturtevant",
+              "text": "The Engine",
+              "children": [],
+              "node_id": "0016"
+            },
+            {
+              "level": 3,
+              "title": "Reed Sturtevant",
+              "text": "",
+              "children": [],
+              "node_id": "0017"
+            },
+            {
+              "level": 3,
+              "title": "Bilal Zuberi",
+              "text": "Lux Capital",
+              "children": [],
+              "node_id": "0018"
+            },
+            {
+              "level": 3,
+              "title": "Bilal Zuberi",
+              "text": "",
+              "children": [],
+              "node_id": "0019"
+            },
+            {
+              "level": 3,
+              "title": "Steve Jurvetson",
+              "text": "Future Ventures",
+              "children": [],
+              "node_id": "0020"
+            },
+            {
+              "level": 3,
+              "title": "Steve Jurvetson",
+              "text": "",
+              "children": [],
+              "node_id": "0021"
+            },
+            {
+              "level": 3,
+              "title": "Calvin Chin",
+              "text": "E14 Fund",
+              "children": [],
+              "node_id": "0022"
+            },
+            {
+              "level": 3,
+              "title": "Calvin Chin",
+              "text": "",
+              "children": [],
+              "node_id": "0023"
+            },
+            {
+              "level": 3,
+              "title": "Eric Chen",
+              "text": "OVO Fund",
+              "children": [],
+              "node_id": "0024"
+            },
+            {
+              "level": 3,
+              "title": "Eric Chen",
+              "text": "",
+              "children": [],
+              "node_id": "0025"
+            },
+            {
+              "level": 3,
+              "title": "Michal Gilon-Yanai",
+              "text": "Two Lanterns VC",
+              "children": [],
+              "node_id": "0026"
+            },
+            {
+              "level": 3,
+              "title": "Michal Gilon-Yanai",
+              "text": "",
+              "children": [],
+              "node_id": "0027"
+            },
+            {
+              "level": 3,
+              "title": "Jinhua Zhao",
+              "text": "MIT City and Transportation Planning",
+              "children": [],
+              "node_id": "0028"
+            },
+            {
+              "level": 3,
+              "title": "Jinhua Zhao",
+              "text": "",
+              "children": [],
+              "node_id": "0029"
+            },
+            {
+              "level": 3,
+              "title": "Daniela Rus",
+              "text": "CSAIL, MIT",
+              "children": [],
+              "node_id": "0030"
+            },
+            {
+              "level": 3,
+              "title": "Daniela Rus",
+              "text": "",
+              "children": [],
+              "node_id": "0031"
+            },
+            {
+              "level": 3,
+              "title": "Habib Haddad",
+              "text": "E14 Fund",
+              "children": [],
+              "node_id": "0032"
+            },
+            {
+              "level": 3,
+              "title": "Habib Haddad",
+              "text": "",
+              "children": [],
+              "node_id": "0033"
+            },
+            {
+              "level": 3,
+              "title": "Neha Narula",
+              "text": "Digital Currency Initiative",
+              "children": [],
+              "node_id": "0034"
+            },
+            {
+              "level": 3,
+              "title": "Neha Narula",
+              "text": "",
+              "children": [],
+              "node_id": "0035"
+            },
+            {
+              "level": 3,
+              "title": "Mohammad (Mo) Islam",
+              "text": "Threshold VC",
+              "children": [],
+              "node_id": "0036"
+            },
+            {
+              "level": 3,
+              "title": "Mohammad (Mo) Islam",
+              "text": "",
+              "children": [],
+              "node_id": "0037"
+            },
+            {
+              "level": 3,
+              "title": "Riddhiman Das",
+              "text": "TripleBlind",
+              "children": [],
+              "node_id": "0038"
+            },
+            {
+              "level": 3,
+              "title": "Riddhiman Das",
+              "text": "",
+              "children": [],
+              "node_id": "0039"
+            },
+            {
+              "level": 3,
+              "title": "Ronnie Martinez",
+              "text": "CEAS Investments",
+              "children": [],
+              "node_id": "0040"
+            },
+            {
+              "level": 3,
+              "title": "Ronnie Martinez",
+              "text": "",
+              "children": [],
+              "node_id": "0041"
+            },
+            {
+              "level": 3,
+              "title": "Santanu Bhattacharya",
+              "text": "Airtel X Labs",
+              "children": [],
+              "node_id": "0042"
+            },
+            {
+              "level": 3,
+              "title": "Santanu Bhattacharya",
+              "text": "",
+              "children": [],
+              "node_id": "0043"
+            },
+            {
+              "level": 3,
+              "title": "Chris Pease",
+              "text": "MIT Media Lab",
+              "children": [],
+              "node_id": "0044"
+            },
+            {
+              "level": 3,
+              "title": "Chris Pease",
+              "text": "",
+              "children": [],
+              "node_id": "0045"
+            },
+            {
+              "level": 3,
+              "title": "Scott Phoenix",
+              "text": "Vicarious",
+              "children": [],
+              "node_id": "0046"
+            },
+            {
+              "level": 3,
+              "title": "Scott Phoenix",
+              "text": "",
+              "children": [],
+              "node_id": "0047"
+            },
+            {
+              "level": 3,
+              "title": "Thomas Hardjono",
+              "text": "MIT Connection Science",
+              "children": [],
+              "node_id": "0048"
+            },
+            {
+              "level": 3,
+              "title": "Thomas Hardjono",
+              "text": "",
+              "children": [],
+              "node_id": "0049"
+            },
+            {
+              "level": 3,
+              "title": "Jeffrey Saviano",
+              "text": "EY Global Tax Innovation Leader",
+              "children": [],
+              "node_id": "0050"
+            },
+            {
+              "level": 3,
+              "title": "Jeffrey Saviano",
+              "text": "",
+              "children": [],
+              "node_id": "0051"
+            },
+            {
+              "level": 3,
+              "title": "David Shrier",
+              "text": "Imperial College Business School",
+              "children": [],
+              "node_id": "0052"
+            },
+            {
+              "level": 3,
+              "title": "David Shrier",
+              "text": "",
+              "children": [],
+              "node_id": "0053"
+            },
+            {
+              "level": 3,
+              "title": "Anna Koscielecka",
+              "text": "Two Lanterns VC",
+              "children": [],
+              "node_id": "0054"
+            },
+            {
+              "level": 3,
+              "title": "Anna Koscielecka",
+              "text": "",
+              "children": [],
+              "node_id": "0055"
+            },
+            {
+              "level": 3,
+              "title": "David Blundin",
+              "text": "Link Ventures",
+              "children": [],
+              "node_id": "0056"
+            },
+            {
+              "level": 3,
+              "title": "David Blundin",
+              "text": "",
+              "children": [],
+              "node_id": "0057"
+            },
+            {
+              "level": 3,
+              "title": "John Werner",
+              "text": "Link Ventures",
+              "children": [],
+              "node_id": "0058"
+            },
+            {
+              "level": 3,
+              "title": "John Werner",
+              "text": "",
+              "children": [],
+              "node_id": "0059"
+            },
+            {
+              "level": 3,
+              "title": "Elizabeth Beth Porter",
+              "text": "MIT Media Lab",
+              "children": [],
+              "node_id": "0060"
+            },
+            {
+              "level": 3,
+              "title": "Elizabeth Beth Porter",
+              "text": "",
+              "children": [],
+              "node_id": "0061"
+            },
+            {
+              "level": 3,
+              "title": "Fadel Adib",
+              "text": "MIT Media Lab",
+              "children": [],
+              "node_id": "0062"
+            },
+            {
+              "level": 3,
+              "title": "Fadel Adib",
+              "text": "",
+              "children": [],
+              "node_id": "0063"
+            },
+            {
+              "level": 3,
+              "title": "John Harthorne",
+              "text": "Two Lanterns VC",
+              "children": [],
+              "node_id": "0064"
+            },
+            {
+              "level": 3,
+              "title": "John Harthorne",
+              "text": "",
+              "children": [],
+              "node_id": "0065"
+            },
+            {
+              "level": 3,
+              "title": "Lakshminarasimhan Srinivasan",
+              "text": "TCS",
+              "children": [],
+              "node_id": "0066"
+            },
+            {
+              "level": 3,
+              "title": "Lakshminarasimhan Srinivasan",
+              "text": "",
+              "children": [],
+              "node_id": "0067"
+            },
+            {
+              "level": 3,
+              "title": "Satrajit Ghosh",
+              "text": "MIT",
+              "children": [],
+              "node_id": "0068"
+            },
+            {
+              "level": 3,
+              "title": "Satrajit Ghosh",
+              "text": "",
+              "children": [],
+              "node_id": "0069"
+            },
+            {
+              "level": 3,
+              "title": "Daniel Kraft",
+              "text": "XPRIZE",
+              "children": [],
+              "node_id": "0070"
+            },
+            {
+              "level": 3,
+              "title": "Daniel Kraft",
+              "text": "",
+              "children": [],
+              "node_id": "0071"
+            },
+            {
+              "level": 3,
+              "title": "Grace Isaford",
+              "text": "Lux Capital",
+              "children": [],
+              "node_id": "0072"
+            },
+            {
+              "level": 3,
+              "title": "Grace Isaford",
+              "text": "",
+              "children": [],
+              "node_id": "0073"
+            },
+            {
+              "level": 3,
+              "title": "Patricia Geli",
+              "text": "Harvard",
+              "children": [],
+              "node_id": "0074"
+            },
+            {
+              "level": 3,
+              "title": "Patricia Geli",
+              "text": "",
+              "children": [],
+              "node_id": "0075"
+            },
+            {
+              "level": 3,
+              "title": "Richard Dulude",
+              "text": "Underscore VC",
+              "children": [],
+              "node_id": "0076"
+            },
+            {
+              "level": 3,
+              "title": "Richard Dulude",
+              "text": "",
+              "children": [],
+              "node_id": "0077"
+            },
+            {
+              "level": 3,
+              "title": "Graham Dodge",
+              "text": "PathCheck Foundation",
+              "children": [],
+              "node_id": "0078"
+            },
+            {
+              "level": 3,
+              "title": "Graham Dodge",
+              "text": "",
+              "children": [],
+              "node_id": "0079"
+            },
+            {
+              "level": 3,
+              "title": "Umar Arshad",
+              "text": "Matiria",
+              "children": [],
+              "node_id": "0080"
+            },
+            {
+              "level": 3,
+              "title": "Umar Arshad",
+              "text": "",
+              "children": [],
+              "node_id": "0081"
+            },
+            {
+              "level": 3,
+              "title": "Susan Garfield",
+              "text": "EY",
+              "children": [],
+              "node_id": "0082"
+            },
+            {
+              "level": 3,
+              "title": "Susan Garfield",
+              "text": "",
+              "children": [],
+              "node_id": "0083"
+            },
+            {
+              "level": 3,
+              "title": "Rob Fisher",
+              "text": "Cogo Labs",
+              "children": [],
+              "node_id": "0084"
+            },
+            {
+              "level": 3,
+              "title": "Rob Fisher",
+              "text": "",
+              "children": [],
+              "node_id": "0085"
+            },
+            {
+              "level": 3,
+              "title": "Stash Pomichter",
+              "text": "Oculo AI",
+              "children": [],
+              "node_id": "0086"
+            },
+            {
+              "level": 3,
+              "title": "Stash Pomichter",
+              "text": "",
+              "children": [],
+              "node_id": "0087"
+            },
+            {
+              "level": 3,
+              "title": "Jamie Goldstein",
+              "text": "Pillar VC",
+              "children": [],
+              "node_id": "0088"
+            },
+            {
+              "level": 3,
+              "title": "Jamie Goldstein",
+              "text": "",
+              "children": [],
+              "node_id": "0089"
+            },
+            {
+              "level": 3,
+              "title": "Parker McKee",
+              "text": "Pillar VC",
+              "children": [],
+              "node_id": "0090"
+            },
+            {
+              "level": 3,
+              "title": "Parker McKee",
+              "text": "",
+              "children": [],
+              "node_id": "0091"
+            },
+            {
+              "level": 3,
+              "title": "Deb Hordon",
+              "text": "Cultivating Greatness LLC",
+              "children": [],
+              "node_id": "0092"
+            },
+            {
+              "level": 3,
+              "title": "Deb Hordon",
+              "text": "",
+              "children": [],
+              "node_id": "0093"
+            },
+            {
+              "level": 3,
+              "title": "Nikolay Vyahhi",
+              "text": "Visiting Lecturer, MIT",
+              "children": [],
+              "node_id": "0094"
+            },
+            {
+              "level": 3,
+              "title": "Nikolay Vyahhi",
+              "text": "",
+              "children": [],
+              "node_id": "0095"
+            },
+            {
+              "level": 3,
+              "title": "Maria Gorskikh",
+              "text": "Visiting Lecturer, MIT",
+              "children": [],
+              "node_id": "0096"
+            },
+            {
+              "level": 3,
+              "title": "Maria Gorskikh",
+              "text": "",
+              "children": [],
+              "node_id": "0097"
+            },
+            {
+              "level": 3,
+              "title": "Pradyumna Chari",
+              "text": "Researcher, MIT",
+              "children": [],
+              "node_id": "0098"
+            },
+            {
+              "level": 3,
+              "title": "Pradyumna Chari",
+              "text": "",
+              "children": [],
+              "node_id": "0099"
+            },
+            {
+              "level": 3,
+              "title": "Frido Haugg",
+              "text": "Researcher",
+              "children": [],
+              "node_id": "0100"
+            },
+            {
+              "level": 3,
+              "title": "Frido Haugg",
+              "text": "",
+              "children": [],
+              "node_id": "0101"
+            },
+            {
+              "level": 3,
+              "title": "Serge Vasylechko",
+              "text": "Researcher",
+              "children": [],
+              "node_id": "0102"
+            },
+            {
+              "level": 3,
+              "title": "Serge Vasylechko",
+              "text": "",
+              "children": [],
+              "node_id": "0103"
+            }
+          ],
+          "node_id": "0007"
+        }
+      ],
+      "node_id": "0001"
+    }
+  ]
+}

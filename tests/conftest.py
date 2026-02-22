@@ -50,8 +50,10 @@ def benchmark_capture(rag_db, request):
         hybrid_search,
         hybrid_search_expanded,
         hybrid_search_rrf,
+        improved_llm_rerank_search,
         mrr_score,
         ndcg_score,
+        pageindex_tree_search,
         pass_at_k,
         pass_power_k,
         recall_at_k,
@@ -77,6 +79,12 @@ def benchmark_capture(rag_db, request):
             approaches[label] = (lambda mid: lambda bq, k: llm_rerank_search(
                 conn, emb_model, openrouter, bq["q"], top_k=k, model=mid
             ))(model_id)
+        approaches["LLM:improved"] = lambda bq, k: improved_llm_rerank_search(
+            conn, emb_model, openrouter, bq["q"], top_k=k
+        )
+        approaches["PageIndex"] = lambda bq, k: pageindex_tree_search(
+            openrouter, bq["q"], top_k=k
+        )
 
     per_query = []
     for bq in ALL_QUERIES:
@@ -184,16 +192,16 @@ def benchmark_capture(rag_db, request):
             "pass_rate": pass_count / len(sweep_recalls),
         })
 
-    # Also record LLM approaches as separate points for the progression chart
+    # Also record LLM/PageIndex approaches as separate points for the progression chart
     for aname in approach_names:
-        if aname.startswith("LLM:"):
-            llm_agg = aggregates[aname]
+        if aname.startswith("LLM:") or aname == "PageIndex":
+            agg_entry = aggregates[aname]
             weight_sweep.append({
                 "kw": None,
                 "sw": None,
                 "label": aname,
-                "mean_recall": llm_agg["Recall@K"],
-                "pass_rate": llm_agg["pass_rate"],
+                "mean_recall": agg_entry["Recall@K"],
+                "pass_rate": agg_entry["pass_rate"],
             })
 
     data = {

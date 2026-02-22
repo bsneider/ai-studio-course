@@ -1,0 +1,535 @@
+{
+  "doc_name": "fall25",
+  "structure": [
+    {
+      "level": 1,
+      "title": "AI Studio, MIT class",
+      "text": "",
+      "children": [
+        {
+          "level": 2,
+          "title": "Overview",
+          "text": "Build the agentic futureThis MIT course teaches students to build autonomous AI agents that plan, coordinate, and execute complex workflows across distributed web systems. Students learn agent architectures, inter-agent protocols, web automation frameworks, and methods for decentralized coordination, while mastering AI-native coding and multimodal integration.Through hands-on projects, students build sophisticated agentic applications: from automated workflow orchestration to intelligent web scraping and dynamic API coordination. The course combines solid technical foundations with innovative product development opportunities in this emerging infrastructure layer. Students learn to design AI agents with global impact, validate ideas through AI-assisted research and interviews, and move working prototypes toward market-ready solutions.The course features insights from distributed AI researchers, web platform architects, and technical founders. It culminates with a technical demo day showcasing next-generation agentic web systems.Course pillars1. Innovation (20%): Cultivating a deep understanding of where AI is going to be in 2-3 years or more. Multimodal reasoning, autonomous workflows, personalized agents, robotics, and more.2. Human Centered design and Final Project (30%): Learn how to design innovative AI products that can make a truly global impact, validate ideas with AI-powered outreach and interviews, for compelling market-ready solutions.3. Technical Building (50%): We will teach you about hands-on creation of agentic systems, LLM-based tools, and automated pipelines using the latest AI stacks and frameworks.Follow these steps to register for the course\n- Step 0: Register for course : For MIT (Link), For Harvard (Link)\n- Step 1: Questionnaire (Link 1) before Wed, Sept 3rd, 5pm\n- Step 2:NEWBuild a mini AI app\n            (Link 2) \n            by Sun, Sep 7th\nYou must finish Step 1 to attend the first class. You will be expected to finish Step 2 by the second class.Submission of two pre-homeworks does not guarantee acceptance, but you can send a request to consider your application in a form we will provide you in the class.\n- Pre-Course Info Session & Social: (Link,Link)\nClass Schedule: Thursdays, 10 AM\u201312 PM, Room E14-633, MIT Media Lab (starting Sept 4)",
+          "children": [],
+          "node_id": "0002"
+        },
+        {
+          "level": 2,
+          "title": "Course Instructors",
+          "text": "",
+          "children": [
+            {
+              "level": 3,
+              "title": "Ramesh Raskar",
+              "text": "MIT Media Lab Serge Vasylechko Harvard Medical School AI",
+              "children": [],
+              "node_id": "0004"
+            },
+            {
+              "level": 3,
+              "title": "Ramesh Raskar",
+              "text": "",
+              "children": [],
+              "node_id": "0005"
+            },
+            {
+              "level": 3,
+              "title": "Serge Vasylechko",
+              "text": "Harvard Medical School AI",
+              "children": [],
+              "node_id": "0006"
+            },
+            {
+              "level": 3,
+              "title": "Serge Vasylechko",
+              "text": "",
+              "children": [],
+              "node_id": "0007"
+            },
+            {
+              "level": 3,
+              "title": "Course TA",
+              "text": "",
+              "children": [
+                {
+                  "level": 4,
+                  "title": "Nikhil Behari",
+                  "text": "Graduate Student, MIT\nnbehari@media.mit.edu",
+                  "children": [],
+                  "node_id": "0009"
+                }
+              ],
+              "node_id": "0008"
+            }
+          ],
+          "node_id": "0003"
+        },
+        {
+          "level": 2,
+          "title": "Leaders",
+          "text": "",
+          "children": [
+            {
+              "level": 3,
+              "title": "Nikolay Vyahhi",
+              "text": "Hyperskill and SundAI Pradyumna Chari MIT Maria Gorskikh Project Nanda Frido Haugg Harvard and SundAI Konstantina Yaneva Harvard and SundAI Honey Pamnani Lila.ai and MIT Alumni Santanu Bhattacharya MIT Media Lab Elizabeth Beth Porter MIT Media Lab John Werner MIT David Blundin Link Ventures",
+              "children": [],
+              "node_id": "0011"
+            },
+            {
+              "level": 3,
+              "title": "Nikolay Vyahhi",
+              "text": "",
+              "children": [],
+              "node_id": "0012"
+            },
+            {
+              "level": 3,
+              "title": "Pradyumna Chari",
+              "text": "MIT",
+              "children": [],
+              "node_id": "0013"
+            },
+            {
+              "level": 3,
+              "title": "Pradyumna Chari",
+              "text": "",
+              "children": [],
+              "node_id": "0014"
+            },
+            {
+              "level": 3,
+              "title": "Maria Gorskikh",
+              "text": "Project Nanda",
+              "children": [],
+              "node_id": "0015"
+            },
+            {
+              "level": 3,
+              "title": "Maria Gorskikh",
+              "text": "",
+              "children": [],
+              "node_id": "0016"
+            },
+            {
+              "level": 3,
+              "title": "Frido Haugg",
+              "text": "Harvard and SundAI",
+              "children": [],
+              "node_id": "0017"
+            },
+            {
+              "level": 3,
+              "title": "Frido Haugg",
+              "text": "",
+              "children": [],
+              "node_id": "0018"
+            },
+            {
+              "level": 3,
+              "title": "Konstantina Yaneva",
+              "text": "Harvard and SundAI",
+              "children": [],
+              "node_id": "0019"
+            },
+            {
+              "level": 3,
+              "title": "Konstantina Yaneva",
+              "text": "",
+              "children": [],
+              "node_id": "0020"
+            },
+            {
+              "level": 3,
+              "title": "Honey Pamnani",
+              "text": "Lila.ai and MIT Alumni",
+              "children": [],
+              "node_id": "0021"
+            },
+            {
+              "level": 3,
+              "title": "Honey Pamnani",
+              "text": "",
+              "children": [],
+              "node_id": "0022"
+            },
+            {
+              "level": 3,
+              "title": "Santanu Bhattacharya",
+              "text": "MIT Media Lab",
+              "children": [],
+              "node_id": "0023"
+            },
+            {
+              "level": 3,
+              "title": "Santanu Bhattacharya",
+              "text": "",
+              "children": [],
+              "node_id": "0024"
+            },
+            {
+              "level": 3,
+              "title": "Elizabeth Beth Porter",
+              "text": "MIT Media Lab",
+              "children": [],
+              "node_id": "0025"
+            },
+            {
+              "level": 3,
+              "title": "Elizabeth Beth Porter",
+              "text": "",
+              "children": [],
+              "node_id": "0026"
+            },
+            {
+              "level": 3,
+              "title": "John Werner",
+              "text": "MIT",
+              "children": [],
+              "node_id": "0027"
+            },
+            {
+              "level": 3,
+              "title": "John Werner",
+              "text": "",
+              "children": [],
+              "node_id": "0028"
+            },
+            {
+              "level": 3,
+              "title": "David Blundin",
+              "text": "Link Ventures",
+              "children": [],
+              "node_id": "0029"
+            },
+            {
+              "level": 3,
+              "title": "David Blundin",
+              "text": "",
+              "children": [],
+              "node_id": "0030"
+            }
+          ],
+          "node_id": "0010"
+        },
+        {
+          "level": 2,
+          "title": "Mentors and Former Speakers",
+          "text": "",
+          "children": [
+            {
+              "level": 3,
+              "title": "Alex 'Sandy' Pentland",
+              "text": "MIT Media Lab Mark Weber MIT Media Lab and Tectonic Ventures Nadia Shalaby MIT and Pakira Hossein Rahnama MIT Media Lab/Flybits John Harthorne Two Lanterns Venture Capital Michael Hayes Practical AI Gargi Dasgupta Palo Alto Networks Chris Pease Project NANDA Taleb Alashkar AlgoFace Christy Fernandez-Cull Davinci Wearables Ana Pantelic MIT D-Lab Roman Cepeda Link Ventures and Exponential Management, LLC Boaz Fachler Link Ventures Narendra Kale Kale Logistics Jana Mike UCSF and BrainMind Rajeev Surati Scalable Display Technologies and Skyline Nav Mark Castleman Intel Tiber Cloud Brendan Mcsheffrey DataRight.org and The Kendall Project Artem Lukoianov CSAIL and SundAI Pulkit Agrawal MIT EECS Sertac Karaman MIT AeroAstro, Director of LIDS",
+              "children": [],
+              "node_id": "0032"
+            },
+            {
+              "level": 3,
+              "title": "Alex 'Sandy' Pentland",
+              "text": "",
+              "children": [],
+              "node_id": "0033"
+            },
+            {
+              "level": 3,
+              "title": "Mark Weber",
+              "text": "MIT Media Lab and Tectonic Ventures",
+              "children": [],
+              "node_id": "0034"
+            },
+            {
+              "level": 3,
+              "title": "Mark Weber",
+              "text": "",
+              "children": [],
+              "node_id": "0035"
+            },
+            {
+              "level": 3,
+              "title": "Nadia Shalaby",
+              "text": "MIT and Pakira",
+              "children": [],
+              "node_id": "0036"
+            },
+            {
+              "level": 3,
+              "title": "Nadia Shalaby",
+              "text": "",
+              "children": [],
+              "node_id": "0037"
+            },
+            {
+              "level": 3,
+              "title": "Hossein Rahnama",
+              "text": "MIT Media Lab/Flybits",
+              "children": [],
+              "node_id": "0038"
+            },
+            {
+              "level": 3,
+              "title": "Hossein Rahnama",
+              "text": "",
+              "children": [],
+              "node_id": "0039"
+            },
+            {
+              "level": 3,
+              "title": "John Harthorne",
+              "text": "Two Lanterns Venture Capital",
+              "children": [],
+              "node_id": "0040"
+            },
+            {
+              "level": 3,
+              "title": "John Harthorne",
+              "text": "",
+              "children": [],
+              "node_id": "0041"
+            },
+            {
+              "level": 3,
+              "title": "Michael Hayes",
+              "text": "Practical AI",
+              "children": [],
+              "node_id": "0042"
+            },
+            {
+              "level": 3,
+              "title": "Michael Hayes",
+              "text": "",
+              "children": [],
+              "node_id": "0043"
+            },
+            {
+              "level": 3,
+              "title": "Gargi Dasgupta",
+              "text": "Palo Alto Networks",
+              "children": [],
+              "node_id": "0044"
+            },
+            {
+              "level": 3,
+              "title": "Gargi Dasgupta",
+              "text": "",
+              "children": [],
+              "node_id": "0045"
+            },
+            {
+              "level": 3,
+              "title": "Chris Pease",
+              "text": "Project NANDA",
+              "children": [],
+              "node_id": "0046"
+            },
+            {
+              "level": 3,
+              "title": "Chris Pease",
+              "text": "",
+              "children": [],
+              "node_id": "0047"
+            },
+            {
+              "level": 3,
+              "title": "Taleb Alashkar",
+              "text": "AlgoFace",
+              "children": [],
+              "node_id": "0048"
+            },
+            {
+              "level": 3,
+              "title": "Taleb Alashkar",
+              "text": "",
+              "children": [],
+              "node_id": "0049"
+            },
+            {
+              "level": 3,
+              "title": "Christy Fernandez-Cull",
+              "text": "Davinci Wearables",
+              "children": [],
+              "node_id": "0050"
+            },
+            {
+              "level": 3,
+              "title": "Christy Fernandez-Cull",
+              "text": "",
+              "children": [],
+              "node_id": "0051"
+            },
+            {
+              "level": 3,
+              "title": "Ana Pantelic",
+              "text": "MIT D-Lab",
+              "children": [],
+              "node_id": "0052"
+            },
+            {
+              "level": 3,
+              "title": "Ana Pantelic",
+              "text": "",
+              "children": [],
+              "node_id": "0053"
+            },
+            {
+              "level": 3,
+              "title": "Roman Cepeda",
+              "text": "Link Ventures and Exponential Management, LLC",
+              "children": [],
+              "node_id": "0054"
+            },
+            {
+              "level": 3,
+              "title": "Roman Cepeda",
+              "text": "",
+              "children": [],
+              "node_id": "0055"
+            },
+            {
+              "level": 3,
+              "title": "Boaz Fachler",
+              "text": "Link Ventures",
+              "children": [],
+              "node_id": "0056"
+            },
+            {
+              "level": 3,
+              "title": "Boaz Fachler",
+              "text": "",
+              "children": [],
+              "node_id": "0057"
+            },
+            {
+              "level": 3,
+              "title": "Narendra Kale",
+              "text": "Kale Logistics",
+              "children": [],
+              "node_id": "0058"
+            },
+            {
+              "level": 3,
+              "title": "Narendra Kale",
+              "text": "",
+              "children": [],
+              "node_id": "0059"
+            },
+            {
+              "level": 3,
+              "title": "Jana Mike",
+              "text": "UCSF and BrainMind",
+              "children": [],
+              "node_id": "0060"
+            },
+            {
+              "level": 3,
+              "title": "Jana Mike",
+              "text": "",
+              "children": [],
+              "node_id": "0061"
+            },
+            {
+              "level": 3,
+              "title": "Rajeev Surati",
+              "text": "Scalable Display Technologies and Skyline Nav",
+              "children": [],
+              "node_id": "0062"
+            },
+            {
+              "level": 3,
+              "title": "Rajeev Surati",
+              "text": "",
+              "children": [],
+              "node_id": "0063"
+            },
+            {
+              "level": 3,
+              "title": "Mark Castleman",
+              "text": "Intel Tiber Cloud",
+              "children": [],
+              "node_id": "0064"
+            },
+            {
+              "level": 3,
+              "title": "Mark Castleman",
+              "text": "",
+              "children": [],
+              "node_id": "0065"
+            },
+            {
+              "level": 3,
+              "title": "Brendan Mcsheffrey",
+              "text": "DataRight.org and The Kendall Project",
+              "children": [],
+              "node_id": "0066"
+            },
+            {
+              "level": 3,
+              "title": "Brendan Mcsheffrey",
+              "text": "",
+              "children": [],
+              "node_id": "0067"
+            },
+            {
+              "level": 3,
+              "title": "Artem Lukoianov",
+              "text": "CSAIL and SundAI",
+              "children": [],
+              "node_id": "0068"
+            },
+            {
+              "level": 3,
+              "title": "Artem Lukoianov",
+              "text": "",
+              "children": [],
+              "node_id": "0069"
+            },
+            {
+              "level": 3,
+              "title": "Pulkit Agrawal",
+              "text": "MIT EECS",
+              "children": [],
+              "node_id": "0070"
+            },
+            {
+              "level": 3,
+              "title": "Pulkit Agrawal",
+              "text": "",
+              "children": [],
+              "node_id": "0071"
+            },
+            {
+              "level": 3,
+              "title": "Sertac Karaman",
+              "text": "MIT AeroAstro, Director of LIDS",
+              "children": [],
+              "node_id": "0072"
+            },
+            {
+              "level": 3,
+              "title": "Sertac Karaman",
+              "text": "",
+              "children": [],
+              "node_id": "0073"
+            }
+          ],
+          "node_id": "0031"
+        },
+        {
+          "level": 2,
+          "title": "Background",
+          "text": "Almost 25% of students from this course transform their projects into innovative products. The program, which evolved from Sandy Pentland's \"Development Ventures,\" has established a strong track record of launching successful student projects through its Demo Day showcase.Our previous class links can be found here:\n- Spring'25: AI Venture Studio\n- Fall'24: MIT Foundations of AI Ventures\n- Spring'24: AI Venture Studio\n- Fall'23: AI Venture Studio\n- Spring'23: AI + Web3 for Impact: Venture Studio\n- Fall'22: AI + Web3 for Impact: Venture Studio\n- Spring'22: AI for Impact: Venture Studio\n- Fall'21: AI for Impact ~ Building Global Ventures Solving Societal-Scale Problems\n- Spring'21: AI for Impact\n- Fall'20: Global Ventures ~ Data and AI for Resilience after COVID19\n- Spring'20: AI for Impact ~ Towards Solving Societal-Scale Problems via Media Ventures\nAll other previous AI for Impact/Global Ventures class links can be found here:\n- Spring Term",
+          "children": [],
+          "node_id": "0074"
+        },
+        {
+          "level": 2,
+          "title": "Course Outline",
+          "text": "Class Goals:\n- Guide students to identify, evaluate, and build high-impact projects with AI. Focus on deep technology applications that are best suited to students with top engineering and design skills at MIT.\n- Advance \"Big Ideas\" into MVP-seed-stage for commercial consideration.\n- Teach the technical fundamentals of the modern AI stack (rapid prototyping, deployment, and model management).\n- Discuss practical trade-offs in AI product development (model accuracy, efficiency, and latency).\n- Meet and Greet held at MIT/Harvard\n- First day of class: Thursday, September 4, 2025\n- Final Class Presentations and \"Demo Day\" awards: Thursday, December 4, 2025\nClass Structure:\n- Studio format, with team projects with 2-3 students per team\n- Guest speakers share leading-edge thinking\n- NB: You can use this course for Entrepreneurship Minor credits. Fill upthis formunder 'E&I Context' and meet E&I minor advisor, Reza Rahaman (rezar@mit.edu) for sign off.\n- Minimum Viable Product (MVP) by the end of the term\nSupport for Students:\n- Weekly class mentor meetings on Thursday after class / guest lectures / work sessions\n- Class visits to local start-ups and technology companies\n- Data and AI scientists from startups for experience\n- Sessions with startup coaches",
+          "children": [],
+          "node_id": "0075"
+        }
+      ],
+      "node_id": "0001"
+    }
+  ]
+}
