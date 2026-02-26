@@ -193,7 +193,7 @@ FAIL_BORDER   = "#FFCDD2"
 
 # Characters per line and max lines for response text
 WRAP_WIDTH    = 62
-MAX_LINES     = 11
+MAX_LINES     = 13
 
 
 def clip_to_lines(text: str, max_lines: int = MAX_LINES, width: int = WRAP_WIDTH) -> str:
@@ -237,12 +237,12 @@ def make_chart(data: list[list[str]], out_path: Path):
     pad   = 0.15
 
     # Generous cell sizes for readability
-    lw    = 3.0    # question label column
-    cw    = 5.6    # each answer column
-    rh    = 5.2    # row height
-    hdr_h = 1.1    # column header height
+    lw    = 3.2    # question label column
+    cw    = 6.2    # each answer column
+    rh    = 6.0    # row height — taller for readability
+    hdr_h = 1.2    # column header height
     fw    = lw + n_c * cw + 0.3
-    fh    = hdr_h + n_q * rh + 1.6
+    fh    = hdr_h + n_q * rh + 1.8
 
     fig, ax = plt.subplots(figsize=(fw, fh))
     ax.set_xlim(0, fw)
@@ -297,9 +297,9 @@ def make_chart(data: list[list[str]], out_path: Path):
                 bbox=dict(boxstyle="round,pad=0.25", facecolor="#7E57C2",
                           edgecolor="none"))
 
-        qlabel = "\n".join(textwrap.wrap(question, width=28))
+        qlabel = "\n".join(textwrap.wrap(question, width=26))
         ax.text(lw/2, y + rh/2 - 0.15, qlabel,
-                ha="center", va="center", fontsize=9.5, color="#311B92",
+                ha="center", va="center", fontsize=10.5, color="#311B92",
                 fontweight="bold", multialignment="center", linespacing=1.5)
 
         # ── Answer cells ────────────────────────────────────────────────────
@@ -331,8 +331,8 @@ def make_chart(data: list[list[str]], out_path: Path):
             body = clip_to_lines(raw_text)
             ax.text(x + cw/2, y + rh/2 - 0.1,
                     body, ha="center", va="center",
-                    fontsize=9.5, color="#1A1A1A",
-                    multialignment="left", linespacing=1.55,
+                    fontsize=10.5, color="#1A1A1A",
+                    multialignment="left", linespacing=1.6,
                     fontfamily="DejaVu Sans")
 
         # thin separator
