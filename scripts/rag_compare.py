@@ -183,17 +183,17 @@ def tuned_rag(conn, question: str, top_k: int = 15) -> str:
 
 # ── Chart ─────────────────────────────────────────────────────────────────────
 
-CONDITIONS    = ["No RAG\n(LLM Only)", "BM25 Only\nRAG", "Untuned\nHybrid RAG", "Tuned\nHybrid RAG"]
-COND_DESC     = ["No retrieval · Haiku", "keyword search · top_k=10 · Haiku", "vec+BM25 50/50 · top_k=3 · Haiku", "hybrid search · top_k=15 · Sonnet"]
-CELL_BG       = ["#FFF8F5", "#FFFDE7", "#F0F7FF", "#F1FBF1"]
-HEADER_BG     = ["#BF360C", "#F57F17", "#0D47A1", "#1B5E20"]
-CELL_BORDER   = ["#FFAB91", "#FFE082", "#90CAF9", "#A5D6A7"]
+CONDITIONS    = ["No RAG\n(LLM Only)", "BM25 Only\nRAG", "Tuned\nHybrid RAG"]
+COND_DESC     = ["No retrieval · Haiku", "keyword search · top_k=10 · Haiku", "hybrid search · top_k=15 · Sonnet"]
+CELL_BG       = ["#FFF8F5", "#FFFDE7", "#F1FBF1"]
+HEADER_BG     = ["#BF360C", "#F57F17", "#1B5E20"]
+CELL_BORDER   = ["#FFAB91", "#FFE082", "#A5D6A7"]
 FAIL_BG       = "#FFF0F0"
 FAIL_BORDER   = "#FFCDD2"
 
 # Characters per line and max lines for response text
-WRAP_WIDTH    = 62
-MAX_LINES     = 13
+WRAP_WIDTH    = 72
+MAX_LINES     = 14
 
 
 def clip_to_lines(text: str, max_lines: int = MAX_LINES, width: int = WRAP_WIDTH) -> str:
@@ -229,7 +229,7 @@ def make_chart(data: list[list[str]], out_path: Path):
     3 conditions as columns. Large readable cells.
     """
     # Pick the 3 questions where tuned RAG succeeds, else use all 5
-    good_idx = [i for i in range(len(QUESTIONS)) if not is_failure(data[i][3])]
+    good_idx = [i for i in range(len(QUESTIONS)) if not is_failure(data[i][2])]
     show_idx = good_idx[:3] if len(good_idx) >= 3 else list(range(min(3, len(QUESTIONS))))
 
     n_q   = len(show_idx)
@@ -238,7 +238,7 @@ def make_chart(data: list[list[str]], out_path: Path):
 
     # Generous cell sizes for readability
     lw    = 3.2    # question label column
-    cw    = 6.2    # each answer column
+    cw    = 8.0    # each answer column — wider with only 3 conditions
     rh    = 6.0    # row height — taller for readability
     hdr_h = 1.2    # column header height
     fw    = lw + n_c * cw + 0.3
@@ -252,7 +252,7 @@ def make_chart(data: list[list[str]], out_path: Path):
 
     # ── Titles ───────────────────────────────────────────────────────────────
     fig.text(0.5, 0.993,
-             "RAG Quality: LLM-Only vs Untuned vs Tuned",
+             "RAG Quality: No RAG vs BM25 vs Tuned Hybrid",
              ha="center", va="top", fontsize=18, fontweight="bold", color="#1A1A2E")
     fig.text(0.5, 0.972,
              "MIT AI Studio Course  ·  Hardest questions (L10–L12)  ·  Claude Haiku  ·  Hybrid BM25 + Vector Search",
@@ -417,7 +417,7 @@ def chart_only():
         sys.exit(1)
     with open(raw_path) as f:
         saved = json.load(f)
-    data = [[d["no_rag"], d.get("bm25_rag", "[not run]"), d["untuned_rag"], d["tuned_rag"]] for d in saved]
+    data = [[d["no_rag"], d.get("bm25_rag", "[not run]"), d["tuned_rag"]] for d in saved]
     chart_path = ROOT / "benchmark_results" / "rag_comparison_chart.png"
     make_chart(data, chart_path)
 
