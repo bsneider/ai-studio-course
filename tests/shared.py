@@ -998,6 +998,46 @@ def score_retrieval(results, keywords):
 recall_at_k = score_retrieval
 
 
+# Phrases indicating the LLM failed to use retrieved context
+_FAILURE_PHRASES = [
+    "i don't have access",
+    "i do not have access",
+    "i don't have information",
+    "i do not have information",
+    "i don't have enough",
+    "i do not have enough",
+    "i cannot answer",
+    "i can't answer",
+    "no information available",
+    "not enough information",
+    "insufficient information",
+    "would need access",
+    "recommend checking",
+    "contact the course",
+    "contact the mit",
+    "check the course website",
+]
+
+
+def answer_quality_score(answer: str) -> float:
+    """Score an LLM answer for quality: 0.0 if it's a failure/refusal, 1.0 otherwise.
+
+    A 'failure' is when the LLM says it doesn't have access to the information —
+    meaning retrieval didn't supply useful context even though it should have.
+    """
+    if not answer or not answer.strip():
+        return 0.0
+    lower = answer.lower()
+    if any(phrase in lower for phrase in _FAILURE_PHRASES):
+        return 0.0
+    return 1.0
+
+
+def answer_uses_context(answer: str) -> bool:
+    """Return True if the answer appears to be grounded (not a refusal)."""
+    return answer_quality_score(answer) > 0.0
+
+
 def mrr_score(results, keywords):
     """Mean Reciprocal Rank for a single query.
 
