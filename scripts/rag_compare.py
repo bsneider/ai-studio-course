@@ -181,29 +181,42 @@ def tuned_rag(conn, question: str, top_k: int = 15) -> str:
     prompt = f"Context:\n{ctx}\n\nQuestion: {question}"
     return ask_claude(prompt, SYSTEM_RAG)
 
-# ── Chart ─────────────────────────────────────────────────────────────────────
+# ── Slide Charts (Google Slides optimized, 16:9) ────────────────────────────
 
-CONDITIONS    = ["No RAG\n(LLM Only)", "BM25 Only\nRAG", "Tuned\nHybrid RAG"]
-COND_DESC     = ["No retrieval · Haiku", "keyword search · top_k=10 · Haiku", "hybrid search · top_k=15 · Sonnet"]
-CELL_BG       = ["#FFF8F5", "#FFFDE7", "#F1FBF1"]
+import re
+
+CONDITIONS    = ["No RAG (LLM Only)", "BM25 Keyword RAG", "Tuned Hybrid RAG"]
+COND_DESC     = ["No retrieval · Haiku", "FTS5 keyword · top_k=10 · Haiku", "BM25 0.3 + Vec 0.7 · top_k=15 · Sonnet"]
 HEADER_BG     = ["#BF360C", "#F57F17", "#1B5E20"]
+CELL_BG       = ["#FFF8F5", "#FFFDE7", "#F1FBF1"]
 CELL_BORDER   = ["#FFAB91", "#FFE082", "#A5D6A7"]
 FAIL_BG       = "#FFF0F0"
 FAIL_BORDER   = "#FFCDD2"
 
-# Characters per line and max lines for response text
-WRAP_WIDTH    = 72
-MAX_LINES     = 14
+# Google Slides is 10" x 5.625" at 16:9
+SLIDE_W = 13.33  # inches (wider for readability at 1920px)
+SLIDE_H = 7.5
 
 
-def clip_to_lines(text: str, max_lines: int = MAX_LINES, width: int = WRAP_WIDTH) -> str:
-    """Wrap text and truncate to max_lines, adding ellipsis if cut."""
+def clean_markdown(text: str) -> str:
+    """Strip markdown formatting for plain-text display."""
     text = text.strip()
-    # Flatten markdown bullets/bold for cleaner display
-    import re
-    text = re.sub(r"\*\*(.+?)\*\*", r"\1", text)   # bold
-    text = re.sub(r"^\s*[-*]\s+", "• ", text, flags=re.MULTILINE)  # bullets
+    text = re.sub(r"#{1,4}\s+", "", text)                        # headings
+    text = re.sub(r"\*\*(.+?)\*\*", r"\1", text)                 # bold
+    text = re.sub(r"\*(.+?)\*", r"\1", text)                     # italic
+    text = re.sub(r"^\s*[-*]\s+", "- ", text, flags=re.MULTILINE) # bullets
+    text = re.sub(r"^\s*\d+\.\s+", "- ", text, flags=re.MULTILINE) # numbered lists
+    text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)         # links
+    text = re.sub(r"^---+$", "", text, flags=re.MULTILINE)       # hr
+    text = re.sub(r"> ", "", text)                                # blockquotes
+    text = re.sub(r"\|[^\n]+\|", "", text)                       # tables
+    text = re.sub(r"\n{3,}", "\n\n", text)                       # collapse blanks
+    return text.strip()
 
+
+def wrap_to_lines(text: str, width: int, max_lines: int) -> str:
+    """Wrap text to width, truncate to max_lines."""
+    text = clean_markdown(text)
     lines = []
     for para in text.split("\n"):
         para = para.strip()
@@ -212,159 +225,220 @@ def clip_to_lines(text: str, max_lines: int = MAX_LINES, width: int = WRAP_WIDTH
                 lines.append("")
             continue
         lines.extend(textwrap.wrap(para, width))
-
+    # Remove trailing blank lines
+    while lines and lines[-1] == "":
+        lines.pop()
     if len(lines) <= max_lines:
         return "\n".join(lines)
-    return "\n".join(lines[:max_lines - 1]) + "\n…"
+    return "\n".join(lines[:max_lines - 1]) + "\n..."
 
 
 def is_failure(text: str) -> bool:
-    from shared import answer_quality_score  # noqa (tests/ is in sys.path)
+    from shared import answer_quality_score
     return answer_quality_score(text) == 0.0
 
 
-def make_chart(data: list[list[str]], out_path: Path):
-    """
-    Layout: 3 questions as rows (only the 3 with best tuned answers),
-    3 conditions as columns. Large readable cells.
-    """
-    # Pick the 3 questions where tuned RAG succeeds, else use all 5
-    good_idx = [i for i in range(len(QUESTIONS)) if not is_failure(data[i][2])]
-    show_idx = good_idx[:3] if len(good_idx) >= 3 else list(range(min(3, len(QUESTIONS))))
-
-    n_q   = len(show_idx)
-    n_c   = len(CONDITIONS)
-    pad   = 0.15
-
-    # Generous cell sizes for readability
-    lw    = 3.2    # question label column
-    cw    = 8.0    # each answer column — wider with only 3 conditions
-    rh    = 6.0    # row height — taller for readability
-    hdr_h = 1.2    # column header height
-    fw    = lw + n_c * cw + 0.3
-    fh    = hdr_h + n_q * rh + 1.8
-
-    fig, ax = plt.subplots(figsize=(fw, fh))
-    ax.set_xlim(0, fw)
-    ax.set_ylim(0, fh)
-    ax.axis("off")
+def make_question_slide(qi: int, question: str, level: str,
+                        responses: list[str], out_path: Path):
+    """Generate one 16:9 slide PNG for a single question with 3 response columns."""
+    fig = plt.figure(figsize=(SLIDE_W, SLIDE_H))
     fig.patch.set_facecolor("white")
 
-    # ── Titles ───────────────────────────────────────────────────────────────
-    fig.text(0.5, 0.993,
-             "RAG Quality: No RAG vs BM25 vs Tuned Hybrid",
-             ha="center", va="top", fontsize=18, fontweight="bold", color="#1A1A2E")
-    fig.text(0.5, 0.972,
-             "MIT AI Studio Course  ·  Hardest questions (L10–L12)  ·  Claude Haiku  ·  Hybrid BM25 + Vector Search",
-             ha="center", va="top", fontsize=10, color="#555", style="italic")
+    # ── Title bar ─────────────────────────────────────────────────────────
+    title_ax = fig.add_axes([0, 0.88, 1, 0.12])
+    title_ax.set_xlim(0, 1)
+    title_ax.set_ylim(0, 1)
+    title_ax.axis("off")
+    title_ax.add_patch(FancyBboxPatch(
+        (0.02, 0.1), 0.96, 0.85,
+        boxstyle="round,pad=0.02", facecolor="#1A1A2E", edgecolor="none"))
 
-    y_top = fh - hdr_h
+    # Question number + difficulty badge
+    title_ax.text(0.03, 0.52, f"  Q{qi+1}", fontsize=22, fontweight="bold",
+                  color="white", va="center",
+                  fontfamily="monospace")
+    title_ax.text(0.08, 0.52, f"  [{level}]", fontsize=16, fontweight="bold",
+                  color="#FFD54F", va="center")
 
-    # ── Column headers ────────────────────────────────────────────────────────
-    for ci, (cond, desc, hbg) in enumerate(zip(CONDITIONS, COND_DESC, HEADER_BG)):
-        x = lw + ci * cw
-        rect = FancyBboxPatch(
-            (x + pad, y_top + pad/2), cw - 2*pad, hdr_h - pad,
-            boxstyle="round,pad=0.06", facecolor=hbg, edgecolor="none"
-        )
-        ax.add_patch(rect)
-        ax.text(x + cw/2, y_top + hdr_h*0.65,
-                cond, ha="center", va="center",
-                fontsize=13, fontweight="bold", color="white")
-        ax.text(x + cw/2, y_top + hdr_h*0.22,
-                desc, ha="center", va="center",
-                fontsize=8.5, color="#DDD", style="italic")
+    # Question text
+    q_wrapped = "\n".join(textwrap.wrap(question, width=80))
+    title_ax.text(0.15, 0.52, q_wrapped, fontsize=16, fontweight="bold",
+                  color="white", va="center")
 
-    # ── Rows ──────────────────────────────────────────────────────────────────
-    for row_i, qi in enumerate(show_idx):
-        question = QUESTIONS[qi]
-        level    = LEVELS[qi]
-        y        = y_top - (row_i + 1) * rh
+    # ── Three response columns ────────────────────────────────────────────
+    col_width = 0.3
+    col_gap = 0.025
+    left_margin = 0.025
 
-        # ── Question label ──────────────────────────────────────────────────
-        q_bg = "#F3F0FF" if row_i % 2 == 0 else "#EDE7F6"
-        rect = FancyBboxPatch(
-            (pad/2, y + pad), lw - pad, rh - 2*pad,
-            boxstyle="round,pad=0.06", facecolor=q_bg,
-            edgecolor="#9575CD", linewidth=1.5
-        )
-        ax.add_patch(rect)
+    for ci in range(3):
+        failed = is_failure(responses[ci])
+        x0 = left_margin + ci * (col_width + col_gap)
 
-        # difficulty badge top
-        ax.text(lw/2, y + rh - 0.38, level,
-                ha="center", va="center", fontsize=10, fontweight="bold",
-                color="white",
-                bbox=dict(boxstyle="round,pad=0.25", facecolor="#7E57C2",
-                          edgecolor="none"))
+        # Column header
+        hdr_ax = fig.add_axes([x0, 0.80, col_width, 0.07])
+        hdr_ax.set_xlim(0, 1)
+        hdr_ax.set_ylim(0, 1)
+        hdr_ax.axis("off")
+        hdr_ax.add_patch(FancyBboxPatch(
+            (0.02, 0.05), 0.96, 0.9,
+            boxstyle="round,pad=0.03", facecolor=HEADER_BG[ci], edgecolor="none"))
+        hdr_ax.text(0.5, 0.62, CONDITIONS[ci], fontsize=13, fontweight="bold",
+                    color="white", ha="center", va="center")
+        hdr_ax.text(0.5, 0.22, COND_DESC[ci], fontsize=8.5, color="#DDD",
+                    ha="center", va="center", style="italic")
 
-        qlabel = "\n".join(textwrap.wrap(question, width=26))
-        ax.text(lw/2, y + rh/2 - 0.15, qlabel,
-                ha="center", va="center", fontsize=10.5, color="#311B92",
-                fontweight="bold", multialignment="center", linespacing=1.5)
+        # Response body
+        body_ax = fig.add_axes([x0, 0.02, col_width, 0.77])
+        body_ax.set_xlim(0, 1)
+        body_ax.set_ylim(0, 1)
+        body_ax.axis("off")
 
-        # ── Answer cells ────────────────────────────────────────────────────
-        for ci in range(n_c):
-            x        = lw + ci * cw
-            raw_text = data[qi][ci]
-            failed   = is_failure(raw_text)
-            cell_bg  = FAIL_BG if failed else CELL_BG[ci]
-            border   = FAIL_BORDER if failed else CELL_BORDER[ci]
-            bw       = 0.8 if failed else 1.6
+        cell_bg = FAIL_BG if failed else CELL_BG[ci]
+        border = FAIL_BORDER if failed else CELL_BORDER[ci]
+        body_ax.add_patch(FancyBboxPatch(
+            (0.02, 0.01), 0.96, 0.98,
+            boxstyle="round,pad=0.02", facecolor=cell_bg,
+            edgecolor=border, linewidth=2))
 
-            rect = FancyBboxPatch(
-                (x + pad, y + pad), cw - 2*pad, rh - 2*pad,
-                boxstyle="round,pad=0.06", facecolor=cell_bg,
-                edgecolor=border, linewidth=bw
-            )
-            ax.add_patch(rect)
+        # Badge
+        badge = "NO ANSWER" if failed else "ANSWERED"
+        badge_fg = "#C62828" if failed else "#1B5E20"
+        badge_bg = "#FFCDD2" if failed else "#C8E6C9"
+        body_ax.text(0.5, 0.96, badge, fontsize=9, fontweight="bold",
+                     color=badge_fg, ha="center", va="top",
+                     bbox=dict(boxstyle="round,pad=0.3", facecolor=badge_bg,
+                               edgecolor=badge_fg, linewidth=0.7))
 
-            # Badge
-            badge      = "NO ANSWER" if failed else "ANSWERED"
-            badge_fg   = "#C62828" if failed else "#1B5E20"
-            badge_bg_c = "#FFCDD2" if failed else "#C8E6C9"
-            ax.text(x + cw/2, y + rh - 0.36,
-                    badge, ha="center", va="center",
-                    fontsize=7.5, fontweight="bold", color=badge_fg,
-                    bbox=dict(boxstyle="round,pad=0.22", facecolor=badge_bg_c,
-                              edgecolor=badge_fg, linewidth=0.7))
+        # Response text — auto-size to fit
+        body = wrap_to_lines(responses[ci], width=48, max_lines=50)
+        body_ax.text(0.06, 0.91, body, fontsize=7.5, color="#1A1A1A",
+                     va="top", ha="left", linespacing=1.25,
+                     fontfamily="DejaVu Sans")
 
-            body = clip_to_lines(raw_text)
-            ax.text(x + cw/2, y + rh/2 - 0.1,
-                    body, ha="center", va="center",
-                    fontsize=10.5, color="#1A1A1A",
-                    multialignment="left", linespacing=1.6,
-                    fontfamily="DejaVu Sans")
+    fig.subplots_adjust(left=0, right=1, top=1, bottom=0)
+    plt.savefig(out_path, dpi=192, facecolor="white")
+    plt.close(fig)
+    print(f"  Slide saved -> {out_path}")
 
-        # thin separator
-        if row_i < n_q - 1:
-            ax.axhline(y, color="#E0E0E0", linewidth=0.6, xmin=0.01, xmax=0.99)
 
-    # ── Footer note (show omitted questions) ─────────────────────────────────
-    omitted = [f"Q{i+1} [{LEVELS[i]}]" for i in range(len(QUESTIONS)) if i not in show_idx]
-    if omitted:
-        fig.text(0.5, 0.025,
-                 f"Note: {', '.join(omitted)} omitted — tuned RAG also unable to answer "
-                 "(aggregation across all semesters requires broader retrieval)",
-                 ha="center", va="bottom", fontsize=8, color="#888", style="italic")
+def make_definitions_slide(out_path: Path):
+    """Generate a definitions slide explaining the three retrieval approaches."""
+    fig = plt.figure(figsize=(SLIDE_W, SLIDE_H))
+    fig.patch.set_facecolor("white")
 
-    # ── Legend ───────────────────────────────────────────────────────────────
-    patches = [
-        mpatches.Patch(facecolor=HEADER_BG[0], label="No RAG — LLM training knowledge only"),
-        mpatches.Patch(facecolor=HEADER_BG[1], label="Untuned RAG — small context window, equal weights"),
-        mpatches.Patch(facecolor=HEADER_BG[2], label="Tuned RAG — larger context, BM25-heavy for aggregation"),
-        mpatches.Patch(facecolor=FAIL_BG, edgecolor=FAIL_BORDER,
-                       label="NO ANSWER — LLM reports insufficient context"),
-        mpatches.Patch(facecolor=CELL_BG[2], edgecolor=CELL_BORDER[2],
-                       label="ANSWERED — grounded response from retrieved docs"),
+    # Title
+    title_ax = fig.add_axes([0, 0.88, 1, 0.12])
+    title_ax.set_xlim(0, 1)
+    title_ax.set_ylim(0, 1)
+    title_ax.axis("off")
+    title_ax.add_patch(FancyBboxPatch(
+        (0.02, 0.1), 0.96, 0.85,
+        boxstyle="round,pad=0.02", facecolor="#1A1A2E", edgecolor="none"))
+    title_ax.text(0.5, 0.52, "RAG Retrieval Approaches: Definitions",
+                  fontsize=22, fontweight="bold", color="white",
+                  ha="center", va="center")
+
+    # Three definition columns
+    definitions = [
+        {
+            "title": "No RAG\n(LLM Only)",
+            "color": HEADER_BG[0],
+            "items": [
+                ("What it does", "Sends the question directly to the LLM\nwith no retrieved context."),
+                ("Retrieval", "None"),
+                ("Model", "Claude Haiku (fast, cheap)"),
+                ("Context window", "Zero documents"),
+                ("Strengths", "Fast, zero infrastructure needed"),
+                ("Weaknesses", "Relies entirely on training data.\nCannot answer questions about\nspecific course content, names,\ndates, or events."),
+            ]
+        },
+        {
+            "title": "BM25 Keyword RAG",
+            "color": HEADER_BG[1],
+            "items": [
+                ("What it does", "Uses keyword matching (BM25/TF-IDF)\nto find documents, then feeds them\nto the LLM as context."),
+                ("Retrieval", "BM25 full-text search (SQLite FTS5)"),
+                ("Model", "Claude Haiku (fast, cheap)"),
+                ("Context window", "top_k=10 documents"),
+                ("Strengths", "Great for exact name/term matches.\nNo embedding model needed.\nVery fast retrieval."),
+                ("Weaknesses", "Misses semantic similarity.\n\"Who teaches the course?\" won't\nmatch \"Professor Raskar leads\nthe class\" without shared keywords."),
+            ]
+        },
+        {
+            "title": "Tuned Hybrid RAG",
+            "color": HEADER_BG[2],
+            "items": [
+                ("What it does", "Combines BM25 keyword search with\nsemantic vector search, using\nbenchmark-optimized weights."),
+                ("Retrieval", "Hybrid: BM25 (weight 0.3)\n+ Semantic vectors (weight 0.7)"),
+                ("Model", "Claude Sonnet (more capable)"),
+                ("Context window", "top_k=15 documents, 4000 chars"),
+                ("Strengths", "Catches both exact matches AND\nmeaning-based matches. Optimized\nweights from 35-query benchmark.\nContent-type diversity enforcement."),
+                ("Weaknesses", "Requires embedding model + vector\nindex. Slightly slower retrieval.\nMore expensive LLM (Sonnet)."),
+            ]
+        },
     ]
-    fig.legend(handles=patches, loc="lower center",
-               bbox_to_anchor=(0.5, 0.0), ncol=3, fontsize=8.5,
-               framealpha=0.97, edgecolor="#CCC",
-               handlelength=1.4, handleheight=1.0)
 
-    plt.tight_layout(rect=[0, 0.07, 1, 0.965])
-    plt.savefig(out_path, dpi=150, bbox_inches="tight", facecolor="white")
-    print(f"\nChart saved → {out_path}")
+    col_width = 0.3
+    col_gap = 0.025
+    left_margin = 0.025
+
+    for ci, defn in enumerate(definitions):
+        x0 = left_margin + ci * (col_width + col_gap)
+
+        # Header
+        hdr_ax = fig.add_axes([x0, 0.80, col_width, 0.07])
+        hdr_ax.set_xlim(0, 1)
+        hdr_ax.set_ylim(0, 1)
+        hdr_ax.axis("off")
+        hdr_ax.add_patch(FancyBboxPatch(
+            (0.02, 0.05), 0.96, 0.9,
+            boxstyle="round,pad=0.03", facecolor=defn["color"], edgecolor="none"))
+        hdr_ax.text(0.5, 0.5, defn["title"], fontsize=14, fontweight="bold",
+                    color="white", ha="center", va="center")
+
+        # Body
+        body_ax = fig.add_axes([x0, 0.02, col_width, 0.77])
+        body_ax.set_xlim(0, 1)
+        body_ax.set_ylim(0, 1)
+        body_ax.axis("off")
+        body_ax.add_patch(FancyBboxPatch(
+            (0.02, 0.01), 0.96, 0.98,
+            boxstyle="round,pad=0.02", facecolor=CELL_BG[ci],
+            edgecolor=CELL_BORDER[ci], linewidth=2))
+
+        y = 0.93
+        for label, value in defn["items"]:
+            body_ax.text(0.06, y, label, fontsize=10, fontweight="bold",
+                         color="#333", va="top")
+            y -= 0.04
+            body_ax.text(0.06, y, value, fontsize=9.5, color="#444",
+                         va="top", linespacing=1.3)
+            # Count newlines to figure out spacing
+            n_lines = value.count("\n") + 1
+            y -= 0.04 * n_lines + 0.03
+
+    fig.subplots_adjust(left=0, right=1, top=1, bottom=0)
+    plt.savefig(out_path, dpi=192, facecolor="white")
+    plt.close(fig)
+    print(f"  Definitions slide saved -> {out_path}")
+
+
+def make_slides(data: list[list[str]], out_dir: Path):
+    """Generate one slide PNG per question + a definitions slide."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    # Slide 0: Definitions
+    make_definitions_slide(out_dir / "slide_0_definitions.png")
+
+    # Slides 1-N: One per question
+    for qi in range(len(QUESTIONS)):
+        responses = data[qi]  # [no_rag, bm25_rag, tuned_rag]
+        make_question_slide(
+            qi, QUESTIONS[qi], LEVELS[qi], responses,
+            out_dir / f"slide_{qi+1}_q{qi+1}_{LEVELS[qi]}.png"
+        )
+
+    print(f"\n{len(QUESTIONS)+1} slides saved to {out_dir}/")
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
@@ -406,20 +480,23 @@ def main():
     ))
     print(f"Responses saved → {raw_path}")
 
-    chart_path = ROOT / "benchmark_results" / "rag_comparison_chart.png"
-    make_chart(data, chart_path)
+    # Generate slides (3-column: no_rag, bm25_rag, tuned_rag)
+    slide_data = [[d[0], d[1], d[3]] for d in data]
+    slide_dir = ROOT / "benchmark_results" / "slides"
+    make_slides(slide_data, slide_dir)
 
 def chart_only():
-    """Regenerate chart from saved responses JSON without any API calls."""
+    """Regenerate slides from saved responses JSON without any API calls."""
     raw_path = ROOT / "benchmark_results" / "rag_comparison_responses.json"
     if not raw_path.exists():
         print(f"No saved responses at {raw_path}. Run without --chart-only first.")
         sys.exit(1)
     with open(raw_path) as f:
         saved = json.load(f)
+    # 3 columns: no_rag, bm25_rag, tuned_rag
     data = [[d["no_rag"], d.get("bm25_rag", "[not run]"), d["tuned_rag"]] for d in saved]
-    chart_path = ROOT / "benchmark_results" / "rag_comparison_chart.png"
-    make_chart(data, chart_path)
+    slide_dir = ROOT / "benchmark_results" / "slides"
+    make_slides(data, slide_dir)
 
 if __name__ == "__main__":
     if "--chart-only" in sys.argv:
