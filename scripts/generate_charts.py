@@ -96,6 +96,15 @@ def _brand(fig):
 # ── Chart 1: Quality vs Cost ─────────────────────────────────────────────────
 
 
+APPROACH_DESC = {
+    "Hybrid":        "BM25 0.3 + Semantic 0.7, content-type diversity",
+    "Hybrid+Expand": "Hybrid + synonym expansion for BM25 queries",
+    "Hybrid+RRF":    "Hybrid using Reciprocal Rank Fusion (k=60)",
+    "BM25":          "FTS5 keyword search only (no embeddings)",
+    "Semantic":      "Vector similarity only (no keyword signal)",
+}
+
+
 def chart_quality_vs_cost(data, output_dir):
     _rc()
     agg = data["aggregates"]
@@ -112,22 +121,30 @@ def chart_quality_vs_cost(data, output_dir):
                    zorder=3, edgecolor="white", linewidth=0.8)
 
     best = max(recalls)
-    for bar, recall in zip(bars, recalls):
+    for bar, recall, name in zip(bars, recalls, ranked):
         mid = bar.get_y() + bar.get_height() / 2
         w = "bold" if recall == best else "normal"
         ax.text(recall + 0.003, mid, f"{recall:.1%}", va="center",
                 fontsize=14, fontweight=w, color="#333")
+        # Approach description inside the bar
+        desc = APPROACH_DESC.get(name, "")
+        if desc:
+            ax.text(0.625, mid, desc, va="center", fontsize=9,
+                    color="white", alpha=0.9, fontstyle="italic")
 
     ax.set_yticks(y)
     ax.set_yticklabels(ranked, fontsize=14, fontweight="bold")
-    ax.set_xlabel("Recall@K", fontsize=14, color="#666")
+    ax.set_xlabel("Recall@K", fontsize=14, color="#666", labelpad=8)
     ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
     ax.tick_params(axis='x', labelsize=12)
     ax.set_xlim(0.62, best + 0.05)
     ax.set_title("Retrieval Quality — All Local, Zero API Cost",
                  fontsize=18, fontweight="bold", pad=18, color="#222")
 
-    fig.tight_layout(rect=[0, 0.02, 1, 0.975])
+    fig.tight_layout(rect=[0, 0.06, 1, 0.975])
+    fig.text(0.5, 0.025,
+             "Embedding: all-MiniLM-L6-v2  |  Database: SQLite + FTS5 + sqlite-vec  |  35 queries, 381 documents",
+             ha="center", fontsize=10, color="#999")
     _brand(fig)
     p = output_dir / "chart1_quality_vs_cost.png"
     fig.savefig(p, dpi=DPI, bbox_inches="tight", facecolor=BG)
