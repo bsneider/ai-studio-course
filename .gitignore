@@ -8,12 +8,17 @@ build/
 # Virtual environment
 .venv/
 
-# Database files (generated at runtime)
-*.db
+# Database backups (the main .db ships with the repo for instant use)
+*.db.bak
 
 # Environment files
 .env
 .env.local
+
+# Presentation & screenshot files
+*.pptx
+*.webp
+*.jpg
 
 # IDE
 .idea/
