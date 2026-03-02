@@ -66,8 +66,7 @@ ai-studio-course/
 ├── scripts/
 │   ├── build_trees.py          # Crawl HTML pages → tree JSON structures
 │   ├── rag_compare.py          # Generate RAG quality comparison charts
-│   ├── generate_charts.py      # Benchmark visualization charts
-│   └── generate_response_chart.py
+│   └── generate_charts.py      # Benchmark visualization charts
 ├── tests/
 │   ├── shared.py               # 35 benchmark queries across 12 difficulty levels
 │   ├── conftest.py             # Pytest plugin for benchmark capture
