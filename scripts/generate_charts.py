@@ -51,8 +51,12 @@ def _c(name):
 
 
 COST = {"gemini": 1.15, "nemotron": 11.10, "llama": 1.09, "improved": 1.15, "pageindex": 1.15}
-DPI = 300
+DPI = 192
 FOOTER = "Research: Brandon Sneider | MIT AI Studio (MAS.664/665)"
+
+# Google Slides optimized (16:9)
+SLIDE_W = 13.33
+SLIDE_H = 7.5
 
 
 def _cost(name):
@@ -99,42 +103,29 @@ def chart_quality_vs_cost(data, output_dir):
     ranked = sorted(apps, key=lambda a: agg[a]["Recall@K"])
 
     recalls = [agg[a]["Recall@K"] for a in ranked]
-    costs = [_cost(a) for a in ranked]
     colors = [_c(a) for a in ranked]
 
-    fig, ax = plt.subplots(figsize=(8, 4.8))
+    fig, ax = plt.subplots(figsize=(SLIDE_W, SLIDE_H))
     y = np.arange(len(ranked))
 
     bars = ax.barh(y, recalls, color=colors, alpha=0.82, height=0.55,
                    zorder=3, edgecolor="white", linewidth=0.8)
 
-    # Separator between free and paid
-    free_n = sum(1 for c in costs if c == 0)
-    if 0 < free_n < len(ranked):
-        sep_y = free_n - 0.5
-        ax.axhline(sep_y, color="#e0e0e0", linewidth=0.8, zorder=2)
-
     best = max(recalls)
-    for bar, recall, cost in zip(bars, recalls, costs):
+    for bar, recall in zip(bars, recalls):
         mid = bar.get_y() + bar.get_height() / 2
         w = "bold" if recall == best else "normal"
-        # "72.6% Free" or "67.2% $1.15/1K" — all inline right after bar
-        cstr = "Free" if cost == 0 else f"${cost:.2f}/1K"
-        cc = "#27AE60" if cost == 0 else "#C0392B"
         ax.text(recall + 0.003, mid, f"{recall:.1%}", va="center",
-                fontsize=9, fontweight=w, color="#333")
-        ax.text(recall + 0.032, mid, cstr, va="center",
-                fontsize=7.5, fontweight="bold", color=cc)
+                fontsize=14, fontweight=w, color="#333")
 
     ax.set_yticks(y)
-    ax.set_yticklabels(ranked, fontsize=9.5, fontweight="bold")
-    ax.set_xlabel("Recall@K", fontsize=10, color="#666")
+    ax.set_yticklabels(ranked, fontsize=14, fontweight="bold")
+    ax.set_xlabel("Recall@K", fontsize=14, color="#666")
     ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
-    # Tight right margin: just enough for the longest cost label
-    max_cost_len = max(len(f"${c:.2f}/1K") if c > 0 else len("Free") for c in costs)
-    ax.set_xlim(0.62, best + 0.045 + max_cost_len * 0.003)
-    ax.set_title("Retrieval Quality vs. Cost", fontsize=13, fontweight="bold",
-                 pad=14, color="#222")
+    ax.tick_params(axis='x', labelsize=12)
+    ax.set_xlim(0.62, best + 0.05)
+    ax.set_title("Retrieval Quality — All Local, Zero API Cost",
+                 fontsize=18, fontweight="bold", pad=18, color="#222")
 
     fig.tight_layout(rect=[0, 0.02, 1, 0.975])
     _brand(fig)
@@ -160,42 +151,39 @@ def chart_hybrid_mix(data, output_dir):
     x = [p["sw"] for p in hyb]
     y = [p["mean_recall"] for p in hyb]
 
-    fig, ax = plt.subplots(figsize=(8, 4.5))
+    fig, ax = plt.subplots(figsize=(SLIDE_W, SLIDE_H))
 
     ax.fill_between(x, y, alpha=0.05, color=C_HYB)
-    ax.plot(x, y, "o-", color=C_HYB, lw=2, ms=5, zorder=4,
-            markeredgecolor="white", markeredgewidth=1)
+    ax.plot(x, y, "o-", color=C_HYB, lw=3, ms=8, zorder=4,
+            markeredgecolor="white", markeredgewidth=1.5)
 
     bi = max(range(len(y)), key=lambda i: y[i])
     ax.annotate(f"Best: {x[bi]:.0%} semantic\n{y[bi]:.1%} recall",
                 xy=(x[bi], y[bi]),
                 xytext=(x[bi] - 0.2, y[bi] + 0.025),
-                fontsize=8, fontweight="bold", color=C_HYB,
-                arrowprops=dict(arrowstyle="->", color=C_HYB, lw=1.2))
+                fontsize=12, fontweight="bold", color=C_HYB,
+                arrowprops=dict(arrowstyle="->", color=C_HYB, lw=1.5))
 
     if llm:
         lr = [p["mean_recall"] for p in llm]
         lo, hi = min(lr), max(lr)
         ax.axhspan(lo - 0.001, hi + 0.001, alpha=0.07, color=C_LLM, zorder=1)
         ax.axhline(np.mean(lr), color=C_LLM, ls="--", lw=1.2, alpha=0.5, zorder=2)
-        # LLM label above the band, left-aligned to avoid right-side clutter
         ax.text(0.02, hi + 0.006,
                 f"LLM Rerankers ({lo:.1%}\u2013{hi:.1%}, $1\u2013$11/1K)",
-                fontsize=7.5, color=C_LLM, va="bottom", fontweight="bold")
+                fontsize=10, color=C_LLM, va="bottom", fontweight="bold")
 
-    # Endpoint labels — "Pure BM25" below first point, "Pure Semantic" above last
-    # Offset them vertically to avoid colliding with the LLM band
-    ax.text(0.01, y[0] - 0.012, "Pure BM25", fontsize=7.5,
+    ax.text(0.01, y[0] - 0.012, "Pure BM25", fontsize=11,
             color=C_BM25, fontweight="bold", va="top")
-    # Last point (pure semantic) is near the LLM band — put label above
-    ax.text(0.99, y[-1] + 0.012, "Pure Semantic", fontsize=7.5,
+    ax.text(0.99, y[-1] + 0.012, "Pure Semantic", fontsize=11,
             color=C_SEM, fontweight="bold", va="bottom", ha="right")
 
-    ax.set_xlabel("Semantic Weight  (BM25 = 1 \u2212 semantic)", fontsize=10, color="#666")
-    ax.set_ylabel("Recall@K", fontsize=10, color="#666")
+    ax.set_xlabel("Semantic Weight  (BM25 = 1 \u2212 semantic)", fontsize=14, color="#666")
+    ax.set_ylabel("Recall@K", fontsize=14, color="#666")
     ax.set_title("Hybrid Search: Finding the Optimal Mix",
-                 fontsize=13, fontweight="bold", pad=14, color="#222")
+                 fontsize=18, fontweight="bold", pad=18, color="#222")
     ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
+    ax.tick_params(axis='both', labelsize=12)
     ax.set_xlim(-0.03, 1.03)
     ax.set_ylim(min(y) - 0.025, max(y) + 0.045)
 
@@ -238,27 +226,17 @@ def chart_summary_table(data, output_dir):
         rows.append(row)
         rcolors.append(rc)
 
-    # Cost row
-    cr, cc = ["Cost / 1K queries"], ["#f5f5f5"]
-    costs = [_cost(a) for a in apps]
-    for c in costs:
-        cr.append(f"${c:.2f}" if c > 0 else "Free")
-        cc.append("#e8f5e9" if c == 0 else "#f5f5f5")
-    rows.append(cr)
-    rcolors.append(cc)
-
-    fw = max(10, 3 + na * 1.5)
-    fig, ax = plt.subplots(figsize=(fw, 2.8))
+    fig, ax = plt.subplots(figsize=(SLIDE_W, SLIDE_H * 0.55))
     ax.axis("off")
-    ax.set_title(f"Benchmark Summary \u2014 {data['n_queries']} queries, {na} approaches",
-                 fontsize=12, fontweight="bold", pad=8, color="#222")
+    ax.set_title(f"Benchmark Summary \u2014 {data['n_queries']} queries, {na} approaches (all local, zero API cost)",
+                 fontsize=16, fontweight="bold", pad=12, color="#222")
 
     tbl = ax.table(cellText=rows, colLabels=cols, cellColours=rcolors,
                    loc="center", cellLoc="center")
     tbl.auto_set_font_size(False)
-    fs = 8 if na <= 5 else 6.8 if na <= 8 else 6
+    fs = 12 if na <= 5 else 10 if na <= 8 else 8
     tbl.set_fontsize(fs)
-    tbl.scale(1.0, 1.8)
+    tbl.scale(1.0, 2.2)
 
     dw = 0.17
     aw = (1.0 - dw) / na
@@ -273,7 +251,7 @@ def chart_summary_table(data, output_dir):
 
     for i in range(1, len(rows) + 1):
         tbl[i, 0].get_text().set_ha("left")
-        tbl[i, 0].get_text().set_fontsize(max(5.5, fs - 0.5))
+        tbl[i, 0].get_text().set_fontsize(max(8, fs - 1))
         tbl[i, 0].get_text().set_color("#888")
 
     for i, (mk, _) in enumerate(metrics):
@@ -282,10 +260,6 @@ def chart_summary_table(data, output_dir):
         for j, v in enumerate(vals):
             if v == best:
                 tbl[i + 1, j + 1].set_text_props(fontweight="bold", color="#1b5e20")
-
-    for j, c in enumerate(costs):
-        if c == 0:
-            tbl[len(metrics) + 1, j + 1].set_text_props(fontweight="bold", color="#1b5e20")
 
     fig.tight_layout(rect=[0, 0.025, 1, 0.96])
     _brand(fig)
@@ -346,7 +320,7 @@ def chart_approach_strengths(data, output_dir):
     n = len(labels)
 
     # Spacing: 1.5 units between rows for description text
-    fig, ax = plt.subplots(figsize=(9, 6.5))
+    fig, ax = plt.subplots(figsize=(SLIDE_W, SLIDE_H))
     yp = np.arange(n) * 1.5
 
     # Range lines (behind dots)
@@ -400,32 +374,33 @@ def chart_approach_strengths(data, output_dir):
             if xval == best_val:
                 too_close = any(abs(xval - lx) < 0.03 for lx in labeled_x)
                 if not too_close:
-                    ax.annotate(f"{xval:.0%}", (xval, yval), fontsize=7.5,
+                    ax.annotate(f"{xval:.0%}", (xval, yval), fontsize=11,
                                 fontweight="bold", color=color,
-                                xytext=(0, 10), textcoords="offset points",
+                                xytext=(0, 12), textcoords="offset points",
                                 ha="center", va="bottom")
                     labeled_x.append(xval)
 
     # Y-axis labels
     ax.set_yticks(yp)
-    ax.set_yticklabels(labels, fontsize=9.5, fontweight="bold")
+    ax.set_yticklabels(labels, fontsize=13, fontweight="bold")
     # Description subtitle below each label
     for i, lb in enumerate(labels):
         ax.annotate(descs[lb], xy=(0, yp[i]),
                     xycoords=("axes fraction", "data"),
-                    xytext=(-10, -14), textcoords="offset points",
-                    fontsize=7, color="#aaa", ha="right", va="top")
+                    xytext=(-10, -16), textcoords="offset points",
+                    fontsize=9, color="#aaa", ha="right", va="top")
 
     ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
-    ax.set_xlabel("Recall@K", fontsize=10, color="#666")
-    ax.set_title("Where Each Approach Wins", fontsize=13,
-                 fontweight="bold", pad=14, color="#222")
+    ax.set_xlabel("Recall@K", fontsize=14, color="#666")
+    ax.tick_params(axis='x', labelsize=12)
+    ax.set_title("Where Each Approach Wins", fontsize=18,
+                 fontweight="bold", pad=18, color="#222")
     ax.set_xlim(0.28, 1.02)
     ax.invert_yaxis()
 
     # Legend below the chart, fully outside plot area
     ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.07),
-              framealpha=0.95, fontsize=8.5,
+              framealpha=0.95, fontsize=12,
               ncol=4, columnspacing=1.5, edgecolor="#ddd",
               handletextpad=0.4)
 
